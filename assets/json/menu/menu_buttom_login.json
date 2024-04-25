@@ -1,0 +1,17 @@
+[
+    {
+        "icon":"0xe93c",
+        "title":"tienich.tracuuthongtinnnt",
+        "router":"/tracuuthongtinnnt"
+    },{
+        "icon":"0xe96f",
+        "title":"tienich.congcutinhthue",
+        "router":"/congcutinhthue"
+    },{
+        "icon":"0xe941",
+        "title":"tienich.thongtinhotro",
+        "router":"/thongtinhotro"
+    }
+
+
+]

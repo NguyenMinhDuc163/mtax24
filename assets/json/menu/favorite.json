@@ -1,0 +1,36 @@
+[
+    {
+        "moduleId": "5299901",
+        "displayName": "menu.registration.examSchedule",
+        "routerName": "/",
+        "icon": "o61697"
+    },
+    {
+        "moduleId": "result",
+        "displayName": "menu.registration.result",
+        "routerName": "/",
+        "icon": "o57690"
+    },
+    {
+        "moduleId": "register_result",
+        "displayName": "menu.registration.register_result",
+        "routerName": "/",
+        "icon": "o62485"
+    },
+    {
+        "moduleId": "english",
+        "displayName": "menu.recruitment.english",
+        "icon": "o61493"
+    },
+    {
+        "moduleId": "information_technology",
+        "displayName": "menu.recruitment.information_technology",
+        "icon": "o61135"
+    },
+    {
+        "moduleId": "history",
+        "displayName": "menu.registration.history",
+        "routerName": "/",
+        "icon": "o62053"
+    }
+]

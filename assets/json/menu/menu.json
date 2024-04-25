@@ -1,0 +1,90 @@
+[
+
+  {
+    "moduleId": 51999,
+    "title": "Các chức năng khác",
+    "icon": "assets/images/ic_tab_kekhai.svg",
+    "contains": [
+      {
+        "moduleId": "TCHDBanHang",
+        "displayName": "Tra cứu HĐ bán hàng",
+        "routerName": "/",
+        "icon": "assets/images/ic_tra_cuu_to_khai.svg"
+      },
+      {
+        "moduleId": "TCThongBao",
+        "displayName": "Tra cứu thông báo",
+        "routerName": "/",
+        "icon": "assets/images/ic_tra_cu_thong_bao_kekhai.svg"
+      },
+      {
+        "moduleId": "ThongBaoHĐCQT",
+        "displayName": "Thông báo HĐ CQT",
+        "routerName": "/",
+        "icon": "assets/images/ic_tra_cu_hs_cong_van.svg"
+      },
+      {
+        "moduleId": "TCDuLieuHD",
+        "displayName": "Tra cứu bảng tổng hợp gửi CQT",
+        "routerName": "/",
+        "icon": "assets/images/ic_tra_cuu_thong_tin_tai_khoan.svg"
+      },
+      {
+        "moduleId": "XacMinhHD",
+        "displayName": "Xác minh hóa đơn",
+        "routerName": "/",
+        "icon": "assets/images/ic_tra_cuu_de_nghi_hoan.svg"
+      },
+      {
+        "moduleId": "LapBaoCao",
+        "displayName": "Báo cáo bán hàng",
+        "routerName": "/",
+        "icon": "assets/images/ic_tra_cuu_tb_hoan_thue.svg"
+      },
+      {
+        "moduleId": "BCBanKeBan",
+        "displayName": "Báo cáo bản kê bán ra",
+        "routerName": "/",
+        "icon": "assets/images/ic_tra_cuu_tb_hoan_thue.svg"
+      },
+      {
+        "moduleId": "BCSuDungHD",
+        "displayName": "Báo cáo sử dụng HĐ",
+        "routerName": "/",
+        "icon": "assets/images/ic_tra_cuu_tb_hoan_thue.svg"
+      },
+      {
+        "moduleId": "BCTongHopDL",
+        "displayName": "Báo cáo tổng hợp dữ liệu",
+        "routerName": "/",
+        "icon": "assets/images/ic_tra_cuu_tb_hoan_thue.svg"
+      },
+      {
+        "moduleId": "LapChungTu",
+        "displayName": "Lập chứng từ",
+        "routerName": "/",
+        "icon": "assets/images/ic_tra_cuu_tb_hoan_thue.svg"
+      },
+      {
+        "moduleId": "PheDuyetChungTu",
+        "displayName": "Phê duyệt chứng từ",
+        "routerName": "/",
+        "icon": "assets/images/ic_tra_cuu_tb_hoan_thue.svg"
+      },
+      {
+        "moduleId": "TraCuuChungTu",
+        "displayName": "Tra cưu chứng từ",
+        "routerName": "/",
+        "icon": "assets/images/ic_tra_cuu_tb_hoan_thue.svg"
+      },
+      {
+        "moduleId": "BCBangKeChungTu",
+        "displayName": "Báo cáo bảng kê chứng từ",
+        "routerName": "/",
+        "icon": "assets/images/ic_tra_cuu_tb_hoan_thue.svg"
+      }
+
+    ]
+  }
+
+]

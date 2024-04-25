@@ -1,0 +1,42 @@
+[
+  {
+    "icon":"0xe93c",
+    "title":"tienich.tracuuthongtinnnt",
+    "router":"/"
+  },{
+  "icon":"0xe93a",
+  "title":"tienich.diachicoquanthue",
+  "router":"/"
+},{
+  "icon":"0xe91e",
+  "title":"tienich.danhsachmstruiro",
+  "router":"/"
+},{
+  "icon":"0xe941",
+  "title":"tienich.cauhoithuonggap",
+  "router":"/support"
+},{
+  "icon":"0xe91e",
+  "title":"tienich.huongdansudung",
+  "router":"/support"
+},{
+  "icon":"0xe91e",
+  "title":"tienich.congcutinhthue",
+  "router":"/"
+},{
+  "icon":"0xe91e",
+  "title":"tienich.tintucthue",
+  "router":"/"
+},{
+  "icon":"0xe941",
+  "title":"tienich.chiase",
+  "router":"/"
+},{
+  "icon":"0xe941",
+  "title":"tienich.hotlinehotro",
+  "router":"/"
+}
+
+
+
+]

@@ -1,0 +1,629 @@
+{
+  "greeting": {
+    "morning": "Chào buổi sáng",
+    "afternoon": "Chào buổi chiều",
+    "evening": "Chào buổi tối"
+  },
+
+  "otpDialog": {
+    "title": "Vui lòng nhập mã OTP"
+  },
+
+  "logOut": {
+    "title": "Bạn muốn đăng xuất tài khoản này ?",
+    "ok": "Đăng xuất",
+    "cancel": "Bỏ qua",
+    "yes": "Đồng ý"
+  },
+
+  "profile": {
+    "title": "Thông tin cá nhân",
+    "fullName": "Tên đầy đủ",
+    "address": "Địa chỉ",
+    "phone": "Số điện thoại",
+    "email": "Thư điện tử",
+    "buttonChangeInfo": "Thay đổi thông tin đăng ký",
+    "changeInfo": {
+      "title": "Thay đổi thông tin người dùng",
+      "inputEmail": "Nhập email",
+      "inputPhone": "Nhập số điện thoại",
+      "buttonSubmit": "Sửa thông tin",
+      "error": {
+        "errorEmailEmpty": "Vui lòng nhập Email"
+      }
+    }
+  },
+
+  "fingerRegister": {
+    "title": "Đăng nhập bằng vân tay/Face ID",
+    "title_toggle": "Đăng ký sử dụng vân tay/Face ID",
+    "error": {
+      "FR02": "Thông tin đăng ký không hợp lệ !",
+      "OTP02": "Mã OTP không đúng !",
+      "OTP03": "Mã OTP hết thời gian sử dụng !",
+      "unSuccessful": "Đăng ký không thành công !",
+      "passcodeNotSet": "Thao tác đã bị hủy vì cảm biến sinh trắc học không khả dụng !",
+      "lockedOut": "Thao tác đã bị hủy bị khóa do thử quá nhiều lần. Điều này xảy ra sau 5 lần thử không thành công và kéo dài trong 30 giây !",
+      "notEnrolled": "Thiết bị chưa được đăng ký bảo mật vân tay/Face ID !",
+      "permanentlyLockedOut": "Thao tác đã bị hủy vì xảy ra quá nhiều lần sai. Xác thực sinh trắc học bị tắt mở bằng  mã PIN, hình mở khóa hoặc mật khẩu !",
+      "notAvailable": "Thao tác đã bị hủy vì bảo mật vân tay/Face ID không khả dụng !"
+    }
+  },
+
+  "notificationRegister": {
+    "title": "Đăng ký nhận thông báo",
+    "title_toggle": "Đăng ký kênh nhận thông báo",
+    "error": "Đăng ký lỗi"
+  },
+  "signUp": {
+    "title": "Thông tin đăng ký"
+  },
+
+  "examRegister": {
+    "title": "Đăng ký thi",
+    "titleEnglishTest": "Các bài thi tiếng anh",
+    "titleITTest": "Các bài thi tin học",
+    "practiceTools": "Các công cụ ôn luyện"
+  },
+
+  "account-history": {
+    "title": "Lịch sử tài khoản"
+  },
+  "tienich": {
+    "title": "Tiện ích",
+    "tracuuthongtinnnt": "Thông tin NNT",
+    "diachicoquanthue": "Địa chỉ CQT",
+    "danhsachmstruiro": "Danh sách MST rủi ro",
+    "cauhoithuonggap": "Câu hỏi thường gặp",
+    "huongdansudung": "Hướng dẫn sử dụng",
+    "congcutinhthue": "Công cụ tính thuế",
+    "tintucthue": "Tin tức",
+    "phienban": " Phiên bản iTaxviewer, HTKK",
+    "chiase": "Chia sẻ",
+    "thongtinhotro": "Thông tin hỗ trợ",
+    "nguoiphuthuoc": "Tra cứu người phụ thuộc",
+    "banggiaLPTB": "Bảng giá LPTB"
+  },
+  "login": {
+    "authmessage":{
+      "cancelButton": "Hủy",
+      "gotoSettingButton": "Cài đặt",
+      "goToSettingsDescription": "Vui lòng thiết lập Touch ID/Face ID của bạn.",
+      "IOS":{
+        "lockout": "Vui lòng kích hoạt Touch ID/Face ID của bạn."
+      },
+      "Android": {
+        "lockout": "Xác minh Touch ID/Face ID của bạn."
+      }
+    },
+    "localizedReason": "Vui lòng xác thực để đăng nhập.",
+    "welcome": "Chào mừng người dùng đến với ứng dụng",
+    "buttonSubmit": "Đăng nhập",
+    "registrationInstructions": "Đăng ký",
+    "text_lab_register": "Bạn chưa có tài khoản?",
+    "text_lab_login": "Bạn đã là thành viên của IIG?",
+    "otpInput": "Nhập OTP",
+    "error": "Lỗi đăng nhập",
+
+    "service": "Dịch vụ",
+    "id": "Tài khoản",
+    "name": "Tài khoản",
+    "pwd": "Mật khẩu",
+    "btn-submit": "Đăng nhập",
+    "atm-location": "Vị trí ATM/Chi nhánh",
+    "voucher-community": "Cộng đồng ưu đãi",
+    "exchange-rate": "Tỷ giá",
+    "interest-rate": "Lãi suất",
+    "faq": "Thông tin hỗ trợ",
+    "log": "Đăng nhập",
+    "support": "Liên hệ",
+    "register": "Đăng ký sản phẩm dịch vụ MB",
+    "register_no_active": "Chức năng này sẽ được cung cấp trong thời gian tới",
+    "fail": "Lỗi đăng nhập",
+    "forgot": "Quên mật khẩu ?",
+    "forgot-content": "Người nộp thuế vui lòng đến chi nhánh/phòng giao dịch gần nhất để được hỗ trợ lấy lại mật khẩu.",
+    "ALERT_EXPIRE": "Để bảo đảm an toàn Người nộp thuế vui lòng chọn 'Đồng ý' để thay đổi mật khẩu.",
+    "share": {
+      "title": "Chia sẻ",
+      "msg": "Hãy tải ứng dụng BacABank Smart Banking để dễ dàng giao dịch ngân hàng và sử dụng các tính năng hữu ích! Truy cập địa chỉ https://www.baca-bank.vn/SitePages/trang-chu.aspx để tải ứng dụng",
+      "subject": "Mời bạn tải ứng dụng",
+      "url": "https://www.baca-bank.vn/SitePages/trang-chu.aspx"
+    },
+    "logout": "Đăng xuất",
+    "empty": "Vui lòng nhập tài khoản và mật khẩu đăng nhập.",
+    "empty_finger": "Vui lòng nhập tài khoản.",
+    "otp": {
+      "title1": "Đây là lần đăng nhập ứng dụng đầu tiên của Người nộp thuế, vui lòng nhập mã xác thực để sử dụng dịch vụ !",
+      "title2": "Người nộp thuế vui lòng nhập mã xác nhận để hoàn tất việc đăng nhập ứng dụng Mobile Banking của BAC A BANK trên máy khác!",
+      "error": "OTP không chính xác.",
+      "holder": "Vui lòng nhập OTP"
+    }
+  },
+  "register": {
+    "register": "Đăng ký sản phẩm dịch vụ MB",
+    "success": "Thành công",
+    "customer_name": "Tên khách hàng",
+    "customer_id": "Số CMND/HC",
+    "customer_phone": "Số điện thoại",
+    "customer_address": "Địa chỉ",
+    "product_type": "Loại sản phẩm",
+    "description": "Mô tả",
+    "request_from_branch": "CN nhận yêu cầu",
+    "ALERT_CUSTOMER_NAME": "Vui lòng nhập tên khách hàng",
+    "ALERT_CUSTOMER_ID": "Vui lòng nhập số CMND/HC",
+    "ALERT_CUSTOMER_PHONE": "Vui lòng nhập số điện thoại",
+    "ALERT_CUSTOMER_ADDRESS": "Vui lòng nhập địa chỉ",
+    "ALERT_PRODUCT_TYPE": "Vui lòng chọn loại sản phẩm",
+    "ALERT_REQUEST_FROM_BRANCH": "Vui lòng chọn chi nhánh nhận yêu cầu",
+    "SUCCESS_TITLE": "Đăng ký thành công",
+    "select": "--Vui lòng chọn--",
+    "back": "Quay lại",
+    "submit": "Tiếp tục",
+    "finish": "Kết thúc",
+    "selectService": "Chọn dịch vụ đăng kí",
+    "cardregister": "Đăng kí dịch vụ thẻ",
+    "Loan_Registration": "Đăng ký vay vốn",
+    "mPosRegistration": "Đăng ký mPos",
+    "internet_banking": "Đăng ký dịch vụ Internet Banking",
+    "payment_account": "Đăng ký mở tài khoản thanh toán",
+    "internet_banking_confirm": "Xác nhận thông tin"
+  },
+  "main": {
+    "img-picker-title": "Chọn ảnh từ ...",
+    "img-picker-camera": "Máy ảnh",
+    "img-picker-file": "Thư viện ảnh",
+    "img-picker-default": "Mặc định",
+    "change-img-success": "Thay đổi ảnh thành công!",
+    "change-img-fail": "Thay đổi ảnh không thành công"
+  },
+  "change-pass": {
+    "title": "Đổi mật khẩu",
+    "current-pass": "Mật khẩu hiện tại",
+    "new-pass": "Mật khẩu mới",
+    "confirm-pass": "Xác nhận mật khẩu mới",
+    "confirm-button": "Xác nhận",
+    "back-button": "Quay lại",
+    "button-submit": "Thay đổi",
+    "confirm-quest": "Bạn có muốn thay đổi mật khẩu không?",
+    "unsuccessful": "Đổi mật khẩu không thành công",
+    "success": "Đổi mật khẩu thành công!",
+    "err": "Lỗi",
+    "error": {
+      "new": "Mật khẩu mới lỗi",
+      "confirm-new": "Xác nhận mật khẩu mới lỗi",
+      "new-confirm-new": "Mật khẩu mới không đúng với xác nhận mật khẩu",
+      "notcorrect": "Mật khẩu không hợp lệ ( bao gồm ký tự đặc biệt, chữ hoa, số…)",
+      "space": "Mật khẩu có khoản trắng",
+      "oldnotcorrect": "Mật khẩu cũ không đúng",
+      "curent_empty": "Mật khẩu hiện tại không được bỏ trống, vui lòng nhập lại!",
+      "new_empty": "Mật khẩu mới không được bỏ trống, vui lòng nhập lại!",
+      "confirm_empty": "Xác nhận mật khẩu không được bỏ trống, vui lòng nhập lại!",
+      "pass-not-match": "Mật khẩu mới không khớp, vui lòng nhập lại!",
+      "not-valid": "Mật khẩu mới không đúng định dạng!"
+    },
+    "inform": " Đây là lần đăng nhập đầu tiên trên hệ thống, Người nộp thuế vui lòng đổi mật khẩu để đảm bảo an toàn bảo mật!"
+  },
+  "forgot-pass": {
+    "title": "Quên mật khẩu",
+    "current-pass": "Mật khẩu hiện tại",
+    "new-pass": "Mật khẩu mới",
+    "confirm-pass": "Xác nhận mật khẩu mới",
+    "confirm-button": "Xác nhận",
+    "back-button": "Quay lại",
+    "button-submit": "Tiếp tục",
+    "unsuccessful": "Không tìm thấy thông tin khách hàng!",
+    "successful": "Đổi mật khẩu thành  công",
+    "unsuccessfulOtp": "NNT nhập sai mã OTP!",
+    "err": "Lỗi",
+    "tin": "Mã số thuế",
+    "OTP": "Mã OTP",
+    "error": {
+      "new": "Mật khẩu mới lỗi",
+      "confirm-new": "Xác nhận mật khẩu mới lỗi",
+      "new-confirm-new": "Mật khẩu mới  không đúng với xác nhận mật khẩu",
+      "notcorrect": "Mật khẩu không hợp lệ ( bao gồm ký tự đặc biệt, chữ hoa, số…)",
+      "space": "Mật khẩu có khoản trắng",
+      "oldnotcorrect": "Mật khẩu cũ không đúng",
+      "curent_empty": "Mật khẩu hiện tại không được bỏ trống, vui lòng nhập lại!",
+      "new_empty": "Mật khẩu mới không được bỏ trống, vui lòng nhập lại!",
+      "confirm_empty": "Xác nhận mật khẩu không được bỏ trống, vui lòng nhập lại!",
+      "pass-not-match": "Mật khẩu mới không khớp, vui lòng nhập lại!",
+      "not-valid": "Mật khẩu mới không đúng định dạng!",
+      "otp-error": "Gửi OTP bị lỗi!",
+      "otp-uncorect": "Mã OTP không đúng!",
+      "otp-timeout": "Mã OTP hết hạn!"
+    }
+  },
+
+  "register_account":{
+    "title_input_name": "Họ và tên",
+    "hint_input_name": "Nhập họ và tên",
+    "title_input_gender": "Giới tính",
+    "gender": {
+      "male": "Nam",
+      "female": "Nữ"
+    },
+    "title_input_birthday": "Ngày sinh",
+    "hint_input_birthday": "Nhập ngày sinh",
+    "title_input_phone": "Số điện thoại",
+    "hint_input_phone": "Nhập số điện thoại",
+    "title_input_email": "Nhập email",
+    "hint_input_email": "Nhập địa chỉ email",
+    "title_input_address": "Địa chỉ",
+    "hint_input_address": "Nhập địa chỉ",
+    "title_input_username": "Tài khoản đăng nhập",
+    "hint_input_username": "Nhập tài khoản",
+    "title_input_password": "Mật khẩu",
+    "hint_input_password": "Nhập mật khẩu của bạn",
+    "title_input_repassword": "Nhập lại mật khẩu",
+    "hint_input_repassword": "Nhập lại mật khẩu của bạn",
+    "title_input_career": "Nghề nghiệp",
+    "hint_input_career": "Chọn nghề nghiệp",
+    "button_submit": "ĐĂNG KÝ NGAY",
+    "resend_verification":"Gửi lại mã xác thực",
+    "note": "Vui lòng nhập thông tin chính xác. Hệ thống sẽ tự động gửi thông tin xác thực tài khoản cho bạn qua email."
+  },
+
+  "contact": {
+    "title": "Liên hệ",
+    "version": "Phiên bản hiện tại"
+  },
+  "faq": {
+    "title": "Thông tin hỗ trợ",
+    "general-questions": "Câu hỏi thường gặp",
+    "ALERT-CONFIRM": "Vui lòng xác nhận điều khoản và điều kiện xử dụng",
+    "checkBook": "Tôi đã đọc và đồng ý với các điều kiện và điều khoản sử dụng dịch vụ ở trên",
+    "listGroups": [
+      {
+        "groupQ1": {
+          "title": "I. Thông tin chung",
+          "listQuestions": [
+            {
+              "question1": {
+                "title": "1. Dịch vụ eTax Mobile là gì?",
+                "answer": "<p style=text-align:justify>eTax Mobile - Ứng dụng dịch vụ kê khai thuế do Tổng cục thuế và nhà cung cấp Seatech phát triển. Ứng dụng được cài đặt trên thiết bị thông minh: di động, máy tính bảng,… trên hệ điều hành IOS hoặc Android, cho phép cá nhân, cá nhân kinh doanh và hộ kinh doanh có thể tra cứu tờ khai đăng ký thuế.</p>"
+              }
+            },
+            {
+              "question2": {
+                "title": "2. Tại sao tôi nên chọn sử dụng dịch vụ eTax Mobile?",
+                "answer": "<p style=text-align:justify>Với dịch vụ eTax Mobile, thông qua thiết bị máy tính, máy tính bảng, điện thoại thông minh có kết nối 3G/4G/Wifi/GPRS, Người nộp thuế sẽ được trải nghiệm nhiều tiện ích hấp dẫn và nhanh chóng, mọi lúc mọi nơi. eTax Mobile giúp NNT có thể tra cứu tờ khai phục vụ mọi nhu cầu của cá nhân, cá nhân kinh doanh và hộ kinh doanh.</p>"
+              }
+            },
+            {
+              "question3": {
+                "title": "3. Tôi có thể làm giao dịch gì khi sử dụng dịch vụ eTax Mobile?",
+                "answer": "<p style=text-align:justify><strong>Kiểm tra thông tin NNT:</strong> mã số thuế, tên người nộp thuế, cơ quan thuế, số CMT, ngày cấp.</p><p><strong>Quản lý tài khoản: </strong><p>- Thông tin người nộp thuế </p><p>- Thay đổi thông tin đăng ký </p><p>- Tra cứu người phụ thuộc </p><p>- Hòm thư: cho phép NNT tra cứu thông báo từ CQT </p><strong><p>Nộp thuế </p></strong><strong>Tra cứu nghĩa vụ thuế </strong><p>- Tra cứu sổ thuế trước bạ </p><p>- Tra cứu sổ thuế cá nhân </p><p>- Tra cứu số thuế trước bạ ô tô, xe máy. </p><strong>Tra cứu hồ sơ thuế </strong><p>- Hồ sơ khai thuế </p><p>- Hồ sơ QTT </p><p>- Hồ sơ khai thuế LPTB </p><p>- Hồ sơ đăng ký thuế </p><strong><p>Tra cứu thông báo thuế</p></strong><strong>Thiết lập cá nhân </strong><p>- Thiết lập ảnh đại diện</p><p>- Đổi mật khẩu </p><p>- Bảo mật vân tay </p><p>- Thiết lập kênh nhận thông báo </p><strong>Tiện ích </strong><p>- Tra cứu bảng giá LPTB </p><p>- Công cụ tính thuế </p><p>- Tin tức thuế </p><p>- Tra cứu thông tin NNT </p><p>- Tra cứu địa chỉ cơ quan thuế </p><p>- Tra cứu phiên bản HTKK, itaxviewer hiện hành </p><p>- Tra cứu MST rủi ro "
+              }
+            },
+            {
+              "question4": {
+                "title": "4. Ai có thể sử dụng dịch vụ eTax Mobile? ",
+                "answer": "<p style=text-align:justify><strong>Dịch vụ eTax Mobile được cung cấp cho khách hàng có đủ đồng thời các điều kiện sau: </strong></p><p style=text-align:justify>- NNT là cá nhân đã có tài khoản trên hệ thống iCanhan.  </p><p style=text-align:justify>- Có điện thoại đăng ký mạng viễn thông của Việt Nam. </p><p style=text-align:justify>- Trường hợp Người nộp thuế sử dụng dịch vụ eTax Mobile trên ứng dụng di động, thiết bị di động tương ứng cần có hệ điều hàng IOS phiên bản từ 9.0 trở lên hoặc hệ điều hành Android phiên bản từ 4.0 trở lên hoặc theo quy định của eTax theo từng thời kỳ  </p>"
+              }
+            },
+            {
+              "question5": {
+                "title": "5. Có phải dịch vụ eTax Mobile hoạt động liên tục 24h? ",
+                "answer": "<p style=text-align:justify>Đúng, dịch vụ eTax Mobile hoạt động 24h một ngày và 7 ngày trong tuần, bao gồm cả ngày nghỉ/ngày lễ.</p>"
+              }
+            },
+            {
+              "question6": {
+                "title": "6. Tôi có thể nhận hỗ trợ như thế nào nếu tôi gặp trục trặc khi sử dụng dịch vụ eTax Mobile? ",
+                "answer": "<p style=text-align:justify>Khi có bất kỳ vướng mắc trong quá trình sử dụng dịch vụ, Người nộp thuế có thể liên hệ Hotline 24/7 theo số điện thoại ….</p>"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "groupQ2": {
+          "title": "II. Đăng nhập",
+          "listQuestions": [
+            {
+              "question1": {
+                "title": "1. Làm thế nào để đăng nhập vào dịch vụ eTax Mobile?",
+                "answer": "<p style=text-align:justify>- NNT tải ứng dụng eTax Mobile trên chợ ứng dụng về thiết bị di động.</p><p style=text-align:justify>- Nhập tên đăng nhập và mật khẩu để đăng nhập.</p>"
+              }
+            },
+            {
+              "question2": {
+                "title": "2. Tôi cần làm gì trong lần đăng nhập đầu tiên hoặc đổi sang thiết bị mới?",
+                "answer": "<p style=text-align:justify>Khi đăng nhập lần đầu vào hệ thống NNT hoặc đổi sang thiết bị mới thì NNT phải nhập mã OTP xác thực được gửi về số điện thoại đã đăng ký trên hệ thống iCanhan.</p>"
+              }
+            },
+            {
+              "question3": {
+                "title": "3. Mật khẩu sử dụng dịch vụ eTax Mobile nên được đặt như thế nào?",
+                "answer": "<p style=text-align:justify>- Mật khẩu sử dụng dịch vụ eTax Mobile theo quy tắc: chữ thường, chữ hoa hoặc chữ số hoặc ký tự đặc biệt. Mật khẩu truy cập phải dài từ 6 đến 20 ký tự và không có dấu cách (khoảng trống)</p><p style=text-align:justify>- Để đảm bảo an toàn, NNT không cài đặt mật khẩu bằng thông tin mang tính cá nhân mà người khác dễ suy đoán như ngày tháng năm sinh, số điện thoại, tên bản than, dãy số liên tục đơn giản như 23456…., tránh viết mật khẩu ra giấy hoặc ghi chép dưới hình thức khác.</p>"
+              }
+            },
+            {
+              "question4": {
+                "title": "4. Tôi phải làm gì nếu quên Tên đăng nhập hoặc mật khẩu của dịch vụ eTax Mobile?  ",
+                "answer": "<p style=text-align:justify>- Liên hệ Cơ quan thuế quản lý trực tiếp để được hỗ trợ.</p><p style=text-align:justify>- Liên hệ Hotline 24/7 của eTax qua số điện thoại… </p><p style=text-align:justify>- Trên mobile đăng nhập eTax Mobile (áp dụng đối với NNT cá nhân cấp lại mật khẩu với điều kiện tên truy cập chưa bị khóa).</p>"
+              }
+            },
+            {
+              "question5": {
+                "title": "5. Nếu tôi nhập sai Mật khẩu, hệ thống có tạm khóa truy cập dịch vụ eTax Mobile của tôi không?",
+                "answer": "<p style=text-align:justify>Để đảm bảo an toàn cho NNT, dịch vụ eTax Mobile của quý khách sẽ bị tạm khóa truy cập ngay sau khi NNT nhập sai mật khẩu 3 lần liên tiếp. Trong trường hợp này, NNT vui lòng đợi 3 phút để đăng nhập lại.</p>"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "groupQ3": {
+          "title": "III. Sử dụng dịch vụ",
+          "listQuestions": [
+            {
+              "question1": {
+                "title": "1. Tính năng Cài đặt yêu thích có gì nổi bật?",
+                "answer": "<p style=text-align:justify>Tính năng cài đặt chức năng yêu thích giúp NNT tự cài đặt chức năng, dịch vụ thường xuyên sử dụng, để hiển thị tại vị trí dễ quan sát trên màn hình, giúp NNT thực hiện tra cứu tờ khai nhanh chóng theo nhu cầu của mình.</p>"
+              }},
+            {
+              "question2": {
+                "title": "2. Tôi đang sử dụng dịch vụ eTax Mobile thì chương trình hiển thị thông báo “Phiên giao dịch sử dụng dịch vụ đã hết. Quý khách vui lòng đăng nhập lại?",
+                "answer": "<p style=text-align:justify>Vì lý do an toàn của NNT, nếu NNT đăng nhập trong một khoảng thời gian nhất định không có thao tác sử dụng dịch vụ, hệ thống sẽ thông báo hết thời gian truy cập. Khi nhận được thông báo này, NNT chỉ cần sử dụng đúng Tên đăng nhập và Mật khẩu để đăng nhập lại.</p>"
+              }},
+            {
+              "question3": {
+                "title": "3. One – time – password(OTP) là gì?",
+                "answer": "<p style=text-align:justify>OTP là mật khẩu sử dụng một lần do eTax Mobile cung cấp cho NNT mỗi khi khách hàng thực hiện đăng nhập lần đầu hoặc quên mật khẩu để định danh chính xác NNT. Mật khẩu này chỉ có giá trị sử dụng một lần duy nhất nên có thể đảm bảo an toàn cho NNT.</p>"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "groupQ4": {
+          "title": "IV. Một số câu hỏi thường gặp khi kê khai thuế và nộp thuế.",
+          "listQuestions": [
+            {
+              "question1": {
+                "title": "1. Ngày nộp thuế được cơ quan thuế chấp nhận là ngày nào?",
+                "answer": "<p style=text-align:justify>Theo Thông tư 110, Ngày nộp thuế điện tử là ngày người nộp thuế hoặc người nộp thay thực hiện giao dịch trích tiền từ tài khoản của mình tại ngân hàng để nộp thuế.</p>"
+              }},
+            {
+              "question2": {
+                "title": "2. Doanh nghiệp là chi nhánh có cần phải tham gia NTĐT hay không?",
+                "answer": "<p style=text-align:justify>Nếu Công ty mẹ đã nộp thay các Chi nhánh về các khoản thuế mà Chi nhánh phải nộp thì không bắt các Chi nhánh hoặc công ty con đăng ký NTĐT nữa.</p><p style=text-align:justify><strong>Tuy nhiên cần phân biệt 2 tình huống như sau:</strong></p><p style=text-align:justify>- Công ty mẹ nộp thuế thay cho công ty con hoặc chi nhánh một món nào đó thì CQT có thể tự tra cứu trên hệ thống, không cần yêu cầu DN in ra chứng minh. Nếu đơn vị nào yêu cầu thì Ngân hàng gửi danh sách cụ thể về Tổng cục để nhắc nhở Cục Thuế/Chi cục Thuế thực hiện đúng.</p><p style=text-align:justify>- Trong trường hợp nếu Chi nhánh hoặc Công ty con ngoài những khoản Công ty mẹ đã nộp thay mà còn các khoản khác phải tự nộp thì việc cơ quan Thuế đề nghị Chi nhánh hoặc Công ty con tham gia NT.</p>"
+              }},
+            {
+              "question3": {
+                "title": "3. Trong một GNT được nộp bao nhiêu loại thuế?",
+                "answer": "<p style=text-align:justify>Trong 1 giấy nộp tiền chỉ được phép nộp cho 1 loại thuế.</p><p>Hiện nay ứng dụng TĐT đang cho phép nộp các loại thuế sau:</p><p>- Thuế nội địa</p><p>- Thuế trước bạ</p> "
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "menu": {
+    "kekhai":{
+      "title":"Kê khai",
+      "tracuutokhai": "Tra cứu tờ khai",
+      "thongbaokekhai": "Thông báo kê khai"
+    },
+    "nopthue": {
+      "title": "Nộp thuế",
+      "chungtu": "Tra cứu chứng từ",
+      "thongbaoGNT": "Tra cứu thông báo GNT",
+      "lapgiaynoptien": "Lập giấy nôp tiền",
+      "lapgiaynoptiennopthay": "Lập giây nộp tiền nộp thay"
+    },
+    "library": {
+      "title": "Thư viện",
+      "images": "Hình ảnh",
+      "videos": "Videos"
+    },
+    "newsAndEvents": {
+      "title": "Tin tức & sự kiện",
+      "newsAndEvents": "Tin tức & sự kiện",
+      "promotional_news": "Tin khuyến mại",
+      "nopthue": "Nộp thuế",
+      "tracuuchungtu": "Tra cứu chứng từ"
+    },
+    "setting": {
+      "title": "Thiết lập cá nhân",
+      "fast-menu": "Thiết lập trang chủ",
+      "avatar": "Thiết lập ảnh đại diện",
+      "cover-image": "Thiết lập ảnh nền",
+      "language": "Ngôn ngữ mặc định",
+      "password": "Đổi mật khẩu đăng nhập",
+      "pin": "Đổi mật khẩu giao dịch",
+      "suspend": "Tạm ngừng dịch vụ",
+      "push": "Dịch vụ cảnh báo",
+      "beneficiaty": "Tài khoản thụ hưởng",
+      "fingerprint": "Đăng nhập bằng vân tay/FaceID",
+      "notification": "Đăng ký kênh nhận thông tin",
+      "listRegister": "Danh sách đăng ký thi",
+      "qr-pay": "Qr-pay",
+      "testdatechoosing": "Đặt lịch hẹn đăng kí",
+      "theme": {
+        "title": "Đổi màu nền",
+        "default": "Mặc định",
+        "teal": "Xanh",
+        "grey": "Xám",
+        "brown": "Nâu",
+        "green": "Xanh lá",
+        "light-blue": "Xanh da trời",
+        "red": "Đỏ",
+        "pink": " Hồng",
+        "purple": "Tím",
+        "deep-purple": "Tím đậm",
+        "indigo": "Chàm",
+        "light-green": "Xanh nõn chuối",
+        "lime": "Vàng chanh",
+        "cyan": "Xanh nhạt",
+        "vangnau": "Vàng nâu",
+        "vangbaca": "Vàng đậm",
+        "vang": "Vàng nhạt",
+        "xanhvl": "Xanh dương",
+        "trang": "Trắng Đen"
+      },
+      "bill-payment-credit-card": "Thanh toán thẻ tín dụng",
+      "bill-payment-finance": "Thanh toán tài chính",
+      "support": "Hỗ trợ khách hàng",
+      "alert_bank": "Thông báo từ ngân hàng",
+      "setting_payment": "Thiết lập thanh toán",
+      "online_payment": "Thanh toán điện tử"
+    },
+    "tienich": {
+      "title": "Thông tin chung",
+
+      "cauhoithuonggap": "Câu hỏi thường gặp",
+      "tinthue": "Tính thuế thu nhập cá nhân",
+      "coquanthue": "Danh sách cơ quan thế",
+      "hotro": "Hỏi đáp - Hỗ trợ",
+      "lienhe": "Liên hệ"
+
+    }
+  },
+  "fingerprint": {
+    "fingerprintNotUsed": "Vân tay chưa dùng",
+    "title": "Cài đặt vân tay/FaceID",
+    "login_fingerprint": "Đăng nhập bằng vân tay hoặc FaceID",
+    "note_login": "Sử dụng vân tay hoặc FaceID để đăng nhập ứng dụng",
+    "authen_fingerprint": "Xác thực bằng vân tay hoặc FaceID",
+    "note_authen": "Sử dụng vân tay hoặc FaceID để xác thực giao dịch tài chính",
+    "confirm_setup": "Xác nhận cài đặt",
+    "note_confirm": "Vui lòng nhập mã OTP đã được gửi về số điện thoại đăng ký để xác nhận giao dịch",
+    "otp": "Nhập OTP",
+    "note": "Lưu ý: Người nộp thuế vui lòng xác thực giao dịch trong vòng 120 giây.",
+    "btn": "Tiếp tục",
+    "notif": "Thông báo",
+    "succ": "Đăng ký thành công",
+    "succ_cancel": "Hủy đăng ký thành công",
+    "fail": "Đăng ký thất bại",
+    "fail_cancel": "Hủy thất bại",
+    "error1": "Thiết bị của bạn không hỗ trợ tính năng xác thực vân tay/FaceID",
+    "error2": "Vui lòng nâng cấp lên phiên bản Android 6.0 trở lên để sử dụng tính năng này",
+    "error3": "Thiết bị chưa cài đặt dấu vân tay/FaceID. Người nộp thuế vui lòng cài đặt dấu vân tay hoặc FaceID trên thiết bị trước",
+    "error4": "Thiết bị của bạn không hỗ trợ tính năng xác thực vân tay/FaceID hoặc chưa cài đặt vân tay/FaceID trên máy",
+    "ALERT_OTP_EMPTY": "Vui lòng nhập mã OTP!",
+    "ALERT_OTP_EQUAL": "Mã OTP không chính xác. Vui lòng nhập lại!",
+    "ALERT_REGISTER": "Người nộp thuế vui lòng đăng nhập bằng mật khẩu, sau đó vào Thiết lập để bật xác thực bằng vân tay/FaceID.",
+    "ALERT_BLOCK_FINGER": "Chức năng vân tay/FaceID đã bị khóa. Vui lòng thử lại sau",
+    "UN_RE": "Hủy thành công",
+    "title_popup": "Xác thực vân tay/FaceID",
+    "cancel_bt": "Hủy bỏ",
+    "txt_des": "Vui lòng quét vân tay/FaceID để đăng nhập ứng dụng",
+    "txt_des2": "Vui lòng quét vân tay/FaceID để xác thực giao dịch",
+    "txt_des3": "Vui lòng quét vân tay/FaceID để tiếp tục",
+    "fingerprint_hint_txt": "Chạm vào cảm biến",
+    "fingerprint_not_recognized_txt": "Xác thực thất bại",
+    "fingerprint_success_txt": "Xác thực thành công",
+    "new_fingerprint_enrolled_description_txt": "Có vấn tay mới",
+    "secure_lock_screen_required_txt": "bobo",
+    "new_finger": "Bạn đã thêm một vân tay/FaceID mới trên điện thoại. Vui lòng xác nhận để tiếp tục sử dụng tính năng vân tay/FaceID",
+    "block": "Tính năng vân tay/FaceID đã bị khóa. Vui lòng xác nhận để tiếp tục sử dụng",
+    "ok": "Xác thực thành công",
+    "limit_try": "Vượt quá số lần thử lại",
+    "lock_finger": "Chức năng xác thực vân tay/FaceID đã bị khóa. Vui lòng kích hoạt lại để tiếp tục sử dụng",
+    "newFinger": "Một vân tay/FaceID mới đã được đăng ký trên máy. Vui lòng sử dụng mật khẩu đăng nhập",
+    "use_pass": "Dùng mật khẩu",
+    "warning": "*Lưu ý",
+    "note1": "Đối với các thiết bị của Apple chỉ sử dụng tính năng xác thực qua Face ID, khi kích hoạt tính năng “đăng nhập bằng vân tay/FaceID” và “xác thực bằng vân tay/FaceID” cũng đồng nghĩa với việc khách hàng kích hoạt tính năng Face ID để “đăng nhập” và “xác thực giao dịch” trên BAC A BANK Mobile Banking.",
+    "mutyple_finger_error": "Xác thực thất bại quá 5 lần. Vui lòng sử dụng tài khoản và mật khẩu để đăng nhập.",
+    "fingerprint_not_exist": "Thiết bị của bạn hiện tại chưa hỗ trợ tính năng xác thực vân tay hoặc Face ID",
+    "fingerprint_not_register": "Bạn chưa cài đặt vân tay/FaceID trên thiết bị này.Vui lòng thiết lập sử dụng vân tay hoặc Face ID để sử dụng"
+  },
+  "fcm-notification": {
+    "title": "Đăng ký nhận thông báo",
+    "name": "Nhận thông báo",
+    "description_name": "Thông báo quảng bá, khuyến mại",
+    "debt_notification": "Nhận thông báo nhắc nợ",
+    "description_debt_notification": "Thông báo nhắc thanh toán hóa đơn"
+  },
+  "bill_payment": "Thanh toán hóa đơn",
+  "finance_payment": "Dịch vụ tài chính",
+  "credit_card_payment": "Thẻ tín dụng",
+  "wallet_payment": "Ví điện tử",
+  "recharge_via": "Nạp tiền",
+  "media": {
+    "choose_from": "Chọn ảnh từ...",
+    "camera": "Máy ảnh",
+    "library": "Thư viện",
+    "default": "Mặc định",
+    "skip": "Bỏ qua"
+  },
+  "change_avatar_succes": "Thiết lập ảnh đại diện thành công",
+
+  "exam_schedule":{
+    "title": "Lịch thi",
+    "test": "Bài thi",
+    "test_day": "Ngày thi",
+    "exam_time": "Giờ thi",
+    "results_day": "Ngày trả kết quả",
+    "detail": "Chi tiết lịch thi"
+  },
+  "contest_registration_list":{
+    "title": "danh sách đăng ký dự thi",
+    "surrogate": "Người đại diên",
+    "phone": "Số điện thoại",
+    "brief": "Hồ sơ"
+  },
+  "favorites":{
+    "title":"Yêu thích"
+  },
+  "registration_results":{
+    "title":"Kết quả đăng kí"
+  },
+  "contacting":{
+    "title": "Thông tin liên hệ"
+  },
+  "location":{
+    "title":"Địa điểm tổ chức thi"
+  },
+  "promotion":{
+    "title": "Quảng cáo"
+  },
+  "test_site":{
+    "title":"Danh sách địa điểm thi"
+  },
+  "info_app": {
+    "text1": "Tổ chức thi các bài thi quốc tế",
+    "text2": "Đăng ký thi đơn giản",
+    "text3": "Mọi lúc, mọi nơi",
+    "content": "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing mockups."
+  },
+  "title_detail_notification": "Chi tiết thông báo",
+  "testdate": "Chọn ngày thi",
+  "payment": {
+    "title_history": "Lịch sử thanh toán",
+    "title_payment": "Thanh toán điện tử",
+    "total_money": "Tổng tiền thanh toán",
+    "methods_payment": "Phương thức thanh toán",
+    "payment": "Thanh toán",
+    "txt_link_bank": "Liên kết ngân hàng",
+    "txt_mb_bank": "Ngân hàng quân đội",
+    "txt_content": "(*) Hiện tại, chúng tôi chỉ áp dụng một hình thức thanh toán duy nhất qua ngân hàng quân đội.",
+    "txt_content_register": "Bạn chưa có tài khoản ngân hàng quân đội. Vui lòng bỏ ra vài phút tạo tài khoản mới với công nghệ EKYC",
+    "txt_create_account_mb": "Tạo tài khoản MB BANK",
+    "cancel_link": "Hủy liên kết",
+    "link_bank_mb": "Liên kết tK MB BANK",
+    "number": "Số thẻ",
+    "name_card": "Tên chủ thẻ (Không dấu)",
+    "conditions_of_service": "Điều kiện sử dụng dịch vụ",
+    "certain": "Xác thực",
+    "or": "Hoặc",
+    "cancel": "Hủy",
+    "content": "- Khách hàng có thẻ thanh toán nội địa (ATM) của Bank và trạng thái Active\n- Thực hiện đầy đủ các bước tại Quy trình thanh toán hàng hóa, dịch vụ\n- Thẻ ATM đã đăng ký thanh toán trực tuyến\n- Giao dịch đáp ứng các điều kiện chuẩn chi giao dịch của Bank"
+  },
+  "dialog": {
+    "title": "Thông báo"
+  },
+  "search_button": "Tra cứu",
+  "calendar_hints":{
+    "begin": "Từ ngày",
+    "end": "Tới ngày",
+    "beginerr": "Ngày từ sau ngày tới",
+    "enderr": "Ngày tới trước ngày từ",
+    "todayerr": "Ngày chọn sau ngày hôm nay"
+  },
+  "nameholder": "Họ và tên"
+}

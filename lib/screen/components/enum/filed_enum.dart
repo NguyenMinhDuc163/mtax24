@@ -1,0 +1,1 @@
+enum ToggleEnum { Y, N }
