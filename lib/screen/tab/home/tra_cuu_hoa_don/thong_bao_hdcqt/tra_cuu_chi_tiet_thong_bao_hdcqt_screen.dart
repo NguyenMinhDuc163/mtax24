@@ -113,18 +113,16 @@ class _TraCuuThongBaoScreenState extends State<TraCuuChiTietThongBaoHoaDonCQTScr
                       ),
                     ),
                     // TODO them neu co phan thong bao loi
-                    // Divider(height: 1,),
-                    // Padding(
-                    //   padding: EdgeInsets.all(40.h),
-                    //   child: ItemFilterTB("Mã lỗi", "20001"),
-                    // ),
-                    // Divider(height: 1,),
-                    // Padding(
-                    //   padding: EdgeInsets.all(40.h),
-                    //   child: ItemFilterTB("Mô tả lỗi", "Sai định dạng dữ liệu HDon/DLHDon/NDHDon/NMua/DCTDTu :"
-                    //       " định dạng không hợp lệ HDon/DLHDon/NDHDon/DSHHDVu/HHDVu[0]/THHDVu :"
-                    //       " Tên hàng hóa dịch vụ không được bỏ trống HDon/DLHDon/NDHDon/NMua/MST : định dạng không hợp lệ "),
-                    // )
+                    Divider(height: 1,),
+                    Padding(
+                      padding: EdgeInsets.all(40.h),
+                      child: ItemFilterTB("Mã lỗi", (response.maLoi != "") ?  response.maLoi : "Không"),
+                    ),
+                    Divider(height: 1,),
+                    Padding(
+                      padding: EdgeInsets.all(40.h),
+                      child: ItemFilterTB("Mô tả lỗi", (response.moTaLoi != "") ? response.moTaLoi : "Không"),
+                    )
                   ],
 
                 ),

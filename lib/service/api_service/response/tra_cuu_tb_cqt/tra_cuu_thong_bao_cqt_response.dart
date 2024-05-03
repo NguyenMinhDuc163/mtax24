@@ -9,7 +9,7 @@ List<TraCuuThongBaoCqtResponse> traCuuThongBaoCqtResponseFromJson(String str) =>
 String traCuuThongBaoCqtResponseToJson(List<TraCuuThongBaoCqtResponse> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class TraCuuThongBaoCqtResponse {
-  TraCuuThongBaoCqtResponse({
+  TraCuuThongBaoCqtResponse( {
     this.id,
     this.mauso,
     this.masothue,
@@ -25,6 +25,8 @@ class TraCuuThongBaoCqtResponse {
     this.tentkhai,
     this.ngaylaphd,
     this.loaiThongBao,
+    this.maLoi,
+    this.moTaLoi,
   });
 
   final int id;
@@ -42,6 +44,8 @@ class TraCuuThongBaoCqtResponse {
   final String tentkhai;
   final dynamic ngaylaphd;
   final dynamic loaiThongBao;
+  final String maLoi;
+  final String moTaLoi;
 
   factory TraCuuThongBaoCqtResponse.fromJson(Map<String, dynamic> json) => TraCuuThongBaoCqtResponse(
     id: json["id"] == null ? null : json["id"],
@@ -59,6 +63,8 @@ class TraCuuThongBaoCqtResponse {
     tentkhai: json["tentkhai"] == null ? null : json["tentkhai"],
     ngaylaphd: json["ngaylaphd"],
     loaiThongBao: json["loaiThongBao"],
+    maLoi: json["maLoi"],
+    moTaLoi: json["moTaLoi"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -77,5 +83,7 @@ class TraCuuThongBaoCqtResponse {
     "tentkhai": tentkhai == null ? null : tentkhai,
     "ngaylaphd": ngaylaphd,
     "loaiThongBao": loaiThongBao,
+    "maLoi": maLoi,
+    "moTaLoi": moTaLoi,
   };
 }
