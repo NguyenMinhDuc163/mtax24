@@ -223,6 +223,7 @@ class DialogAlert {
         builder: (BuildContext context) {
           return Dialog(
             // backgroundColor: Colors.blue,
+              insetPadding: (visibleInput != true) ? EdgeInsets.symmetric(horizontal: 10) : null, // fix overload pinCode
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.w)), //this right here
             child: Column(

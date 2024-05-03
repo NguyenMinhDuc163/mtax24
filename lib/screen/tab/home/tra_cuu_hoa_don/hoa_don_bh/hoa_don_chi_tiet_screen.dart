@@ -771,7 +771,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                                           mainAxisAlignment: MainAxisAlignment.start,
                                                           crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: [
-                                                            Text("${index + 1} ${listHangHoa[index].tendvu}" , style: text_action_Bold600,),
+                                                            Text("${index + 1}, ${listHangHoa[index].tendvu}" , style: text_action_Bold600,),
                                                             Padding(
                                                               padding: EdgeInsets.only(top: 10.h),
                                                               child: Text("${listHangHoa[index].dongia.isEmpty ? "0" : Utils.covertToMoney(double.parse(listHangHoa[index].dongia.replaceAll(',', '')))} ${listHangHoa[index].thuesuat.isEmpty ? "" : " + ${listHangHoa[index].thuesuat.replaceAll("%", "")} %"}" ,
@@ -1048,7 +1048,6 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
     // lstSpeedDialChild.addAll(iterable);
     // lstSpeedDialChild.addAll(iterable);
     if(lstHDXoaBo.isNotEmpty && _showAdjustErrors){
-      print("2222222222222222222");
         lstSpeedDialChild.add(
           SpeedDialChild(
             child: Icon(Icons.edit),

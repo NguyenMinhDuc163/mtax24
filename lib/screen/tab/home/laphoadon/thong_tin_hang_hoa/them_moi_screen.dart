@@ -169,7 +169,8 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                   dsdvu.tendvu = nameController.text;
                   dsdvu.madvu = maHHController.text;
                   Navigator.pop(context, dsdvu);
-                } else {
+                } else
+                {
                   hangHoaByMaResponse = GetListHangHoaByMaResponse(
                     maHHoa: maHHController.text,
                     tenHHoa: nameController.text,
