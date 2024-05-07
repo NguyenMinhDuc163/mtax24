@@ -189,7 +189,7 @@ class _ScreenState extends State<TraCuuChungTuScreen> with GetItStateMixin{
                           lstHoaDon != null && lstHoaDon.length > 0 ?
                           ItemHoaDon(context, lstHoaDon, controller) :
                           Container(
-                            child: Center(child: Text("$noData", style: text_action_font14,)),
+                            child: Center(child: Text("$noData Không có dữ liệu ", style: text_action_font14,)),
                           ),
                         ],
 

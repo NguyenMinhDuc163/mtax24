@@ -238,7 +238,16 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                   (lyDoController.text == null || lyDoController.text == "")){
                 DialogAlert.showDialogAlertCancel(context, "Vui lòng nhập lý do");
                 return;
-              }else {
+              }
+              else if(dropTinhChat == null){
+                DialogAlert.showDialogAlertCancel(context, "Vui lòng nhập tính chất thông báo");
+                return;
+              }
+              else if(dropLoaiTB == null){
+                DialogAlert.showDialogAlertCancel(context, "Vui lòng nhập loại thông báo ");
+                return;
+              }
+              else {
                 controller.nextTBaoXoaBo(NextTBaoXoaBoRequest(
                   soVBan: soVanBanController.text,
                   lyDoXoaBo: lyDoController.text,

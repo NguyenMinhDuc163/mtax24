@@ -87,7 +87,7 @@ class _ScreenState extends State<BaoCaoKhauTruScreen> with GetItStateMixin {
                     child: Column(
                       children: [
                         DropDownDialog(
-                          title: "Kỳ bao cáo",
+                          title: "Kỳ báo cáo",
                           itemsDropdown: ["Tháng", "Quý", "Ngày"],
                           onChangedCustom: (value) {
                             invoiceReportController.setReportingPeriod(reportingPeriod: value);

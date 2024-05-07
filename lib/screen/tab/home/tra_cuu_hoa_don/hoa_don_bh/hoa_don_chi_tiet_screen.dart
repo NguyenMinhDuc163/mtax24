@@ -620,9 +620,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                     context, new MaterialPageRoute(builder: (context) => ThongTinVanChuyenScreen(object: thongTinVanChuyen, trangThai: chiTietResponse.trangthai)));
                                 if(results != null){
                                   setState(() {
-                                    thongTinVanChuyen = results;
-                                    nguoivchuyen = thongTinVanChuyen.name;
-                                    hopDong = thongTinVanChuyen.hdSo;
+                                     hopDong = thongTinVanChuyen.hdSo;
                                     phuongTien = thongTinVanChuyen.phuongTien;
                                   });
                                 }
@@ -1037,9 +1035,6 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
     List<TraCuuHddcResponse> lstHDDieuChinh,
   }){
     lstSpeedDialChild.clear();
-    // lstSpeedDialChild.addAll(lstHDXoaBo);
-    // lstSpeedDialChild.addAll(iterable);
-    // lstSpeedDialChild.addAll(iterable);
     if(lstHDXoaBo.isNotEmpty && _showAdjustErrors){
         lstSpeedDialChild.add(
           SpeedDialChild(
