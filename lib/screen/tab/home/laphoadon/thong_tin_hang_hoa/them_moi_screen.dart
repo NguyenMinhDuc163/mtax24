@@ -168,6 +168,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                       : "0";
                   dsdvu.tendvu = nameController.text;
                   dsdvu.madvu = maHHController.text;
+                  dsdvu.dvtinh = unitController.text;
                   Navigator.pop(context, dsdvu);
                 } else
                 {

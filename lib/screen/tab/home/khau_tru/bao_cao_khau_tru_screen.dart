@@ -79,7 +79,7 @@ class _ScreenState extends State<BaoCaoKhauTruScreen> with GetItStateMixin {
         // appBar: buildAppBarMenuCustom(context, TitleFunction.TITLE_REPORT_DATA_SYNTHESIS, showHome: true),
         body: Stack(
           children: [
-            CustomerAppbarScreen(title: "Bao cao bản kê chứng từ", isShowHome: true, isShowBack: true,
+            CustomerAppbarScreen(title: "Báo cáo bản kê chứng từ", isShowHome: true, isShowBack: true,
               children: [
                 SingleChildScrollView(
                   child: Padding(

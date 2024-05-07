@@ -71,8 +71,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
   void initState() {
     // TODO: implement initState
     super.initState();
-    if(widget.object != null){
 
+    if(widget.object != null){
         chiTietResponse = widget.object;
         print("===========tinhchat: ${chiTietResponse.sohdongoc}");
         tenhdon = Utils.convertTinhChatHoaDon(chiTietResponse.tinhchat);
@@ -147,13 +147,6 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         ReadOpenFile(response.htmlContent, chiTietResponse.tenhdon);
       }
     });
-
-    // final lstHDXoaBo = watchX((HoaDonBanHangModel x) => x.lstHDXoaBo);
-    // final lstTraCuuHDTT = watchX((HoaDonBanHangModel x) => x.lstTraCuuHDTT);
-    // final lstTraCuuHDDC = watchX((HoaDonBanHangModel x) => x.lstTraCuuHDDC);
-
-
-
 
     registerHandler((HoaDonBanHangModel x) => x.lstDCDinhDanh, (context, List<DieuChinhDinhDanhResponse> list, cancel) {
       if(list.isNotEmpty){
@@ -514,7 +507,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                         InkWell(
                           onTap: ()async{
                             final resuls = await Navigator.push(
-                                context, new MaterialPageRoute(builder: (context) => ThongTinNguoiMuaScreen(mst: chiTietResponse.mstnmua, thongTinUser: thongTinUser, trangThai: chiTietResponse.trangthai, flag: "INVOICE", idHD: chiTietResponse.id,)));
+                                context, new MaterialPageRoute(builder: (context) => ThongTinNguoiMuaScreen(mst: chiTietResponse.mstnmua, thongTinUser: thongTinUser, trangThai: chiTietResponse.trangthai, flag: "INVOICE", idHD: chiTietResponse.id, chiTietResponse: chiTietResponse,)));
                             if(resuls != null){
                               setState(() {
                                 thongTinUser = resuls;

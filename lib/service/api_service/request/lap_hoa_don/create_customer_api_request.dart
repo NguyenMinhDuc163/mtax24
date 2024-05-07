@@ -16,6 +16,7 @@ class CreateCustomerApiRequest {
     this.customerAddress,
     this.customerFax,
     this.customerTelephone,
+    this.idHDon
   });
 
   final String taxCode;
@@ -27,6 +28,7 @@ class CreateCustomerApiRequest {
   final String customerAddress;
   final String customerFax;
   final String customerTelephone;
+  final String idHDon;
 
   factory CreateCustomerApiRequest.fromJson(Map<String, dynamic> json) => CreateCustomerApiRequest(
     taxCode: json["tax_code"] == null ? null : json["tax_code"],
@@ -38,6 +40,7 @@ class CreateCustomerApiRequest {
     customerAddress: json["customer_address"] == null ? null : json["customer_address"],
     customerFax: json["customer_fax"] == null ? null : json["customer_fax"],
     customerTelephone: json["customer_telephone"] == null ? null : json["customer_telephone"],
+    idHDon: json["idHDon"] == null ? null : json["idHDon"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -50,5 +53,6 @@ class CreateCustomerApiRequest {
     "customer_address": customerAddress == null ? null : customerAddress,
     "customer_fax": customerFax == null ? null : customerFax,
     "customer_telephone": customerTelephone == null ? null : customerTelephone,
+    "idHDon": idHDon == null ? null : idHDon,
   };
 }

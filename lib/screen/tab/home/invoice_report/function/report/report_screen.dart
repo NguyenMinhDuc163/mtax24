@@ -93,7 +93,7 @@ class _ReportScreenState extends State<ReportScreen> with GetItStateMixin {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Mã số thuế người bán: ", style: text45spBold700),
+                              Text("Mã số thuế người bán:", style: text45spBold700),
                               Expanded(
                                   child: Text(tin, style: text45sp))
                             ],
@@ -125,6 +125,7 @@ class _ReportScreenState extends State<ReportScreen> with GetItStateMixin {
                                 tinBuyer: tinBuyerReport.text,
                                 isReport: true
                             );
+
                           },),
                         ) : Container(),
                       ],
