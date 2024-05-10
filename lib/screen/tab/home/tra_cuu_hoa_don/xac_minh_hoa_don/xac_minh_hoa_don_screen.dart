@@ -85,7 +85,7 @@ class _TXacMinhHoaDonScreenState extends State<XacMinhHoaDonScreen> with GetItSt
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Quý khách vui lòng nhập thông tin ${'"kiểm tra"'} hoặc quét mã QR CODE để thực hiện Xác minh hóa đơn đã được nhận.", style: text14OBold400,),
+                        Text("Quý khách vui lòng nhập thông tin ${'"Mã tra cứu HĐĐT"'} hoặc quét mã QR CODE để thực hiện Xác minh hóa đơn đã nhận được.", style: text14OBold400,),
                         Padding(
                           padding: EdgeInsets.only(top: 40.h, bottom: 40.h),
                           child: TextInput(

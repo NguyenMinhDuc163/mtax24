@@ -54,12 +54,8 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
     // TODO: implement initState
     super.initState();
     if(widget.hangHoaByMaResponse != null ){
-      print("---------type: ${widget.type}");
-      print("---------invoiceType: ${widget.invoiceType}");
-
       if(widget.isTraCuu){
         dsdvu = widget.hangHoaByMaResponse;
-        print("------------------ ${dsdvu.soluong}");
         hangHoaByMaResponse = GetListHangHoaByMaResponse(
           chietKhau: dsdvu.tienchietkhau == null || dsdvu.tienchietkhau == "" ? 0 : int.parse(dsdvu.tienchietkhau),
           donGia: dsdvu.dongia == "" || dsdvu.dongia == null ? 0.0 : double.parse(dsdvu.dongia.replaceAll(',', '')),

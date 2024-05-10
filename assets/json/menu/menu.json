@@ -7,7 +7,7 @@
     "contains": [
       {
         "moduleId": "TCHDBanHang",
-        "displayName": "Tra cứu HĐ bán hàng",
+        "displayName": "Tra cứu hoá đơn bán hàng",
         "routerName": "/",
         "icon": "assets/images/ic_tra_cuu_to_khai.svg"
       },
@@ -19,7 +19,7 @@
       },
       {
         "moduleId": "ThongBaoHĐCQT",
-        "displayName": "Thông báo HĐ CQT",
+        "displayName": "Thông báo Hoá Đơn CQT",
         "routerName": "/",
         "icon": "assets/images/ic_tra_cu_hs_cong_van.svg"
       },
@@ -49,7 +49,7 @@
       },
       {
         "moduleId": "BCSuDungHD",
-        "displayName": "Báo cáo sử dụng HĐ",
+        "displayName": "Báo cáo sử dụng hoá đơn",
         "routerName": "/",
         "icon": "assets/images/ic_tra_cuu_tb_hoan_thue.svg"
       },

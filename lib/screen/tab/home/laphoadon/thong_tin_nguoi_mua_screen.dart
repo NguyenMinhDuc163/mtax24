@@ -122,7 +122,6 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
 
  void initDataUser(){
    if(widget.chiTietResponse != null && widget.thongTinUser != null){
-     print("--------------------------2");
      // TODO khoi tao gia tri ban dau neu co thong tin
      createCustomerApiResponse = widget.thongTinUser;
      TraCuuHoaDonChiTietResponse chiTietResponse= widget.chiTietResponse;
@@ -137,8 +136,9 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
      //  print("_________________--${createCustomerApiResponse.typePayment} + ${createCustomerApiResponse.typeMoney}");
      // dropTypePayment = (createCustomerApiResponse.typePayment != null) ? createCustomerApiResponse.typePayment : null;
      // dropTypePayment = (createCustomerApiResponse.typeMoney != null) ? createCustomerApiResponse.typeMoney : null;
+     dropTypePayment = createCustomerApiResponse.typePayment ;
      dropTypeMoney = chiTietResponse.matte;
-     print("=======================${chiTietResponse.matte}");
+     print("=======================${chiTietResponse.matte } ${chiTietResponse.hthuctoan} ${createCustomerApiResponse.typePayment}");
    }
  }
 
