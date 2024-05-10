@@ -232,6 +232,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
           label: 'Lưu',
           onTap: () {
             if(widget.type == "TCHDXoBo"){
+              print("_____________________________1");
               typeNext = "LUU";
               if(thaoTacLapTBaoXoaBoResponse != null  &&
                   thaoTacLapTBaoXoaBoResponse.inReq.isTt68 == "TT78" &&
@@ -248,6 +249,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                 return;
               }
               else {
+                print("_____________________________2");
                 controller.nextTBaoXoaBo(NextTBaoXoaBoRequest(
                   soVBan: soVanBanController.text,
                   lyDoXoaBo: lyDoController.text,
@@ -257,6 +259,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                   tctbao: tinhChatXoaBo,));
               }
             }else {
+              print("_____________________________3");
               controller.luuTBaoDCDinhDanh(TiepTucTBaoDcDinhDanhRequest(
                 dchiNMua: ["${diaChiNguoiMuaController.text}"],
                 loaiHDon: "$loaiHD",
@@ -286,6 +289,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
       if(response != null){
         thongBaoXoaBoResponse = response;
         if(typeNext == "LUU") {
+          print("_____________________________4");
           controller.preLuuTBaoXoaBo(NextTBaoXoaBoRequest(
             soVBan: soVanBanController.text,
             lyDoXoaBo: lyDoController.text,

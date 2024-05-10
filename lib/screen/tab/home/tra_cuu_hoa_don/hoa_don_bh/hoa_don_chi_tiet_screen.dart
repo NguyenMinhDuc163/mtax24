@@ -67,6 +67,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
   bool isCheck = false;
   bool _showAdjustErrors = true;
   bool _showReplaceInvoice = true;
+  bool _showAdjust = true;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -1034,6 +1036,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
     List<TraCuuHdttResponse> lstHDThayThe,
     List<TraCuuHddcResponse> lstHDDieuChinh,
   }){
+
+    // TODO
     lstSpeedDialChild.clear();
     if(lstHDXoaBo.isNotEmpty && _showAdjustErrors){
         lstSpeedDialChild.add(
@@ -1064,6 +1068,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
             onTap: () {
               // lstSpeedDialChild.clear();
                 _showAdjustErrors = false;
+                _showAdjust = false;
                 addListSpeedDialChild(
                     lstHDXoaBo: lstHDXoaBo,
                     lstHDThayThe: lstHDThayThe,
@@ -1077,14 +1082,21 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         );
     }
 
-    if(lstHDDieuChinh.isNotEmpty){
-
+    if(lstHDDieuChinh.isNotEmpty && _showAdjust){
         lstSpeedDialChild.add(
           SpeedDialChild(
             child: Icon(Icons.edit),
             backgroundColor: colorPrimary,
             label: 'Hóa đơn điều chỉnh',
             onTap: () {
+              _showReplaceInvoice = false;
+              _showAdjustErrors = false;
+              addListSpeedDialChild(
+                  lstHDXoaBo: lstHDXoaBo,
+                  lstHDThayThe: lstHDThayThe,
+                  lstHDDieuChinh: lstHDDieuChinh
+              );
+              // _showAdjustErrors = false;
               // lstSpeedDialChild.clear();
               Navigator.push(
                   context, new MaterialPageRoute(builder: (context) => HoaDonDieuChinhChiTietScreen(object: lstHDDieuChinh, typeHD: "HDDC",)));

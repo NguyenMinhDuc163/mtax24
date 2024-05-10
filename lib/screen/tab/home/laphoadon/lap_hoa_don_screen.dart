@@ -562,18 +562,18 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                         CalendarInput(
                           textDateController: denNgayController,
                           haveBorder: true,
-                          canSelectDate: false,
+                          // canSelectDate: false,
                           title: "Thời gian",
-                          // onClickChooseDate: (selectedDate){
-                          //   setState(() {
-                          //     if(DateFormat("dd/MM/yyyy").parse(selectedDate).isAfter(DateTime.now())) {
-                          //       errorDenNgay = "Ngày không hợp lệ";
-                          //     } else {
-                          //       errorDenNgay = null;
-                          //       denNgayController.text = selectedDate;
-                          //     }
-                          //   });
-                          // },
+                          onClickChooseDate: (selectedDate){
+                            setState(() {
+                              if(DateFormat("dd/MM/yyyy").parse(selectedDate).isAfter(DateTime.now())) {
+                                errorDenNgay = "Ngày không hợp lệ";
+                              } else {
+                                errorDenNgay = null;
+                                denNgayController.text = selectedDate;
+                              }
+                            });
+                          },
                           errorText: errorDenNgay,
                         ),
                         // Padding(

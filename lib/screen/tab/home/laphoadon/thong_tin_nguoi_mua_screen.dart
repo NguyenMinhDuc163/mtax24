@@ -74,19 +74,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
     }
     print("isTrangThai : $isTrangThai");
     if(widget.mst != null && widget.mst != ""){
-      if(widget.chiTietResponse != null && widget.thongTinUser != null){
-         // TODO khoi tao gia tri ban dau neu co thong tin
-        createCustomerApiResponse = widget.thongTinUser;
-        TraCuuHoaDonChiTietResponse chiTietResponse= widget.chiTietResponse;
-
-        maKHController.text = createCustomerApiResponse.maKH != null ? createCustomerApiResponse.maKH : "";
-        mstController.text =  (createCustomerApiResponse.customerTaxcode != null) ? createCustomerApiResponse.customerTaxcode : chiTietResponse.mstnmua;
-        nameController.text = createCustomerApiResponse.tenNguoiMua != null ? createCustomerApiResponse.tenNguoiMua : chiTietResponse.tennmua;
-        unitNameController.text = chiTietResponse.dchinmua != null ? chiTietResponse.dchinmua : "";
-        addressController.text = (createCustomerApiResponse.customerAddress != null) ? createCustomerApiResponse.customerAddress : chiTietResponse.dchinmua;
-        emailController.text = chiTietResponse.emailnmua != null ? chiTietResponse.emailnmua : "";
-        phoneController.text = createCustomerApiResponse.customerTelephone != null ? createCustomerApiResponse.customerTelephone : "";
-      }
+      initDataUser();
       controller.getInfoCustomerByCode(GetInfoCustomerByCodeRequest(
         taxCode: widget.mst,
         flag: widget.flag,
@@ -97,6 +85,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
         mstNban: widget.mst,
       ));
     }else if(widget.maKH != null && widget.maKH != ""){
+
       if(widget.thongTinUser != null){
         createCustomerApiResponse = widget.thongTinUser;
         maKHController.text = createCustomerApiResponse.maKH != null ? createCustomerApiResponse.maKH : "";
@@ -120,6 +109,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
         ));
       });
     }else {
+      initDataUser();
       SharePreferUtils.getUserInfo().then((value) {
         taxCode = value.tin;
         controller.getDMucNHangTTe(DMucNHangTTeRequest(
@@ -130,7 +120,27 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
     }
   }
 
+ void initDataUser(){
+   if(widget.chiTietResponse != null && widget.thongTinUser != null){
+     print("--------------------------2");
+     // TODO khoi tao gia tri ban dau neu co thong tin
+     createCustomerApiResponse = widget.thongTinUser;
+     TraCuuHoaDonChiTietResponse chiTietResponse= widget.chiTietResponse;
 
+     maKHController.text = createCustomerApiResponse.maKH != null ? createCustomerApiResponse.maKH : "";
+     mstController.text =  (createCustomerApiResponse.customerTaxcode != null) ? createCustomerApiResponse.customerTaxcode : chiTietResponse.mstnmua;
+     nameController.text = createCustomerApiResponse.tenNguoiMua != null ? createCustomerApiResponse.tenNguoiMua : chiTietResponse.tennmua;
+     unitNameController.text = chiTietResponse.dchinmua != null ? chiTietResponse.dchinmua : "";
+     addressController.text = (createCustomerApiResponse.customerAddress != null) ? createCustomerApiResponse.customerAddress : chiTietResponse.dchinmua;
+     emailController.text = chiTietResponse.emailnmua != null ? chiTietResponse.emailnmua : "";
+     phoneController.text = createCustomerApiResponse.customerTelephone != null ? createCustomerApiResponse.customerTelephone : "";
+     //  print("_________________--${createCustomerApiResponse.typePayment} + ${createCustomerApiResponse.typeMoney}");
+     // dropTypePayment = (createCustomerApiResponse.typePayment != null) ? createCustomerApiResponse.typePayment : null;
+     // dropTypePayment = (createCustomerApiResponse.typeMoney != null) ? createCustomerApiResponse.typeMoney : null;
+     dropTypeMoney = chiTietResponse.matte;
+     print("=======================${chiTietResponse.matte}");
+   }
+ }
 
   @override
   Widget build(BuildContext context) {
@@ -187,6 +197,9 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
         createCustomerApiResponse.soTk = accountNumberController.text;
         createCustomerApiResponse.tenNH = accountNameController.text;
         createCustomerApiResponse.tenNguoiMua = nameController.text;
+        // TODO test
+        createCustomerApiResponse.typePayment = dropTypePayment;
+        createCustomerApiResponse.typeMoney = dropTypeMoney;
         // DialogAlert.showDialogAlertCancel(context, "Lưu thông tin thành công");
         Toast.showLongTop("Lưu thông tin thành công");
         if (!isSaveInfo) {
@@ -202,7 +215,6 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
               customerAddress: addressController.text,
               customerEmail: emailController.text,
               customerTelephone: phoneController.text
-
           );
         }
         Navigator.pop(context, createCustomerApiResponse);
@@ -234,6 +246,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                   if(maKHController.text == null && maKHController.text == ""){
                     DialogAlert.showDialogAlertCancel(context, "Vui lòng nhập mã khách hàng!");
                   }else if(mstController.text == null && mstController.text == ""){
+
                     DialogAlert.showDialogAlertCancel(context, "Vui lòng nhập mã số thuế!");
                   } else {
                     controller.createCustomerAPI(
