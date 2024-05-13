@@ -1,5 +1,7 @@
 
 
+import 'dart:math';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -108,9 +110,40 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
       print("=============percent: $percent");
     }else
       dropSale = lstDropSale.first;
+    totalController.text = _formatNumberText(totalController.text);
+    unitPriceController.text = _formatNumberText(unitPriceController.text);
+    discountController.text = _formatNumberText(discountController.text);
 
     totalController.addListener(() => _formatNumber(totalController));
     unitPriceController.addListener(() => _formatNumber(unitPriceController));
+    discountController.addListener(() => _formatNumber(discountController));
+  }
+  String _formatNumberText(String input) {
+    if (input.isEmpty) return '';
+    int dotIndex = input.indexOf('.');
+    if (dotIndex != -1) {
+      // Có phần thập phân, xử lý riêng phần trước và sau dấu '.'
+      String integerPart = input.substring(0, dotIndex).replaceAll(',', '');
+      String decimalPart = input.substring(dotIndex + 1);
+      final number = int.tryParse(integerPart);
+      if (number == null) return ''; // Nếu phần số nguyên không hợp lệ, trả về chuỗi rỗng
+
+      // Loại bỏ các số 0 không cần thiết ở phần thập phân
+      decimalPart = decimalPart.replaceAll(RegExp(r'0*$'), '');
+
+      // Nếu phần thập phân trống sau khi loại bỏ số 0, chỉ trả về phần số nguyên
+      if (decimalPart.isEmpty) {
+        return NumberFormat('#,##0').format(number);
+      } else {
+        // Định dạng phần nguyên và giới hạn phần thập phân đến 4 ký tự
+        return NumberFormat('#,##0').format(number) + '.' + decimalPart.substring(0, min(4, decimalPart.length));
+      }
+    } else {
+      // Chỉ có phần số nguyên
+      final number = int.tryParse(input.replaceAll(',', ''));
+      if (number == null) return '';
+      return NumberFormat('#,##0').format(number);
+    }
   }
 
   String _formatNumberWithComma(String input) {
@@ -121,9 +154,22 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
   }
 
   void _formatNumber(TextEditingController controller) {
+    String text = controller.text;
 
-    String prefix = controller.text.contains('.') ? controller.text.substring(0, controller.text.indexOf('.')) : controller.text;
-    String suffix = controller.text.contains('.') ? controller.text.substring(controller.text.indexOf('.')) : '';
+    // Kiểm tra và ngăn chặn nếu người dùng cố gắng nhập thêm dấu '.'
+    int index = text.indexOf('.');
+    if (index != -1) {
+      // Nếu đã có dấu '.', cắt bỏ phần nhập thêm sau dấu '.' đầu tiên
+      text = text.substring(0, index + 1) + text.substring(index + 1).replaceAll('.', '');
+    }
+
+    String prefix = index != -1 ? text.substring(0, index) : text;
+    String suffix = index != -1 ? text.substring(index) : '';
+
+    // Giới hạn số ký tự sau dấu '.'
+    if (suffix.length > 5) {
+      suffix = suffix.substring(0, 5); // 1 cho dấu '.' và 4 cho các ký tự sau đó
+    }
 
     String newText = _formatNumberWithComma(prefix.replaceAll(',', '')) + suffix;
     controller.value = TextEditingValue(
@@ -131,6 +177,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
       selection: TextSelection.collapsed(offset: newText.length),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -391,7 +438,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                                   child: TextFieldNormalInput(
                                     isRequired: false,
                                     haveBorder: true,
-                                    // readOnly: true,
+                                    readOnly: true,
                                     // showCursor: false,
                                     textEditingController: percentController,
                                     onChangedCustom: (value) {
