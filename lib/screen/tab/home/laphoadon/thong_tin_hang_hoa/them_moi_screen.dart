@@ -201,10 +201,11 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                               child: TextFieldNormalInput(
                                 isRequired: false,
                                 haveBorder: true,
-                                // readOnly: true,
-                                // showCursor: false,
+                                readOnly: (widget.trangThai == 'SUCC') ? true : false,
+                                // showCursor: false,hoá
                                 textEditingController: maHHController,
                                 hintText: "Mã hàng hóa, dịch vụ",
+                                maxLength: 50,
                               ),
                             ),
                             SizedBox(width: 20.h,),
@@ -236,10 +237,11 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                         child: TextFieldNormalInput(
                           isRequired: false,
                           haveBorder: true,
-                          // readOnly: true,
+                          readOnly: (widget.trangThai == 'SUCC') ? true : false,
                           // showCursor: false,
                           textEditingController: nameController,
                           hintText: "Tên hàng hóa, dịch vụ",
+                          maxLength: 300,
                         ),
                       ),
                       Padding(
@@ -247,10 +249,11 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                         child: TextFieldNormalInput(
                           isRequired: false,
                           haveBorder: true,
-                          // readOnly: true,
+                          readOnly: (widget.trangThai == 'SUCC') ? true : false,
                           // showCursor: false,
                           textEditingController: unitController,
                           hintText: "Đơn vị tính",
+                          maxLength: 16,
                         ),
                       ),
                       Padding(
@@ -258,11 +261,12 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                         child: TextFieldNormalInput(
                           isRequired: false,
                           haveBorder: true,
-                          // readOnly: true,
+                          readOnly: (widget.trangThai == 'SUCC') ? true : false,
                           // showCursor: false,
                           textEditingController: totalController,
                           textInputType: TextInputType.number,
                           hintText: widget.type == 4 ? "Số lượng thực xuất" : "Số lượng",
+                          maxLength: 16,
                           onChangedCustom: (value){
                             setState(() {
                               totalAmount(widget.type,
@@ -280,11 +284,12 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                         child: TextFieldNormalInput(
                           isRequired: false,
                           haveBorder: true,
-                          // readOnly: true,
+                          readOnly: (widget.trangThai == 'SUCC') ? true : false,
                           // showCursor: false,
                           textInputType: TextInputType.number,
                           textEditingController: totalController,
                           hintText: widget.type == 5 ? "Số lượng thực xuất" : "Số lượng",
+                          maxLength: 16,
                           onChangedCustom: (value){
                             setState(() {
                               totalAmount(widget.type,
@@ -301,11 +306,12 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                         child: TextFieldNormalInput(
                           isRequired: false,
                           haveBorder: true,
-                          // readOnly: true,
+                          readOnly: (widget.trangThai == 'SUCC') ? true : false,
                           // showCursor: false,
                           textInputType: TextInputType.number,
                           textEditingController: unitPriceController,
                           hintText: "Đơn giá",
+                          maxLength: 16,
                           onChangedCustom: (value){
                             setState(() {
 
@@ -343,6 +349,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                             },
                             hint: "Khuyến mại",
                             itemsDropdown: lstDropSale,
+                            trangThai: widget.trangThai,
                           ),
                           typeSale == 2 ?
                           Padding(
@@ -353,7 +360,9 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                               // readOnly: true,
                               // showCursor: false,
                               textEditingController: discountController,
+                              maxLength: 16,
                               hintText: "Tiền chiết khấu",
+                              textInputType: TextInputType.number,
                               onChangedCustom: (value){
                                 setState(() {
                                   totalAmount(widget.type,

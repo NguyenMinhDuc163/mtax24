@@ -9,6 +9,7 @@ class DropdownInput extends StatelessWidget {
   final List<String> itemsDropdown;
   final bool haveBorder, haveNotUnderline;
   final Function onChangedCustom;
+  final String trangThai;
 
   const DropdownInput(
       {Key key,
@@ -17,7 +18,9 @@ class DropdownInput extends StatelessWidget {
       this.value,
       @required this.itemsDropdown,
       this.haveBorder,
-      this.onChangedCustom, this.haveNotUnderline})
+      this.onChangedCustom, this.haveNotUnderline,
+      this.trangThai
+      })
       : super(key: key);
 
   @override
@@ -44,7 +47,7 @@ class DropdownInput extends StatelessWidget {
                   overflow: TextOverflow.ellipsis),
             );
           }).toList(),
-          onChanged: (_) {
+          onChanged: (trangThai == 'SUCC') ? null : (_) {
             FocusScope.of(context).requestFocus(new FocusNode());
             onChangedCustom(_);
           },

@@ -12,7 +12,7 @@
    <application
        android:debuggable="false"
         android:label="Tax24-E-invoice"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/launcher_icon"
        android:usesCleartextTraffic="true"
        android:requestLegacyExternalStorage="true"
        tools:ignore="HardcodedDebugMode">

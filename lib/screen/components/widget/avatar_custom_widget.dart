@@ -21,6 +21,7 @@ class _AvatarCustomWidget extends State<AvatarCustomWidget> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+          color: Colors.white, // thay mau do logo nen trong suot
           border: Border.all(
               color: Theme.of(context).primaryColor,
               width: 1),
@@ -33,13 +34,15 @@ class _AvatarCustomWidget extends State<AvatarCustomWidget> {
                 color: widget.colorBorder != null
                     ? widget.colorBorder
                     : Theme.of(context).primaryColorLight,
+
                 width: 2),
             borderRadius: const BorderRadius.all(Radius.circular(150))),
         child: Stack(
           children: [
             ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(150)),
-              child: Image.asset('assets/images/avata1.png',)
+              // child: Image.asset('assets/images/avata1.png',)
+              child: Image.asset('assets/images/avatar3.png',)
             ),
             // loading ? LoadingWidget() : SizedBox(),
           ],

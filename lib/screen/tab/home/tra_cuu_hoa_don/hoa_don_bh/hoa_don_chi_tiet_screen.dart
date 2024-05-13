@@ -803,19 +803,21 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
 
 
                                                     ),
-                                                    Text("${
-                                                    // Utils.covertToMoney(
-                                                    //     double.parse(
-                                                            listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].thanhtientruocthue == "0.0" && listHangHoa[index].tienthue.isNotEmpty && listHangHoa[index].tienthue == "0.0" ?
-                                                    Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue) + double.parse(listHangHoa[index].tienthue)) :
-                                                    listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].tienthue.isEmpty ?
-                                                    Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue)) :
-                                                    listHangHoa[index].thanhtientruocthue.isEmpty && listHangHoa[index].tienthue.isEmpty && listHangHoa[index].tongtienthanhtoan.isNotEmpty ?
-                                                    Utils.covertToMoney(double.parse(listHangHoa[index].tongtienthanhtoan)) :
-                                                    listHangHoa[index].tongtienthanhtoan.isNotEmpty ? listHangHoa[index].tongtienthanhtoan : "0"
-                                                     // )
 
-                                                    // )
+                                                    // TODO tam thoi fig de format code
+                                                    Text("${
+                                                    Utils.covertToMoney(
+                                                        double.parse(
+                                                            (listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].thanhtientruocthue == "0.0" && listHangHoa[index].tienthue.isNotEmpty && listHangHoa[index].tienthue == "0.0" )?
+                                                    Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue) + double.parse(listHangHoa[index].tienthue)).replaceAll(',', '.'):
+                                                    listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].tienthue.isEmpty ?
+                                                    Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue)).replaceAll(',', '.') :
+                                                    listHangHoa[index].thanhtientruocthue.isEmpty && listHangHoa[index].tienthue.isEmpty && listHangHoa[index].tongtienthanhtoan.isNotEmpty ?
+                                                    Utils.covertToMoney(double.parse(listHangHoa[index].tongtienthanhtoan)).replaceAll(',', '.') :
+                                                    listHangHoa[index].tongtienthanhtoan.isNotEmpty ? listHangHoa[index].tongtienthanhtoan.replaceAll(',', '.') : "0"
+                                                     )
+
+                                                    )
                                                     }" + " ${chiTietResponse.matte.isNotEmpty ? chiTietResponse.matte : "đ"}", textAlign: TextAlign.end, style: text14Red600,)
                                                   ],
                                                 ),

@@ -129,6 +129,7 @@ class TextFieldNormalInput extends StatelessWidget {
   final Function onChangedCustom;
   final Function onSubmittedCustom;
   final Function onToggleCustom;
+  final int maxLength;
   const TextFieldNormalInput(
       {Key key,
         this.title,
@@ -148,6 +149,7 @@ class TextFieldNormalInput extends StatelessWidget {
         this.multiLines,
         this.showCursor,
         this.readOnly,
+        this.maxLength
       })
       : super(key: key);
 
@@ -195,6 +197,7 @@ class TextFieldNormalInput extends StatelessWidget {
                         : OutlineInputBorder()),
                 onChanged: onChangedCustom,
                 onSubmitted: onSubmittedCustom,
+                inputFormatters : (maxLength != null) ? [LengthLimitingTextInputFormatter((maxLength))] : null,
               ),
             ],
           ),

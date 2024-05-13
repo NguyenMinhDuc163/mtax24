@@ -85,7 +85,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
         mstNban: widget.mst,
       ));
     }else if(widget.maKH != null && widget.maKH != ""){
-
+      print("-----------------------1");
       if(widget.thongTinUser != null){
         createCustomerApiResponse = widget.thongTinUser;
         maKHController.text = createCustomerApiResponse.maKH != null ? createCustomerApiResponse.maKH : "";
@@ -96,6 +96,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
         emailController.text = createCustomerApiResponse.customerEmail != null ? createCustomerApiResponse.customerEmail : "";
         phoneController.text = createCustomerApiResponse.customerTelephone != null ? createCustomerApiResponse.customerTelephone : "";
       }else {
+        print("-----------------------2");
         maKHController.text = widget.maKH;
         controller.getCustomerInfoByUserId(CustomerInfoByUserIdRequest(
           customerCode: widget.maKH,
@@ -419,6 +420,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                             },
                             hint: "Hình thức thanh toán",
                             itemsDropdown: lstDropTypePayment,
+                            trangThai: widget.trangThai,
                           ),
                         ),
                         Padding(
@@ -432,6 +434,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                             },
                             hint: "Loại tiền",
                             itemsDropdown: lstDropTypeMoney,
+                            trangThai: widget.trangThai,
                           ),
                         ),
 

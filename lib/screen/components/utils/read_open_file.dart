@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:mtax24/screen/components/utils/utils.dart';
 import 'package:open_file_safe/open_file_safe.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -21,6 +22,7 @@ class ReadOpenFile {
     OpenFile.open(file.path);
   }
   ReadOpenFile(this.base64Data,this.filename){
-    readExcelFile(base64Data,filename);
+    // readExcelFile(base64Data,filename);
+    Utils.saveAndOpenBase64ByPDF(base64Data,nameFile: filename);
   }
 }

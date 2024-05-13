@@ -49,8 +49,13 @@ class BaseAppbarScreen extends StatelessWidget{
                       margin: const EdgeInsets.only(top: 65,),
                       child: Column(
                         children: [
-                          Text("DỊCH VỤ THUẾ ĐIỆN TỬ", style: text20Bold300White,),
-                          Text("TAX24", style: text50Bold900White,),
+                        Image.asset(
+                        "assets/images/bg_text.png",
+                        width: 300,
+                          height: 100,
+                        )
+                        //   Text("DỊCH VỤ THUẾ ĐIỆN TỬ", style: text20Bold300White,),
+                        //   Text("TAX24", style: text50Bold900White,),
                         ],
 
                       ),
