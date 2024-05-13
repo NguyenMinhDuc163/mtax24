@@ -39,7 +39,7 @@ class GetListHangHoaByMaResponse {
   final String tSuat;
   final String currency;
 
-  int number;
+  double number;
   String thueSuat;
   int type;
   int chietKhau;

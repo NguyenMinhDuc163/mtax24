@@ -788,6 +788,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     if(result != null){
                                       setState(() {
                                         GetListHangHoaByMaResponse hangHoaByMaResponse = result;
+                                        print("'-------------------- ${hangHoaByMaResponse.number}");
                                         listHangHoa.add(hangHoaByMaResponse);
                                         tongTienDv = (double.parse(tongTienDv) + hangHoaByMaResponse.tongTienDV).toString();
                                         tienGTGT = (double.parse(tienGTGT) + hangHoaByMaResponse.tienGTGT).toString();

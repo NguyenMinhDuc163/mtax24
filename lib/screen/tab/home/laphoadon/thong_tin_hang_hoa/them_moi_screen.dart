@@ -62,7 +62,9 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
           chietKhau: dsdvu.tienchietkhau == null || dsdvu.tienchietkhau == "" ? 0 : int.parse(dsdvu.tienchietkhau),
           donGia: dsdvu.dongia == "" || dsdvu.dongia == null ? 0.0 : double.parse(dsdvu.dongia.replaceAll(',', '')),
           dvTinh: dsdvu.dvtinh,
-          number: dsdvu.soluong != null && dsdvu.soluong != "" ? int.parse(dsdvu.soluong.replaceAll(',', '').split('.')[0]) : 0,
+
+          // number: dsdvu.soluong != null && dsdvu.soluong != "" ? int.parse(dsdvu.soluong.replaceAll(',', '').split('.')[0]) : 0,
+          number: dsdvu.soluong != null && dsdvu.soluong != "" ? double.parse(dsdvu.soluong.replaceAll(',', '')): 0,
           thueSuat: (dsdvu.thuesuat == "0" || dsdvu.thuesuat == "5" || dsdvu.thuesuat == "8" || dsdvu.thuesuat == "10") ? "${dsdvu.thuesuat} %" : dsdvu.thuesuat,
           tenHHoa: dsdvu.tendvu,
 
@@ -219,7 +221,8 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                     maHHoa: maHHController.text,
                     tenHHoa: nameController.text,
                     dvTinh: unitController.text,
-                    number: totalController.text.isNotEmpty ? int.parse(totalController.text.replaceAll(',', '').trim().split('.')[0]) : 0,
+                    // number: totalController.text.isNotEmpty ? int.parse(totalController.text.replaceAll(',', '').trim().split('.')[0]) : 0,
+                    number: totalController.text.isNotEmpty ? double.parse(totalController.text.replaceAll(',', '')) : 0,
                     donGia: unitPriceController.text != "" ? double.parse(unitPriceController.text.replaceAll(',', '')) : 0.0,
                     thueSuat : percent == 50 ? "KCT" : percent == 100 ? "KKKNT" : "$percent %",
                     type : typeSale,
