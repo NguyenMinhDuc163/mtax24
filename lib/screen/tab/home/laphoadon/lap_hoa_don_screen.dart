@@ -1026,6 +1026,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     DialogAlert.showDialogAlertCancel(context, "Bạn chưa chọn thông tin vận chuyển");
                                   }else {
                                     thanhTien = Utils.covertToMoney(double.parse(thanhTien)).toString().replaceAll(",", "");
+
                                     controller.luuHoaDon(LuuHoaDonRequest(
                                       chitiethoadon: getChiTietHD(),
                                       dchinmua: thongTinUser.customerAddress,
@@ -1084,7 +1085,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
 
                                       tenknhap: type == 0 || type == 1 || type == 2 ? "" : thongTinVanChuyen.khoNhap,
                                       tenkxuat: type == 0 || type == 1 || type == 2 ? "" : thongTinVanChuyen.khoXuat,
-                                    ));
+                                    ),);
                                   }
 
                                 },

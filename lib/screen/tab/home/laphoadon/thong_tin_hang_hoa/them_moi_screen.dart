@@ -84,6 +84,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
       totalController.text = hangHoaByMaResponse.number.toString();
       unitPriceController.text = hangHoaByMaResponse.donGia.toString();
       discountController.text = hangHoaByMaResponse.chietKhau.toString();
+
       typeSale = hangHoaByMaResponse.type;
       dropSale = lstDropSale[typeSale].toString();
       total = hangHoaByMaResponse.tongTienDV.toString();
@@ -192,16 +193,15 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
               // if(maHHController.text == null || maHHController.text == "" ){
               //   Toast.showLongTop("Bạn chưa chọn hàng hóa dịch vụ");
               // } else
-
-                print('------------------- ${totalController.text}');
               if(totalController.text == null || totalController.text == "" ){
                 Toast.showLongTop("Bạn chưa nhập số lượng");
               }else if(unitPriceController.text == null || unitPriceController.text == "" ){
                 Toast.showLongTop("Bạn chưa nhập đơn giá");
               }else {
                 if (widget.isTraCuu) {
-                  dsdvu.soluong = totalController.text;
-                  dsdvu.dongia = unitPriceController.text;
+                  print("++++++++++++++++++++ 1}");
+                  dsdvu.soluong = totalController.text.replaceAll(",", "").split(".")[0];
+                  dsdvu.dongia = unitPriceController.text.replaceAll(",", "").split(".")[0];
                   dsdvu.thuesuat =
                   percent == 50 ? "KCT" : percent == 100 ? "KKKNT" : "$percent %";
                   dsdvu.khuyenmai = typeSale == 1 ? "N" : typeSale == 2 ? "Y" : "";
@@ -209,7 +209,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                   dsdvu.tienthue = taxMoney;
                   dsdvu.tongtienthanhtoan = moneyBar;
                   dsdvu.tienchietkhau = discountController.text.isNotEmpty
-                      ? discountController.text
+                      ? discountController.text.replaceAll(",", "")
                       : "0";
                   dsdvu.tendvu = nameController.text;
                   dsdvu.madvu = maHHController.text;
@@ -407,7 +407,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                             child: TextFieldNormalInput(
                               isRequired: false,
                               haveBorder: true,
-                              // readOnly: true,
+                              readOnly: (widget.trangThai == 'SUCC') ? true : false,
                               // showCursor: false,
                               textEditingController: discountController,
                               maxLength: 16,

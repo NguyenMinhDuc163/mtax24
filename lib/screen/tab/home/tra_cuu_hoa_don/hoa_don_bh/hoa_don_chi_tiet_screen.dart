@@ -74,7 +74,6 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
   void initState() {
     // TODO: implement initState
     super.initState();
-
     if(widget.object != null){
         chiTietResponse = widget.object;
         print("===========tinhchat: ${chiTietResponse.sohdongoc}");
@@ -1189,39 +1188,31 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                     context, "Bạn chưa chọn thông tin vận chuyển");
               } else {
                 isCheck = true;
-                print(')))))))))))))))))))))) ${thongTinUser.typeMoney}');
                 DialogAlert.showLoadding(context);
                 lapHdController.luuHoaDon(LuuHoaDonRequest(
                   chitiethoadon: getChiTietHD(),
-                  // dchinmua: chiTietResponse.dchinmua,
-                  dchinmua: thongTinUser.customerAddress,
-                  // dthoainmua: chiTietResponse.dthoainmua,
-                  dthoainmua: thongTinUser.customerTelephone,
-                  // emailnmua: chiTietResponse.emailnmua,
-                  emailnmua:thongTinUser.customerEmail,
+                  dchinmua: (thongTinUser.customerAddress != null) ? thongTinUser.customerAddress : chiTietResponse.dchinmua,
+                  dthoainmua: (thongTinUser.customerTelephone != null) ? thongTinUser.customerTelephone : chiTietResponse.dthoainmua,
+                  emailnmua:(thongTinUser.customerEmail != null) ? thongTinUser.customerEmail : chiTietResponse.emailnmua,
                   faxnmua: chiTietResponse.faxnmua,
                   // todo cap nhat tien
-                  // hthuctoan: chiTietResponse.hthuctoan,
-                  hthuctoan: thongTinUser.typePayment,
+                  hthuctoan: (thongTinUser.typePayment != null) ? thongTinUser.typePayment : chiTietResponse.hthuctoan,
                   kyhieu: chiTietResponse.khieuhdon,
                   loaihdon: chiTietResponse.loaihdon,
                   lstInvOtherInfoBan: chiTietResponse.lstInvOtherInfoBan,
                   lstInvOtherInfoCthd: chiTietResponse.lstInvOtherInfoCthd,
                   lstInvOtherInfoMua: chiTietResponse.lstInvOtherInfoMua,
                   lstInvOtherInfoTToan: chiTietResponse.lstInvOtherInfoTToan,
-                  // matte: chiTietResponse.matte != null ? chiTietResponse.matte : "VND",
-                  matte: thongTinUser.typeMoney ,
+                  matte: (thongTinUser.typeMoney != null) ? thongTinUser.typeMoney : chiTietResponse.matte,
                   mauhdon: chiTietResponse.mauhdon,
-                  // mstNmua: chiTietResponse.mstnmua,
-                  mstNmua: thongTinUser.customerTaxcode,
+                  mstNmua: (thongTinUser.customerTaxcode != null) ? thongTinUser.customerTaxcode : chiTietResponse.mstnmua,
                   ngaykyvanban: "",
                   serviceType: chiTietResponse.serviceType,
-                  // tendvinmua: chiTietResponse.tendvinmua,
-                  tendvinmua: thongTinUser.customerCompany,
+                  tendvinmua: (thongTinUser.customerCompany != null) ? thongTinUser.customerCompany : chiTietResponse.tendvinmua,
                   tenhdon: chiTietResponse.tenhdon,
-                  // tennmua: chiTietResponse.tennmua,
-                  tennmua: thongTinUser.tenNguoiMua,
+                  tennmua: (thongTinUser.tenNguoiMua != null) ? thongTinUser.tenNguoiMua : chiTietResponse.tennmua,
                   tgia: "1",
+
                   tienbangchu: Utils.convertVietnameseNumberReader(
                       thanhTien),
                   tinhchat: chiTietResponse.tinhchat,

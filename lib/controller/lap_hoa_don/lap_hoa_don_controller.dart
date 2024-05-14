@@ -75,7 +75,6 @@ class LapHoaDonController extends BaseController {
             final objectConverted = jsonDecode(baseResponse?.object);
             KyHoaDonApiResponse response = KyHoaDonApiResponse.fromJson(objectConverted);
             model.setLuuHoaDon(response: response);
-
           }else{
             model.setError(error: baseResponse.message, source: "setLuuHoaDon");
           }

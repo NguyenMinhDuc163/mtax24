@@ -247,7 +247,8 @@ class Utils {
     }else {
       // money.substring(0, )
       return VietnameseNumberReader.readNumber(
-          int.parse(money.replaceAll(".0", "")));
+          // int.parse(money.replaceAll(".0", "")));Tra
+          int.parse(money.split(".")[0]));
     }
   }
 

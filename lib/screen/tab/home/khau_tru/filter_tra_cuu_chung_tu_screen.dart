@@ -111,7 +111,7 @@ class _ScreenState extends State<FilterTraCuuChungTuScreen> with GetItStateMixin
         // appBar: buildAppBarMenuCustom(context, 'Tra cứu thông báo', showHome: false ),
         body: Stack(
           children: [
-            CustomerAppbarScreen(title: 'Tra cứu hóa đơn bán hàng', isShowBack: true, isShowHome: true,
+            CustomerAppbarScreen(title: 'Tra cứu chứng từ ', isShowBack: true, isShowHome: true,
               children: [
                 CardWidget(
                   children: [
