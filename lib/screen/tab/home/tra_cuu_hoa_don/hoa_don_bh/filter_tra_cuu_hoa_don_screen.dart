@@ -205,7 +205,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                               }
                             });
                           },
-                          hint: "Trang thái hóa đơn",
+                          hint: "Trạng thái hóa đơn",
                           itemsDropdown: lstTrangThaiTb,
                         ),
                         Row(
