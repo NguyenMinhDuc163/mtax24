@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:mtax24/screen/components/styles/style.dart';
 
 import '../../menu_tab.dart';
+import 'avatar_custom_widget.dart';
 import 'marquee_widget.dart';
 
 class BaseAppbarScreen extends StatelessWidget{
@@ -61,17 +63,39 @@ class BaseAppbarScreen extends StatelessWidget{
                       ),
 
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 150,
-                      margin: const EdgeInsets.only(top: 170,),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 15.0),
-                        child: Image.asset('assets/images/avatar.png',
-                            width: width_300),
-                      ),
+                    //// code cu
 
+                    // Container(
+                    //   width: MediaQuery.of(context).size.width,
+                    //   height: 150,
+                    //   margin: const EdgeInsets.only(top: 170,),
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.symmetric(vertical: 15.0),
+                    //     child: Image.asset('assets/images/avatar.png',
+                    //         width: width_300),
+                    //   ),
+                    // ),
+
+                    Container(
+                      width: MediaQuery.of(context).size.width, // Chiều rộng của container bằng với chiều rộng màn hình
+                      height: 90, // Chiều cao cố định của container
+                      margin: const EdgeInsets.only(top: 200,), // Khoảng cách từ đỉnh
+                      decoration: BoxDecoration(
+                        color: Colors.white, // Thêm màu nền trắng cho toàn bộ container
+                        shape: BoxShape.circle, // Làm cho container có dạng hình tròn
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0), // Khoảng cách đệm theo chiều dọc
+                        child: ClipOval(
+                          child: Image.asset(
+                            'assets/images/avatar3.png',
+                            width: 100, // Chiều rộng cố định của ảnh
+                            height: 100, // Chiều cao cố định của ảnh// Đảm bảo ảnh phủ kín khuôn hình tròn
+                          ),
+                        ),
+                      ),
                     ),
+
                     Center(
                       child: Container(
                         // height: MediaQuery.of(context).size.height ,

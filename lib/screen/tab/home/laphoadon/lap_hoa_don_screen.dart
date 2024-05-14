@@ -1039,7 +1039,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       lstInvOtherInfoCthd: lstPreLapHoaDon.first.lstInvOtherInfoCthd,
                                       lstInvOtherInfoMua: lstPreLapHoaDon.first.lstInvOtherInfoMua,
                                       lstInvOtherInfoTToan: lstPreLapHoaDon.first.lstInvOtherInfoTToan,
-                                      matte: "VND",
+                                      matte: (thongTinUser.typeMoney != null) ? thongTinUser.typeMoney : "VND",
                                       mauhdon: dropMauSo,
                                       mstNmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerTaxcode : "",
                                       ngaykyvanban: "",

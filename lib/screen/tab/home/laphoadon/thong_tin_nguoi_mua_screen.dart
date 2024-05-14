@@ -85,7 +85,6 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
         mstNban: widget.mst,
       ));
     }else if(widget.maKH != null && widget.maKH != ""){
-      print("-----------------------1");
       if(widget.thongTinUser != null){
         createCustomerApiResponse = widget.thongTinUser;
         maKHController.text = createCustomerApiResponse.maKH != null ? createCustomerApiResponse.maKH : "";
@@ -96,7 +95,6 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
         emailController.text = createCustomerApiResponse.customerEmail != null ? createCustomerApiResponse.customerEmail : "";
         phoneController.text = createCustomerApiResponse.customerTelephone != null ? createCustomerApiResponse.customerTelephone : "";
       }else {
-        print("-----------------------2");
         maKHController.text = widget.maKH;
         controller.getCustomerInfoByUserId(CustomerInfoByUserIdRequest(
           customerCode: widget.maKH,
@@ -126,7 +124,6 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
      // TODO khoi tao gia tri ban dau neu co thong tin
      createCustomerApiResponse = widget.thongTinUser;
      TraCuuHoaDonChiTietResponse chiTietResponse= widget.chiTietResponse;
-
      maKHController.text = createCustomerApiResponse.maKH != null ? createCustomerApiResponse.maKH : "";
      mstController.text =  (createCustomerApiResponse.customerTaxcode != null) ? createCustomerApiResponse.customerTaxcode : chiTietResponse.mstnmua;
      nameController.text = createCustomerApiResponse.tenNguoiMua != null ? createCustomerApiResponse.tenNguoiMua : chiTietResponse.tennmua;
@@ -134,17 +131,24 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
      addressController.text = (createCustomerApiResponse.customerAddress != null) ? createCustomerApiResponse.customerAddress : chiTietResponse.dchinmua;
      emailController.text = chiTietResponse.emailnmua != null ? chiTietResponse.emailnmua : "";
      phoneController.text = createCustomerApiResponse.customerTelephone != null ? createCustomerApiResponse.customerTelephone : "";
-     //  print("_________________--${createCustomerApiResponse.typePayment} + ${createCustomerApiResponse.typeMoney}");
-     // dropTypePayment = (createCustomerApiResponse.typePayment != null) ? createCustomerApiResponse.typePayment : null;
-     // dropTypePayment = (createCustomerApiResponse.typeMoney != null) ? createCustomerApiResponse.typeMoney : null;
-     dropTypePayment = createCustomerApiResponse.typePayment ;
-     dropTypeMoney = chiTietResponse.matte;
-     print("=======================${chiTietResponse.matte } ${chiTietResponse.hthuctoan} ${createCustomerApiResponse.typePayment}");
    }
  }
+  String getInitials(String text) {
+    // Xóa các ký tự đặc biệt và loại bỏ khoảng trắng thừa
+    String cleanedText = text.replaceAll(RegExp(r'[^a-zA-Z\s]'), '').trim();
+
+    // Tách các từ dựa trên khoảng trắng
+    List<String> words = cleanedText.split(RegExp(r'\s+'));
+
+    // Lấy ký tự đầu tiên của mỗi từ và chuyển thành chữ hoa
+    String initials = words.map((word) => word[0].toUpperCase()).join();
+
+    return initials;
+  }
 
   @override
   Widget build(BuildContext context) {
+    TraCuuHoaDonChiTietResponse chiTietResponse= widget.chiTietResponse;
     // TODO: implement build
     registerHandler((ThongTinNguoiMuaModel x) => x.lstDMucNH, (context, DMucNHangTTeResponse response, cancel) {
       if(response != null){
@@ -158,15 +162,22 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
               lstDropTypePayment.add(element.displayName);
             });
           });
+          // Todo test gan tien
+          dropTypePayment = "Tiền mặt";
+          lstDropTypePayment.forEach((element) {
+            if(getInitials(element) == chiTietResponse.hthuctoan){
+              dropTypePayment = element;
+            }
+          });
         }
-
         if(createCustomerApiResponse != null){
           for(int i =0; i< lstPaymentWay.length; i++){
             if(createCustomerApiResponse.typePayment == lstPaymentWay[i].code){
               dropTypePayment = lstDropTypePayment[i].toString();
             }
           }
-          dropTypeMoney = createCustomerApiResponse.typeMoney;
+          // dropTypeMoney = createCustomerApiResponse.typeMoney;
+          dropTypeMoney = (createCustomerApiResponse.typeMoney == null) ? chiTietResponse.matte : createCustomerApiResponse.typeMoney;
         }else{
           dropTypePayment = lstDropTypePayment.first.toString();
           dropTypeMoney = lstDropTypeMoney.first.toString();
@@ -176,6 +187,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
 
     registerHandler((ThongTinNguoiMuaModel x) => x.lstCustomerInfoByUserId, (context, CustomerInfoByUserIdResponse list, cancel) {
       if(list != null){
+        print("################## da di vao 2");
         fax = list.customerFax;
         unitNameController.text = list.customerCompany;
         mstController.text = list.customerTaxcode;
@@ -196,17 +208,22 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
         createCustomerApiResponse.typePayment = htPayment;
         createCustomerApiResponse.typeMoney = dropTypeMoney;
         createCustomerApiResponse.soTk = accountNumberController.text;
-        createCustomerApiResponse.tenNH = accountNameController.text;
         createCustomerApiResponse.tenNguoiMua = nameController.text;
+        createCustomerApiResponse.customerTaxcode = mstController.text;
+        createCustomerApiResponse.customerEmail = emailController.text;
+        createCustomerApiResponse.customerAddress = addressController.text;
+        createCustomerApiResponse.customerTelephone = phoneController.text;
         // TODO test
-        createCustomerApiResponse.typePayment = dropTypePayment;
-        createCustomerApiResponse.typeMoney = dropTypeMoney;
+        // createCustomerApiResponse.typePayment = dropTypePayment;
+        // createCustomerApiResponse.typeMoney = dropTypeMoney;
         // DialogAlert.showDialogAlertCancel(context, "Lưu thông tin thành công");
         Toast.showLongTop("Lưu thông tin thành công");
         if (!isSaveInfo) {
+
           createCustomerApiResponse = CreateCustomerApiResponse(
               maKH: maKHController.text,
               typePayment: htPayment,
+              // typePayment: dropTypePayment,
               typeMoney: dropTypeMoney,
               soTk: accountNumberController.text,
               tenNH: accountNameController.text,

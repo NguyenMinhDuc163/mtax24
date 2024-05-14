@@ -1165,6 +1165,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         ),
       );
       lstSpeedDialChild.add(
+
         SpeedDialChild(
             child: Icon(Icons.save),
             backgroundColor: colorPrimary,
@@ -1188,28 +1189,38 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                     context, "Bạn chưa chọn thông tin vận chuyển");
               } else {
                 isCheck = true;
+                print(')))))))))))))))))))))) ${thongTinUser.typeMoney}');
                 DialogAlert.showLoadding(context);
                 lapHdController.luuHoaDon(LuuHoaDonRequest(
                   chitiethoadon: getChiTietHD(),
-                  dchinmua: chiTietResponse.dchinmua,
-                  dthoainmua: chiTietResponse.dthoainmua,
-                  emailnmua: chiTietResponse.emailnmua,
+                  // dchinmua: chiTietResponse.dchinmua,
+                  dchinmua: thongTinUser.customerAddress,
+                  // dthoainmua: chiTietResponse.dthoainmua,
+                  dthoainmua: thongTinUser.customerTelephone,
+                  // emailnmua: chiTietResponse.emailnmua,
+                  emailnmua:thongTinUser.customerEmail,
                   faxnmua: chiTietResponse.faxnmua,
-                  hthuctoan: chiTietResponse.hthuctoan,
+                  // todo cap nhat tien
+                  // hthuctoan: chiTietResponse.hthuctoan,
+                  hthuctoan: thongTinUser.typePayment,
                   kyhieu: chiTietResponse.khieuhdon,
                   loaihdon: chiTietResponse.loaihdon,
                   lstInvOtherInfoBan: chiTietResponse.lstInvOtherInfoBan,
                   lstInvOtherInfoCthd: chiTietResponse.lstInvOtherInfoCthd,
                   lstInvOtherInfoMua: chiTietResponse.lstInvOtherInfoMua,
                   lstInvOtherInfoTToan: chiTietResponse.lstInvOtherInfoTToan,
-                  matte: chiTietResponse.matte != null ? chiTietResponse.matte : "VND",
+                  // matte: chiTietResponse.matte != null ? chiTietResponse.matte : "VND",
+                  matte: thongTinUser.typeMoney ,
                   mauhdon: chiTietResponse.mauhdon,
-                  mstNmua: chiTietResponse.mstnmua,
+                  // mstNmua: chiTietResponse.mstnmua,
+                  mstNmua: thongTinUser.customerTaxcode,
                   ngaykyvanban: "",
                   serviceType: chiTietResponse.serviceType,
-                  tendvinmua: chiTietResponse.tendvinmua,
+                  // tendvinmua: chiTietResponse.tendvinmua,
+                  tendvinmua: thongTinUser.customerCompany,
                   tenhdon: chiTietResponse.tenhdon,
-                  tennmua: chiTietResponse.tennmua,
+                  // tennmua: chiTietResponse.tennmua,
+                  tennmua: thongTinUser.tenNguoiMua,
                   tgia: "1",
                   tienbangchu: Utils.convertVietnameseNumberReader(
                       thanhTien),
