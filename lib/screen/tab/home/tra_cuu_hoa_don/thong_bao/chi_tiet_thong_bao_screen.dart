@@ -139,6 +139,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
       }
     }
     if(widget.object != null && widget.type == "TCHDDCDD"){
+      print("---------------------da di qua day 1");
       dinhDanhResponse = widget.object;
       type = "10";
       loaiHD = dinhDanhResponse.loaihdon;
@@ -159,7 +160,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
       ));
     }
     if(widget.object != null && widget.type == "TCHDXoBo"){
-
+      print("---------------------da di qua day 2");
       xoaBoResponse = widget.object;
       type = "07";
       loaiHD = xoaBoResponse.loaihdon;
@@ -249,7 +250,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                 return;
               }
               else {
-                print("_____________________________2");
+                print("_____________________________2 ${widget.type}");
                 controller.nextTBaoXoaBo(NextTBaoXoaBoRequest(
                   soVBan: soVanBanController.text,
                   lyDoXoaBo: lyDoController.text,
@@ -259,7 +260,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                   tctbao: tinhChatXoaBo,));
               }
             }else {
-              print("_____________________________3");
+              print("_____________________________3 ${widget.type}");
               controller.luuTBaoDCDinhDanh(TiepTucTBaoDcDinhDanhRequest(
                 dchiNMua: ["${diaChiNguoiMuaController.text}"],
                 loaiHDon: "$loaiHD",

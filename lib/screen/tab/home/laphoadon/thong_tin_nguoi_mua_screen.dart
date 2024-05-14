@@ -413,6 +413,8 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                             showCursor: isTrangThai,
                             textEditingController: phoneController,
                             hintText: "Số điện thoại",
+                            textInputType: TextInputType.phone,
+                            maxLength: 16,
                           ),
                         ),
 

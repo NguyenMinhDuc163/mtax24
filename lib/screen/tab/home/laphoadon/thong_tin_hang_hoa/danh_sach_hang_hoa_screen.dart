@@ -46,8 +46,8 @@ class _DanhSachThemMoiScreenState extends State<DanhSachThemMoiScreen> with GetI
             chietKhau: element.tienchietkhau == null || element.tienchietkhau == "" ? 0 : int.parse(element.tienchietkhau),
             donGia: double.parse(element.dongia),
             dvTinh: element.dvtinh,
-            // number: element.soluong == "" ? 0 : int.parse(element.soluong),
-            number: element.soluong == "" ? 0 : element.soluong,
+            number: element.soluong == "" ? 0 : double.parse(element.soluong),
+            // number: element.soluong == "" ? 0 : element.soluong,
             thueSuat: element.thuesuat == "" ? "0" : (element.thuesuat == "0" || element.thuesuat == "5" || element.thuesuat == "10") ? "${element.thuesuat} %" : element.thuesuat,
             tenHHoa: element.tendvu,
             type: element.khuyenmai == "N" ? 0 : 1,
@@ -56,15 +56,15 @@ class _DanhSachThemMoiScreenState extends State<DanhSachThemMoiScreen> with GetI
             tongTienDV: element.thanhtientruocthue == "" ? 0.0 : double.parse(element.thanhtientruocthue),
             thanhTien: element.tongtienthanhtoan == "" ? double.parse(element.thanhtientruocthue) : double.parse(element.tongtienthanhtoan),
           ));
-          tongTienDv =
-              (double.parse(tongTienDv) + double.parse(element.thanhtientruocthue)).toString();
-          if(element.tienthue == "" || element.tongtienthanhtoan == ""){
-            tienGTGT = double.parse(tienGTGT).toString();
-            thanhTien = (double.parse(thanhTien) + double.parse(element.thanhtientruocthue)).toString();
-          }else {
-            tienGTGT = (double.parse(tienGTGT) + double.parse(element.tienthue)).toString();
-            thanhTien = (double.parse(thanhTien) + double.parse(element.tongtienthanhtoan)).toString();
-          }
+          // tongTienDv =
+          //     (double.parse(tongTienDv) + double.parse(element.thanhtientruocthue)).toString();
+          // if(element.tienthue == "" || element.tongtienthanhtoan == ""){
+          //   tienGTGT = double.parse(tienGTGT).toString();
+          //   thanhTien = (double.parse(thanhTien) + double.parse(element.thanhtientruocthue)).toString();
+          // }else {
+          //   tienGTGT = (double.parse(tienGTGT) + double.parse(element.tienthue)).toString();
+          //   thanhTien = (double.parse(thanhTien) + double.parse(element.tongtienthanhtoan)).toString();
+          // }
 
         });
       }else {
@@ -205,7 +205,7 @@ class _DanhSachThemMoiScreenState extends State<DanhSachThemMoiScreen> with GetI
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("${lstHangHoa.length} ${lstHangHoa[index].tenHHoa}" , style: text_action_Bold600,),
+                              Text("${index + 1} ${lstHangHoa[index].tenHHoa}" , style: text_action_Bold600,),
                               Padding(
                                 padding: EdgeInsets.only(top: 10.h),
                                 child: Text("${lstHangHoa[index].donGia != null ? Utils.covertToMoney(lstHangHoa[index].donGia) : 0.0} + ${lstHangHoa[index].thueSuat}",

@@ -863,19 +863,19 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                     onTap: () async {
                                       final result = await Navigator.push(
                                           context, new MaterialPageRoute(builder: (context) => DanhSachThemMoiScreen(type: type, invoiceType: chiTietResponse.loaihdon, listHangHoa: listHangHoa, isTraCuu: true, trangThai: chiTietResponse.trangthai,)));
-                                      if(result != null){
-                                        setState(() {
-                                          listHangHoa = result;
-                                          tongTienDv = 0.toString();
-                                          tienGTGT = 0.toString();
-                                          thanhTien = 0.toString();
-                                          listHangHoa.forEach((element) {
-                                            tongTienDv = (double.parse(tongTienDv) + double.parse(element.thanhtientruocthue)).toString();
-                                            tienGTGT = (double.parse(tienGTGT) + double.parse(element.tienthue)).toString();
-                                            thanhTien = (double.parse(thanhTien) + double.parse(element.tongtienthanhtoan)).toString();
-                                          });
-                                        });
-                                      }
+                                      // if(result != null){
+                                      //   setState(() {
+                                      //     // listHangHoa = result;
+                                      //     // tongTienDv = 0.toString();
+                                      //     // tienGTGT = 0.toString();
+                                      //     // thanhTien = 0.toString();
+                                      //     // listHangHoa.forEach((element) {
+                                      //     //   // tongTienDv = (double.parse(tongTienDv) + double.parse(element.thanhtientruocthue)).toString();
+                                      //     //   // tienGTGT = (double.parse(tienGTGT) + double.parse(element.tienthue)).toString();
+                                      //     //   // thanhTien = (double.parse(thanhTien) + double.parse(element.tongtienthanhtoan)).toString();
+                                      //     // });
+                                      //   });
+                                      // }
                                     },
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
