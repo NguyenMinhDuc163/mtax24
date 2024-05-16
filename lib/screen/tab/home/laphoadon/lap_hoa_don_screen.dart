@@ -439,7 +439,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
       }
       isKyHD = false;
       if(response != null && response.htmlContent != null){
-        DialogAlert.showDialogInfo(context, "ký điện tử thành công \n bạn có muốn xem hóa đơn đã ký không", onSuccess: (){
+        DialogAlert.showDialogInfo(context, "Ký điện tử thành công \n bạn có muốn xem hóa đơn đã ký không", onSuccess: (){
           Utils.saveAndOpenBase64ByPDF(response.htmlContent, nameFile: response.iccinvhdr.id.toString()).then((value) {
             Navigator.of(context).pop();
             Navigator.pushReplacement(
@@ -449,7 +449,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
           });
         });
       }else {
-        DialogAlert.showDialogInfo(context, "ký điện tử thành công ${response.iccinvhdr.sohdon}", onSuccess: (){
+        DialogAlert.showDialogInfo(context, "Ký điện tử thành công ${response.iccinvhdr.sohdon}", onSuccess: (){
           Navigator.of(context).pop();
           Navigator.pushReplacement(
               context,

@@ -433,7 +433,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
     registerHandler((LapHoaDonModel x) => x.guiHoaDonAPI, (context, KyHoaDonApiResponse response, cancel) {
       DialogAlert.dissmissLoadingDialog(context, GlobalKey());
       isCheck = false;
-      DialogAlert.showDialogInfo(context, "ký điện tử thành công \n bạn có muốn xem hóa đơn đã ký không", onSuccess: (){
+      DialogAlert.showDialogInfo(context, "Ký điện tử thành công \n bạn có muốn xem hóa đơn đã ký không", onSuccess: (){
         if(response != null && response.htmlContent != null){
           Navigator.of(context).pop();
           ReadOpenFile(response.htmlContent, response.iccinvhdr.id.toString());

@@ -258,6 +258,8 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                             // showCursor: false,
                             textEditingController: soHoaDonController,
                             hintText: "Số hóa đơn",
+                            maxLength: 15,
+                            textInputType: TextInputType.number
                           ),
                         ),
 
@@ -269,6 +271,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                             // showCursor: false,
                             textEditingController: mauHoaDonController,
                             hintText: "Mẫu hóa đơn",
+                            maxLength: 11,
                           ),
                         ),
                         Padding(
@@ -279,6 +282,8 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                             // showCursor: false,
                             textEditingController: kyHieuHoaDonController,
                             hintText: "Ký hiệu hóa đơn",
+                            maxLength: 8,
+                            formats: [UpperCaseTextInputFormatter()],
                           ),
                         ),
                         Padding(

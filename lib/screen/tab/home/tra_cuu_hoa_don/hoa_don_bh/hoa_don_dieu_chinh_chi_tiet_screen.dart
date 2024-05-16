@@ -584,13 +584,13 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
       }
       isKyHD = false;
       if(response != null && response.htmlContent != null){
-        DialogAlert.showDialogInfo(context, "ký điện tử thành công \n bạn có muốn xem hóa đơn đã ký không", onSuccess: (){
+        DialogAlert.showDialogInfo(context, "Ký điện tử thành công \n bạn có muốn xem hóa đơn đã ký không", onSuccess: (){
           ReadOpenFile(response.htmlContent, response.iccinvhdr.id.toString());
           Navigator.of(context).pop();
         });
       }else {
         Navigator.of(context).pop();
-        DialogAlert.showDialogAlertCancel(context, "ký điện tử thành công");
+        DialogAlert.showDialogAlertCancel(context, "Ký điện tử thành công");
       }
     });
 

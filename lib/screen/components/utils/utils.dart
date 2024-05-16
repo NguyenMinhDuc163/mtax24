@@ -97,13 +97,12 @@ class Utils {
       await Permission.storage.request();
     }
     Directory directory = await getApplicationDocumentsDirectory();
-    // String path = await ExtStorage.getExternalStoragePublicDirectory(ExtStorage.DIRECTORY_DOWNLOADS);
     String path = directory.path;
     File file = File("$path/" + (nameFile ?? "tax24") + ".pdf");
-    bool isExistFile = file.existsSync();
-    if (!isExistFile) {
-      await file.writeAsBytes(bytes);
-    }
+
+    // Luôn ghi đè file hiện tại với nội dung mới
+    await file.writeAsBytes(bytes, flush: true);
+
     print(file.path);
     OpenFile.open(file.path);
   }
