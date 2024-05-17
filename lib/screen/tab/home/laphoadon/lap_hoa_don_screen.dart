@@ -48,7 +48,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
   List<GetListHangHoaByMaResponse> listHangHoa = [];
   String timeToday = '', mst = "", id = "", invoiceType = "", idHD = "0";
   String maKH = "", htPayment = '';
-  String tenDV = "", mstnmua = '', diachiNM = '';
+  String tenDV = "", mstnmua = '', diachiNM = '', tenNMua = '';
   ObjectHopdong objectHopdong = ObjectHopdong();
   ThongTinVanChuyenModel thongTinVanChuyen = ThongTinVanChuyenModel();
   CreateCustomerApiResponse thongTinUser = CreateCustomerApiResponse();
@@ -562,7 +562,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                         CalendarInput(
                           textDateController: denNgayController,
                           haveBorder: true,
-                          canSelectDate: false,
+                          canSelectDate: true,
                           title: "Thời gian",
                           onClickChooseDate: (selectedDate){
                             setState(() {
@@ -592,6 +592,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                   setState(() {
                                     thongTinUser = resuls;
                                     maKH = thongTinUser.maKH;
+                                    tenNMua = thongTinUser.customerName;
                                     htPayment = thongTinUser.typePayment;
                                     tenDV = thongTinUser.customerCompany;
                                     mstnmua = thongTinUser.maKH != null && thongTinUser.maKH != "" ? thongTinUser.maKH : thongTinUser.customerTaxcode;
@@ -614,6 +615,12 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                           Icon(Icons.post_add_outlined)
                                         ],
                                       ),
+                                      tenNMua != "" && tenNMua != null ?
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 30.h),
+                                        child: Text("$tenNMua", style: text16Bold600, textAlign: TextAlign.start),
+                                      ) : SizedBox(),
+
                                       tenDV != "" && tenDV != null ?
                                       Padding(
                                         padding: EdgeInsets.only(top: 30.h),
@@ -788,7 +795,6 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     if(result != null){
                                       setState(() {
                                         GetListHangHoaByMaResponse hangHoaByMaResponse = result;
-                                        print("'-------------------- ${hangHoaByMaResponse.number}");
                                         listHangHoa.add(hangHoaByMaResponse);
                                         tongTienDv = (double.parse(tongTienDv) + hangHoaByMaResponse.tongTienDV).toString();
                                         tienGTGT = (double.parse(tienGTGT) + hangHoaByMaResponse.tienGTGT).toString();
@@ -1098,7 +1104,28 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                               child: ButtonBottomNotStackWidget(
                                 title: "Gửi khách",
                                 onPressed: () {
-                                  print("=========lstPreLapHoaDon: ${lstPreLapHoaDon.first.toJson()}");
+                                  if(listHangHoa.isEmpty){
+                                    Toast.showLongTop('Vui lòng nhập tên hàng hóa');
+                                    return;
+                                  }else{
+                                    for(int i = 0; i < listHangHoa.length; ++i){
+
+                                      if(listHangHoa[i].tenHHoa == null || listHangHoa[i].tenHHoa == ""){
+                                        Toast.showLongTop('Vui lòng nhập tên hàng hóa');
+                                        return;
+                                      }
+                                      if(listHangHoa[i].thueSuat == "-1 %"){
+                                        Toast.showLongTop('Vui lòng nhập thuế suất');
+                                        return;
+                                      }
+
+                                    }
+                                  }
+                                  if(thongTinUser.customerEmail == null){
+                                    Toast.showLongTop('Vui lòng nhập email');
+                                    return;
+                                  }
+
                                   controller.guiReview(GuiReviewHoaDonRequest(
                                     id: idHD,
                                     chitiethoadon: getChiTietHD(),
@@ -1113,7 +1140,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     lstInvOtherInfoCthd: lstPreLapHoaDon.first.lstInvOtherInfoCthd,
                                     lstInvOtherInfoMua: lstPreLapHoaDon.first.lstInvOtherInfoMua,
                                     lstInvOtherInfoTToan: lstPreLapHoaDon.first.lstInvOtherInfoTToan,
-                                    matte: "VND",
+                                    matte: (thongTinUser.typeMoney != null && thongTinUser.typeMoney != "") ? thongTinUser.typeMoney : "VND",
                                     mauhdon: dropMauSo,
                                     mstNmua: thongTinUser.customerTaxcode,
                                     ngaykyvanban: "",

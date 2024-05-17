@@ -46,11 +46,12 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
     "Tất cả",
     "Hóa đơn gốc",
     "Hóa đơn thay thế",
-    "Hóa đơn bị thay thế",
+    "Hóa đơn đã bị thay thế",
     "Hóa đơn điều chỉnh",
     "Hóa đơn đã bị điều chỉnh",
     "Hóa đơn đã bị xóa bỏ",
     "Hóa đơn đã bị điều chỉnh định danh",
+    "Hóa đơn đã bị giải trình"
   ];
   List<String> lstTrangThaiTb = [
     "Tất cả",
@@ -58,6 +59,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
     "Đang chờ duyệt",
     "Chờ CQT phản hồi",
     "CQT từ chối",
+    "Trạng thái gửi CQT",
     "Từ chối",
     "Thành công",
     "Đã hủy",
@@ -151,7 +153,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                                 case "Hóa đơn thay thế":
                                   tinhChatId = "02";
                                   break;
-                                case "Hóa đơn bị thay thế":
+                                case "Hóa đơn đã bị thay thế":
                                   tinhChatId = "03";
                                   break;
                                 case "Hóa đơn điều chỉnh":
@@ -165,6 +167,10 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                                   break;
                                 case "Hóa đơn đã bị điều chỉnh định danh":
                                   tinhChatId = "09";
+                                  break;
+                                case "Hóa đơn đã bị giải trình":
+                                  // TODO chua biet tinh chat
+                                  // tinhChatId = "13";
                                   break;
                               }
                             });
@@ -202,6 +208,10 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                                 case "Đã hủy":
                                   trangThaiId = "DLTD";
                                   break;
+                                case "Trạng thái gửi CQT":
+                                  //TODO doi trang thai
+                                  // trangThaiId = "CCQT";
+                                  break;
                               }
                             });
                           },
@@ -219,7 +229,12 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                                   setState(() {
                                     if(DateFormat("dd/MM/yyyy").parse(selectedDate).isAfter(DateTime.now())) {
                                       errorTuNgay = "Ngày không hợp lệ";
-                                    } else {
+                                      if(errorTuNgay != null){
+                                        Toast.showLongTop("Ngày không được lớn hơn ngày hiện tại");
+                                      }
+                                    }
+
+                                    else {
                                       errorTuNgay = null;
                                       tuNgayController.text = selectedDate;
                                     }
@@ -239,6 +254,9 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                                   setState(() {
                                     if(DateFormat("dd/MM/yyyy").parse(selectedDate).isAfter(DateTime.now())) {
                                       errorDenNgay = "Ngày không hợp lệ";
+                                      if(errorDenNgay != null){
+                                        Toast.showLongTop("Ngày không được lớn hơn ngày hiện tại");
+                                      }
                                     } else {
                                       errorDenNgay = null;
                                       denNgayController.text = selectedDate;
@@ -293,7 +311,8 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                             // readOnly: true,
                             // showCursor: false,
                             textEditingController: mstNguoiMuaController,
-                            hintText: "Mst người mua",
+                            hintText: "MST người mua",
+                            maxLength: 14,
                           ),
                         ),
                         Padding(
@@ -312,6 +331,10 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                         ButtonBottomNotStackWidget(
                           title: "Tra cứu",
                           onPressed: (){
+                            if(!Utils.compareDates(tuNgayController.text, denNgayController.text)){
+                              Toast.showLongTop("Ngày bắt đầu không được lớn hơn ngày kết thúc");
+                              return;
+                            }
                             objectTB = new FilterTCHoaDon(
                               tuNgay: tuNgayController.text,
                               denNgay: denNgayController.text,

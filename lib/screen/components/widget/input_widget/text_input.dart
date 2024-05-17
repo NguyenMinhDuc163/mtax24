@@ -6,6 +6,7 @@ import 'package:get_it_mixin/get_it_mixin.dart';
 import 'package:mtax24/controller/z_general_controller.dart';
 import 'package:mtax24/model/z_general_model.dart';
 import 'package:mtax24/screen/components/styles/style.dart';
+import 'package:mtax24/screen/components/utils/init.dart';
 
 class TextInput extends StatefulWidget with GetItStatefulWidgetMixin {
   final String hintText, errorText;
@@ -34,6 +35,7 @@ class _TextInputState extends State<TextInput> with GetItStateMixin {
       generalController.setToggleObscureInput(toggleObscureInput: widget.obscureText ?? false);
       generalController.setErrorText(errorText: widget.errorText ?? "");
     }
+
   }
 
   @override
@@ -130,7 +132,7 @@ class TextFieldNormalInput extends StatelessWidget {
   final Function onSubmittedCustom;
   final Function onToggleCustom;
   final int maxLength;
-  const TextFieldNormalInput(
+   const TextFieldNormalInput(
       {Key key,
         this.title,
         this.hintText,
@@ -153,6 +155,7 @@ class TextFieldNormalInput extends StatelessWidget {
       })
       : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -171,7 +174,6 @@ class TextFieldNormalInput extends StatelessWidget {
                 showCursor: showCursor ?? false,
                 readOnly: readOnly ?? false,
                 controller: textEditingController,
-
                 textInputAction: textInputAction ?? TextInputAction.done,
                 // style: text_fontsize14_black,
                 keyboardType: textInputType ?? TextInputType.text,
@@ -197,7 +199,9 @@ class TextFieldNormalInput extends StatelessWidget {
                         : OutlineInputBorder()),
                 onChanged: onChangedCustom,
                 onSubmitted: onSubmittedCustom,
-                inputFormatters : (maxLength != null) ? [LengthLimitingTextInputFormatter((maxLength))] : null,
+                inputFormatters : (maxLength != null) ? [LengthLimitingTextInputFormatter((maxLength)),
+                  // FilteringTextInputFormatter.allow(RegExp(r'[\d-]'))
+                ] : null,
               ),
             ],
           ),

@@ -120,6 +120,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
   }
 
  void initDataUser(){
+
    if(widget.chiTietResponse != null && widget.thongTinUser != null){
      // TODO khoi tao gia tri ban dau neu co thong tin
      createCustomerApiResponse = widget.thongTinUser;
@@ -127,11 +128,21 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
      maKHController.text = createCustomerApiResponse.maKH != null ? createCustomerApiResponse.maKH : "";
      mstController.text =  (createCustomerApiResponse.customerTaxcode != null) ? createCustomerApiResponse.customerTaxcode : chiTietResponse.mstnmua;
      nameController.text = createCustomerApiResponse.tenNguoiMua != null ? createCustomerApiResponse.tenNguoiMua : chiTietResponse.tennmua;
-     unitNameController.text = chiTietResponse.dchinmua != null ? chiTietResponse.dchinmua : "";
+     unitNameController.text = createCustomerApiResponse.customerCompany != null ? chiTietResponse.tendvinmua : "";
      addressController.text = (createCustomerApiResponse.customerAddress != null) ? createCustomerApiResponse.customerAddress : chiTietResponse.dchinmua;
      emailController.text = chiTietResponse.emailnmua != null ? chiTietResponse.emailnmua : "";
      phoneController.text = createCustomerApiResponse.customerTelephone != null ? createCustomerApiResponse.customerTelephone : "";
-
+   }
+   else if(widget.thongTinUser != null){
+     print("################## 123456789${widget.chiTietResponse } |||${widget.thongTinUser.toJson()}");
+      createCustomerApiResponse = widget.thongTinUser;
+      maKHController.text = createCustomerApiResponse.maKH != null ? createCustomerApiResponse.maKH : "";
+      mstController.text = createCustomerApiResponse.customerTaxcode != null ? createCustomerApiResponse.customerTaxcode : "";
+      nameController.text = createCustomerApiResponse.tenNguoiMua != null ? createCustomerApiResponse.tenNguoiMua : "";
+      unitNameController.text = createCustomerApiResponse.customerCompany != null ? createCustomerApiResponse.customerCompany : "";
+      addressController.text = createCustomerApiResponse.customerAddress != null ? createCustomerApiResponse.customerAddress : "";
+      emailController.text = createCustomerApiResponse.customerEmail != null ? createCustomerApiResponse.customerEmail : "";
+      phoneController.text = createCustomerApiResponse.customerTelephone != null ? createCustomerApiResponse.customerTelephone : "";
    }
  }
   String getInitials(String text) {
@@ -163,10 +174,10 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
               lstDropTypePayment.add(element.displayName);
             });
           });
-          // Todo test gan tien
+
           dropTypePayment = "Tiền mặt";
           lstDropTypePayment.forEach((element) {
-            if(getInitials(element) == chiTietResponse.hthuctoan){
+            if(chiTietResponse != null && getInitials(element) == chiTietResponse.hthuctoan){
               dropTypePayment = element;
             }
           });
@@ -188,7 +199,6 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
 
     registerHandler((ThongTinNguoiMuaModel x) => x.lstCustomerInfoByUserId, (context, CustomerInfoByUserIdResponse list, cancel) {
       if(list != null){
-        print("################## da di vao 2");
         fax = list.customerFax;
         unitNameController.text = list.customerCompany;
         mstController.text = list.customerTaxcode;
@@ -214,10 +224,18 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
         createCustomerApiResponse.customerEmail = emailController.text;
         createCustomerApiResponse.customerAddress = addressController.text;
         createCustomerApiResponse.customerTelephone = phoneController.text;
-        // TODO test
-        // createCustomerApiResponse.typePayment = dropTypePayment;
-        // createCustomerApiResponse.typeMoney = dropTypeMoney;
-        // DialogAlert.showDialogAlertCancel(context, "Lưu thông tin thành công");
+
+        // TODO - check MST
+        if(!Utils.validateMst(mstController.text)){
+          // DialogAlert.showDialogAlertCancel(context, "Mã số thuế sai cấu trúc!");
+          Toast.showLongTop("Mã số thuế sai cấu trúc!");
+          return;
+        }
+
+        if(!Utils.isValidEmail(emailController.text)){
+          Toast.showLongTop("Email không hợp lệ");
+          return;
+        }
         Toast.showLongTop("Lưu thông tin thành công");
         if (!isSaveInfo) {
 
@@ -265,7 +283,6 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                   if(maKHController.text == null && maKHController.text == ""){
                     DialogAlert.showDialogAlertCancel(context, "Vui lòng nhập mã khách hàng!");
                   }else if(mstController.text == null && mstController.text == ""){
-
                     DialogAlert.showDialogAlertCancel(context, "Vui lòng nhập mã số thuế!");
                   } else {
                     controller.createCustomerAPI(
@@ -274,14 +291,14 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                           // taxCode: taxCode,
                           taxCode: mstController.text,
                           customerAddress: addressController
-                              .text,
+                              .text ?? "",
                           customerCode: maKHController.text,
                           customerCompany: unitNameController
                               .text,
                           customerEmail: emailController
                               .text,
                           customerFax: fax,
-                          customerName: nameController.text,
+                          customerName: nameController.text ?? '',
                           customerTaxcode: mstController
                               .text,
                           customerTelephone: phoneController
@@ -326,6 +343,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                             textEditingController: maKHController,
                             hintText: "Mã khách hàng",
                             // textInputAction: TextInputAction.done,
+                            maxLength: 50,
                             onSubmittedCustom: (value) {
                               controller.getCustomerInfoByUserId(
                                   CustomerInfoByUserIdRequest(
@@ -347,10 +365,12 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                                   readOnly: isTrangThai,
                                   showCursor: isTrangThai,
                                   textEditingController: mstController,
+                                  textInputType: TextInputType.number,
                                   hintText: "Mã số thuế",
+                                  maxLength: 14,
                                   onSubmittedCustom: (values){
-                                    if(!Utils.validateMst(mstController.text)){
-                                      DialogAlert.showDialogAlertCancel(context, "Mã số thuế sai cấu trúc!");
+                                    if(!Utils.validateMst(mstController.text) ){
+                                      Toast.showLongTop("Mã số thuế sai cấu trúc!");
                                     }else {
                                       controller.getInfoCustomerByCode(GetInfoCustomerByCodeRequest(
                                         taxCode: values,
@@ -358,9 +378,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                                         idHD: widget.idHD,
                                       ));
                                     }
-
                                   },
-
                                 ),
                               ),
                             ],
@@ -374,6 +392,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                             showCursor: isTrangThai,
                             textEditingController: nameController,
                             hintText: "Tên người mua",
+                            maxLength: 100,
                           ),
                         ),
                         Padding(
@@ -384,6 +403,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                             showCursor: isTrangThai,
                             textEditingController: unitNameController,
                             hintText: "Tên đơn vị",
+                            maxLength: 300,
                           ),
                         ),
                         Padding(
@@ -394,16 +414,31 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                             showCursor: isTrangThai,
                             textEditingController: addressController,
                             hintText: "Địa chỉ",
+                            maxLength: 300,
                           ),
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 40.h),
-                          child: TextInput(
-                            haveBorder: true,
-                            readOnly: isTrangThai,
-                            showCursor: isTrangThai,
-                            textEditingController: emailController,
-                            hintText: "Email",
+                          // child: TextInput(
+                          //   haveBorder: true,
+                          //   readOnly: isTrangThai,
+                          //   showCursor: isTrangThai,
+                          //   textEditingController: emailController,
+                          //   textInputType: TextInputType.emailAddress,
+                          //   hintText: "Email",
+                          // ),
+                          child: TextFieldNormalInput(
+                              haveBorder: true,
+                              readOnly: isTrangThai,
+                              showCursor: isTrangThai,
+                              textEditingController: emailController,
+                              textInputType: TextInputType.emailAddress,
+                              hintText: "Email",
+                              onSubmittedCustom: (value){
+                                if(!Utils.isValidEmail(value)){
+                                  Toast.showLongTop("Email không hợp lệ");
+                                }
+                              },
                           ),
                         ),
                         Padding(

@@ -253,6 +253,9 @@ class Utils {
 
   static bool validateMst(String mstnmua){
     var isMst = true;
+    if(mstnmua.length == 0){ // truong hop ng mua le khong nhap msthue
+      return true;
+    }
     if( mstnmua.length < 10 || mstnmua.length > 14){
       isMst = false;
     }
@@ -298,4 +301,21 @@ class Utils {
     return double.parse(s, (e) => null) != null;
   }
 
+  static bool compareDates(String date1, String date2) {
+    DateFormat format = DateFormat("dd/MM/yyyy");
+
+    DateTime dateTime1 = format.parse(date1);
+    DateTime dateTime2 = format.parse(date2);
+
+    return dateTime1.isBefore(dateTime2);
+  }
+
+  static bool isValidEmail(String email) {
+    if(email.isEmpty){
+      return true;
+    }
+    String pattern = r'^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$';
+    RegExp regex = RegExp(pattern);
+    return regex.hasMatch(email);
+  }
 }

@@ -47,7 +47,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
   String taxMoney = "0";
   String moneyBar = "0";
 
-  int percent = 0;
+  int percent = -1;
   int typeSale = 0;
 
 
@@ -179,6 +179,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
       text: newText,
       selection: TextSelection.collapsed(offset: newText.length),
     );
+
   }
 
 
@@ -199,7 +200,6 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                 Toast.showLongTop("Bạn chưa nhập đơn giá");
               }else {
                 if (widget.isTraCuu) {
-                  print("++++++++++++++++++++ 1}");
                   dsdvu.soluong = totalController.text.replaceAll(",", "").split(".")[0];
                   dsdvu.dongia = unitPriceController.text.replaceAll(",", "").split(".")[0];
                   dsdvu.thuesuat =
@@ -498,8 +498,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
 
 
 
-  Widget discountView(BuildContext context){
-
+  Widget discountView(BuildContext context) {
     return Column(
       children: [
         Row(
@@ -507,204 +506,172 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
           children: [
             Expanded(
               child: InkWell(
-                onTap: (){
+                onTap:(widget.trangThai == 'SUCC') ? null : () {
                   setState(() {
                     percent = 0;
                     percentController.text = percent.toString();
                     setState(() {
-                      totalAmount(widget.type,
-                          percent,
-                          totalController.text,
-                          unitPriceController.text,
-                          discountController.text);
+                      totalAmount(widget.type, percent, totalController.text, unitPriceController.text, discountController.text);
                     });
                   });
                 },
                 child: Container(
-                    margin: EdgeInsets.only(top: 20.h),
-                    decoration: BoxDecoration(
-                        color: percent == 0 ? colorBorderInputCombobox : Colors.transparent,
-                        border: Border.all(
-                          color: color757575,
-                          width: 1.0,
-                        ),
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(55.h))),
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 8.h, right: 8.h, top: 30.h, bottom: 30.h),
-                      child: Center(child: Text("0 %")),
-                    )
-
+                  margin: EdgeInsets.only(top: 20.h),
+                  decoration: BoxDecoration(
+                    color: percent == 0 ? colorBorderInputCombobox : Colors.transparent,
+                    border: Border.all(
+                      color: color757575,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(55.h)),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 8.h, right: 8.h, top: 30.h, bottom: 30.h),
+                    child: Center(child: Text("0 %")),
+                  ),
                 ),
               ),
             ),
             Expanded(
               child: InkWell(
-                onTap: (){
+                onTap:(widget.trangThai == 'SUCC') ? null : () {
                   setState(() {
                     percent = 5;
                     percentController.text = percent.toString();
                     setState(() {
-                      totalAmount(widget.type,
-                          percent,
-                          totalController.text,
-                          unitPriceController.text,
-                          discountController.text);
+                      totalAmount(widget.type, percent, totalController.text, unitPriceController.text, discountController.text);
                     });
                   });
                 },
                 child: Container(
-                    // padding: EdgeInsets.only(left: 20.h, right: 20.h),
-                    margin: EdgeInsets.only(top: 20.h),
-                    decoration: BoxDecoration(
-                        color: percent == 5 ? colorBorderInputCombobox : Colors.transparent,
-                        border: Border.all(
-                          color: color757575,
-                          width: 1.0,
-                        ),
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(55.h))),
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 8.h, right: 8.h, top: 30.h, bottom: 30.h),
-                      child: Center(child: Text("5 %")),
+                  margin: EdgeInsets.only(top: 20.h),
+                  decoration: BoxDecoration(
+                    color: percent == 5 ? colorBorderInputCombobox : Colors.transparent,
+                    border: Border.all(
+                      color: color757575,
+                      width: 1.0,
                     ),
-
+                    borderRadius: BorderRadius.all(Radius.circular(55.h)),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 8.h, right: 8.h, top: 30.h, bottom: 30.h),
+                    child: Center(child: Text("5 %")),
+                  ),
                 ),
               ),
             ),
             Expanded(
               child: InkWell(
-                onTap: (){
+                onTap: (widget.trangThai == 'SUCC') ? null :() {
                   setState(() {
                     percent = 8;
                     percentController.text = percent.toString();
                     setState(() {
-                      totalAmount(widget.type,
-                          percent,
-                          totalController.text,
-                          unitPriceController.text,
-                          discountController.text);
+                      totalAmount(widget.type, percent, totalController.text, unitPriceController.text, discountController.text);
                     });
                   });
                 },
                 child: Container(
-                    // padding: EdgeInsets.only(left: 20.h, right: 20.h),
-                    margin: EdgeInsets.only(top: 20.h),
-                    decoration: BoxDecoration(
-                        color: percent == 8 ? colorBorderInputCombobox : Colors.transparent,
-                        border: Border.all(
-                          color: color757575,
-                          width: 1.0,
-                        ),
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(55.h))),
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 8.h, right: 8.h, top: 30.h, bottom: 30.h),
-                      child: Center(child: Text("8 %")),
+                  margin: EdgeInsets.only(top: 20.h),
+                  decoration: BoxDecoration(
+                    color: percent == 8 ? colorBorderInputCombobox : Colors.transparent,
+                    border: Border.all(
+                      color: color757575,
+                      width: 1.0,
                     ),
-
+                    borderRadius: BorderRadius.all(Radius.circular(55.h)),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 8.h, right: 8.h, top: 30.h, bottom: 30.h),
+                    child: Center(child: Text("8 %")),
+                  ),
                 ),
               ),
             ),
             Expanded(
               child: InkWell(
-                onTap: (){
+                onTap: (widget.trangThai == 'SUCC') ? null :() {
                   setState(() {
                     percent = 10;
                     percentController.text = percent.toString();
                     setState(() {
-                      totalAmount(widget.type,
-                          percent,
-                          totalController.text,
-                          unitPriceController.text,
-                          discountController.text);
+                      totalAmount(widget.type, percent, totalController.text, unitPriceController.text, discountController.text);
                     });
                   });
                 },
                 child: Container(
-                    margin: EdgeInsets.only(top: 20.h),
-                    decoration: BoxDecoration(
-                        color: percent == 10 ? colorBorderInputCombobox : Colors.transparent,
-                        border: Border.all(
-                          color: color757575,
-                          width: 1.0,
-                        ),
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(55.h))),
-                    child:Padding(
-                      padding: EdgeInsets.only(left: 8.h, right: 8.h, top: 30.h, bottom: 30.h),
-                      child: Center(child: Center(child: Text("10 %"))),
+                  margin: EdgeInsets.only(top: 20.h),
+                  decoration: BoxDecoration(
+                    color: percent == 10 ? colorBorderInputCombobox : Colors.transparent,
+                    border: Border.all(
+                      color: color757575,
+                      width: 1.0,
                     ),
-
+                    borderRadius: BorderRadius.all(Radius.circular(55.h)),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 8.h, right: 8.h, top: 30.h, bottom: 30.h),
+                    child: Center(child: Center(child: Text("10 %"))),
+                  ),
                 ),
               ),
             ),
             Expanded(
               child: InkWell(
-                onTap: (){
+                onTap: (widget.trangThai == 'SUCC') ? null :() {
                   setState(() {
                     percent = 50;
                     percentController.text = "KCT";
                     setState(() {
-                      totalAmount(widget.type,
-                          0,
-                          totalController.text,
-                          unitPriceController.text,
-                          discountController.text);
+                      totalAmount(widget.type, 0, totalController.text, unitPriceController.text, discountController.text);
                     });
                   });
                 },
                 child: Container(
-                    margin: EdgeInsets.only(top: 20.h),
-                    decoration: BoxDecoration(
-                        color: percent == 50 ? colorBorderInputCombobox : Colors.transparent,
-                        border: Border.all(
-                          color: color757575,
-                          width: 1.0,
-                        ),
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(55.h))),
-                    child:Padding(
-                      padding: EdgeInsets.only(left: 8.h, right: 8.h, top: 30.h, bottom: 30.h),
-                      child: Center(child: Text("KCT")),
+                  margin: EdgeInsets.only(top: 20.h),
+                  decoration: BoxDecoration(
+                    color: percent == 50 ? colorBorderInputCombobox : Colors.transparent,
+                    border: Border.all(
+                      color: color757575,
+                      width: 1.0,
                     ),
-
+                    borderRadius: BorderRadius.all(Radius.circular(55.h)),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 8.h, right: 8.h, top: 30.h, bottom: 30.h),
+                    child: Center(child: Text("KCT")),
+                  ),
                 ),
-              ),),
+              ),
+            ),
             Expanded(
               child: InkWell(
-                onTap: (){
+                onTap:(widget.trangThai == 'SUCC') ? null : () {
                   setState(() {
                     percent = 100;
                     percentController.text = "KKKNT";
                     setState(() {
-                      totalAmount(widget.type,
-                          0,
-                          totalController.text,
-                          unitPriceController.text,
-                          discountController.text);
+                      totalAmount(widget.type, 0, totalController.text, unitPriceController.text, discountController.text);
                     });
                   });
                 },
                 child: Container(
-                    margin: EdgeInsets.only(top: 20.h),
-                    decoration: BoxDecoration(
-                      color: percent == 100 ? colorBorderInputCombobox : Colors.transparent,
-                      borderRadius:
-                      BorderRadius.all(Radius.circular(55.h)),
-                      border: Border.all(
-                        color: color757575,
-                        width: 1.0,
-                      ),
+                  margin: EdgeInsets.only(top: 20.h),
+                  decoration: BoxDecoration(
+                    color: percent == 100 ? colorBorderInputCombobox : Colors.transparent,
+                    borderRadius: BorderRadius.all(Radius.circular(55.h)),
+                    border: Border.all(
+                      color: color757575,
+                      width: 1.0,
                     ),
-                    child:Padding(
-                      padding: EdgeInsets.only(left: 8.h, right: 8.h, top: 30.h, bottom: 30.h),
-                      child: Center(child: Text("KKKNT")),
-                    ),
-
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 8.h, right: 8.h, top: 30.h, bottom: 30.h),
+                    child: Center(child: Text("KKKNT")),
+                  ),
                 ),
-              ),),
-
+              ),
+            ),
           ],
         ),
       ],
