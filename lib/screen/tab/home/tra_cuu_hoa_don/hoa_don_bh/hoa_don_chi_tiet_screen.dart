@@ -42,7 +42,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
   TextEditingController mstController = TextEditingController();
   var type = 0;
   List<Dsdvu> listHangHoa = [];
-  String tenhdon = "", ngaylap = "", tenDV = "",
+  String tenhdon = "", ngaylap = "", tenDV = "", tenNM = "",
       mstnmua = '', nguoivchuyen = '', diachiNM = '', ngayKy = '',
       ngayDD= '', hopDong= '', phuongTien = '', lenh = '', nguoiDD = '';
 
@@ -81,7 +81,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         ngaylap = chiTietResponse.ngaylap;
         listHangHoa = chiTietResponse.dsdvu;
         thanhTien = chiTietResponse.tongtienttoannte;
-
+        tenNM = chiTietResponse.tennmua;
         if(chiTietResponse.adjustType == "-"){
           tongTToanGiam = chiTietResponse.tongTToanGiam.toString() == "0" ? thanhTien : chiTietResponse.tongTToanGiam.toString();
         }
@@ -545,7 +545,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                 mstnmua = thongTinUser.maKH != null && thongTinUser.maKH != "" ? thongTinUser.maKH : thongTinUser.customerTaxcode;
                                 diachiNM = thongTinUser.customerAddress;
                                 mstController.text = thongTinUser.maKH != null && thongTinUser.maKH != "" ? thongTinUser.maKH : thongTinUser.customerTaxcode;
-
+                                tenNM = thongTinUser.customerName;
                               });
                             }
 
@@ -561,6 +561,11 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                     Expanded(child: Text("Thông tin khách hàng".toUpperCase(), style: text14OBold600,)),
                                     Icon(Icons.post_add_outlined)
                                   ],
+                                ),
+                                tenNM == null || tenNM == "" ? SizedBox() :
+                                Padding(
+                                  padding: EdgeInsets.only(top: 12.h),
+                                  child: Text("${tenNM}" , style: text16Bold600, textAlign: TextAlign.start),
                                 ),
                                 tenDV == null || tenDV == "" ? SizedBox() :
                                 Padding(
@@ -832,20 +837,45 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                                     ),
 
                                                     // TODO tam thoi fig de format code
-                                                    Text("${
-                                                    Utils.covertToMoney(
-                                                        double.parse(
-                                                            (listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].thanhtientruocthue == "0.0" && listHangHoa[index].tienthue.isNotEmpty && listHangHoa[index].tienthue == "0.0" )?
-                                                    Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue) + double.parse(listHangHoa[index].tienthue)).replaceAll(',', '.'):
-                                                    listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].tienthue.isEmpty ?
-                                                    Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue)).replaceAll(',', '.') :
-                                                    listHangHoa[index].thanhtientruocthue.isEmpty && listHangHoa[index].tienthue.isEmpty && listHangHoa[index].tongtienthanhtoan.isNotEmpty ?
-                                                    Utils.covertToMoney(double.parse(listHangHoa[index].tongtienthanhtoan)).replaceAll(',', '.') :
-                                                    listHangHoa[index].tongtienthanhtoan.isNotEmpty ? listHangHoa[index].tongtienthanhtoan.replaceAll(',', '.') : "0"
-                                                     )
+                                                    Row(
+                                                      children: [
+                                                        Text("${
+                                                            Utils.covertToMoney(
+                                                                double.parse(
+                                                                    (listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].thanhtientruocthue == "0.0" && listHangHoa[index].tienthue.isNotEmpty && listHangHoa[index].tienthue == "0.0" )?
+                                                                    Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue) + double.parse(listHangHoa[index].tienthue)).replaceAll(',', '.'):
+                                                                    listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].tienthue.isEmpty ?
+                                                                    Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue)).replaceAll(',', '.') :
+                                                                    listHangHoa[index].thanhtientruocthue.isEmpty && listHangHoa[index].tienthue.isEmpty && listHangHoa[index].tongtienthanhtoan.isNotEmpty ?
+                                                                    Utils.covertToMoney(double.parse(listHangHoa[index].tongtienthanhtoan)).replaceAll(',', '.') :
+                                                                    listHangHoa[index].tongtienthanhtoan.isNotEmpty ? listHangHoa[index].tongtienthanhtoan.replaceAll(',', '.') : "0"))
+                                                        }" + " ${chiTietResponse.matte.isNotEmpty ? chiTietResponse.matte : "đ"}", textAlign: TextAlign.end, style: text14Red600,),
 
+                                                        Container(
+                                                          margin: EdgeInsets.only(left: 30.h),
+                                                          // Xoa hoa don
+                                                          child: InkWell(child: Icon(Icons.delete),
+                                                            onTap: (){
+                                                              DialogAlert.showDialogInfo(context, "Bạn có muốn xóa hàng hóa không?", onSuccess: (){
+                                                                setState(() {
+                                                                  // String money = "${listHangHoa[index].thanhTien != null ? Utils.covertToMoney(listHangHoa[index].thanhTien) : 0.0}";
+                                                                  // String moneyDV = "${listHangHoa[index].tongTienDV != null ? Utils.covertToMoney(listHangHoa[index].tongTienDV) : 0.0}";
+                                                                  // String moneyGTGT = "${listHangHoa[index].tienGTGT != null ? Utils.covertToMoney(listHangHoa[index].tienGTGT) : 0.0}";
+                                                                  //
+                                                                  // thanhTien = (double.parse(thanhTien.replaceAll(",", "")) - double.parse(money.replaceAll(",", ""))).toString();
+                                                                  // tongTienDv = (double.parse(tongTienDv.replaceAll(",", "")) - double.parse(moneyDV.replaceAll(",", ""))).toString();
+                                                                  // tienGTGT = (double.parse(tienGTGT.replaceAll(",", "")) - double.parse(moneyGTGT.replaceAll(",", ""))).toString();
+
+                                                                  listHangHoa.removeAt(index);
+                                                                  Navigator.of(context).pop();
+                                                                });
+
+                                                              });
+                                                            },
+                                                          ),
+                                                        )
+                                                      ],
                                                     )
-                                                    }" + " ${chiTietResponse.matte.isNotEmpty ? chiTietResponse.matte : "đ"}", textAlign: TextAlign.end, style: text14Red600,)
                                                   ],
                                                 ),
 

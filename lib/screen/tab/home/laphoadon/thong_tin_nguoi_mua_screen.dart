@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -189,7 +190,10 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
             }
           }
           // dropTypeMoney = createCustomerApiResponse.typeMoney;
-          dropTypeMoney = (createCustomerApiResponse.typeMoney == null) ? chiTietResponse.matte : createCustomerApiResponse.typeMoney;
+          //TODO check null
+          dropTypeMoney = (createCustomerApiResponse.typeMoney == null) ?
+          ((chiTietResponse != null) ? chiTietResponse.matte : "VND" )
+              : createCustomerApiResponse.typeMoney;
         }else{
           dropTypePayment = lstDropTypePayment.first.toString();
           dropTypeMoney = lstDropTypeMoney.first.toString();
@@ -227,7 +231,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
 
         // TODO - check MST
         if(!Utils.validateMst(mstController.text)){
-          // DialogAlert.showDialogAlertCancel(context, "Mã số thuế sai cấu trúc!");
+
           Toast.showLongTop("Mã số thuế sai cấu trúc!");
           return;
         }
@@ -236,6 +240,19 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
           Toast.showLongTop("Email không hợp lệ");
           return;
         }
+
+        // neu co mst thi bat buoc phai nhap > dia chi, don vi
+        if(mstController.text != null && mstController.text != "") {
+          if (addressController.text == null || addressController.text == "") {
+            Toast.showLongTop("Vui lòng nhập địa chỉ!");
+            return;
+          }
+          if (unitNameController.text == null || unitNameController.text == "") {
+            Toast.showLongTop("Vui lòng nhập tên đơn vị!");
+            return;
+          }
+        }
+
         Toast.showLongTop("Lưu thông tin thành công");
         if (!isSaveInfo) {
 
@@ -280,11 +297,21 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
             CustomerAppbarScreen(title: 'Thông tin người mua', isShowBack: true, isShowHome: false, isCreate: false, isSave: !isTrangThai,
               onSave: (){
                 if(fingerToggle){
+                  if(nameController.text == null || nameController.text == ""){
+                    Toast.showLongTop("Vui lòng nhập tên người mua!");
+                    return;
+                  }
+
                   if(maKHController.text == null && maKHController.text == ""){
                     DialogAlert.showDialogAlertCancel(context, "Vui lòng nhập mã khách hàng!");
                   }else if(mstController.text == null && mstController.text == ""){
                     DialogAlert.showDialogAlertCancel(context, "Vui lòng nhập mã số thuế!");
                   } else {
+                    if(mstController.text == '' && widget.idHD != 0){
+                      Toast.showLongTop("Vui lòng nhập mã số thuế!");
+                      return;
+                    }
+
                     controller.createCustomerAPI(
                         CreateCustomerApiRequest(
                           idHDon: (widget.idHD != "0") ? widget.idHD: "",

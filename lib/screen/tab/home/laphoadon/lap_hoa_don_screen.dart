@@ -44,7 +44,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
   var type = 0;
   List<DanhMucHoaDonResponse> lstDMucHoaDon = [];
   List<CorpSerialsResponse> lstPreLapHoaDon = [];
-
+  Key _refreshKey = UniqueKey();
   List<GetListHangHoaByMaResponse> listHangHoa = [];
   String timeToday = '', mst = "", id = "", invoiceType = "", idHD = "0";
   String maKH = "", htPayment = '';
@@ -482,10 +482,15 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
       DialogAlert.showDialogAlertCancel(context, error == null || error == "" ?  "Có lỗi xảy ra !" : error);
     });
 
+    Future<void> _saveHoaDonAsync(LuuHoaDonRequest request) async {
+      controller.luuHoaDon(request);
+    }
+
     final loading = watchX((LapHoaDonModel x) => x.loading);
 
     return Scaffold(
         // appBar: widget.type ? null : buildAppBarMenuCustom(context, 'Lập hóa đơn', showHome: true ),
+      key: _refreshKey,
         body: Stack(
           children: [
             TabAppbarScreen(title: "", image: "assets/images/bg_lap_hoa_don.png", isShowBack: false, isShowHome: false,
@@ -897,7 +902,35 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
 
 
                                                   ),
-                                                  Text("${listHangHoa[index].thanhTien != null ? Utils.covertToMoney(listHangHoa[index].thanhTien) : 0.0}" + " đ", textAlign: TextAlign.end, style: text14Red600,)
+                                                Row(
+                                                  children: [
+                                                    Text("${listHangHoa[index].thanhTien != null ? Utils.covertToMoney(listHangHoa[index].thanhTien) : 0.0}" + " đ",
+                                                      textAlign: TextAlign.end, style: text14Red600,),
+                                                    Container(
+                                                      margin: EdgeInsets.only(left: 30.h),
+                                                      // Xoa hoa don
+                                                      child: InkWell(child: Icon(Icons.delete),
+                                                        onTap: (){
+                                                          DialogAlert.showDialogInfo(context, "Bạn có muốn xóa hàng hóa không?", onSuccess: (){
+                                                            setState(() {
+                                                              String money = "${listHangHoa[index].thanhTien != null ? Utils.covertToMoney(listHangHoa[index].thanhTien) : 0.0}";
+                                                              String moneyDV = "${listHangHoa[index].tongTienDV != null ? Utils.covertToMoney(listHangHoa[index].tongTienDV) : 0.0}";
+                                                              String moneyGTGT = "${listHangHoa[index].tienGTGT != null ? Utils.covertToMoney(listHangHoa[index].tienGTGT) : 0.0}";
+
+                                                              thanhTien = (double.parse(thanhTien.replaceAll(",", "")) - double.parse(money.replaceAll(",", ""))).toString();
+                                                              tongTienDv = (double.parse(tongTienDv.replaceAll(",", "")) - double.parse(moneyDV.replaceAll(",", ""))).toString();
+                                                              tienGTGT = (double.parse(tienGTGT.replaceAll(",", "")) - double.parse(moneyGTGT.replaceAll(",", ""))).toString();
+
+                                                              listHangHoa.removeAt(index);
+                                                              Navigator.of(context).pop();
+                                                            });
+
+                                                          });
+                                                        },
+                                                      ),
+                                                    )
+                                                  ],
+                                                )
                                                 ],
                                               ),
                                               listHangHoa.length - 1 == index  ? SizedBox() :
@@ -1019,7 +1052,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                             Expanded(
                               flex: 1,
                               child: ButtonBottomNotStackWidget(
-                                title: "Lưu",
+                                title: "Lưu ",
                                 onPressed: () async {
                                   // String tienThanhChu = VietnameseNumberReader.readNumber(int.parse(Utils.covertToMoney(double.parse(thanhTien)).toString()));
                                   if(listHangHoa == null || listHangHoa.length == 0){
@@ -1033,7 +1066,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                   }else {
                                     thanhTien = Utils.covertToMoney(double.parse(thanhTien)).toString().replaceAll(",", "");
 
-                                    controller.luuHoaDon(LuuHoaDonRequest(
+                                    await _saveHoaDonAsync(LuuHoaDonRequest(
                                       chitiethoadon: getChiTietHD(),
                                       dchinmua: thongTinUser.customerAddress,
                                       dthoainmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerTelephone : "",
@@ -1091,7 +1124,15 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
 
                                       tenknhap: type == 0 || type == 1 || type == 2 ? "" : thongTinVanChuyen.khoNhap,
                                       tenkxuat: type == 0 || type == 1 || type == 2 ? "" : thongTinVanChuyen.khoXuat,
-                                    ),);
+                                    )).then((value) {
+                                      thongTinUser = CreateCustomerApiResponse();
+                                      tenDV = ""; mstnmua = ''; diachiNM = ''; tenNMua = ''; mst = '';
+                                      tongTienDv = "0";
+                                      tienGTGT = "0";
+                                      thanhTien = "0";
+                                      listHangHoa = [];
+                                    });
+
                                   }
 
                                 },

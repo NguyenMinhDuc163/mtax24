@@ -244,7 +244,35 @@ class _DanhSachThemMoiScreenState extends State<DanhSachThemMoiScreen> with GetI
 
 
                       ),
-                      Text("${Utils.covertToMoney(lstHangHoa[index].thanhTien)}" + " đ", textAlign: TextAlign.end, style: text14Red600,)
+                      // Text("${Utils.covertToMoney(lstHangHoa[index].thanhTien)}" + " đ", textAlign: TextAlign.end, style: text14Red600,)
+                      Row(
+                        children: [
+                        Text("${Utils.covertToMoney(lstHangHoa[index].thanhTien)}" + " đ", textAlign: TextAlign.end, style: text14Red600,),
+                          Container(
+                            margin: EdgeInsets.only(left: 30.h),
+                            // Xoa hoa don
+                            child: InkWell(child: Icon(Icons.delete),
+                              onTap: (){
+                                DialogAlert.showDialogInfo(context, "Bạn có muốn xóa hàng hóa không?", onSuccess: (){
+                                  setState(() {
+                                    String money = "${lstHangHoa[index].thanhTien != null ? Utils.covertToMoney(lstHangHoa[index].thanhTien) : 0.0}";
+                                    String moneyDV = "${lstHangHoa[index].tongTienDV != null ? Utils.covertToMoney(lstHangHoa[index].tongTienDV) : 0.0}";
+                                    String moneyGTGT = "${lstHangHoa[index].tienGTGT != null ? Utils.covertToMoney(lstHangHoa[index].tienGTGT) : 0.0}";
+
+                                    thanhTien = (double.parse(thanhTien.replaceAll(",", "")) - double.parse(money.replaceAll(",", ""))).toString();
+                                    tongTienDv = (double.parse(tongTienDv.replaceAll(",", "")) - double.parse(moneyDV.replaceAll(",", ""))).toString();
+                                    tienGTGT = (double.parse(tienGTGT.replaceAll(",", "")) - double.parse(moneyGTGT.replaceAll(",", ""))).toString();
+
+                                    lstHangHoa.removeAt(index);
+                                    Navigator.of(context).pop();
+                                  });
+
+                                });
+                              },
+                            ),
+                          )
+                        ],
+                      )
                     ],
                   ),
                   lstHangHoa.length - 1 == index ? SizedBox() :

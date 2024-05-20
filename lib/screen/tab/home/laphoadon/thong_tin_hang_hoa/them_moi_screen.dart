@@ -198,7 +198,10 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                 Toast.showLongTop("Bạn chưa nhập số lượng");
               }else if(unitPriceController.text == null || unitPriceController.text == "" ){
                 Toast.showLongTop("Bạn chưa nhập đơn giá");
-              }else {
+              } else if(nameController.text == null || nameController.text == "" ){
+                Toast.showLongTop("Bạn chưa nhập tên hàng hóa dịch vụ");
+              }
+                else {
                 if (widget.isTraCuu) {
                   dsdvu.soluong = totalController.text.replaceAll(",", "").split(".")[0];
                   dsdvu.dongia = unitPriceController.text.replaceAll(",", "").split(".")[0];

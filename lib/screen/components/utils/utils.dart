@@ -301,13 +301,23 @@ class Utils {
     return double.parse(s, (e) => null) != null;
   }
 
+  // static bool compareDates(String date1, String date2) {
+  //   DateFormat format = DateFormat("dd/MM/yyyy");
+  //
+  //   DateTime dateTime1 = format.parse(date1);
+  //   DateTime dateTime2 = format.parse(date2);
+  //
+  //   return dateTime1.isBefore(dateTime2);
+  // }
+
   static bool compareDates(String date1, String date2) {
     DateFormat format = DateFormat("dd/MM/yyyy");
 
     DateTime dateTime1 = format.parse(date1);
     DateTime dateTime2 = format.parse(date2);
 
-    return dateTime1.isBefore(dateTime2);
+    // Nếu dateTime1 trước dateTime2 hoặc bằng dateTime2
+    return dateTime1.isBefore(dateTime2) || dateTime1.isAtSameMomentAs(dateTime2);
   }
 
   static bool isValidEmail(String email) {
