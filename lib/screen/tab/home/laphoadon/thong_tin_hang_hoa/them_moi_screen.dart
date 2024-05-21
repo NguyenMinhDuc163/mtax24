@@ -387,7 +387,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                                 dropSale = value;
                                 if(dropSale == lstDropSale[1].toString()){
                                   typeSale = 1;
-                                  discountController.text = 1.toString();
+                                  discountController.text = 0.toString();
                                   totalAmount(widget.type,
                                       percent,
                                       totalController.text,

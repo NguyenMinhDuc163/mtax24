@@ -55,6 +55,7 @@ class LuuHoaDonRequest {
     this.ngaykyvanban,
     this.lydoDc,
     this.adjustType,
+    this.relatedCustomer,
 
     this.hDongVchuyen,
     this.ngayhdong,
@@ -113,6 +114,7 @@ class LuuHoaDonRequest {
   final String ngaykyvanban;
   final String lydoDc;
   final String adjustType;
+  final String relatedCustomer;
 
   final String hDongVchuyen;
   final String ngayhdong;
