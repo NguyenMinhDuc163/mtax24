@@ -26,6 +26,8 @@ class TraCuuHoaDonRequest {
     this.fromDateShow,
     this.toDateShow,
     this.page,
+    this.statusCQT,
+
   });
 
   final String loaihdon;
@@ -47,6 +49,7 @@ class TraCuuHoaDonRequest {
   final String fromDateShow;
   final String toDateShow;
   final int page;
+  final String statusCQT;
 
   factory TraCuuHoaDonRequest.fromJson(Map<String, dynamic> json) => TraCuuHoaDonRequest(
     loaihdon: json["loaihdon"] == null ? null : json["loaihdon"],
@@ -68,6 +71,7 @@ class TraCuuHoaDonRequest {
     fromDateShow: json["fromDateShow"] == null ? null : json["fromDateShow"],
     toDateShow: json["toDateShow"] == null ? null : json["toDateShow"],
     page: json["page"] == null ? null : json["page"],
+    statusCQT: json["statusCQT"] == null ? null : json["statusCQT"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -90,5 +94,6 @@ class TraCuuHoaDonRequest {
     "fromDateShow": fromDateShow == null ? null : fromDateShow,
     "toDateShow": toDateShow == null ? null : toDateShow,
     "page": page == null ? null : page,
+    "statusCQT": statusCQT == null ? null : statusCQT,
   };
 }

@@ -33,13 +33,13 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
   TextEditingController tuNgayController = TextEditingController();
   TextEditingController denNgayController = TextEditingController();
   String errorTuNgay, errorDenNgay;
-  var dropLoaiHD, dropTinhChatTb, dropTrangThaiTb;
+  var dropLoaiHD, dropTinhChatTb, dropTrangThaiTb, dropTrangThaiGuiCQT;
 
   var controller = GetIt.I<ThongBaoController>();
   List<DanhMucHoaDonResponse> lstHoaDon = [];
   FilterTCHoaDon objectTB;
 
-  String loaiHDId = "", tinhChatId ="", trangThaiId = "";
+  String loaiHDId = "", tinhChatId ="", trangThaiId = "", trangThaiGuiCQT = "";
 
   List<String> lstLoaiHD = ["Tất cả"];
   List<String> lstTinhChatTB = [
@@ -59,13 +59,19 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
     "Đang chờ duyệt",
     "Chờ CQT phản hồi",
     "CQT từ chối",
-    "Trạng thái gửi CQT",
     "Từ chối",
     "Thành công",
     "Đã hủy",
   ];
 
-  @override
+  List<String> lstTrangThaiGuiCQT = [
+    "Tất cả",
+    "Chưa gửi CQT",
+    "Chờ CQT phản hồi",
+    "Thành công",
+    "CQT từ chối",
+  ];
+
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -103,6 +109,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
           dropLoaiHD = lstLoaiHD.first;
           dropTinhChatTb = lstTinhChatTB.first;
           dropTrangThaiTb = lstTrangThaiTb.first;
+          dropTrangThaiGuiCQT = lstTrangThaiGuiCQT.first;
         }
       }
     });
@@ -169,8 +176,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                                   tinhChatId = "09";
                                   break;
                                 case "Hóa đơn đã bị giải trình":
-                                  // TODO chua biet tinh chat
-                                  // tinhChatId = "13";
+                                  tinhChatId = "13";
                                   break;
                               }
                             });
@@ -208,16 +214,41 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                                 case "Đã hủy":
                                   trangThaiId = "DLTD";
                                   break;
-                                case "Trạng thái gửi CQT":
-                                  //TODO doi trang thai
-                                  // trangThaiId = "CCQT";
-                                  break;
                               }
                             });
                           },
                           hint: "Trạng thái hóa đơn",
                           itemsDropdown: lstTrangThaiTb,
                         ),
+
+                        DropdownInput(
+                          value: dropTrangThaiGuiCQT,
+                          onChangedCustom: (String value){
+                            setState(() {
+                              dropTrangThaiGuiCQT = value;
+                              switch(dropTrangThaiGuiCQT){
+                                case "Tất cả":
+                                  trangThaiGuiCQT = "";
+                                  break;
+                                case "Chưa gửi CQT":
+                                  trangThaiGuiCQT = "00";
+                                  break;
+                                case "Chờ CQT phản hồi":
+                                  trangThaiGuiCQT = "01";
+                                  break;
+                                case "Thành công":
+                                  trangThaiGuiCQT = "03";
+                                  break;
+                                case "CQT từ chối":
+                                  trangThaiGuiCQT = "02";
+                                  break;
+                              }
+                            });
+                          },
+                          hint: "Trạng thái gửi CQT",
+                          itemsDropdown: lstTrangThaiGuiCQT,
+                        ),
+
                         Row(
                           children: [
                             Expanded(
@@ -387,6 +418,7 @@ class FilterTCHoaDon{
   String kyHieuHoaDon;
   String mstNguoiMua;
   String emailNguoiMua;
+  String statusCQT;
 
   FilterTCHoaDon({
       this.loaiHdID,
@@ -401,5 +433,7 @@ class FilterTCHoaDon{
       this.mauHoaDon,
       this.kyHieuHoaDon,
       this.mstNguoiMua,
-      this.emailNguoiMua});
+      this.emailNguoiMua,
+      this.statusCQT,
+  });
 }

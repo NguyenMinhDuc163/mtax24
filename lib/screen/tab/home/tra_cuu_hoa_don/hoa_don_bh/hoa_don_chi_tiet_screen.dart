@@ -444,6 +444,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
     });
 
     registerHandler((LapHoaDonModel x) => x.luuHoaDon, (context, KyHoaDonApiResponse response, cancel) {
+      print('-----------------SAVE hoa don 1');
       DialogAlert.dissmissLoadingDialog(context, GlobalKey());
       if(response != null){
         DialogAlert.showDialogInfo(context, "Lưu thành công số hóa đơn ${response.iccinvhdr.sohdon}", onSuccess: (){
@@ -473,6 +474,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         DialogAlert.dissmissLoadingDialog(context, GlobalKey());
         isCheck = false;
       }
+      // TODO loi null
       DialogAlert.showDialogAlertCancel(context, error.isNotEmpty ? error : "Có lỗi xảy ra");
     });
 
@@ -707,7 +709,9 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
 
                                     if(result != null){
                                       setState(() {
+                                        // TODO loix khi them hang hoa va them moi
                                         Dsdvu hangHoaByMaResponse = result;
+                                        // print("------------------- ${hangHoaByMaResponse.toJson()} - - ${hangHoaByMaResponse.t}");
                                         listHangHoa.add(hangHoaByMaResponse);
                                         tongTienDv = (double.parse(tongTienDv) + double.parse(hangHoaByMaResponse.thanhtientruocthue)).toString();
                                         tienGTGT = (double.parse(tienGTGT) + double.parse(hangHoaByMaResponse.tienthue)).toString();
@@ -1200,12 +1204,14 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
             backgroundColor: colorPrimary,
             label: 'Lưu hóa đơn',
             onTap: () {
+              print('-----------------Save hoa don 2');
               if (listHangHoa == null || listHangHoa.length == 0) {
                 DialogAlert.showDialogAlertCancel(
                     context, "Bạn chưa chọn hàng hóa");
               }
               // else if((type == 0 || type == 1 || type == 2) && thongTinUser == null){
-              //   DialogAlert.showDialogAlertCancel(context, "Bạn chưa chọn thông tin hàng hóa");
+              //   DialogAlert.showDialogA
+              //   lertCancel(context, "Bạn chưa chọn thông tin hàng hóa");
               // }
               else if ((type == 3 || type == 4 || type == 5) &&
                   objectHopdong == null) {
@@ -1225,7 +1231,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                   dthoainmua: (thongTinUser.customerTelephone != null) ? thongTinUser.customerTelephone : chiTietResponse.dthoainmua,
                   emailnmua:(thongTinUser.customerEmail != null) ? thongTinUser.customerEmail : chiTietResponse.emailnmua,
                   faxnmua: chiTietResponse.faxnmua,
-                  // todo cap nhat tien
+                  related_customer: thongTinUser.maKH != null ? thongTinUser.maKH : chiTietResponse.relatedCustomer,
+
                   hthuctoan: (thongTinUser.typePayment != null) ? thongTinUser.typePayment : chiTietResponse.hthuctoan,
                   kyhieu: chiTietResponse.khieuhdon,
                   loaihdon: chiTietResponse.loaihdon,

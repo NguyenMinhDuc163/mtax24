@@ -1065,10 +1065,11 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     DialogAlert.showDialogAlertCancel(context, "Bạn chưa chọn thông tin vận chuyển");
                                   }else {
                                     thanhTien = Utils.covertToMoney(double.parse(thanhTien)).toString().replaceAll(",", "");
-                                    print("****************************${maKH}");
-
+                                    print("------------------- MKH $maKH -------------------");
                                     await _saveHoaDonAsync(LuuHoaDonRequest(
                                       chitiethoadon: getChiTietHD(),
+                                      //TODO them truong makh
+                                      related_customer: maKH,
                                       dchinmua: thongTinUser.customerAddress,
                                       dthoainmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerTelephone : "",
                                       emailnmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerEmail : "",
@@ -1111,8 +1112,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       sovban: "",
                                       tkhoannban: "",
                                       tkhoannmua: "",
-                                      //TODO them truong makh
-                                      relatedCustomer: maKH,
+
 
                                       lDoDDong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong.noiDung,
                                       ngayDDong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong.ngayDieuDong,

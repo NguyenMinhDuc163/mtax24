@@ -55,7 +55,7 @@ class LuuHoaDonRequest {
     this.ngaykyvanban,
     this.lydoDc,
     this.adjustType,
-    this.relatedCustomer,
+    this.related_customer,
 
     this.hDongVchuyen,
     this.ngayhdong,
@@ -114,7 +114,7 @@ class LuuHoaDonRequest {
   final String ngaykyvanban;
   final String lydoDc;
   final String adjustType;
-  final String relatedCustomer;
+  final String related_customer;
 
   final String hDongVchuyen;
   final String ngayhdong;
@@ -186,6 +186,7 @@ class LuuHoaDonRequest {
     nguoiDDong: json["nguoiDDong"] == null ? null : json["nguoiDDong"],
     soLenhDDong: json["soLenhDDong"] == null ? null : json["soLenhDDong"],
     sohdongoc: json["sohdongoc"] == null ? null : json["sohdongoc"],
+    related_customer: json["related_customer"] == null ? null : json["related_customer"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -245,6 +246,7 @@ class LuuHoaDonRequest {
     "nguoiDDong": nguoiDDong == null ? null : nguoiDDong,
     "soLenhDDong": soLenhDDong == null ? null : soLenhDDong,
     "sohdongoc": sohdongoc == null ? null : sohdongoc,
+    "related_customer": related_customer == null ? null : related_customer,
   };
 }
 

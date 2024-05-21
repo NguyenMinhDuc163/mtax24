@@ -121,18 +121,19 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
   }
 
  void initDataUser(){
+   TraCuuHoaDonChiTietResponse chiTietResponse= widget.chiTietResponse;
 
    if(widget.chiTietResponse != null && widget.thongTinUser != null){
    //   // TODO khoi tao gia tri ban dau neu co thong tin
      createCustomerApiResponse = widget.thongTinUser;
-     TraCuuHoaDonChiTietResponse chiTietResponse= widget.chiTietResponse;
-     maKHController.text = createCustomerApiResponse.maKH != null ? createCustomerApiResponse.maKH : "";
+     maKHController.text = createCustomerApiResponse.maKH != null ? createCustomerApiResponse.maKH : chiTietResponse.relatedCustomer;
      mstController.text =  (createCustomerApiResponse.customerTaxcode != null) ? createCustomerApiResponse.customerTaxcode : chiTietResponse.mstnmua;
      nameController.text = createCustomerApiResponse.tenNguoiMua != null ? createCustomerApiResponse.tenNguoiMua : chiTietResponse.tennmua;
      unitNameController.text = createCustomerApiResponse.customerCompany != null ? chiTietResponse.tendvinmua : "";
      addressController.text = (createCustomerApiResponse.customerAddress != null) ? createCustomerApiResponse.customerAddress : chiTietResponse.dchinmua;
      emailController.text = chiTietResponse.emailnmua != null ? chiTietResponse.emailnmua : "";
      phoneController.text = createCustomerApiResponse.customerTelephone != null ? createCustomerApiResponse.customerTelephone : "";
+
    }
    else if(widget.thongTinUser != null){
       createCustomerApiResponse = widget.thongTinUser;
@@ -227,7 +228,6 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
         createCustomerApiResponse.customerEmail = emailController.text;
         createCustomerApiResponse.customerAddress = addressController.text;
         createCustomerApiResponse.customerTelephone = phoneController.text;
-
         // TODO - check MST
         if(!Utils.validateMst(mstController.text)){
 
@@ -283,7 +283,6 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
           // nameController.text = widget.tenNMua ;
         }
         // TODO - Call api thong tin nguoi mua roi gan lai
-        print("--------------------- 123${response.motaDiachi.runtimeType }");
         fax = response.fax;
         unitNameController.text = response.tenNnt ?? "";
         addressController.text =(response.motaDiachi != ", null, null") ? response.motaDiachi : "";

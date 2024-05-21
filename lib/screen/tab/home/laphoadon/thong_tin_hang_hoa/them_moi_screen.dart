@@ -194,12 +194,19 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
               // if(maHHController.text == null || maHHController.text == "" ){
               //   Toast.showLongTop("Bạn chưa chọn hàng hóa dịch vụ");
               // } else
-              if(totalController.text == null || totalController.text == "" ){
+              if(nameController.text == null || nameController.text == "" ){
+                Toast.showLongTop("Bạn chưa nhập tên hàng hóa dịch vụ");
+              }
+              else if(unitController.text == null || unitController.text == "" ){
+                Toast.showLongTop("Bạn chưa nhập đơn vị tính");
+              }
+              else if(totalController.text == null || totalController.text == "" ){
                 Toast.showLongTop("Bạn chưa nhập số lượng");
               }else if(unitPriceController.text == null || unitPriceController.text == "" ){
                 Toast.showLongTop("Bạn chưa nhập đơn giá");
-              } else if(nameController.text == null || nameController.text == "" ){
-                Toast.showLongTop("Bạn chưa nhập tên hàng hóa dịch vụ");
+              }
+              else if(percent == -1){
+                Toast.showLongTop("Bạn chưa chọn thuế suất");
               }
                 else {
                 if (widget.isTraCuu) {

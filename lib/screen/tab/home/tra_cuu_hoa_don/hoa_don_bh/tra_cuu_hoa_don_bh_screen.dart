@@ -73,6 +73,7 @@ class _TraCuuHoaDonBHScreenState extends State<TraCuuHoaDonBHScreen> with GetItS
           mstNmua: filterObjectTc.mstNguoiMua,
           mauhdon: filterObjectTc.mauHoaDon,
           loaihdon: filterObjectTc.loaiHdID,
+          statusCQT: filterObjectTc.statusCQT,
         );
       }else {
         traCuu(
@@ -84,6 +85,7 @@ class _TraCuuHoaDonBHScreenState extends State<TraCuuHoaDonBHScreen> with GetItS
           mstNmua: "",
           mauhdon: "",
           loaihdon: "",
+          statusCQT: "",
         );
       }
     }
@@ -97,6 +99,7 @@ class _TraCuuHoaDonBHScreenState extends State<TraCuuHoaDonBHScreen> with GetItS
     String sohdon,
     String tinhChat,
     String trangThai,
+    String statusCQT,
   }){
     controller.traCuuHoadonBh(TraCuuHoaDonRequest(
       mstNban: mstNban,
@@ -118,6 +121,7 @@ class _TraCuuHoaDonBHScreenState extends State<TraCuuHoaDonBHScreen> with GetItS
       toDateNgayHDon: "",
       toDateShow: "",
       trangThai: trangThai,
+      statusCQT: statusCQT,
     ));
   }
 
@@ -182,6 +186,7 @@ class _TraCuuHoaDonBHScreenState extends State<TraCuuHoaDonBHScreen> with GetItS
               toDateNgayHDon: "",
               toDateShow: "",
               trangThai: filterObjectTc != null ? filterObjectTc.trangThaiTbId : "",
+              statusCQT: filterObjectTc != null ? filterObjectTc.statusCQT : "",
             ));
           },
           child: Stack(
@@ -235,6 +240,7 @@ class _TraCuuHoaDonBHScreenState extends State<TraCuuHoaDonBHScreen> with GetItS
                                                 mstNmua: filterObjectTc.mstNguoiMua,
                                                 mauhdon: filterObjectTc.mauHoaDon,
                                                 loaihdon: filterObjectTc.loaiHdID,
+                                                statusCQT: filterObjectTc.statusCQT,
                                               );
                                             });
                                           }

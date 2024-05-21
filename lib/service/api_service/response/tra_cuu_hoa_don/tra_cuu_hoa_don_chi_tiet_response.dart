@@ -84,6 +84,7 @@ class TraCuuHoaDonChiTietResponse {
     this.tinhchat,
     this.serviceType,
     this.hthucHDonGoc,
+    this.relatedCustomer
   });
 
   final dynamic flagGiayTuin;
@@ -160,6 +161,7 @@ class TraCuuHoaDonChiTietResponse {
   final String tinhchat;
   final String serviceType;
   final String hthucHDonGoc;
+  final String relatedCustomer;
 
   factory TraCuuHoaDonChiTietResponse.fromJson(Map<String, dynamic> json) => TraCuuHoaDonChiTietResponse(
     flagGiayTuin: json["flagGiayTuin"],
@@ -236,6 +238,7 @@ class TraCuuHoaDonChiTietResponse {
     tinhchat: json["tinhchat"] == null ? null : json["tinhchat"],
     serviceType: json["serviceType"] == null ? null : json["serviceType"],
     hthucHDonGoc: json["hthucHDonGoc"] == null ? null : json["hthucHDonGoc"],
+    relatedCustomer: json["relatedCustomer"] == null ? null : json["relatedCustomer"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -313,6 +316,7 @@ class TraCuuHoaDonChiTietResponse {
     "tinhchat": tinhchat == null ? null : tinhchat,
     "serviceType": serviceType == null ? null : serviceType,
     "hthucHDonGoc": hthucHDonGoc == null ? null : hthucHDonGoc,
+    "relatedCustomer": relatedCustomer == null ? null : relatedCustomer,
   };
 }
 
