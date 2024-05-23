@@ -79,7 +79,6 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         print("************************* chiTietResponse: ${chiTietResponse.toJson()}");
         print("===========tinhchat: ${chiTietResponse.sohdongoc}");
         tenhdon = Utils.convertTinhChatHoaDon(chiTietResponse.tinhchat);
-        tenhdon = Utils.convertTinhChatHoaDon(chiTietResponse.tinhchat);
         ngaylap = chiTietResponse.ngaylap;
         listHangHoa = chiTietResponse.dsdvu;
         thanhTien = chiTietResponse.tongtienttoannte;
