@@ -383,7 +383,8 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                             isRequired: false,
                             haveBorder: true,
                             readOnly: isTrangThai,
-                            showCursor: isTrangThai,
+                            //TODO  khong hieu tai sao lai phu thuoc vao trang thai
+                            // showCursor: isTrangThai,
                             textEditingController: maKHController,
                             hintText: "Mã khách hàng",
                             // textInputAction: TextInputAction.done,
@@ -407,7 +408,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                                   isRequired: false,
                                   haveBorder: true,
                                   readOnly: isTrangThai,
-                                  showCursor: isTrangThai,
+                                  // showCursor: isTrangThai,
                                   textEditingController: mstController,
                                   textInputType: TextInputType.number,
                                   hintText: "Mã số thuế",
@@ -446,7 +447,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                         child: TextInput(
                           haveBorder: true,
                           readOnly: isTrangThai,
-                          showCursor: isTrangThai,
+                          // showCursor: isTrangThai,
                           textEditingController: nameController,
                           hintText: "Tên người mua",
                           maxLength: 100,
@@ -460,7 +461,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                             child: TextInput(
                               haveBorder: true,
                               readOnly: isTrangThai,
-                              showCursor: isTrangThai,
+                              // showCursor: isTrangThai,
                               textEditingController: personalIDController,
                               hintText: "Căn cước công dân",
                               maxLength: 30,
@@ -472,7 +473,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                           child: TextInput(
                             haveBorder: true,
                             readOnly: isTrangThai,
-                            showCursor: isTrangThai,
+                            // showCursor: isTrangThai,
                             textEditingController: unitNameController,
                             hintText: "Tên đơn vị",
                             maxLength: 300,
@@ -483,7 +484,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                           child: TextInput(
                             haveBorder: true,
                             readOnly: isTrangThai,
-                            showCursor: isTrangThai,
+                            // showCursor: isTrangThai,
                             textEditingController: addressController,
                             hintText: "Địa chỉ",
                             maxLength: 300,
@@ -502,7 +503,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                           child: TextFieldNormalInput(
                               haveBorder: true,
                               readOnly: isTrangThai,
-                              showCursor: isTrangThai,
+                              // showCursor: isTrangThai,
                               textEditingController: emailController,
                               textInputType: TextInputType.emailAddress,
                               hintText: "Email",
@@ -518,7 +519,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                           child: TextInput(
                             haveBorder: true,
                             readOnly: isTrangThai,
-                            showCursor: isTrangThai,
+                            // showCursor: isTrangThai,
                             textEditingController: phoneController,
                             hintText: "Số điện thoại",
                             textInputType: TextInputType.phone,
@@ -583,7 +584,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                               child: TextInput(
                                 haveBorder: true,
                                 readOnly: isTrangThai,
-                                showCursor: isTrangThai,
+                                // showCursor: isTrangThai,
                                 textEditingController: accountNumberController,
                                 hintText: "Số tài khoản người mua",
                               ),
@@ -593,7 +594,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                               child: TextInput(
                                 haveBorder: true,
                                 readOnly: isTrangThai,
-                                showCursor: isTrangThai,
+                                // showCursor: isTrangThai,
                                 textEditingController: accountNameController,
                                 hintText: "Tên ngân hàng người mua",
                               ),

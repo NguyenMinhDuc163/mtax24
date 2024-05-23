@@ -66,7 +66,7 @@ class _TextInputState extends State<TextInput> with GetItStateMixin {
               TextField(
                 maxLines: widget.multiLines == null || widget.multiLines == false ? 1 : null,
                 obscureText:  widget.isShowDialogOneInput != null && widget.isShowDialogOneInput ? toggleObscureInput : (widget.obscureText ?? false),
-                showCursor: widget.showCursor ?? false,
+                showCursor: widget.showCursor ?? true,
                 maxLength: widget.maxLength ?? null,
                 readOnly: widget.readOnly ?? false,
                 inputFormatters: widget.formats ?? null,
@@ -171,7 +171,7 @@ class TextFieldNormalInput extends StatelessWidget {
                     ? 1
                     : null,
                 obscureText: obscureText ?? false,
-                showCursor: showCursor ?? false,
+                showCursor: showCursor ?? true, // yc muon hien con tro
                 readOnly: readOnly ?? false,
                 controller: textEditingController,
                 textInputAction: textInputAction ?? TextInputAction.done,
