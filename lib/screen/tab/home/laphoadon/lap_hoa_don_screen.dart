@@ -1074,9 +1074,8 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     thanhTien = Utils.covertToMoney(double.parse(thanhTien)).toString().replaceAll(",", "");
                                     await _saveHoaDonAsync(LuuHoaDonRequest(
                                       chitiethoadon: getChiTietHD(),
-                                      //TODO them truong makh
                                       related_customer: maKH,
-                                      personalID: personalID,
+                                      cccDan: personalID,
                                       issue_type: (type == 6 || type == 7 || type == 8) ? "MTT" : "",
                                       dchinmua: thongTinUser.customerAddress,
                                       dthoainmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerTelephone : "",
@@ -1139,11 +1138,12 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
 
                                     )).then((value) {
                                       thongTinUser = CreateCustomerApiResponse();
-                                      tenDV = ""; mstnmua = ''; diachiNM = ''; tenNMua = ''; mst = '';
-                                      tongTienDv = "0";
-                                      tienGTGT = "0";
-                                      thanhTien = "0";
-                                      listHangHoa = [];
+                                      // tenDV = ""; mstnmua = ''; diachiNM = ''; tenNMua = ''; mst = '';
+                                      // maKH = ''; personalID = ''; htPayment = '';
+                                      // tongTienDv = "0";
+                                      // tienGTGT = "0";
+                                      // thanhTien = "0";
+                                      // listHangHoa = [];
                                     });
 
                                   }

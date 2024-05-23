@@ -464,6 +464,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                               // showCursor: isTrangThai,
                               textEditingController: personalIDController,
                               hintText: "Căn cước công dân",
+                              textInputType: TextInputType.number,
                               maxLength: 30,
                             ),
                           ),

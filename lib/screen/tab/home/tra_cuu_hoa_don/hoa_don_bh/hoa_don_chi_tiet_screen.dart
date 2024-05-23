@@ -1235,7 +1235,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                   emailnmua:(thongTinUser.customerEmail != null) ? thongTinUser.customerEmail : chiTietResponse.emailnmua,
                   faxnmua: chiTietResponse.faxnmua,
                   related_customer: thongTinUser.maKH != null ? thongTinUser.maKH : chiTietResponse.relatedCustomer,
-
+                  cccDan: thongTinUser.personalID != null ? thongTinUser.personalID : chiTietResponse.cccDan,
                   hthuctoan: (thongTinUser.typePayment != null) ? thongTinUser.typePayment : chiTietResponse.hthuctoan,
                   kyhieu: chiTietResponse.khieuhdon,
                   loaihdon: chiTietResponse.loaihdon,

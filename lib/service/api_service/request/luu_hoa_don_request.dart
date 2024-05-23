@@ -56,7 +56,7 @@ class LuuHoaDonRequest {
     this.lydoDc,
     this.adjustType,
     this.related_customer,
-    this.personalID,
+    this.cccDan,
     this.issue_type,
 
     this.hDongVchuyen,
@@ -117,7 +117,7 @@ class LuuHoaDonRequest {
   final String lydoDc;
   final String adjustType;
   final String related_customer;
-  final String personalID;
+  final String cccDan;
   final String issue_type;
 
   final String hDongVchuyen;
@@ -191,7 +191,7 @@ class LuuHoaDonRequest {
     soLenhDDong: json["soLenhDDong"] == null ? null : json["soLenhDDong"],
     sohdongoc: json["sohdongoc"] == null ? null : json["sohdongoc"],
     related_customer: json["related_customer"] == null ? null : json["related_customer"],
-    personalID: json["personalID"] == null ? null : json["personalID"],
+    cccDan: json["cccDan"] == null ? null : json["cccDan"],
     issue_type: json["issue_type"] == null ? null : json["issue_type"],
   );
 
@@ -253,7 +253,7 @@ class LuuHoaDonRequest {
     "soLenhDDong": soLenhDDong == null ? null : soLenhDDong,
     "sohdongoc": sohdongoc == null ? null : sohdongoc,
     "related_customer": related_customer == null ? null : related_customer,
-    "personalID": personalID == null ? null : personalID,
+    "cccDan": cccDan == null ? null : cccDan,
     "issue_type": issue_type == null ? null : issue_type,
   };
 }
