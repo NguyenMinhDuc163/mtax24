@@ -51,6 +51,7 @@ class _TraCuuHoaDonBHScreenState extends State<TraCuuHoaDonBHScreen> with GetItS
         mstNmua: "",
         mauhdon: "",
         loaihdon: "",
+          statusCQT: "",
       );
     });
 
@@ -73,7 +74,7 @@ class _TraCuuHoaDonBHScreenState extends State<TraCuuHoaDonBHScreen> with GetItS
           mstNmua: filterObjectTc.mstNguoiMua,
           mauhdon: filterObjectTc.mauHoaDon,
           loaihdon: filterObjectTc.loaiHdID,
-          statusCQT: filterObjectTc.statusCQT,
+          statusCQT: filterObjectTc.statusCQT ,
         );
       }else {
         traCuu(

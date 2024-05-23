@@ -380,6 +380,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                               kyHieuHoaDon: kyHieuHoaDonController.text,
                               mstNguoiMua: mstNguoiMuaController.text,
                               emailNguoiMua: emailNguoiMuaController.text,
+                              statusCQT: dropTrangThaiGuiCQT,
                             );
 
                             Navigator.pop(context, objectTB);
