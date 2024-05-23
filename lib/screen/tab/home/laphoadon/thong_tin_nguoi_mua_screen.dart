@@ -22,9 +22,10 @@ class ThongTinNguoiMuaScreen extends StatefulWidget with GetItStatefulWidgetMixi
   final String idHD;
   final CreateCustomerApiResponse thongTinUser;
   final TraCuuHoaDonChiTietResponse chiTietResponse;
+  final bool personalID;
 
 
-  ThongTinNguoiMuaScreen({this.maKH, this.mst, this.trangThai, this.flag, this.idHD, this.thongTinUser, this.chiTietResponse});
+  ThongTinNguoiMuaScreen({this.maKH, this.mst, this.trangThai, this.flag, this.idHD, this.thongTinUser, this.chiTietResponse, this.personalID});
 
   @override
   State<StatefulWidget> createState() => _ThongTinNguoiMuaState();
@@ -42,6 +43,8 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
   TextEditingController exchangeRateController = TextEditingController();
   TextEditingController accountNumberController = TextEditingController();
   TextEditingController accountNameController = TextEditingController();
+  TextEditingController personalIDController = TextEditingController();
+
 
   var dropTypePayment, dropTypeMoney;
   List<String> lstDropTypePayment = [];
@@ -73,6 +76,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
 
       }
     }
+    print("===================${widget.personalID}====================");
     print("isTrangThai : $isTrangThai");
     if(widget.mst != null && widget.mst != ""){
       initDataUser();
@@ -431,15 +435,31 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                             ],
                           ),
                         ),
+
                         Padding(
-                          padding: EdgeInsets.only(top: 40.h),
-                          child: TextInput(
-                            haveBorder: true,
-                            readOnly: isTrangThai,
-                            showCursor: isTrangThai,
-                            textEditingController: nameController,
-                            hintText: "Tên người mua",
-                            maxLength: 100,
+                        padding: EdgeInsets.only(top: 40.h),
+                        child: TextInput(
+                          haveBorder: true,
+                          readOnly: isTrangThai,
+                          showCursor: isTrangThai,
+                          textEditingController: nameController,
+                          hintText: "Tên người mua",
+                          maxLength: 100,
+                        ),
+                        ),
+
+                        Visibility(
+                          visible: (widget.personalID != null) ?  widget.personalID : false,
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 40.h),
+                            child: TextInput(
+                              haveBorder: true,
+                              readOnly: isTrangThai,
+                              showCursor: isTrangThai,
+                              textEditingController: personalIDController,
+                              hintText: "Căn cước công dân",
+                              maxLength: 30,
+                            ),
                           ),
                         ),
                         Padding(

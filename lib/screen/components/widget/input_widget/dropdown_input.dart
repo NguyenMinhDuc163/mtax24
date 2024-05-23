@@ -44,7 +44,7 @@ class DropdownInput extends StatelessWidget {
             return DropdownMenuItem<String>(
               value: value,
               child: Text(value == null ? "" : value,
-                  overflow: TextOverflow.ellipsis),
+                  overflow: TextOverflow.visible),
             );
           }).toList(),
           onChanged: (trangThai == 'SUCC') ? null : (_) {
@@ -56,6 +56,7 @@ class DropdownInput extends StatelessWidget {
     );
   }
 }
+
 
 class DropDownDialog extends StatelessWidget {
   final String title, value;

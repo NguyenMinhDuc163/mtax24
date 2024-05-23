@@ -91,7 +91,9 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
           lstDMucHoaDon = list;
           lstDMuc.clear();
           list.forEach((element) {
+
             lstDMuc.add(element.invoiceName);
+            print(element.invoiceName);
           });
           dropDMuc = lstDMuc.first;
           invoiceType = lstDMucHoaDon.first.invoiceCode;
@@ -586,13 +588,16 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                         //   child: Text(timeToday, ),
                         // ),
                         Divider(),
-                        type == 0 || type == 1 || type == 2 ?
+                        type == 0 || type == 1 || type == 2|| type == 6 || type == 7 ?
                         Column(
                           children: [
                             InkWell(
                               onTap: () async {
+
                                 final resuls = await Navigator.push(
-                                    context, new MaterialPageRoute(builder: (context) => ThongTinNguoiMuaScreen(maKH: thongTinUserController.text, flag: "GIP", idHD: "0", thongTinUser: thongTinUser,)));
+                                    context, new MaterialPageRoute(builder: (context) => ThongTinNguoiMuaScreen(maKH: thongTinUserController.text, flag: "GIP", idHD: "0", thongTinUser: thongTinUser,
+
+                                  personalID: (type == 6 || type == 7)  ? true : false,)));
                                 if(resuls != null){
                                   setState(() {
                                     thongTinUser = resuls;
@@ -649,7 +654,8 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                               ),
                             ),
                           ],
-                        ) :
+                        )
+                            :
                         Column(
                           children: [
                             InkWell(
@@ -984,7 +990,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                             )
 
                         ),
-                        type == 0 ?
+                        type == 0 || type == 6?
                         Column(
                           children: [
                             Divider(height: 1,),
@@ -1065,7 +1071,6 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     DialogAlert.showDialogAlertCancel(context, "Bạn chưa chọn thông tin vận chuyển");
                                   }else {
                                     thanhTien = Utils.covertToMoney(double.parse(thanhTien)).toString().replaceAll(",", "");
-                                    print("------------------- MKH $maKH -------------------");
                                     await _saveHoaDonAsync(LuuHoaDonRequest(
                                       chitiethoadon: getChiTietHD(),
                                       //TODO them truong makh
