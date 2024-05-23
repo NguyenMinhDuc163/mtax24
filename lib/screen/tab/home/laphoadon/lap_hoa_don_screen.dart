@@ -1121,20 +1121,22 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       tkhoannban: "",
                                       tkhoannmua: "",
 
+                                      // Tam thoi chua dung type = 6, 7 = > de nen cho bang rong
+                                      lDoDDong: type == 0 || type == 1 || type == 2 || type == 6 || type == 7 ? "" : objectHopdong.noiDung,
+                                      ngayDDong: type == 0 || type == 1 || type == 2 || type == 6 || type == 7 ? "" : objectHopdong.ngayDieuDong,
+                                      ngayhdong: type == 0 || type == 1 || type == 2 || type == 6 || type == 7 ? "" : objectHopdong.ngayKy,
+                                      nguoiDDong: type == 0 || type == 1 || type == 2 || type == 6 || type == 7 ? "" : objectHopdong.dvDieuDong,
+                                      soLenhDDong: type == 0 || type == 1 || type == 2 || type == 6 || type == 7 ? "" : objectHopdong.lenh,
 
-                                      lDoDDong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong.noiDung,
-                                      ngayDDong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong.ngayDieuDong,
-                                      ngayhdong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong.ngayKy,
-                                      nguoiDDong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong.dvDieuDong,
-                                      soLenhDDong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong.lenh,
+                                      hDongVchuyen: type == 0 || type == 1 || type == 2 || type == 6 || type == 7 ? "" : thongTinVanChuyen.hdSo,
+                                      nguoivchuyen: type == 0 || type == 1 || type == 2 || type == 6 || type == 7 ? "" : thongTinVanChuyen.name,
+                                      ptienvchuyen: type == 0 || type == 1 || type == 2 || type == 6 || type == 7 ? "" : thongTinVanChuyen.phuongTien,
+                                      sohdong: type == 0 || type == 1 || type == 2 || type == 6 || type == 7 ? "" : objectHopdong.hdKinhTeSo,
 
-                                      hDongVchuyen: type == 0 || type == 1 || type == 2 ? "" : thongTinVanChuyen.hdSo,
-                                      nguoivchuyen: type == 0 || type == 1 || type == 2 ? "" : thongTinVanChuyen.name,
-                                      ptienvchuyen: type == 0 || type == 1 || type == 2 ? "" : thongTinVanChuyen.phuongTien,
-                                      sohdong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong.hdKinhTeSo,
+                                      tenknhap: type == 0 || type == 1 || type == 2 || type == 6 || type == 7 ? "" : thongTinVanChuyen.khoNhap,
+                                      tenkxuat: type == 0 || type == 1 || type == 2 || type == 6 || type == 7 ? "" : thongTinVanChuyen.khoXuat,
 
-                                      tenknhap: type == 0 || type == 1 || type == 2 ? "" : thongTinVanChuyen.khoNhap,
-                                      tenkxuat: type == 0 || type == 1 || type == 2 ? "" : thongTinVanChuyen.khoXuat,
+
                                     )).then((value) {
                                       thongTinUser = CreateCustomerApiResponse();
                                       tenDV = ""; mstnmua = ''; diachiNM = ''; tenNMua = ''; mst = '';

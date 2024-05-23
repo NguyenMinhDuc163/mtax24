@@ -205,15 +205,15 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
               }else if(unitPriceController.text == null || unitPriceController.text == "" ){
                 Toast.showLongTop("Bạn chưa nhập đơn giá");
               }
-              else if(percent == -1){
+              else if(percent == -1 && widget.type == 0){
                 Toast.showLongTop("Bạn chưa chọn thuế suất");
               }
                 else {
                 if (widget.isTraCuu) {
-                  dsdvu.soluong = totalController.text.replaceAll(",", "").split(".")[0];
-                  dsdvu.dongia = unitPriceController.text.replaceAll(",", "").split(".")[0];
+                  dsdvu.soluong = totalController.text.replaceAll(",", "");
+                  dsdvu.dongia = unitPriceController.text.replaceAll(",", "");
                   dsdvu.thuesuat =
-                  percent == 50 ? "KCT" : percent == 100 ? "KKKNT" : "$percent %";
+                  percent == 50 ? "KCT" : percent == 100 ? "KKKNT" : (percent != -1 ) ? "$percent %" : "0 %";
                   dsdvu.khuyenmai = typeSale == 1 ? "N" : typeSale == 2 ? "Y" : "";
                   dsdvu.thanhtientruocthue = total;
                   dsdvu.tienthue = taxMoney;
@@ -234,7 +234,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                     // number: totalController.text.isNotEmpty ? int.parse(totalController.text.replaceAll(',', '').trim().split('.')[0]) : 0,
                     number: totalController.text.isNotEmpty ? double.parse(totalController.text.replaceAll(',', '')) : 0,
                     donGia: unitPriceController.text != "" ? double.parse(unitPriceController.text.replaceAll(',', '')) : 0.0,
-                    thueSuat : percent == 50 ? "KCT" : percent == 100 ? "KKKNT" : "$percent %",
+                    thueSuat : percent == 50 ? "KCT" : percent == 100 ? "KKKNT" : (percent != -1 ) ? "$percent %" : "0 %",
                     type : typeSale,
                     tongTienDV : double.parse(total),
                     tienGTGT : double.parse(taxMoney),

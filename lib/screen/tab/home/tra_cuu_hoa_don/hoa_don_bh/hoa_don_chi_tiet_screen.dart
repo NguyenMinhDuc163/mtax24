@@ -42,7 +42,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
   TextEditingController mstController = TextEditingController();
   var type = 0;
   List<Dsdvu> listHangHoa = [];
-  String tenhdon = "", ngaylap = "", tenDV = "", tenNM = "",
+  String tenhdon = "", ngaylap = "", tenDV = "", tenNM = "" , personalID = "",
       mstnmua = '', nguoivchuyen = '', diachiNM = '', ngayKy = '',
       ngayDD= '', hopDong= '', phuongTien = '', lenh = '', nguoiDD = '';
 
@@ -535,7 +535,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                   children: [
                     Column(
                       children: [
-                        type == 0 || type == 1 || type == 2 || type == 5 ?
+                        type == 0 || type == 1 || type == 2 || type == 5 || type == 6 || type == 7 ?
                         InkWell(
                           onTap: ()async{
                             final resuls = await Navigator.push(
@@ -549,6 +549,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                 diachiNM = thongTinUser.customerAddress;
                                 mstController.text = thongTinUser.maKH != null && thongTinUser.maKH != "" ? thongTinUser.maKH : thongTinUser.customerTaxcode;
                                 tenNM = thongTinUser.customerName;
+                                personalID = thongTinUser.personalID;
                               });
                             }
 
@@ -1225,7 +1226,6 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                     context, "Bạn chưa chọn thông tin vận chuyển");
               } else {
                 isCheck = true;
-                print("==================== chiTietResponse.lstInvOtherInfoCthd ${chiTietResponse.lstInvOtherInfoCthd[0].isEmpty}");
                 DialogAlert.showLoadding(context);
                 lapHdController.luuHoaDon(LuuHoaDonRequest(
                   chitiethoadon: getChiTietHD(),
@@ -1377,7 +1377,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         dongia: element.dongia.toString().replaceAll(".0", ""),
         dvtinh: element.dvtinh,
         khuyenmai: element.khuyenmai,
-        soluong: element.soluong.toString(),
+        soluong: element.soluong.toString().replaceAll('.', ","),
         tendvu: element.tendvu,
         thanhtientruocthue: element.thanhtientruocthue.toString().replaceAll(".0", ""),
         thuesuat: element.thuesuat.replaceAll(" %", ""),

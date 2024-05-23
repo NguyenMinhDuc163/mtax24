@@ -99,6 +99,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
         addressController.text = createCustomerApiResponse.customerAddress != null ? createCustomerApiResponse.customerAddress : "";
         emailController.text = createCustomerApiResponse.customerEmail != null ? createCustomerApiResponse.customerEmail : "";
         phoneController.text = createCustomerApiResponse.customerTelephone != null ? createCustomerApiResponse.customerTelephone : "";
+        personalIDController.text = createCustomerApiResponse.personalID != null ? createCustomerApiResponse.personalID : "";
       }else {
         maKHController.text = widget.maKH;
         controller.getCustomerInfoByUserId(CustomerInfoByUserIdRequest(
@@ -137,6 +138,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
      addressController.text = (createCustomerApiResponse.customerAddress != null) ? createCustomerApiResponse.customerAddress : chiTietResponse.dchinmua;
      emailController.text = chiTietResponse.emailnmua != null ? chiTietResponse.emailnmua : "";
      phoneController.text = createCustomerApiResponse.customerTelephone != null ? createCustomerApiResponse.customerTelephone : "";
+      personalIDController.text = createCustomerApiResponse.personalID != null ? createCustomerApiResponse.personalID : "";
 
    }
    else if(widget.thongTinUser != null){
@@ -148,6 +150,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
       addressController.text = createCustomerApiResponse.customerAddress != null ? createCustomerApiResponse.customerAddress : "";
       emailController.text = createCustomerApiResponse.customerEmail != null ? createCustomerApiResponse.customerEmail : "";
       phoneController.text = createCustomerApiResponse.customerTelephone != null ? createCustomerApiResponse.customerTelephone : "";
+      personalIDController.text = createCustomerApiResponse.personalID != null ? createCustomerApiResponse.personalID : "";
    }
  }
   String getInitials(String text) {
