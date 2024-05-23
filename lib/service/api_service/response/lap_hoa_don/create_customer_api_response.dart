@@ -102,6 +102,7 @@ class CreateCustomerApiResponse {
     this.typeMoney,
     this.tenNH,
     this.soTk,
+    this.personalID,
   });
 
   final int id;
@@ -125,6 +126,7 @@ class CreateCustomerApiResponse {
   String customerEmail;
   String customerAddress;
   String customerTelephone;
+  String personalID;
   factory CreateCustomerApiResponse.fromJson(Map<String, dynamic> json) => CreateCustomerApiResponse(
     id: json["id"] == null ? null : json["id"],
     taxCode: json["tax_code"] == null ? null : json["tax_code"],
@@ -136,6 +138,7 @@ class CreateCustomerApiResponse {
     customerAddress: json["customer_address"] == null ? null : json["customer_address"],
     customerFax: json["customer_fax"] == null ? null : json["customer_fax"],
     customerTelephone: json["customer_telephone"] == null ? null : json["customer_telephone"],
+    personalID: json["personalID"] == null ? null : json["personalID"],
     bankAccount: json["bank_account"],
     bankName: json["bank_name"],
     errorMess: json["errorMess"],
@@ -152,6 +155,7 @@ class CreateCustomerApiResponse {
     "customer_address": customerAddress == null ? null : customerAddress,
     "customer_fax": customerFax == null ? null : customerFax,
     "customer_telephone": customerTelephone == null ? null : customerTelephone,
+    "personalID": personalID == null ? null : personalID,
     "bank_account": bankAccount,
     "bank_name": bankName,
     "errorMess": errorMess,

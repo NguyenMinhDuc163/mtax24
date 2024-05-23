@@ -56,6 +56,8 @@ class LuuHoaDonRequest {
     this.lydoDc,
     this.adjustType,
     this.related_customer,
+    this.personalID,
+    this.issue_type,
 
     this.hDongVchuyen,
     this.ngayhdong,
@@ -115,6 +117,8 @@ class LuuHoaDonRequest {
   final String lydoDc;
   final String adjustType;
   final String related_customer;
+  final String personalID;
+  final String issue_type;
 
   final String hDongVchuyen;
   final String ngayhdong;
@@ -187,6 +191,8 @@ class LuuHoaDonRequest {
     soLenhDDong: json["soLenhDDong"] == null ? null : json["soLenhDDong"],
     sohdongoc: json["sohdongoc"] == null ? null : json["sohdongoc"],
     related_customer: json["related_customer"] == null ? null : json["related_customer"],
+    personalID: json["personalID"] == null ? null : json["personalID"],
+    issue_type: json["issue_type"] == null ? null : json["issue_type"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -247,6 +253,8 @@ class LuuHoaDonRequest {
     "soLenhDDong": soLenhDDong == null ? null : soLenhDDong,
     "sohdongoc": sohdongoc == null ? null : sohdongoc,
     "related_customer": related_customer == null ? null : related_customer,
+    "personalID": personalID == null ? null : personalID,
+    "issue_type": issue_type == null ? null : issue_type,
   };
 }
 

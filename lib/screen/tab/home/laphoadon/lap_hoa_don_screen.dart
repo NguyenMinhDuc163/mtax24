@@ -48,7 +48,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
   List<GetListHangHoaByMaResponse> listHangHoa = [];
   String timeToday = '', mst = "", id = "", invoiceType = "", idHD = "0";
   String maKH = "", htPayment = '';
-  String tenDV = "", mstnmua = '', diachiNM = '', tenNMua = '';
+  String tenDV = "", mstnmua = '', diachiNM = '', tenNMua = '', personalID = "";
   ObjectHopdong objectHopdong = ObjectHopdong();
   ThongTinVanChuyenModel thongTinVanChuyen = ThongTinVanChuyenModel();
   CreateCustomerApiResponse thongTinUser = CreateCustomerApiResponse();
@@ -608,6 +608,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     mstnmua = thongTinUser.maKH != null && thongTinUser.maKH != "" ? thongTinUser.maKH : thongTinUser.customerTaxcode;
                                     diachiNM = thongTinUser.customerAddress;
                                     thongTinUserController.text = thongTinUser.maKH != null && thongTinUser.maKH != "" ? thongTinUser.maKH : thongTinUser.customerTaxcode;
+                                    personalID = thongTinUser.personalID;
                                   });
                                 }
                               },
@@ -1075,6 +1076,8 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       chitiethoadon: getChiTietHD(),
                                       //TODO them truong makh
                                       related_customer: maKH,
+                                      personalID: personalID,
+                                      issue_type: (type == 6 || type == 7 || type == 8) ? "MTT" : "",
                                       dchinmua: thongTinUser.customerAddress,
                                       dthoainmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerTelephone : "",
                                       emailnmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerEmail : "",

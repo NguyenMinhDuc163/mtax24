@@ -232,6 +232,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
         createCustomerApiResponse.customerEmail = emailController.text;
         createCustomerApiResponse.customerAddress = addressController.text;
         createCustomerApiResponse.customerTelephone = phoneController.text;
+        createCustomerApiResponse.personalID = personalIDController.text;
         // TODO - check MST
         if(!Utils.validateMst(mstController.text)){
 
@@ -271,7 +272,8 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
               customerCompany: unitNameController.text,
               customerAddress: addressController.text,
               customerEmail: emailController.text,
-              customerTelephone: phoneController.text
+              customerTelephone: phoneController.text,
+              personalID: personalIDController.text,
           );
         }
         Navigator.pop(context, createCustomerApiResponse);
@@ -358,8 +360,8 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                         customerCompany: unitNameController.text,
                         customerAddress: addressController.text,
                         customerEmail: emailController.text,
-                        customerTelephone: phoneController.text
-
+                        customerTelephone: phoneController.text,
+                        personalID: personalIDController.text,
                     );
                   }
                   Navigator.pop(context, createCustomerApiResponse);
