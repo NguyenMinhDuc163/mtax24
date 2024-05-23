@@ -76,6 +76,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
     super.initState();
     if(widget.object != null){
         chiTietResponse = widget.object;
+        print("************************* chiTietResponse: ${chiTietResponse.toJson()}");
         print("===========tinhchat: ${chiTietResponse.sohdongoc}");
         tenhdon = Utils.convertTinhChatHoaDon(chiTietResponse.tinhchat);
         ngaylap = chiTietResponse.ngaylap;
@@ -1224,6 +1225,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                     context, "Bạn chưa chọn thông tin vận chuyển");
               } else {
                 isCheck = true;
+                print("==================== chiTietResponse.lstInvOtherInfoCthd ${chiTietResponse.lstInvOtherInfoCthd[0].isEmpty}");
                 DialogAlert.showLoadding(context);
                 lapHdController.luuHoaDon(LuuHoaDonRequest(
                   chitiethoadon: getChiTietHD(),
@@ -1237,7 +1239,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                   kyhieu: chiTietResponse.khieuhdon,
                   loaihdon: chiTietResponse.loaihdon,
                   lstInvOtherInfoBan: chiTietResponse.lstInvOtherInfoBan,
-                  lstInvOtherInfoCthd: chiTietResponse.lstInvOtherInfoCthd,
+                  // neu de binh thuong se la [[]]
+                  lstInvOtherInfoCthd: (!chiTietResponse.lstInvOtherInfoCthd[0].isEmpty) ? chiTietResponse.lstInvOtherInfoCthd : [],
                   lstInvOtherInfoMua: chiTietResponse.lstInvOtherInfoMua,
                   lstInvOtherInfoTToan: chiTietResponse.lstInvOtherInfoTToan,
                   matte: (thongTinUser.typeMoney != null) ? thongTinUser.typeMoney : chiTietResponse.matte,

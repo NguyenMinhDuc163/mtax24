@@ -1270,7 +1270,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
         dongia: Utils.covertToMoney(element.donGia).toString().replaceAll(",", ""),
         dvtinh: element.dvTinh,
         khuyenmai: element.type == 0 ? "N" : "Y",
-        soluong: element.number.toString(),
+        soluong: element.number.toString().replaceAll(".", ","),
         tendvu: element.tenHHoa,
         thanhtientruocthue: Utils.covertToMoney(element.tongTienDV).toString().replaceAll(",", ""),
         thuesuat: element.thueSuat.replaceAll(" %", ""),
