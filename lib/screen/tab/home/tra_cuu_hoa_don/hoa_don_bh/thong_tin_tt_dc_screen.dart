@@ -14,9 +14,12 @@ class ThongTinTTDCScreen extends StatefulWidget with GetItStatefulWidgetMixin{
 
   final dynamic object;
   final String typeHD;
+  final String sovban;
+  final String ngayvb;
+  final String lydo;
 
 
-  ThongTinTTDCScreen({this.object, this.typeHD});
+  ThongTinTTDCScreen({this.object, this.typeHD, this.sovban, this.ngayvb, this.lydo, });
 
 
   @override
@@ -42,6 +45,11 @@ class _ThongTinVanChuyenScreenState extends State<ThongTinTTDCScreen> with GetIt
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    soVanBanController.text = (widget.sovban != null) ? widget.sovban : "";
+    ngayKyVBController.text = (widget.ngayvb != null) ? widget.ngayvb : "";
+    lyDoController.text = (widget.lydo != null) ? widget.lydo : "";
+
     if(widget.object != null){
       if(widget.typeHD == "HDTT"){
         hdttResponse = widget.object;
@@ -121,7 +129,8 @@ class _ThongTinVanChuyenScreenState extends State<ThongTinTTDCScreen> with GetIt
                                 }
                               });
                             },
-                            errorText: errorNgayHD,
+                            canSelectDate: false,
+                            // errorText: errorNgayHD,
                           ),
 
 

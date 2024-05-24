@@ -140,33 +140,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
   List<HoaDonXoaBoResponse> lstHDXoaBo = [];
   List<TraCuuHdttResponse> lstHDThayThe = [];
   List<TraCuuHddcResponse> lstHDDieuChinh = [];
-  String _formatNumberText(String input) {
-    if (input.isEmpty) return '';
-    int dotIndex = input.indexOf('.');
-    if (dotIndex != -1) {
-      // Có phần thập phân, xử lý riêng phần trước và sau dấu '.'
-      String integerPart = input.substring(0, dotIndex).replaceAll(',', '');
-      String decimalPart = input.substring(dotIndex + 1);
-      final number = int.tryParse(integerPart);
-      if (number == null) return ''; // Nếu phần số nguyên không hợp lệ, trả về chuỗi rỗng
 
-      // Loại bỏ các số 0 không cần thiết ở phần thập phân
-      decimalPart = decimalPart.replaceAll(RegExp(r'0*$'), '');
-
-      // Nếu phần thập phân trống sau khi loại bỏ số 0, chỉ trả về phần số nguyên
-      if (decimalPart.isEmpty) {
-        return NumberFormat('#,##0').format(number);
-      } else {
-        // Định dạng phần nguyên và giới hạn phần thập phân đến 4 ký tự
-        return NumberFormat('#,##0').format(number) + '.' + decimalPart.substring(0, min(4, decimalPart.length));
-      }
-    } else {
-      // Chỉ có phần số nguyên
-      final number = int.tryParse(input.replaceAll(',', ''));
-      if (number == null) return '';
-      return NumberFormat('#,##0').format(number);
-    }
-  }
 
 
   @override
@@ -827,7 +801,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                                                     children: [
                                                                       Expanded(child: Text("-", style: text14Bold600, textAlign: TextAlign.center,), flex: 1, ),
                                                                       // them phan cach dau
-                                                                      Expanded(child: Text("${listHangHoa[index].soluong.isEmpty ? "0" : _formatNumberText(listHangHoa[index].soluong)}", style: text14Bold600, textAlign: TextAlign.center), flex: 1,),
+                                                                      Expanded(child: Text("${listHangHoa[index].soluong.isEmpty ? "0" : Utils.formatNumberText(listHangHoa[index].soluong)}", style: text14Bold600, textAlign: TextAlign.center), flex: 1,),
 
                                                                       Expanded(child: Text("+", style: text14Bold600, textAlign: TextAlign.center), flex: 1,),
 
@@ -899,19 +873,19 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                     onTap: () async {
                                       final result = await Navigator.push(
                                           context, new MaterialPageRoute(builder: (context) => DanhSachThemMoiScreen(type: type, invoiceType: chiTietResponse.loaihdon, listHangHoa: listHangHoa, isTraCuu: true, trangThai: chiTietResponse.trangthai,)));
-                                      // if(result != null){
-                                      //   setState(() {
-                                      //     // listHangHoa = result;
-                                      //     // tongTienDv = 0.toString();
-                                      //     // tienGTGT = 0.toString();
-                                      //     // thanhTien = 0.toString();
-                                      //     // listHangHoa.forEach((element) {
-                                      //     //   // tongTienDv = (double.parse(tongTienDv) + double.parse(element.thanhtientruocthue)).toString();
-                                      //     //   // tienGTGT = (double.parse(tienGTGT) + double.parse(element.tienthue)).toString();
-                                      //     //   // thanhTien = (double.parse(thanhTien) + double.parse(element.tongtienthanhtoan)).toString();
-                                      //     // });
-                                      //   });
-                                      // }
+                                      if(result != null){
+                                        setState(() {
+                                          listHangHoa = result;
+                                          tongTienDv = 0.toString();
+                                          tienGTGT = 0.toString();
+                                          thanhTien = 0.toString();
+                                          listHangHoa.forEach((element) {
+                                            tongTienDv = (double.parse(tongTienDv) + double.parse(element.thanhtientruocthue)).toString();
+                                            tienGTGT = (double.parse(tienGTGT) + double.parse(element.tienthue)).toString();
+                                            thanhTien = (double.parse(thanhTien) + double.parse(element.tongtienthanhtoan)).toString();
+                                          });
+                                        });
+                                      }
                                     },
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -1227,6 +1201,9 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
               } else {
                 isCheck = true;
                 DialogAlert.showLoadding(context);
+
+
+
                 lapHdController.luuHoaDon(LuuHoaDonRequest(
                   chitiethoadon: getChiTietHD(),
                   dchinmua: (thongTinUser.customerAddress != null) ? thongTinUser.customerAddress : chiTietResponse.dchinmua,

@@ -1164,9 +1164,9 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                   }else{
                                     for(int i = 0; i < listHangHoa.length; ++i){
 
-                                      if(listHangHoa[i].tenHHoa == null || listHangHoa[i].tenHHoa == ""){
                                         Toast.showLongTop('Vui lòng nhập tên hàng hóa');
-                                        return;
+                                        if(listHangHoa[i].tenHHoa == null || listHangHoa[i].tenHHoa == ""){
+    return;
                                       }
                                       if(listHangHoa[i].thueSuat == "-1 %"){
                                         Toast.showLongTop('Vui lòng nhập thuế suất');

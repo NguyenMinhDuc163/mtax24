@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io' show Directory, File, Platform;
+import 'dart:math';
 import 'dart:typed_data';
 import 'package:crypto/crypto.dart';
 import 'package:device_info/device_info.dart';
@@ -327,5 +328,33 @@ class Utils {
     String pattern = r'^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$';
     RegExp regex = RegExp(pattern);
     return regex.hasMatch(email);
+  }
+
+  static String formatNumberText(String input) {
+    if (input.isEmpty) return '';
+    int dotIndex = input.indexOf('.');
+    if (dotIndex != -1) {
+      // Có phần thập phân, xử lý riêng phần trước và sau dấu '.'
+      String integerPart = input.substring(0, dotIndex).replaceAll(',', '');
+      String decimalPart = input.substring(dotIndex + 1);
+      final number = int.tryParse(integerPart);
+      if (number == null) return ''; // Nếu phần số nguyên không hợp lệ, trả về chuỗi rỗng
+
+      // Loại bỏ các số 0 không cần thiết ở phần thập phân
+      decimalPart = decimalPart.replaceAll(RegExp(r'0*$'), '');
+
+      // Nếu phần thập phân trống sau khi loại bỏ số 0, chỉ trả về phần số nguyên
+      if (decimalPart.isEmpty) {
+        return NumberFormat('#,##0').format(number);
+      } else {
+        // Định dạng phần nguyên và giới hạn phần thập phân đến 4 ký tự
+        return NumberFormat('#,##0').format(number) + '.' + decimalPart.substring(0, min(4, decimalPart.length));
+      }
+    } else {
+      // Chỉ có phần số nguyên
+      final number = int.tryParse(input.replaceAll(',', ''));
+      if (number == null) return '';
+      return NumberFormat('#,##0').format(number);
+    }
   }
 }

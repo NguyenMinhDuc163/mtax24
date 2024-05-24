@@ -701,12 +701,15 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
                         InkWell(
                           onTap: ()async{
                             final resuls = await Navigator.push(
-                                context, new MaterialPageRoute(builder: (context) => ThongTinTTDCScreen(object: lstHDThayThe.first, typeHD: widget.typeHD,)));
+                                context, new MaterialPageRoute(builder: (context) => ThongTinTTDCScreen(object: lstHDThayThe.first, typeHD: widget.typeHD, sovban: sovban, ngayvb: ngaykyvanban,)));
                             if(resuls != null){
                               setState(() {
                                 sovban = resuls[0].toString();
                                 ngaykyvanban = resuls[1].toString();
-
+                                if(resuls.length > 3){
+                                  lyDo = resuls[2].toString() ?? "";
+                                  adjustType = resuls[3].toString() ?? 'Giảm';
+                                }
                               });
                             }
 
@@ -735,12 +738,11 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
                         InkWell(
                           onTap: ()async{
                             final resuls = await Navigator.push(
-                                context, new MaterialPageRoute(builder: (context) => ThongTinTTDCScreen(object: lstHDDieuChinh.first, typeHD: widget.typeHD,)));
+                                context, new MaterialPageRoute(builder: (context) => ThongTinTTDCScreen(object: lstHDDieuChinh.first, typeHD: widget.typeHD, sovban: sovban, ngayvb: ngaykyvanban, lydo: lyDo,)));
                             if(resuls != null){
                               setState(() {
                                 sovban = resuls[0].toString();
                                 lyDo = resuls[2].toString();
-                                ngaykyvanban = resuls[1].toString();
                                 adjustType = resuls[3].toString() == "Giảm" ? "-" : resuls[3].toString() == "Tăng" ? "+" : widget.typeHD == "HDTT" ? "adff" : "dctt";
                               });
                             }
@@ -847,7 +849,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
                                                           mainAxisAlignment: MainAxisAlignment.start,
                                                           crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: [
-                                                            Text("${listHangHoa.length} ${listHangHoa[index].tendvu}" , style: text_action_Bold600,),
+                                                            Text("${index + 1} ${listHangHoa[index].tendvu}" , style: text_action_Bold600,),
                                                             Padding(
                                                               padding: EdgeInsets.only(top: 10.h),
                                                               child: Text("${listHangHoa[index].dongia.isEmpty ? "0" : Utils.covertToMoney(double.parse(listHangHoa[index].dongia))} ${listHangHoa[index].thuesuat.isEmpty ? "" : " + ${listHangHoa[index].thuesuat.replaceAll("%", "")} %"}" ,
@@ -872,7 +874,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
                                                                     children: [
                                                                       Expanded(child: Text("-", style: text14Bold600, textAlign: TextAlign.center,), flex: 1, ),
 
-                                                                      Expanded(child: Text("${listHangHoa[index].soluong}", style: text14Bold600, textAlign: TextAlign.center), flex: 1,),
+                                                                      Expanded(child: Text("${Utils.formatNumberText(listHangHoa[index].soluong)}", style: text14Bold600, textAlign: TextAlign.center), flex: 1,),
 
                                                                       Expanded(child: Text("+", style: text14Bold600, textAlign: TextAlign.center), flex: 1,),
 
@@ -886,13 +888,17 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
 
 
                                                     ),
-                                                    Text("${listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].thanhtientruocthue == "0.0" && listHangHoa[index].tienthue.isNotEmpty && listHangHoa[index].tienthue == "0.0" ?
-                                                    Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue) + double.parse(listHangHoa[index].tienthue)) :
-                                                    listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].tienthue.isEmpty ?
-                                                    Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue)) :
-                                                    listHangHoa[index].thanhtientruocthue.isEmpty && listHangHoa[index].tienthue.isEmpty && listHangHoa[index].tongtienthanhtoan.isNotEmpty ?
-                                                    Utils.covertToMoney(double.parse(listHangHoa[index].tongtienthanhtoan)) :
-                                                    listHangHoa[index].tongtienthanhtoan.isNotEmpty ? listHangHoa[index].tongtienthanhtoan : "0""0"}" + " ${chiTietResponse.matte.isNotEmpty ? chiTietResponse.matte : "đ"}", textAlign: TextAlign.end, style: text14Red600,)
+                                                    Text("${
+                                                        Utils.covertToMoney(
+                                                            double.parse(
+                                                                (listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].thanhtientruocthue == "0.0" && listHangHoa[index].tienthue.isNotEmpty && listHangHoa[index].tienthue == "0.0" )?
+                                                                Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue) + double.parse(listHangHoa[index].tienthue)).replaceAll(',', '.'):
+                                                                listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].tienthue.isEmpty ?
+                                                                Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue)).replaceAll(',', '.') :
+                                                                listHangHoa[index].thanhtientruocthue.isEmpty && listHangHoa[index].tienthue.isEmpty && listHangHoa[index].tongtienthanhtoan.isNotEmpty ?
+                                                                Utils.covertToMoney(double.parse(listHangHoa[index].tongtienthanhtoan)).replaceAll(',', '.') :
+                                                                listHangHoa[index].tongtienthanhtoan.isNotEmpty ? listHangHoa[index].tongtienthanhtoan.replaceAll(',', '.') : "0"))
+                                                    }" + " ${chiTietResponse.matte.isNotEmpty ? chiTietResponse.matte : "đ"}", textAlign: TextAlign.end, style: text14Red600,),
                                                   ],
                                                 ),
                                                 listHangHoa.length - 1 == index  ? SizedBox() :
