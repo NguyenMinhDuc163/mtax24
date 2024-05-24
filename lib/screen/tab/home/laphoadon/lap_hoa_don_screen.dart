@@ -1138,12 +1138,12 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
 
                                     )).then((value) {
                                       thongTinUser = CreateCustomerApiResponse();
-                                      // tenDV = ""; mstnmua = ''; diachiNM = ''; tenNMua = ''; mst = '';
-                                      // maKH = ''; personalID = ''; htPayment = '';
-                                      // tongTienDv = "0";
-                                      // tienGTGT = "0";
-                                      // thanhTien = "0";
-                                      // listHangHoa = [];
+                                      tenDV = ""; mstnmua = ''; diachiNM = ''; tenNMua = ''; mst = '';
+                                      maKH = ''; personalID = ''; htPayment = '';
+                                      tongTienDv = "0";
+                                      tienGTGT = "0";
+                                      thanhTien = "0";
+                                      listHangHoa = [];
                                     });
 
                                   }
@@ -1275,7 +1275,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
         dongia: Utils.covertToMoney(element.donGia).toString().replaceAll(",", ""),
         dvtinh: element.dvTinh,
         khuyenmai: element.type == 0 ? "N" : "Y",
-        soluong: element.number.toString().replaceAll(".", ","),
+        soluong: element.number.toString().replaceAll(",", "").replaceAll(".", ","),
         tendvu: element.tenHHoa,
         thanhtientruocthue: Utils.covertToMoney(element.tongTienDV).toString().replaceAll(",", ""),
         thuesuat: element.thueSuat.replaceAll(" %", ""),
