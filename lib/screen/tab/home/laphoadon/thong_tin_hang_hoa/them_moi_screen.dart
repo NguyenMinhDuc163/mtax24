@@ -179,7 +179,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
       text: newText,
       selection: TextSelection.collapsed(offset: newText.length),
     );
-
+    controller.selection = TextSelection.fromPosition(TextPosition(offset: controller.text.length));
   }
 
 
@@ -328,6 +328,8 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                           hintText: widget.type == 4 ? "Số lượng thực xuất" : "Số lượng",
                           maxLength: 16,
                           onChangedCustom: (value){
+                            // totalController.text = _formatNumberText(value);
+                            // totalController.selection = TextSelection.fromPosition(TextPosition(offset: totalController.text.length));
                             setState(() {
                               totalAmount(widget.type,
                                   percent,
@@ -351,6 +353,8 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                           hintText: widget.type == 5 ? "Số lượng thực xuất" : "Số lượng",
                           maxLength: 16,
                           onChangedCustom: (value){
+                            // totalController.text = _formatNumberText(value);
+                            // totalController.selection = TextSelection.fromPosition(TextPosition(offset: totalController.text.length));
                             setState(() {
                               totalAmount(widget.type,
                                   percent,
@@ -374,7 +378,8 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                           maxLength: 16,
                           onChangedCustom: (value){
                             setState(() {
-
+                              // unitPriceController.text = _formatNumberText(value);
+                              // unitPriceController.selection = TextSelection.fromPosition(TextPosition(offset: unitPriceController.text.length));
                               totalAmount(widget.type,
                                   percent,
                                   totalController.text.replaceAll(',', ''),

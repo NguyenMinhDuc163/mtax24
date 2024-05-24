@@ -307,27 +307,30 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
             CustomerAppbarScreen(title: 'Thông tin người mua', isShowBack: true, isShowHome: false, isCreate: false, isSave: !isTrangThai,
               onSave: (){
                 if(fingerToggle){
-                  if(mstController.text == '' && widget.idHD != 0){
-                    Toast.showLongTop("Vui lòng nhập mã số thuế!");
-                    return;
+                  if(nameController.text != null && nameController.text != ""){
+                    if(unitNameController.text == null || unitNameController.text == ""){
+                      Toast.showLongTop("Vui lòng nhập tên đơn vị!");
+                      return;
+                    }
+
+                    if(addressController.text == null || addressController.text == ""){
+                      Toast.showLongTop("Vui lòng nhập địa chỉ!");
+                      return;
+                    }
                   }
-                  if(nameController.text == null || nameController.text == ""){
-                    Toast.showLongTop("Vui lòng nhập tên người mua!");
-                    return;
-                  }
-                  if(unitNameController.text == null || unitNameController.text == ""){
-                    Toast.showLongTop("Vui lòng nhập tên đơn vị!");
-                    return;
-                  }
+                  // if(unitNameController.text == null || unitNameController.text == ""){
+                  //   Toast.showLongTop("Vui lòng nhập tên đơn vị!");
+                  //   return;
+                  // }
                   if(maKHController.text == null && maKHController.text == ""){
                     DialogAlert.showDialogAlertCancel(context, "Vui lòng nhập mã khách hàng!");
                   }else if(mstController.text == null && mstController.text == ""){
                     DialogAlert.showDialogAlertCancel(context, "Vui lòng nhập mã số thuế!");
                   } else {
-                    if(mstController.text == '' && widget.idHD != 0){
-                      Toast.showLongTop("Vui lòng nhập mã số thuế!");
-                      return;
-                    }
+                    // if(mstController.text == '' && widget.idHD != 0){
+                    //   Toast.showLongTop("Vui lòng nhập mã số thuế!");
+                    //   return;
+                    // }
 
                     controller.createCustomerAPI(
                         CreateCustomerApiRequest(
