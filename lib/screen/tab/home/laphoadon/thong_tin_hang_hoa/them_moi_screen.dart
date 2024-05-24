@@ -117,45 +117,68 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
     unitPriceController.text = Utils.formatNumberText(unitPriceController.text);
     discountController.text = Utils.formatNumberText(discountController.text);
 
-    totalController.addListener(() => _formatNumber(totalController));
-    unitPriceController.addListener(() => _formatNumber(unitPriceController));
-    discountController.addListener(() => _formatNumber(discountController));
+    // totalController.addListener(() => _formatNumber(totalController));
+    // unitPriceController.addListener(() => _formatNumber(unitPriceController));
+    // discountController.addListener(() => _formatNumber(discountController));
   }
 
 
-  String _formatNumberWithComma(String input) {
+  // String _formatNumberWithComma(String input) {
+  //   if (input.isEmpty) return '';
+  //   final number = int.tryParse(input.replaceAll(',', ''));
+  //   if (number == null) return '';
+  //   return NumberFormat('#,##0').format(number);
+  // }
+  //
+  // void _formatNumber(TextEditingController controller) {
+  //   String text = controller.text;
+  //
+  //   // Kiểm tra và ngăn chặn nếu người dùng cố gắng nhập thêm dấu '.'
+  //   int index = text.indexOf('.');
+  //   if (index != -1) {
+  //     // Nếu đã có dấu '.', cắt bỏ phần nhập thêm sau dấu '.' đầu tiên
+  //     text = text.substring(0, index + 1) + text.substring(index + 1).replaceAll('.', '');
+  //   }
+  //
+  //   String prefix = index != -1 ? text.substring(0, index) : text;
+  //   String suffix = index != -1 ? text.substring(index) : '';
+  //
+  //   // Giới hạn số ký tự sau dấu '.'
+  //   if (suffix.length > 5) {
+  //     suffix = suffix.substring(0, 5); // 1 cho dấu '.' và 4 cho các ký tự sau đó
+  //   }
+  //
+  //   String newText = _formatNumberWithComma(prefix.replaceAll(',', '')) + suffix;
+  //   controller.value = TextEditingValue(
+  //     text: newText,
+  //     selection: TextSelection.collapsed(offset: newText.length),
+  //   );
+  //   controller.selection = TextSelection.fromPosition(TextPosition(offset: controller.text.length));
+  // }
+  String _formatNumber(String input) {
     if (input.isEmpty) return '';
-    final number = int.tryParse(input.replaceAll(',', ''));
-    if (number == null) return '';
-    return NumberFormat('#,##0').format(number);
-  }
-
-  void _formatNumber(TextEditingController controller) {
-    String text = controller.text;
 
     // Kiểm tra và ngăn chặn nếu người dùng cố gắng nhập thêm dấu '.'
-    int index = text.indexOf('.');
+    int index = input.indexOf('.');
     if (index != -1) {
       // Nếu đã có dấu '.', cắt bỏ phần nhập thêm sau dấu '.' đầu tiên
-      text = text.substring(0, index + 1) + text.substring(index + 1).replaceAll('.', '');
+      input = input.substring(0, index + 1) + input.substring(index + 1).replaceAll('.', '');
     }
 
-    String prefix = index != -1 ? text.substring(0, index) : text;
-    String suffix = index != -1 ? text.substring(index) : '';
+    String prefix = index != -1 ? input.substring(0, index) : input;
+    String suffix = index != -1 ? input.substring(index) : '';
 
     // Giới hạn số ký tự sau dấu '.'
     if (suffix.length > 5) {
       suffix = suffix.substring(0, 5); // 1 cho dấu '.' và 4 cho các ký tự sau đó
     }
 
-    String newText = _formatNumberWithComma(prefix.replaceAll(',', '')) + suffix;
-    controller.value = TextEditingValue(
-      text: newText,
-      selection: TextSelection.collapsed(offset: newText.length),
-    );
-    controller.selection = TextSelection.fromPosition(TextPosition(offset: controller.text.length));
-  }
+    // Chuyển đổi prefix thành số và định dạng lại với dấu ','
+    final number = int.tryParse(prefix.replaceAll(',', ''));
+    if (number == null) return '';
 
+    return NumberFormat('#,##0').format(number) + suffix;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -302,8 +325,8 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                           hintText: widget.type == 4 ? "Số lượng thực xuất" : "Số lượng",
                           maxLength: 16,
                           onChangedCustom: (value){
-                            // totalController.text = _formatNumberText(value);
-                            // totalController.selection = TextSelection.fromPosition(TextPosition(offset: totalController.text.length));
+                            totalController.text = _formatNumber(value);
+                            totalController.selection = TextSelection.fromPosition(TextPosition(offset: totalController.text.length));
                             setState(() {
                               totalAmount(widget.type,
                                   percent,
@@ -327,8 +350,8 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                           hintText: widget.type == 5 ? "Số lượng thực xuất" : "Số lượng",
                           maxLength: 16,
                           onChangedCustom: (value){
-                            // totalController.text = _formatNumberText(value);
-                            // totalController.selection = TextSelection.fromPosition(TextPosition(offset: totalController.text.length));
+                            totalController.text = _formatNumber(value);
+                            totalController.selection = TextSelection.fromPosition(TextPosition(offset: totalController.text.length));
                             setState(() {
                               totalAmount(widget.type,
                                   percent,
@@ -352,8 +375,8 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                           maxLength: 16,
                           onChangedCustom: (value){
                             setState(() {
-                              // unitPriceController.text = _formatNumberText(value);
-                              // unitPriceController.selection = TextSelection.fromPosition(TextPosition(offset: unitPriceController.text.length));
+                              unitPriceController.text = _formatNumber(value);
+                              unitPriceController.selection = TextSelection.fromPosition(TextPosition(offset: unitPriceController.text.length));
                               totalAmount(widget.type,
                                   percent,
                                   totalController.text.replaceAll(',', ''),

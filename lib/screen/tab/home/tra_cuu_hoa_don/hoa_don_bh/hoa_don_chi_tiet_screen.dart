@@ -1349,9 +1349,10 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
     List<Chitiethoadon> listChiTietHD = [];
 
     listHangHoa.forEach((element) {
+      print("-------------- ${element.dongia}");
       listChiTietHD.add(Chitiethoadon(
         madvu: element.madvu,
-        dongia: element.dongia.toString().replaceAll(".0", ""),
+        dongia: element.dongia.toString().replaceAll(".", ","),
         dvtinh: element.dvtinh,
         khuyenmai: element.khuyenmai,
         soluong: element.soluong.toString().replaceAll('.', ","),
