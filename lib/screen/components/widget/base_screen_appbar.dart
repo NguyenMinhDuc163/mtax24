@@ -152,15 +152,18 @@ class CustomerAppbarScreen extends StatelessWidget{
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          isShowBack ? InkWell(
-                              child: Icon(Icons.arrow_back, color: color_icon,),
-                              onTap: (){
-                                if(onBack == null){
-                                  Navigator.of(context).pop();
-                                }else{
-                                  onBack();
+                          isShowBack ? Padding(
+                            padding: EdgeInsets.only(top: padding_40, bottom: padding_40, right: padding_40),
+                            child: InkWell(
+                                child: Icon(Icons.arrow_back, color: color_icon,),
+                                onTap: (){
+                                  if(onBack == null){
+                                    Navigator.of(context).pop();
+                                  }else{
+                                    onBack();
+                                  }
                                 }
-                              }
+                            ),
                           ): SizedBox(),
 
                           Container(
@@ -258,7 +261,10 @@ class CustomerListViewAppbarScreen extends StatelessWidget{
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           isShowBack ? InkWell(
-                              child: Icon(Icons.arrow_back, color: color_icon,),
+                              child: Padding(
+                                padding: EdgeInsets.only(top: padding_40, bottom: padding_40, right: padding_40),
+                                child: Icon(Icons.arrow_back, color: color_icon,),
+                              ),
                               onTap: (){
                                 if(onBack == null){
                                   Navigator.of(context).pop();
@@ -346,15 +352,18 @@ class TabAppbarScreen extends StatelessWidget{
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          isShowBack ? InkWell(
-                              child: Icon(Icons.arrow_back, color: colorWhite,),
-                              onTap: (){
-                                if(onBack == null){
-                                  Navigator.of(context).pop();
-                                }else{
-                                  onBack();
+                          isShowBack ? Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                                child: Icon(Icons.arrow_back, color: colorWhite,),
+                                onTap: (){
+                                  if(onBack == null){
+                                    Navigator.of(context).pop();
+                                  }else{
+                                    onBack();
+                                  }
                                 }
-                              }
+                            ),
                           ): SizedBox(),
                           isShowHome == null || isShowHome == false ? SizedBox() :
                           IconButton(
@@ -460,15 +469,18 @@ class AppbarScreen extends StatelessWidget{
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              isShowBack ? InkWell(
-                                  child: Icon(Icons.arrow_back, color: colorWhite,),
-                                  onTap: (){
-                                    if(onBack == null){
-                                      Navigator.of(context).pop();
-                                    }else{
-                                      onBack();
+                              isShowBack ? Padding(
+                                padding: EdgeInsets.only(top: padding_40, bottom: padding_40, right: padding_40),
+                                child: InkWell(
+                                    child: Icon(Icons.arrow_back, color: colorWhite,),
+                                    onTap: (){
+                                      if(onBack == null){
+                                        Navigator.of(context).pop();
+                                      }else{
+                                        onBack();
+                                      }
                                     }
-                                  }
+                                ),
                               ): SizedBox(),
                               isShowHome == null || isShowHome == false ? SizedBox() :
                               IconButton(

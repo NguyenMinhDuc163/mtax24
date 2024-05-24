@@ -113,41 +113,15 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
       print("=============percent: $percent");
     }else
       dropSale = lstDropSale.first;
-    totalController.text = _formatNumberText(totalController.text);
-    unitPriceController.text = _formatNumberText(unitPriceController.text);
-    discountController.text = _formatNumberText(discountController.text);
+    totalController.text = Utils.formatNumberText(totalController.text);
+    unitPriceController.text = Utils.formatNumberText(unitPriceController.text);
+    discountController.text = Utils.formatNumberText(discountController.text);
 
     totalController.addListener(() => _formatNumber(totalController));
     unitPriceController.addListener(() => _formatNumber(unitPriceController));
     discountController.addListener(() => _formatNumber(discountController));
   }
-  String _formatNumberText(String input) {
-    if (input.isEmpty) return '';
-    int dotIndex = input.indexOf('.');
-    if (dotIndex != -1) {
-      // Có phần thập phân, xử lý riêng phần trước và sau dấu '.'
-      String integerPart = input.substring(0, dotIndex).replaceAll(',', '');
-      String decimalPart = input.substring(dotIndex + 1);
-      final number = int.tryParse(integerPart);
-      if (number == null) return ''; // Nếu phần số nguyên không hợp lệ, trả về chuỗi rỗng
 
-      // Loại bỏ các số 0 không cần thiết ở phần thập phân
-      decimalPart = decimalPart.replaceAll(RegExp(r'0*$'), '');
-
-      // Nếu phần thập phân trống sau khi loại bỏ số 0, chỉ trả về phần số nguyên
-      if (decimalPart.isEmpty) {
-        return NumberFormat('#,##0').format(number);
-      } else {
-        // Định dạng phần nguyên và giới hạn phần thập phân đến 4 ký tự
-        return NumberFormat('#,##0').format(number) + '.' + decimalPart.substring(0, min(4, decimalPart.length));
-      }
-    } else {
-      // Chỉ có phần số nguyên
-      final number = int.tryParse(input.replaceAll(',', ''));
-      if (number == null) return '';
-      return NumberFormat('#,##0').format(number);
-    }
-  }
 
   String _formatNumberWithComma(String input) {
     if (input.isEmpty) return '';

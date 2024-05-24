@@ -203,7 +203,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
                     kyhieu: chiTietResponse.khieuhdon,
                     loaihdon: chiTietResponse.loaihdon,
                     lstInvOtherInfoBan: chiTietResponse.lstInvOtherInfoBan,
-                    lstInvOtherInfoCthd: chiTietResponse.lstInvOtherInfoCthd,
+                    lstInvOtherInfoCthd: (!chiTietResponse.lstInvOtherInfoCthd[0].isEmpty) ? chiTietResponse.lstInvOtherInfoCthd : [],
                     lstInvOtherInfoMua: chiTietResponse.lstInvOtherInfoMua,
                     lstInvOtherInfoTToan: chiTietResponse.lstInvOtherInfoTToan,
                     matte: chiTietResponse.matte != null ? chiTietResponse.matte : "VND",
@@ -888,17 +888,45 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
 
 
                                                     ),
-                                                    Text("${
-                                                        Utils.covertToMoney(
-                                                            double.parse(
-                                                                (listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].thanhtientruocthue == "0.0" && listHangHoa[index].tienthue.isNotEmpty && listHangHoa[index].tienthue == "0.0" )?
-                                                                Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue) + double.parse(listHangHoa[index].tienthue)).replaceAll(',', '.'):
-                                                                listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].tienthue.isEmpty ?
-                                                                Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue)).replaceAll(',', '.') :
-                                                                listHangHoa[index].thanhtientruocthue.isEmpty && listHangHoa[index].tienthue.isEmpty && listHangHoa[index].tongtienthanhtoan.isNotEmpty ?
-                                                                Utils.covertToMoney(double.parse(listHangHoa[index].tongtienthanhtoan)).replaceAll(',', '.') :
-                                                                listHangHoa[index].tongtienthanhtoan.isNotEmpty ? listHangHoa[index].tongtienthanhtoan.replaceAll(',', '.') : "0"))
-                                                    }" + " ${chiTietResponse.matte.isNotEmpty ? chiTietResponse.matte : "đ"}", textAlign: TextAlign.end, style: text14Red600,),
+                                                    Row(
+                                                      children: [
+                                                        Text("${
+                                                            Utils.covertToMoney(
+                                                                double.parse(
+                                                                    (listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].thanhtientruocthue == "0.0" && listHangHoa[index].tienthue.isNotEmpty && listHangHoa[index].tienthue == "0.0" )?
+                                                                    Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue) + double.parse(listHangHoa[index].tienthue)).replaceAll(',', '.'):
+                                                                    listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].tienthue.isEmpty ?
+                                                                    Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue)).replaceAll(',', '.') :
+                                                                    listHangHoa[index].thanhtientruocthue.isEmpty && listHangHoa[index].tienthue.isEmpty && listHangHoa[index].tongtienthanhtoan.isNotEmpty ?
+                                                                    Utils.covertToMoney(double.parse(listHangHoa[index].tongtienthanhtoan)).replaceAll(',', '.') :
+                                                                    listHangHoa[index].tongtienthanhtoan.isNotEmpty ? listHangHoa[index].tongtienthanhtoan.replaceAll(',', '.') : "0"))
+                                                        }" + " ${chiTietResponse.matte.isNotEmpty ? chiTietResponse.matte : "đ"}", textAlign: TextAlign.end, style: text14Red600,),
+
+                                                        (chiTietResponse.trangthai != "SUCC") ? Container(
+                                                          margin: EdgeInsets.only(left: 30.h),
+                                                          // Xoa hoa don
+                                                          child: InkWell(child: Icon(Icons.delete),
+                                                            onTap: (){
+                                                              DialogAlert.showDialogInfo(context, "Bạn có muốn xóa hàng hóa không?", onSuccess: (){
+                                                                setState(() {
+                                                                  // String money = "${listHangHoa[index].thanhTien != null ? Utils.covertToMoney(listHangHoa[index].thanhTien) : 0.0}";
+                                                                  // String moneyDV = "${listHangHoa[index].tongTienDV != null ? Utils.covertToMoney(listHangHoa[index].tongTienDV) : 0.0}";
+                                                                  // String moneyGTGT = "${listHangHoa[index].tienGTGT != null ? Utils.covertToMoney(listHangHoa[index].tienGTGT) : 0.0}";
+                                                                  //
+                                                                  // thanhTien = (double.parse(thanhTien.replaceAll(",", "")) - double.parse(money.replaceAll(",", ""))).toString();
+                                                                  // tongTienDv = (double.parse(tongTienDv.replaceAll(",", "")) - double.parse(moneyDV.replaceAll(",", ""))).toString();
+                                                                  // tienGTGT = (double.parse(tienGTGT.replaceAll(",", "")) - double.parse(moneyGTGT.replaceAll(",", ""))).toString();
+
+                                                                  listHangHoa.removeAt(index);
+                                                                  Navigator.of(context).pop();
+                                                                });
+
+                                                              });
+                                                            },
+                                                          ),
+                                                        ) : Container()
+                                                      ],
+                                                    )
                                                   ],
                                                 ),
                                                 listHangHoa.length - 1 == index  ? SizedBox() :

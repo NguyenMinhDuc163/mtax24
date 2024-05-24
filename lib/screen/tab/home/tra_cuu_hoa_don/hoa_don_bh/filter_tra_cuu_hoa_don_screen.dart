@@ -32,6 +32,8 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
   TextEditingController emailNguoiMuaController = TextEditingController();
   TextEditingController tuNgayController = TextEditingController();
   TextEditingController denNgayController = TextEditingController();
+  TextEditingController ngKyTuNgayController = TextEditingController();
+  TextEditingController ngKyDenNgayController = TextEditingController();
   String errorTuNgay, errorDenNgay;
   var dropLoaiHD, dropTinhChatTb, dropTrangThaiTb, dropTrangThaiGuiCQT;
 
@@ -248,7 +250,10 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                           hint: "Trạng thái gửi CQT",
                           itemsDropdown: lstTrangThaiGuiCQT,
                         ),
-
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Text("Ngày lập hoá đơn:", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),),
+                        ),
                         Row(
                           children: [
                             Expanded(
@@ -299,6 +304,62 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                             ),
                           ],
                         ),
+
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Text("Ngày kí hoá đơn: ", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),),
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: CalendarInput(
+                                textDateController: ngKyTuNgayController,
+                                haveBorder: true,
+                                title: "Từ ngày",
+                                onClickChooseDate: (selectedDate){
+                                  setState(() {
+                                    if(DateFormat("dd/MM/yyyy").parse(selectedDate).isAfter(DateTime.now())) {
+                                      errorTuNgay = "Ngày không hợp lệ";
+                                      if(errorTuNgay != null){
+                                        Toast.showLongTop("Ngày không được lớn hơn ngày hiện tại");
+                                      }
+                                    }
+
+                                    else {
+                                      errorTuNgay = null;
+                                      ngKyTuNgayController.text = selectedDate;
+                                    }
+                                  });
+
+                                },
+                                errorText: errorTuNgay,
+                              ),
+                            ),
+                            SizedBox(width: 8,),
+                            Expanded(
+                              child: CalendarInput(
+                                textDateController: ngKyDenNgayController,
+                                haveBorder: true,
+                                title: "Đến ngày",
+                                onClickChooseDate: (selectedDate){
+                                  setState(() {
+                                    if(DateFormat("dd/MM/yyyy").parse(selectedDate).isAfter(DateTime.now())) {
+                                      errorDenNgay = "Ngày không hợp lệ";
+                                      if(errorDenNgay != null){
+                                        Toast.showLongTop("Ngày không được lớn hơn ngày hiện tại");
+                                      }
+                                    } else {
+                                      errorDenNgay = null;
+                                      ngKyDenNgayController.text = selectedDate;
+                                    }
+                                  });
+                                },
+                                errorText: errorDenNgay,
+                              ),
+                            ),
+                          ],
+                        ),
+
                         Padding(
                           padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
                           child: TextInput(
