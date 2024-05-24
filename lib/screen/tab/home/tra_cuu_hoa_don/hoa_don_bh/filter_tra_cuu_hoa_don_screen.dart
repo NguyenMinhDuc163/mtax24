@@ -342,8 +342,10 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                             // readOnly: true,
                             // showCursor: false,
                             textEditingController: mstNguoiMuaController,
+                            textInputType: TextInputType.number,
                             hintText: "MST người mua",
                             maxLength: 14,
+
                           ),
                         ),
                         Padding(
@@ -364,6 +366,10 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                           onPressed: (){
                             if(!Utils.compareDates(tuNgayController.text, denNgayController.text)){
                               Toast.showLongTop("Ngày bắt đầu không được lớn hơn ngày kết thúc");
+                              return;
+                            }
+                            if(!Utils.validateMst(mstNguoiMuaController.text) ){
+                              Toast.showLongTop("Mã số thuế sai cấu trúc!");
                               return;
                             }
                             objectTB = new FilterTCHoaDon(

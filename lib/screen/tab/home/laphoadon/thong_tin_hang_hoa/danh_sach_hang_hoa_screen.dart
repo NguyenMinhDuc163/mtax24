@@ -248,7 +248,7 @@ class _DanhSachThemMoiScreenState extends State<DanhSachThemMoiScreen> with GetI
                       Row(
                         children: [
                         Text("${Utils.covertToMoney(lstHangHoa[index].thanhTien)}" + " đ", textAlign: TextAlign.end, style: text14Red600,),
-                          Container(
+                          (widget.trangThai != "SUCC") ? Container(
                             margin: EdgeInsets.only(left: 30.h),
                             // Xoa hoa don
                             child: InkWell(child: Icon(Icons.delete),
@@ -270,7 +270,7 @@ class _DanhSachThemMoiScreenState extends State<DanhSachThemMoiScreen> with GetI
                                 });
                               },
                             ),
-                          )
+                          ) : Container()
                         ],
                       )
                     ],

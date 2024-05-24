@@ -857,7 +857,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                                                     listHangHoa[index].tongtienthanhtoan.isNotEmpty ? listHangHoa[index].tongtienthanhtoan.replaceAll(',', '.') : "0"))
                                                         }" + " ${chiTietResponse.matte.isNotEmpty ? chiTietResponse.matte : "đ"}", textAlign: TextAlign.end, style: text14Red600,),
 
-                                                        Container(
+                                                        (chiTietResponse.trangthai != "SUCC") ? Container(
                                                           margin: EdgeInsets.only(left: 30.h),
                                                           // Xoa hoa don
                                                           child: InkWell(child: Icon(Icons.delete),
@@ -879,7 +879,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                                               });
                                                             },
                                                           ),
-                                                        )
+                                                        ) : Container()
                                                       ],
                                                     )
                                                   ],

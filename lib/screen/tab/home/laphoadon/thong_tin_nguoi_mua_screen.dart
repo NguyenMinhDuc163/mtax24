@@ -330,7 +330,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                     // if(mstController.text == '' && widget.idHD != 0){
                     //   Toast.showLongTop("Vui lòng nhập mã số thuế!");
                     //   return;
-                    // }
+
 
                     controller.createCustomerAPI(
                         CreateCustomerApiRequest(

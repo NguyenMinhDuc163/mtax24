@@ -1175,7 +1175,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
 
                                     }
                                   }
-                                  if(thongTinUser.customerEmail == null){
+                                  if(thongTinUser.customerEmail == null || thongTinUser.customerEmail == ""){
                                     Toast.showLongTop('Vui lòng nhập email');
                                     return;
                                   }
