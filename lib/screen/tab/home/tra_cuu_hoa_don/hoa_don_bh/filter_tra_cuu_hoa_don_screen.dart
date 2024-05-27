@@ -80,6 +80,8 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
     controller.getDMucHoaDon();
     tuNgayController.text = widget.tuNgay;
     denNgayController.text = widget.denNgay;
+    ngKyDenNgayController.text = widget.denNgay;
+    ngKyTuNgayController.text = widget.tuNgay;
   }
 
 
@@ -421,37 +423,39 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                         ),
 
 
+                        Padding(
+                          padding: EdgeInsets.only( bottom: 20.h),
+                          child: ButtonBottomNotStackWidget(
+                            title: "Tra cứu",
+                            onPressed: (){
+                              if(!Utils.compareDates(tuNgayController.text, denNgayController.text)){
+                                Toast.showLongTop("Ngày bắt đầu không được lớn hơn ngày kết thúc");
+                                return;
+                              }
+                              if(!Utils.validateMst(mstNguoiMuaController.text) ){
+                                Toast.showLongTop("Mã số thuế sai cấu trúc!");
+                                return;
+                              }
+                              objectTB = new FilterTCHoaDon(
+                                tuNgay: tuNgayController.text,
+                                denNgay: denNgayController.text,
+                                loaiHdName: dropLoaiHD,
+                                loaiHdID: loaiHDId,
+                                tinhChatName: dropTinhChatTb,
+                                tinhChatId: tinhChatId,
+                                trangThaiTbName: dropTrangThaiTb,
+                                trangThaiTbId: trangThaiId,
+                                soHoaDon: soHoaDonController.text,
+                                mauHoaDon: mauHoaDonController.text,
+                                kyHieuHoaDon: kyHieuHoaDonController.text,
+                                mstNguoiMua: mstNguoiMuaController.text,
+                                emailNguoiMua: emailNguoiMuaController.text,
+                                statusCQT: trangThaiGuiCQT,
+                              );
 
-                        ButtonBottomNotStackWidget(
-                          title: "Tra cứu",
-                          onPressed: (){
-                            if(!Utils.compareDates(tuNgayController.text, denNgayController.text)){
-                              Toast.showLongTop("Ngày bắt đầu không được lớn hơn ngày kết thúc");
-                              return;
-                            }
-                            if(!Utils.validateMst(mstNguoiMuaController.text) ){
-                              Toast.showLongTop("Mã số thuế sai cấu trúc!");
-                              return;
-                            }
-                            objectTB = new FilterTCHoaDon(
-                              tuNgay: tuNgayController.text,
-                              denNgay: denNgayController.text,
-                              loaiHdName: dropLoaiHD,
-                              loaiHdID: loaiHDId,
-                              tinhChatName: dropTinhChatTb,
-                              tinhChatId: tinhChatId,
-                              trangThaiTbName: dropTrangThaiTb,
-                              trangThaiTbId: trangThaiId,
-                              soHoaDon: soHoaDonController.text,
-                              mauHoaDon: mauHoaDonController.text,
-                              kyHieuHoaDon: kyHieuHoaDonController.text,
-                              mstNguoiMua: mstNguoiMuaController.text,
-                              emailNguoiMua: emailNguoiMuaController.text,
-                              statusCQT: trangThaiGuiCQT,
-                            );
-
-                            Navigator.pop(context, objectTB);
-                          },
+                              Navigator.pop(context, objectTB);
+                            },
+                          ),
                         )
                       ],
 
