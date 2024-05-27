@@ -10,6 +10,7 @@ import 'package:mtax24/screen/tab/home/tra_cuu_hoa_don/hoa_don_bh/filter_tra_cuu
 import 'package:mtax24/screen/tab/home/tra_cuu_hoa_don/hoa_don_bh/hoa_don_chi_tiet_screen.dart';
 import 'package:mtax24/service/api_service/request/tra_cuu_hoa_don/tra_cuu_hoa_don_request.dart';
 import 'package:mtax24/service/init.dart';
+import '../../../../components/widget/search_panel_widget.dart';
 import '../../../../init_view.dart';
 
 class TraCuuHoaDonBHScreen extends StatefulWidget with GetItStatefulWidgetMixin{
@@ -251,6 +252,8 @@ class _TraCuuHoaDonBHScreenState extends State<TraCuuHoaDonBHScreen> with GetItS
                                 )
                               ],
                             ),
+                            SizedBox(height: 40.h,),
+                            SearchPanelWidget(taxCode: '012234', companyName: 'Công ty TNHH ABC', money: '1.000.000', invoiceSymbol: '01GTKT0/001', invoiceNumber: '0000001', invoiceDate: '01/01/2021', signDay: '01/01/2021', invoiceStatus: 'Đã xác minh', invoiceCQT: 'CQT ABC'),
                             SizedBox(height: 40.h,),
                             lstHoaDon != null && lstHoaDon.length > 0 ?
                             ItemHoaDon(context, lstHoaDon, controller) :
