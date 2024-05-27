@@ -82,6 +82,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
     denNgayController.text = widget.denNgay;
     ngKyDenNgayController.text = widget.denNgay;
     ngKyTuNgayController.text = widget.tuNgay;
+    objectTB = widget.object;
   }
 
 
@@ -108,7 +109,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
           loaiHDId = objectTB.loaiHdID;
           tinhChatId = objectTB.tinhChatId;
           trangThaiId = objectTB.trangThaiTbId;
-
+          dropTrangThaiGuiCQT = objectTB.dropStatusCQT.isNotEmpty ? objectTB.dropStatusCQT : "";
         }else {
           dropLoaiHD = lstLoaiHD.first;
           dropTinhChatTb = lstTinhChatTB.first;
@@ -405,7 +406,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                             // readOnly: true,
                             // showCursor: false,
                             textEditingController: mstNguoiMuaController,
-                            textInputType: TextInputType.number,
+                            textInputType: TextInputType.numberWithOptions(signed: true, decimal: false),
                             hintText: "MST người mua",
                             maxLength: 14,
 
@@ -451,8 +452,8 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                                 mstNguoiMua: mstNguoiMuaController.text,
                                 emailNguoiMua: emailNguoiMuaController.text,
                                 statusCQT: trangThaiGuiCQT,
+                                dropStatusCQT: dropTrangThaiGuiCQT,
                               );
-
                               Navigator.pop(context, objectTB);
                             },
                           ),
@@ -491,7 +492,7 @@ class FilterTCHoaDon{
   String mstNguoiMua;
   String emailNguoiMua;
   String statusCQT;
-
+  String dropStatusCQT;
   FilterTCHoaDon({
       this.loaiHdID,
       this.loaiHdName,
@@ -507,5 +508,6 @@ class FilterTCHoaDon{
       this.mstNguoiMua,
       this.emailNguoiMua,
       this.statusCQT,
+      this.dropStatusCQT,
   });
 }

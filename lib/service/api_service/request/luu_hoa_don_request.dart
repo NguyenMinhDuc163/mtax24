@@ -55,7 +55,7 @@ class LuuHoaDonRequest {
     this.ngaykyvanban,
     this.lydoDc,
     this.adjustType,
-    this.related_customer,
+    this.relatedCustomer,
     this.cccDan,
     this.issue_type,
 
@@ -116,7 +116,7 @@ class LuuHoaDonRequest {
   final String ngaykyvanban;
   final String lydoDc;
   final String adjustType;
-  final String related_customer;
+  final String relatedCustomer;
   final String cccDan;
   final String issue_type;
 
@@ -190,7 +190,7 @@ class LuuHoaDonRequest {
     nguoiDDong: json["nguoiDDong"] == null ? null : json["nguoiDDong"],
     soLenhDDong: json["soLenhDDong"] == null ? null : json["soLenhDDong"],
     sohdongoc: json["sohdongoc"] == null ? null : json["sohdongoc"],
-    related_customer: json["related_customer"] == null ? null : json["related_customer"],
+    relatedCustomer: json["relatedCustomer"] == null ? null : json["relatedCustomer"],
     cccDan: json["cccDan"] == null ? null : json["cccDan"],
     issue_type: json["issue_type"] == null ? null : json["issue_type"],
   );
@@ -252,7 +252,7 @@ class LuuHoaDonRequest {
     "nguoiDDong": nguoiDDong == null ? null : nguoiDDong,
     "soLenhDDong": soLenhDDong == null ? null : soLenhDDong,
     "sohdongoc": sohdongoc == null ? null : sohdongoc,
-    "related_customer": related_customer == null ? null : related_customer,
+    "relatedCustomer": relatedCustomer == null ? null : relatedCustomer,
     "cccDan": cccDan == null ? null : cccDan,
     "issue_type": issue_type == null ? null : issue_type,
   };

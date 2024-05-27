@@ -1202,15 +1202,14 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                 isCheck = true;
                 DialogAlert.showLoadding(context);
 
-
-
+                String matte = (thongTinUser.typeMoney != null) ? thongTinUser.typeMoney : chiTietResponse.matte ?? "VND";
                 lapHdController.luuHoaDon(LuuHoaDonRequest(
                   chitiethoadon: getChiTietHD(),
                   dchinmua: (thongTinUser.customerAddress != null) ? thongTinUser.customerAddress : chiTietResponse.dchinmua,
                   dthoainmua: (thongTinUser.customerTelephone != null) ? thongTinUser.customerTelephone : chiTietResponse.dthoainmua,
                   emailnmua:(thongTinUser.customerEmail != null) ? thongTinUser.customerEmail : chiTietResponse.emailnmua,
                   faxnmua: chiTietResponse.faxnmua,
-                  related_customer: thongTinUser.maKH != null ? thongTinUser.maKH : chiTietResponse.relatedCustomer,
+                  relatedCustomer: thongTinUser.maKH != null ? thongTinUser.maKH : chiTietResponse.relatedCustomer,
                   cccDan: thongTinUser.personalID != null ? thongTinUser.personalID : chiTietResponse.cccDan,
                   hthuctoan: (thongTinUser.typePayment != null) ? thongTinUser.typePayment : chiTietResponse.hthuctoan,
                   kyhieu: chiTietResponse.khieuhdon,
@@ -1231,7 +1230,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                   tgia: "1",
 
                   tienbangchu: Utils.convertVietnameseNumberReader(
-                      thanhTien),
+                      thanhTien) + " $matte",
                   tinhchat: chiTietResponse.tinhchat,
                   tongtiennte: Utils.covertToMoney(double.parse(tongTienDv.replaceAll(",", ""))).toString().replaceAll(",", ""),
                   tongtienthuente: Utils.covertToMoney(double.parse(tienGTGT.replaceAll(",", ""))).toString().replaceAll(",", ""),

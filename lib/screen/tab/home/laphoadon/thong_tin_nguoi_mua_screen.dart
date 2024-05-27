@@ -307,17 +307,17 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
             CustomerAppbarScreen(title: 'Thông tin người mua', isShowBack: true, isShowHome: false, isCreate: false, isSave: !isTrangThai,
               onSave: (){
                 if(fingerToggle){
-                  if(nameController.text != null && nameController.text != ""){
-                    if(unitNameController.text == null || unitNameController.text == ""){
-                      Toast.showLongTop("Vui lòng nhập tên đơn vị!");
-                      return;
-                    }
-
-                    if(addressController.text == null || addressController.text == ""){
-                      Toast.showLongTop("Vui lòng nhập địa chỉ!");
-                      return;
-                    }
-                  }
+                  // if(nameController.text != null && nameController.text != ""){
+                  //   if(unitNameController.text == null || unitNameController.text == ""){
+                  //     Toast.showLongTop("Vui lòng nhập tên đơn vị!");
+                  //     return;
+                  //   }
+                  //
+                  //   if(addressController.text == null || addressController.text == ""){
+                  //     Toast.showLongTop("Vui lòng nhập địa chỉ!");
+                  //     return;
+                  //   }
+                  // }
                   // if(unitNameController.text == null || unitNameController.text == ""){
                   //   Toast.showLongTop("Vui lòng nhập tên đơn vị!");
                   //   return;
@@ -413,7 +413,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                                   readOnly: isTrangThai,
                                   // showCursor: isTrangThai,
                                   textEditingController: mstController,
-                                  textInputType: TextInputType.number,
+                                  textInputType: TextInputType.numberWithOptions(signed: true, decimal: false),
                                   hintText: "Mã số thuế",
                                   maxLength: 14,
                                   onSubmittedCustom: (values){

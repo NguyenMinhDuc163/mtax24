@@ -114,7 +114,7 @@ class _TraCuuThongBaoScreenState extends State<TraCuuThongBaoScreen> with GetItS
         // appBar: buildAppBarMenuCustom(context, 'Tra cứu thông báo', showHome: true ),
         body: Stack(
           children: [
-            CustomerListViewAppbarScreen(title: "Tra cứu thông báo", isShowBack: true, isShowHome: true,
+            CustomerListViewAppbarScreen(title: "Tra cứu thông báo hoá đơn", isShowBack: true, isShowHome: true,
               children: ListView(
                 controller: _scrollController,
                 children: [

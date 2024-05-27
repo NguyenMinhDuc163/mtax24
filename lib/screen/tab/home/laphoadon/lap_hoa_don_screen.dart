@@ -90,11 +90,14 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
         if(list.isNotEmpty){
           lstDMucHoaDon = list;
           lstDMuc.clear();
-          list.forEach((element) {
+          // list.forEach((element) {
+          //   lstDMuc.add(lstDMucHoaDon.first.invoiceCode + ": " + element.invoiceName);
+          //   print(element.invoiceName);
+          // });
 
-            lstDMuc.add(element.invoiceName);
-            print(element.invoiceName);
-          });
+          for(int  i = 0; i < list.length; i++){
+            lstDMuc.add(list[i].invoiceCode + ": " + list[i].invoiceName);
+          }
           dropDMuc = lstDMuc.first;
           invoiceType = lstDMucHoaDon.first.invoiceCode;
           controller.getPreLapHoaDon(PreLapHoaDonRequest(
@@ -1072,9 +1075,12 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     DialogAlert.showDialogAlertCancel(context, "Bạn chưa chọn thông tin vận chuyển");
                                   }else {
                                     thanhTien = Utils.covertToMoney(double.parse(thanhTien)).toString().replaceAll(",", "");
+
+                                    String matte = thongTinUser.typeMoney ?? "VND";
+
                                     await _saveHoaDonAsync(LuuHoaDonRequest(
                                       chitiethoadon: getChiTietHD(),
-                                      related_customer: maKH,
+                                      relatedCustomer: maKH,
                                       cccDan: personalID,
                                       issue_type: (type == 6 || type == 7 || type == 8) ? "MTT" : "",
                                       dchinmua: thongTinUser.customerAddress,
@@ -1097,7 +1103,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       tenhdon: dropDMuc,
                                       tennmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerName : "",
                                       tgia: "1",
-                                      tienbangchu: Utils.convertVietnameseNumberReader(thanhTien),
+                                      tienbangchu: Utils.convertVietnameseNumberReader(thanhTien) + " $matte",
                                       tinhchat: "01",
                                       tongtiennte: tongTienDv.replaceAll(".0", ""),
                                       tongtienthuente: tienGTGT.replaceAll(".0", ""),
@@ -1161,12 +1167,13 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                   if(listHangHoa.isEmpty){
                                     Toast.showLongTop('Vui lòng nhập tên hàng hóa');
                                     return;
-                                  }else{
+                                  }
+                                  else{
                                     for(int i = 0; i < listHangHoa.length; ++i){
 
-                                        Toast.showLongTop('Vui lòng nhập tên hàng hóa');
                                         if(listHangHoa[i].tenHHoa == null || listHangHoa[i].tenHHoa == ""){
-    return;
+                                          Toast.showLongTop('Vui lòng nhập tên hàng hóa');
+                                          return;
                                       }
                                       if(listHangHoa[i].thueSuat == "-1 %"){
                                         Toast.showLongTop('Vui lòng nhập thuế suất');
@@ -1175,6 +1182,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
 
                                     }
                                   }
+
                                   if(thongTinUser.customerEmail == null || thongTinUser.customerEmail == ""){
                                     Toast.showLongTop('Vui lòng nhập email');
                                     return;
