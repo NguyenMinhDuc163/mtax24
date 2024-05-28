@@ -18,6 +18,7 @@ import 'package:mtax24/service/api_service/request/gui_hoa_don_api_request.dart'
 import 'package:mtax24/service/api_service/request/ky_hoa_don_api_request.dart';
 import 'package:mtax24/service/api_service/response/lap_hoa_don/ky_hoa_don_api_response.dart';
 import 'package:mtax24/service/init.dart';
+import '../../../components/core/constants/currency_constants.dart';
 import '../../../init_view.dart';
 import 'thong_tin_hang_hoa/danh_sach_hang_hoa_screen.dart';
 import 'thong_tin_hang_hoa/them_moi_screen.dart';
@@ -1076,7 +1077,8 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                   }else {
                                     thanhTien = Utils.covertToMoney(double.parse(thanhTien)).toString().replaceAll(",", "");
 
-                                    String matte = thongTinUser.typeMoney ?? "VND";
+                                    // String matte = thongTinUser.typeMoney ?? "VND";
+                                    String matte = currencyMap[thongTinUser.typeMoney ?? "VND"];
 
                                     await _saveHoaDonAsync(LuuHoaDonRequest(
                                       chitiethoadon: getChiTietHD(),

@@ -24,6 +24,7 @@ import 'package:mtax24/service/api_service/request/ky_hoa_don_api_request.dart';
 import 'package:mtax24/service/api_service/response/lap_hoa_don/ky_hoa_don_api_response.dart';
 import 'package:mtax24/service/init.dart';
 
+import '../../../../components/core/constants/currency_constants.dart';
 import '../../../../init_view.dart';
 import 'hoa_don_dieu_chinh_chi_tiet_screen.dart';
 
@@ -1202,7 +1203,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                 isCheck = true;
                 DialogAlert.showLoadding(context);
 
-                String matte = (thongTinUser.typeMoney != null) ? thongTinUser.typeMoney : chiTietResponse.matte ?? "VND";
+                // String matte = (thongTinUser.typeMoney != null) ? thongTinUser.typeMoney : chiTietResponse.matte ?? "VND";
+                String matte = currencyMap[(thongTinUser.typeMoney != null) ? thongTinUser.typeMoney : chiTietResponse.matte ?? "VND"];
                 lapHdController.luuHoaDon(LuuHoaDonRequest(
                   chitiethoadon: getChiTietHD(),
                   dchinmua: (thongTinUser.customerAddress != null) ? thongTinUser.customerAddress : chiTietResponse.dchinmua,
