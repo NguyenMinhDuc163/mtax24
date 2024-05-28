@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mtax24/screen/components/styles/style.dart';
 
+import '../utils/utils.dart';
+
 class SearchPanelWidget extends StatefulWidget {
   const SearchPanelWidget({
     Key key,
@@ -47,18 +49,14 @@ class _SearchPanelWidgetState extends State<SearchPanelWidget> {
           ),
           Expanded(
             flex: 2,
-            child: Text(
-              titleMid,
-              style: TextStyle(fontSize: fontSize, color: (status != 1) ? color :
-
-
+            child: (status == 1) ?  Text(
+              Utils.convertStatusThongBao(titleMid),
+              style: TextStyle(fontSize: fontSize, color:
               (titleMid == "NEWR" ? color2981DA :
               titleMid == "CKNG" || titleMid == "CCQT" ? colorYellow100 :
               titleMid == "SUCC" ? color219653 : colorD12129)
               ),
-
-
-            ),
+            ) : Text(titleMid, style: TextStyle(fontSize: fontSize, color: color),),
           ),
           Expanded(
             flex: 2,
@@ -100,7 +98,7 @@ class _SearchPanelWidgetState extends State<SearchPanelWidget> {
                       ],
                     ),
                   ),
-                  Text("${widget.money} ${widget.moneyType ?? "đ"}", style: TextStyle(fontSize: fontSize_14, color: Colors.red),),
+                  Text("${Utils.covertToMoney(double.parse(widget.money))} ${widget.moneyType ?? "đ"}", style: TextStyle(fontSize: fontSize_14, color: Colors.red),),
 
                 ],
               ),
@@ -116,7 +114,9 @@ class _SearchPanelWidgetState extends State<SearchPanelWidget> {
                       fontSize: 14, color: colorPrimaryLogin),
                   SizedBox(height: height_16,),
                   _buildRow(titleLeft: "Ngày kí", titleMid: "Trạng thái HĐ", titleRight: "Trạng thái gửi CQT", fontSize: 12, color: color828282, flag: false),
-                  _buildRow(titleLeft: widget.signDay, titleMid: widget.invoiceStatus, titleRight: widget.invoiceCQT, fontSize: 14, color: color2981DA, flag: true, status: 1),
+
+                  // TODO chua truyen trangthai CQT vi chua co
+                  _buildRow(titleLeft: widget.signDay, titleMid: widget.invoiceStatus, titleRight:"", fontSize: 14, color: color2981DA, flag: true, status: 1),
                 ],
               )
             ],
