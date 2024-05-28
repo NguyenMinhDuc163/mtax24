@@ -139,7 +139,6 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
       }
     }
     if(widget.object != null && widget.type == "TCHDDCDD"){
-      print("---------------------da di qua day 1");
       dinhDanhResponse = widget.object;
       type = "10";
       loaiHD = dinhDanhResponse.loaihdon;
@@ -159,6 +158,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
         sohdgocDtl: ["$sohdoncqtgoc"],
       ));
     }
+
     if(widget.object != null && widget.type == "TCHDXoBo"){
       print("---------------------da di qua day 2");
       xoaBoResponse = widget.object;

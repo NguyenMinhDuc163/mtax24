@@ -80,13 +80,17 @@ class _SearchPanelWidgetState extends State<SearchPanelWidget> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Mã số thuế: ${widget.taxCode}", style: TextStyle(fontSize: fontSize_14, fontWeight: FontWeight.bold),),
-                      SizedBox(height: height_8,),
-                      Text("Tên công ty: ${widget.companyName}", style: TextStyle(fontSize: fontSize_14 ),),
-                    ],
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Mã số thuế: ${widget.taxCode}", style: TextStyle(fontSize: fontSize_14, fontWeight: FontWeight.bold), softWrap: true,   maxLines: 3, // Giới hạn số dòng là 3
+                          overflow: TextOverflow.ellipsis,),
+                        SizedBox(height: height_8,),
+                        Text("Tên công ty: ${widget.companyName}", style: TextStyle(fontSize: fontSize_14 ),),
+                      ],
+                    ),
                   ),
                   Text("${widget.money} ${widget.moneyType ?? "đ"}", style: TextStyle(fontSize: fontSize_14, color: Colors.red),),
 
