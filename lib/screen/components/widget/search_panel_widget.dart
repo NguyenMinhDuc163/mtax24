@@ -33,7 +33,7 @@ class SearchPanelWidget extends StatefulWidget {
 class _SearchPanelWidgetState extends State<SearchPanelWidget> {
 
 
-  Widget _buildRow({String titleLeft, String titleMid, String titleRight, Color color, double fontSize, bool flag}) {
+  Widget _buildRow({String titleLeft, String titleMid, String titleRight, Color color, double fontSize, bool flag, int status}) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 4),
       child: Row(
@@ -49,7 +49,15 @@ class _SearchPanelWidgetState extends State<SearchPanelWidget> {
             flex: 2,
             child: Text(
               titleMid,
-              style: TextStyle(fontSize: fontSize, color: color),
+              style: TextStyle(fontSize: fontSize, color: (status != 1) ? color :
+
+
+              (titleMid == "NEWR" ? color2981DA :
+              titleMid == "CKNG" || titleMid == "CCQT" ? colorYellow100 :
+              titleMid == "SUCC" ? color219653 : colorD12129)
+              ),
+
+
             ),
           ),
           Expanded(
@@ -67,7 +75,7 @@ class _SearchPanelWidgetState extends State<SearchPanelWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: height_16),
+      margin: EdgeInsets.only(bottom: height_16),
       child: Card(
         elevation: 5.0,
         child: Padding(
@@ -108,7 +116,7 @@ class _SearchPanelWidgetState extends State<SearchPanelWidget> {
                       fontSize: 14, color: colorPrimaryLogin),
                   SizedBox(height: height_16,),
                   _buildRow(titleLeft: "Ngày kí", titleMid: "Trạng thái HĐ", titleRight: "Trạng thái gửi CQT", fontSize: 12, color: color828282, flag: false),
-                  _buildRow(titleLeft: widget.signDay, titleMid: widget.invoiceStatus, titleRight: widget.invoiceCQT, fontSize: 14, color: color2981DA, flag: true),
+                  _buildRow(titleLeft: widget.signDay, titleMid: widget.invoiceStatus, titleRight: widget.invoiceCQT, fontSize: 14, color: color2981DA, flag: true, status: 1),
                 ],
               )
             ],

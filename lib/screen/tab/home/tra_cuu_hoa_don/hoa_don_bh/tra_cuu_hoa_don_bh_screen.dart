@@ -253,7 +253,6 @@ class _TraCuuHoaDonBHScreenState extends State<TraCuuHoaDonBHScreen> with GetItS
                               ],
                             ),
                             SizedBox(height: 40.h,),
-                            SearchPanelWidget(taxCode: '012234', companyName: 'Công ty TNHH ABC', money: '1.000.000', invoiceSymbol: '01GTKT0/001', invoiceNumber: '0000001', invoiceDate: '01/01/2021', signDay: '01/01/2021', invoiceStatus: 'Đã xác minh', invoiceCQT: 'CQT ABC'),
                             SizedBox(height: 40.h,),
                             lstHoaDon != null && lstHoaDon.length > 0 ?
                             ItemHoaDon(context, lstHoaDon, controller) :
