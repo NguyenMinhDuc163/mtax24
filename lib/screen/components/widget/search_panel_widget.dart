@@ -73,9 +73,11 @@ class _SearchPanelWidgetState extends State<SearchPanelWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: height_16),
+      margin: EdgeInsets.only(bottom: height_24),
+
       child: Card(
         elevation: 5.0,
+        // margin: EdgeInsets.only(bottom: height_32),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(

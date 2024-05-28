@@ -59,8 +59,10 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
     // TODO: implement initState
     super.initState();
     if(widget.object != null && widget.object.length > 0){
+
       if(widget.typeHD == "HDTT"){
         lstHDThayThe = widget.object;
+        print('w---------- ${lstHDThayThe.first.sovban}');
         tinhChat = lstHDThayThe.first.tinhChat;
         trangThai = lstHDThayThe.first.trangthai;
         id = lstHDThayThe.first.id.toString();
@@ -70,6 +72,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
         tinhChatHd_DC_TT = "02";
       }else {
         lstHDDieuChinh = widget.object;
+        print('w---------- ${lstHDDieuChinh.first.sovban}');
         tinhChat = lstHDDieuChinh.first.tinhChat;
         trangThai = lstHDDieuChinh.first.status;
         id = lstHDDieuChinh.first.id.toString();
@@ -193,6 +196,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
                   DialogAlert.showDialogAlertCancel(
                       context, "Bạn chưa chọn thông tin vận chuyển");
                 } else {
+                  print("-------------Sovb ${sovban}");
                   controller.luuHoaDon(LuuHoaDonRequest(
                     chitiethoadon: getChiTietHD(),
                     dchinmua: chiTietResponse.dchinmua,
@@ -907,15 +911,16 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
                                                           // Xoa hoa don
                                                           child: InkWell(child: Icon(Icons.delete),
                                                             onTap: (){
+
                                                               DialogAlert.showDialogInfo(context, "Bạn có muốn xóa hàng hóa không?", onSuccess: (){
                                                                 setState(() {
-                                                                  // String money = "${listHangHoa[index].thanhTien != null ? Utils.covertToMoney(listHangHoa[index].thanhTien) : 0.0}";
-                                                                  // String moneyDV = "${listHangHoa[index].tongTienDV != null ? Utils.covertToMoney(listHangHoa[index].tongTienDV) : 0.0}";
-                                                                  // String moneyGTGT = "${listHangHoa[index].tienGTGT != null ? Utils.covertToMoney(listHangHoa[index].tienGTGT) : 0.0}";
-                                                                  //
-                                                                  // thanhTien = (double.parse(thanhTien.replaceAll(",", "")) - double.parse(money.replaceAll(",", ""))).toString();
-                                                                  // tongTienDv = (double.parse(tongTienDv.replaceAll(",", "")) - double.parse(moneyDV.replaceAll(",", ""))).toString();
-                                                                  // tienGTGT = (double.parse(tienGTGT.replaceAll(",", "")) - double.parse(moneyGTGT.replaceAll(",", ""))).toString();
+                                                                  String money = "${listHangHoa[index].tongtienthanhtoan != null ? Utils.covertToMoney(double.parse(listHangHoa[index].tongtienthanhtoan)) : 0.0}";
+                                                                  String moneyDV = "${listHangHoa[index].thanhtientruocthue != null ? Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue)) : 0.0}";
+                                                                  String moneyGTGT = "${listHangHoa[index].tienthue != null ? Utils.covertToMoney(double.parse(listHangHoa[index].tienthue)) : 0.0}";
+
+                                                                  thanhTien = (double.parse(thanhTien.replaceAll(",", "")) - double.parse(money.replaceAll(",", ""))).toString();
+                                                                  tongTienDv = (double.parse(tongTienDv.replaceAll(",", "")) - double.parse(moneyDV.replaceAll(",", ""))).toString();
+                                                                  tienGTGT = (double.parse(tienGTGT.replaceAll(",", "")) - double.parse(moneyGTGT.replaceAll(",", ""))).toString();
 
                                                                   listHangHoa.removeAt(index);
                                                                   Navigator.of(context).pop();

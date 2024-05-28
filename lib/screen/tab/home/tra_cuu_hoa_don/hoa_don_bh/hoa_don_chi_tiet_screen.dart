@@ -420,7 +420,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
     });
 
     registerHandler((LapHoaDonModel x) => x.luuHoaDon, (context, KyHoaDonApiResponse response, cancel) {
-      print('-----------------SAVE hoa don 1');
+
       DialogAlert.dissmissLoadingDialog(context, GlobalKey());
       if(response != null){
         DialogAlert.showDialogInfo(context, "Lưu thành công số hóa đơn ${response.iccinvhdr.sohdon}", onSuccess: (){
@@ -1090,7 +1090,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
           SpeedDialChild(
             child: Icon(Icons.edit),
             backgroundColor: colorPrimary,
-            label: 'Thông báo hóa đơn điện tử có sai sót',
+            label: 'Thông báo hóa đơn có sai sót (04/SS)',
             onTap: () {
              _showReplaceInvoice = false;
              addListSpeedDialChild(

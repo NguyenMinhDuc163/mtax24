@@ -9,7 +9,7 @@ Widget ItemFilterTB(String name, String values, {Function onTap, TextStyle textS
         children: [
           Expanded(
               child: Text("$name", style: text14OBold400,),
-            flex: 3,
+            flex: 4,
           ),
           Expanded(
               child: InkWell(
@@ -18,7 +18,7 @@ Widget ItemFilterTB(String name, String values, {Function onTap, TextStyle textS
                     style: textStyle == null ? text14Bold400 : textStyle,
                     textAlign: textAlign == null ? TextAlign.end : textAlign,)
               ),
-            flex: 4,
+            flex: 3,
           ),
           textStyle != null ?
           Icon(Icons.file_download_outlined) : SizedBox()

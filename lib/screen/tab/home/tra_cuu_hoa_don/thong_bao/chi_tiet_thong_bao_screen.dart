@@ -160,7 +160,6 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
     }
 
     if(widget.object != null && widget.type == "TCHDXoBo"){
-      print("---------------------da di qua day 2");
       xoaBoResponse = widget.object;
       type = "07";
       loaiHD = xoaBoResponse.loaihdon;
@@ -448,7 +447,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                 ItemFilterTB("Số hóa đơn:", "${sohdoncqtgoc == null ? "-" : sohdoncqtgoc}"),
                 Padding(
                   padding: EdgeInsets.only(top: 10.h,),
-                  child: ItemFilterTB("Ngày hóa đơn:", "Ngày ${DateTime.now().day} Tháng ${DateTime.now().month} Năm ${DateTime.now().year}"),
+                  child: ItemFilterTB("Ngày lập thông báo sai sót:", "${DateTime.now().day}/${DateTime.now().month.toString().padLeft(2, '0')}/${DateTime.now().year}"),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 10.h,),

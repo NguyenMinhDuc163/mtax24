@@ -16,7 +16,6 @@ class DanhSachThemMoiScreen extends StatefulWidget with GetItStatefulWidgetMixin
   final bool isTraCuu;
   final String trangThai;
 
-
   DanhSachThemMoiScreen({this.type, this.invoiceType, this.listHangHoa, this.isTraCuu, this.trangThai});
 
   @override
@@ -56,15 +55,15 @@ class _DanhSachThemMoiScreenState extends State<DanhSachThemMoiScreen> with GetI
             tongTienDV: element.thanhtientruocthue == "" ? 0.0 : double.parse(element.thanhtientruocthue),
             thanhTien: element.tongtienthanhtoan == "" ? double.parse(element.thanhtientruocthue) : double.parse(element.tongtienthanhtoan),
           ));
-          // tongTienDv =
-          //     (double.parse(tongTienDv) + double.parse(element.thanhtientruocthue)).toString();
-          // if(element.tienthue == "" || element.tongtienthanhtoan == ""){
-          //   tienGTGT = double.parse(tienGTGT).toString();
-          //   thanhTien = (double.parse(thanhTien) + double.parse(element.thanhtientruocthue)).toString();
-          // }else {
-          //   tienGTGT = (double.parse(tienGTGT) + double.parse(element.tienthue)).toString();
-          //   thanhTien = (double.parse(thanhTien) + double.parse(element.tongtienthanhtoan)).toString();
-          // }
+          tongTienDv =
+              (double.parse(tongTienDv) + double.parse(element.thanhtientruocthue)).toString();
+          if(element.tienthue == "" || element.tongtienthanhtoan == ""){
+            tienGTGT = double.parse(tienGTGT).toString();
+            thanhTien = (double.parse(thanhTien) + double.parse(element.thanhtientruocthue)).toString();
+          }else {
+            tienGTGT = (double.parse(tienGTGT) + double.parse(element.tienthue)).toString();
+            thanhTien = (double.parse(thanhTien) + double.parse(element.tongtienthanhtoan)).toString();
+          }
 
         });
       }else {
