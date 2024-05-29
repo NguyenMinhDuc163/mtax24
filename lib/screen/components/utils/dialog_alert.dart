@@ -226,114 +226,118 @@ class DialogAlert {
               insetPadding: (visibleInput != true) ? EdgeInsets.symmetric(horizontal: 10) : null, // fix overload pinCode
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.w)), //this right here
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 15),
-                  child: Container(
-                      child: Center(
-                    child: Text(visibleInput == true ? 'otpDialog.title'.tr(): "Vui lòng nhập số PIN",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 50.sp, fontWeight: FontWeight.bold)),
-                  )),
-                ),
-                visibleInput == true
-                    ? Container(
-                        child: Center(
-                      child: Text(
-                        messanger,
-                        textAlign: TextAlign.center,
-                      ),
-                    ))
-                    : Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10.w),
-                        margin: EdgeInsets.only(bottom: 30.h),
-                        child: PinCodeTextField(
-                          onCompleted: (pin) {
-                            otpController.text = pin;
-                          },
-                          length: 8,
-                          appContext: context,)
-                        ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 15),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border(
-                        top: BorderSide(color: Colors.grey),
-                      ),
+            child: StatefulBuilder(
+              builder: (context, state) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Container(
+                          child: Center(
+                        child: Text(visibleInput == true ? 'otpDialog.title'.tr(): "Vui lòng nhập số PIN",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 50.sp, fontWeight: FontWeight.bold)),
+                      )),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        // ignore: avoid_unnecessary_containers
-                        Container(
-                          child: Flexible(
-                            flex: 1,
-                            fit: FlexFit.tight,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  right: BorderSide(color: Colors.grey),
+                    visibleInput == true
+                        ? Container(
+                            child: Center(
+                          child: Text(
+                            messanger,
+                            textAlign: TextAlign.center,
+                          ),
+                        ))
+                        : Container(
+                            padding: EdgeInsets.symmetric(horizontal: 10.w),
+                            margin: EdgeInsets.only(bottom: 30.h),
+                            child: PinCodeTextField(
+                              onCompleted: (pin) {
+                                otpController.text = pin;
+                              },
+                              length: 8,
+                              appContext: context,)
+                            ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            top: BorderSide(color: Colors.grey),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: <Widget>[
+                            // ignore: avoid_unnecessary_containers
+                            Container(
+                              child: Flexible(
+                                flex: 1,
+                                fit: FlexFit.tight,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      right: BorderSide(color: Colors.grey),
+                                    ),
+                                  ),
+                                  child: ElevatedButton(
+                                      // color: blueAccent,
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      style: ButtonStyle(
+                                        backgroundColor: MaterialStateProperty.all(colorWhite),
+                                        elevation: MaterialStateProperty.all<double>(0),
+                                      ),
+                                      child: Text(
+                                        // AppTranslate.of(context)
+                                        //     .translate('common.cancel'),
+                                        'logOut.cancel'.tr(),
+                                        style: TextStyle(
+                                            fontSize: fontSize_40sp,
+                                            color: Theme.of(context).primaryColor),
+                                      )),
                                 ),
                               ),
+                            ),
+                            Flexible(
+                              flex: 1,
+                              fit: FlexFit.tight,
                               child: ElevatedButton(
                                   // color: blueAccent,
                                   onPressed: () {
-                                    Navigator.of(context).pop();
+                                    if (visibleInput == false) {
+                                      if (otpController.text != "") {
+                                        valueOtp(otpController.text);
+                                        Navigator.of(context)
+                                            .pop({otpController.text});
+                                      } else {
+                                        Toast.showLong(
+                                            'otpDialog.title'.tr() + " !");
+                                      }
+                                    } else {
+                                      Navigator.of(context).pop();
+                                    }
                                   },
                                   style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(colorWhite),
                                     elevation: MaterialStateProperty.all<double>(0),
                                   ),
-                                  child: Text(
-                                    // AppTranslate.of(context)
-                                    //     .translate('common.cancel'),
-                                    'logOut.cancel'.tr(),
-                                    style: TextStyle(
-                                        fontSize: fontSize_40sp,
-                                        color: Theme.of(context).primaryColor),
-                                  )),
+                                  child: Text('logOut.yes'.tr(),
+                                      style: TextStyle(
+                                          fontSize: fontSize_40sp,
+                                          color: Theme.of(context).primaryColor))),
                             ),
-                          ),
+                          ],
                         ),
-                        Flexible(
-                          flex: 1,
-                          fit: FlexFit.tight,
-                          child: ElevatedButton(
-                              // color: blueAccent,
-                              onPressed: () {
-                                if (visibleInput == false) {
-                                  if (otpController.text != "") {
-                                    valueOtp(otpController.text);
-                                    Navigator.of(context)
-                                        .pop({otpController.text});
-                                  } else {
-                                    Toast.showLong(
-                                        'otpDialog.title'.tr() + " !");
-                                  }
-                                } else {
-                                  Navigator.of(context).pop();
-                                }
-                              },
-                              style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(colorWhite),
-                                elevation: MaterialStateProperty.all<double>(0),
-                              ),
-                              child: Text('logOut.yes'.tr(),
-                                  style: TextStyle(
-                                      fontSize: fontSize_40sp,
-                                      color: Theme.of(context).primaryColor))),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              ],
+                      ),
+                    )
+                  ],
+                );
+              }
             ),
           );
         });

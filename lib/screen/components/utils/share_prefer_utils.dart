@@ -119,6 +119,17 @@ class SharePreferUtils {
     await pref.setString(Constants.Avatar, avartar);
   }
 
+  static Future<void> savePIN(String pinCode) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.setString(Constants.PINCODE, pinCode);
+  }
+
+  static Future<String> getPIN() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    String pinCode = pref.getString(Constants.PINCODE);
+    return pinCode;
+  }
+
   static Future<void> removeCachedWhenLogOut() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.remove(Constants.emailKey);

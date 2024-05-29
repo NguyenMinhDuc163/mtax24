@@ -1282,16 +1282,16 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
     listHangHoa.forEach((element) {
       listChiTietHD.add(Chitiethoadon(
         madvu: element.maHHoa,
-        dongia: Utils.covertToMoney(element.donGia).toString().replaceAll(",", ""),
+        dongia: Utils.covertToMoney(element.donGia).toString().replaceAll(",", "").replaceAll(".", ","),
         dvtinh: element.dvTinh,
         khuyenmai: element.type == 0 ? "N" : "Y",
         soluong: element.number.toString().replaceAll(",", "").replaceAll(".", ","),
         tendvu: element.tenHHoa,
-        thanhtientruocthue: Utils.covertToMoney(element.tongTienDV).toString().replaceAll(",", ""),
+        thanhtientruocthue: Utils.covertToMoney(element.tongTienDV).toString().replaceAll(",", "").replaceAll(".", ","),
         thuesuat: element.thueSuat.replaceAll(" %", ""),
-        tienchietkhau: element.chietKhau.toString().replaceAll(",", ""),
-        tienthue: Utils.covertToMoney(element.tienGTGT).toString().replaceAll(",", ""),
-        tongtienthanhtoan: Utils.covertToMoney(element.thanhTien).toString().replaceAll(",", ""),
+        tienchietkhau: element.chietKhau.toString().replaceAll(",", "").replaceAll(".", ","),
+        tienthue: Utils.covertToMoney(element.tienGTGT).toString().replaceAll(",", "").replaceAll(".", ","),
+        tongtienthanhtoan: Utils.covertToMoney(element.thanhTien).toString().replaceAll(",", "").replaceAll(".", ","),
 
       ));
     });

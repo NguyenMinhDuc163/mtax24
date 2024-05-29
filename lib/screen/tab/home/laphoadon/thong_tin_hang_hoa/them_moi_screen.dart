@@ -205,6 +205,10 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
               else if(percent == -1 && widget.type == 0){
                 Toast.showLongTop("Bạn chưa chọn thuế suất");
               }
+              else if(double.parse(moneyBar.replaceAll(',', '')) < 0){
+                Toast.showLongTop("Thành tiền không được nhỏ hơn 0");
+                return;
+              }
                 else {
                 if (widget.isTraCuu) {
                   dsdvu.soluong = totalController.text.replaceAll(",", "");
@@ -236,7 +240,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                     tongTienDV : double.parse(total),
                     tienGTGT : double.parse(taxMoney),
                     thanhTien : double.parse(moneyBar),
-                    chietKhau : discountController.text.isNotEmpty ? int.parse(discountController.text) : 0,
+                    chietKhau : discountController.text.isNotEmpty ? int.parse(discountController.text.replaceAll(',', '')) : 0,
                   );
                   Navigator.pop(context, hangHoaByMaResponse);
                 }
@@ -332,7 +336,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                                   percent,
                                   totalController.text.replaceAll(',', ''),
                                   unitPriceController.text.replaceAll(',', ''),
-                                  discountController.text);
+                                  discountController.text.replaceAll(',', ''));
                             });
                           },
                         ),
@@ -357,7 +361,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                                   percent,
                                   totalController.text.replaceAll(',', ''),
                                   unitPriceController.text.replaceAll(',', ''),
-                                  discountController.text);
+                                  discountController.text.replaceAll(',', ''));
                             });
                           },
                         ),
@@ -381,7 +385,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                                   percent,
                                   totalController.text.replaceAll(',', ''),
                                   unitPriceController.text.replaceAll(',', ''),
-                                  discountController.text);
+                                  discountController.text.replaceAll(',', ''));
                             });
                           },
                         ),
@@ -426,12 +430,14 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                               hintText: "Tiền chiết khấu",
                               textInputType: TextInputType.number,
                               onChangedCustom: (value){
+                                discountController.text = _formatNumber(value);
+                                discountController.selection = TextSelection.fromPosition(TextPosition(offset: discountController.text.length));
                                 setState(() {
                                   totalAmount(widget.type,
                                       percent,
                                       totalController.text,
                                       unitPriceController.text,
-                                      discountController.text);
+                                      discountController.text.replaceAll(',', ''));
                                 });
                               },
                             ),

@@ -1181,7 +1181,6 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
             backgroundColor: colorPrimary,
             label: 'Lưu hóa đơn',
             onTap: () {
-              print('-----------------Save hoa don 2');
               if (listHangHoa == null || listHangHoa.length == 0) {
                 DialogAlert.showDialogAlertCancel(
                     context, "Bạn chưa chọn hàng hóa");
