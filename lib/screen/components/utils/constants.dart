@@ -23,6 +23,7 @@ class Constants {
   static final String PLATFORM = Platform.isAndroid ? 'android' : 'ios ';
   static final String VERSION_APP = "1.0";
   static final String PINCODE = "`PINCODE";
+  static final String SAVEPINCODE = "`SAVEPINCODE";
 
   static const FEE_TYPE_0 = '0';
   static const FEE_TYPE_1 = '1';

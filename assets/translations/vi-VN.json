@@ -9,10 +9,14 @@
     "title": "Vui lòng nhập mã OTP"
   },
 
+  "PINDialog": {
+    "title": "Vui lòng nhập mã PIN"
+  },
+
   "logOut": {
     "title": "Bạn muốn đăng xuất tài khoản này ?",
     "ok": "Đăng xuất",
-    "cancel": "Bỏ qua",
+    "cancel": "Huỷ bỏ",
     "yes": "Đồng ý"
   },
 

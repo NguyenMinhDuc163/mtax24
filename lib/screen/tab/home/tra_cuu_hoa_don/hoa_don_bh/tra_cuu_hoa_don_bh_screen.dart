@@ -377,7 +377,7 @@ Widget ItemHoaDon(BuildContext context, List<TraCuuHoaDonResponse> list, HoaDonB
 
             child: SearchPanelWidget(taxCode: list[index].mstNgMua ?? "", companyName: list[index].tendvinmua ?? "", money: list[index].tongTienThanhToan ?? "",
             moneyType: list[index].matte ?? "", invoiceSymbol: list[index].khieuhdon ?? "", invoiceStatus: list[index].trangThai ?? "",
-              signDay: list[index].ngayLapHoaDon ?? "", invoiceNumber: list[index].soHoaDonDoanhNghiep ?? "",invoiceCQT: list[index].trangThai ?? "",
+              signDay: list[index].ngayHDon ?? "", invoiceNumber: list[index].soHoaDonDoanhNghiep ?? "",invoiceCQT: list[index].trangthaiCQT ?? "",
               invoiceDate: list[index].ngayLapHoaDon ?? "",
             )
             

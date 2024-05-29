@@ -130,6 +130,17 @@ class SharePreferUtils {
     return pinCode;
   }
 
+  static Future<void> saveStatusPIN(bool pinCode) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.setBool(Constants.SAVEPINCODE, pinCode);
+  }
+
+  static Future<bool> getStatusPIN() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    bool isSavePIN = pref.getBool(Constants.SAVEPINCODE);
+    return isSavePIN;
+  }
+
   static Future<void> removeCachedWhenLogOut() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.remove(Constants.emailKey);

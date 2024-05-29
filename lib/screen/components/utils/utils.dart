@@ -188,6 +188,23 @@ class Utils {
           return "";
       }
     }
+
+  static String convertTrangThaiGuiCQT(String str){
+    switch(str){
+      case "00":
+        return "Chưa gửi CQT";
+      case "01":
+        return "Chờ CQT phản hồi";
+      case "02":
+        return "CQT từ chối";
+      case "03":
+        return "Thành công";
+      default:
+        //TODO chua ro trang thai khoi tao thi CQT la gi
+        return "Chưa gửi CQT";
+    }
+  }
+
   static String convertTinhChatHoaDon(String str){
     switch(str){
       case "01":

@@ -60,11 +60,20 @@ class _SearchPanelWidgetState extends State<SearchPanelWidget> {
           ),
           Expanded(
             flex: 2,
-            child: Text(
-              titleRight,
-              style: TextStyle(fontSize:  fontSize,  color: color, ),
-              textAlign: TextAlign.left,
-            ),
+          //   child: Text(
+          //     titleRight,
+          //     style: TextStyle(fontSize:  fontSize,  color: color, ),
+          //     textAlign: TextAlign.left,
+          //   ),
+
+            child: (status == 1) ?  Text(
+              Utils.convertTrangThaiGuiCQT(titleRight),
+              style: TextStyle(fontSize: fontSize, color:
+              (titleRight == "01" ? colorYellow100 :
+              titleRight == "02" || titleRight == "00" ? colorD12129 :
+              titleRight == "03" ? colorD12129 : colorD12129)
+              ),
+            ) : Text(titleRight, style: TextStyle(fontSize: fontSize, color: color),),
           ),
         ],
       ),
@@ -117,8 +126,7 @@ class _SearchPanelWidgetState extends State<SearchPanelWidget> {
                   SizedBox(height: height_16,),
                   _buildRow(titleLeft: "Ngày kí", titleMid: "Trạng thái HĐ", titleRight: "Trạng thái gửi CQT", fontSize: 12, color: color828282, flag: false),
 
-                  // TODO chua truyen trangthai CQT vi chua co
-                  _buildRow(titleLeft: widget.signDay, titleMid: widget.invoiceStatus, titleRight:"", fontSize: 14, color: color2981DA, flag: true, status: 1),
+                  _buildRow(titleLeft: widget.signDay, titleMid: widget.invoiceStatus, titleRight: widget.invoiceCQT, fontSize: 14, color: color2981DA, flag: true, status: 1),
                 ],
               )
             ],

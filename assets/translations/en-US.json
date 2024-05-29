@@ -9,6 +9,10 @@
     "title": "Please enter OTP"
   },
 
+  "PINDialog": {
+    "title": "Please enter PIN"
+  },
+
   "logOut": {
     "title": "Do you want to sign out of this account?",
     "ok": "Log Out",

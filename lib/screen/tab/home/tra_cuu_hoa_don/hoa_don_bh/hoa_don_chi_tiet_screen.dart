@@ -173,7 +173,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
       }
     });
 
-    registerHandler((LapHoaDonModel x) => x.checkAmountHoaDon, (context, BaseResponse response, cancel) {
+    registerHandler((LapHoaDonModel x) => x.checkAmountHoaDon, (context, BaseResponse response, cancel) async {
       if(response != null){
         isCheck = true;
         DialogAlert.showLoadding(context);
@@ -184,8 +184,12 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         }
         final objectConverted = jsonDecode(response?.object);
         CheckAmountHDonResponse checkAmountHDonResponse = CheckAmountHDonResponse.fromJson(objectConverted);
+
+        bool isSavePinCode = await SharePreferUtils.getStatusPIN();
+        String pinCode = await SharePreferUtils.getPIN();
+
         if(checkAmountHDonResponse.isHsm == "Y"){
-          DialogAlert.showMDialogOTP("", context, (values) => {
+          (!isSavePinCode) ? DialogAlert.showMDialogOTP("", context, (values) => {
             lapHdController.kyHoaDonAPI(KyHoaDonApiRequest(
                 id: chiTietResponse.id,
                 pincode: int.parse(values),
@@ -240,8 +244,64 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                 ngayCQThdongoc: chiTietResponse.ngayCqThdongoc == null || chiTietResponse.ngayCqThdongoc == "" ? chiTietResponse.ngayhdon : chiTietResponse.ngayCqThdongoc,
                 kyDienTu: "Y",
                 sohdongoc: chiTietResponse.sohdongoc
-            ))
-          });
+            ), )
+          },) :
+          lapHdController.kyHoaDonAPI(KyHoaDonApiRequest(
+              id: chiTietResponse.id,
+              pincode: int.parse(pinCode),
+              chitiethoadon: getChiTietHD(),
+              dchinmua: type == 0 || type == 1 || type == 2 ?  chiTietResponse.dchinmua : "",
+              dthoainmua: type == 0 || type == 1 || type == 2 ? chiTietResponse.dthoainmua : "",
+              emailnmua: type == 0 || type == 1 || type == 2 ? chiTietResponse.emailnmua : "",
+              hthuctoan: type == 0 || type == 1 || type == 2 ? chiTietResponse.hthuctoan : "",
+              kyhieu: chiTietResponse.khieuhdon,
+              loaihdon: chiTietResponse.loaihdon,
+              lstInvOtherInfoBan: chiTietResponse.lstInvOtherInfoBan,
+              lstInvOtherInfoCthd: chiTietResponse.lstInvOtherInfoCthd,
+              lstInvOtherInfoMua: chiTietResponse.lstInvOtherInfoMua,
+              lstInvOtherInfoTToan: chiTietResponse.lstInvOtherInfoTToan,
+              matte: chiTietResponse.matte != null ? chiTietResponse.matte : "VND",
+              mauhdon: chiTietResponse.mauhdon,
+              mstNmua: type == 0 || type == 1 || type == 2 ? chiTietResponse.mstnmua : "",
+              ngaykyvanban: chiTietResponse.ngayvban != null ? chiTietResponse.ngayvban : "",
+              serviceType: chiTietResponse.serviceType,
+              tendvinmua: type == 0 || type == 1 || type == 2 ? chiTietResponse.tendvinmua :"",
+              tenhdon: chiTietResponse.tenhdon,
+              tennmua: type == 0 || type == 1 || type == 2 ? chiTietResponse.tennmua :"",
+              tgia: "1",
+              tienbangchu: Utils.convertVietnameseNumberReader(thanhTien),
+              tinhchat: chiTietResponse.tinhchat,
+              tongtiennte: Utils.covertToMoney(double.parse(tongTienDv.replaceAll(",", ""))).toString().replaceAll(",", ""),
+              tongtienthuente: Utils.covertToMoney(double.parse(tienGTGT.replaceAll(",", ""))).toString().replaceAll(",", ""),
+              tongtienttoannte: Utils.covertToMoney(double.parse(thanhTien.replaceAll(",", ""))).toString().replaceAll(",", ""),
+              nhangnmua: "",
+              tkhoannmua: "",
+
+              lDoDDong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong.noiDung,
+              ngayDDong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong.ngayDieuDong,
+              ngayhdong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong.ngayKy,
+              nguoiDDong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong.dvDieuDong,
+              soLenhDDong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong.lenh,
+
+              hDongVchuyen: type == 0 || type == 1 || type == 2 ? "" : thongTinVanChuyen.hdSo,
+              nguoivchuyen: type == 0 || type == 1 || type == 2 ? "" : thongTinVanChuyen.name,
+              ptienvchuyen: type == 0 || type == 1 || type == 2 ? "" : thongTinVanChuyen.phuongTien,
+              sohdong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong.hdKinhTeSo,
+
+              tenknhap: type == 0 || type == 1 || type == 2 ? "" : thongTinVanChuyen.khoNhap,
+              tenkxuat: type == 0 || type == 1 || type == 2 ? "" : thongTinVanChuyen.khoXuat,
+              adjustType: chiTietResponse.adjustType,
+              lydoDC: chiTietResponse.lyDoDChinh,
+              sovban: chiTietResponse.sovban,
+              cd_khieuhdon: chiTietResponse.khieuhdon,
+              cd_mauhdon: chiTietResponse.mauhdon,
+              cd_ngayHD: chiTietResponse.ngayhdon,
+              cd_sohdon: chiTietResponse.tinhchat == "04" || chiTietResponse.tinhchat == "02" ? soHDGoc : chiTietResponse.sohdon,
+              ngayCQThdongoc: chiTietResponse.ngayCqThdongoc == null || chiTietResponse.ngayCqThdongoc == "" ? chiTietResponse.ngayhdon : chiTietResponse.ngayCqThdongoc,
+              kyDienTu: "Y",
+              sohdongoc: chiTietResponse.sohdongoc
+          ));
+
         }else {
           lapHdController.kyHoaDonAPI(KyHoaDonApiRequest(
               id: chiTietResponse.id,
@@ -1349,7 +1409,6 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
     List<Chitiethoadon> listChiTietHD = [];
 
     listHangHoa.forEach((element) {
-      print("-------------- ${element.dongia}");
       listChiTietHD.add(Chitiethoadon(
         madvu: element.madvu,
         dongia: element.dongia.toString().replaceAll(".", ","),

@@ -16,7 +16,7 @@ import 'package:local_auth_android/local_auth_android.dart';
 
 typedef ValueOtp<String> = String Function(String);
 
-class DialogAlert {
+class DialogAlert{
 
   static showLoadding(BuildContext context) {
     // ignore: inference_failure_on_function_return_type
@@ -43,136 +43,136 @@ class DialogAlert {
   }
   static void showDialogAlert(BuildContext context, String content, {Function onclick, String titleBtn}) {
     showDialog(
-      barrierDismissible: true,
-      context: context,
-      builder: (context) {
-        return Dialog(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15)), //this right here
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: width_24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: height_32),
-                  child: Text('Thông báo', style: text45spBold700),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: width_40, left: width_40, bottom: height_16),
-                  child: Text(content, style: text40sp, textAlign: TextAlign.center,),
-                ),
-                Divider(thickness: 1,),
-                InkWell(
-                  onTap: () {
-                    if(onclick != null) {
-                      onclick();
-                    } else {
-                      Navigator.of(context).pop();
-                    }
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    child: Center(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: height_16, bottom: height_32),
-                        child: Text(titleBtn ?? "Thoát", style: text45spBold700ColorBackground),
+        barrierDismissible: true,
+        context: context,
+        builder: (context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15)), //this right here
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: width_24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: height_32),
+                    child: Text('Thông báo', style: text45spBold700),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: width_40, left: width_40, bottom: height_16),
+                    child: Text(content, style: text40sp, textAlign: TextAlign.center,),
+                  ),
+                  Divider(thickness: 1,),
+                  InkWell(
+                    onTap: () {
+                      if(onclick != null) {
+                        onclick();
+                      } else {
+                        Navigator.of(context).pop();
+                      }
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: height_16, bottom: height_32),
+                          child: Text(titleBtn ?? "Thoát", style: text45spBold700ColorBackground),
+                        ),
                       ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
-        );
-      });
+          );
+        });
   }
 
   static void showDialogWidthOneInput(BuildContext context, {String titleInput, TextEditingController inputController, Function onFunctionAgree, bool isInputPassword}) {
     showDialog(
-      barrierDismissible: true,
-      context: context,
-      builder: (context) {
-        return Dialog(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15)), //this right here
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: width_24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: height_32),
-                  child: Text(titleInput, style: text45spBold700),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: width_40, left: width_40, bottom: height_16),
-                  child: ti.TextInput(
-                    textEditingController: inputController,
-                    haveBorder: true,
-                    obscureText: isInputPassword,
-                    isShowDialogOneInput: true,
+        barrierDismissible: true,
+        context: context,
+        builder: (context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15)), //this right here
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: width_24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: height_32),
+                    child: Text(titleInput, style: text45spBold700),
                   ),
-                ),
-                Divider(thickness: 1,),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(right: width_24),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            child: Center(
-                              child: Padding(
-                                padding: EdgeInsets.only(top: height_16, bottom: height_32),
-                                child: Text("Thoát", style: text45spBold700ColorBackground),
+                  Padding(
+                    padding: EdgeInsets.only(right: width_40, left: width_40, bottom: height_16),
+                    child: ti.TextInput(
+                      textEditingController: inputController,
+                      haveBorder: true,
+                      obscureText: isInputPassword,
+                      isShowDialogOneInput: true,
+                    ),
+                  ),
+                  Divider(thickness: 1,),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.only(right: width_24),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              child: Center(
+                                child: Padding(
+                                  padding: EdgeInsets.only(top: height_16, bottom: height_32),
+                                  child: Text("Thoát", style: text45spBold700ColorBackground),
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: width_24),
-                        child: InkWell(
-                          onTap: () {
-                            if(inputController.text.isEmpty) {
-                              GetIt.I<GeneralController>().setErrorText(errorText: "Không được để trống");
-                            } else {
-                              onFunctionAgree();
-                            }
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            child: Center(
-                              child: Padding(
-                                padding: EdgeInsets.only(top: height_16, bottom: height_32),
-                                child: Text("Đồng ý", style: text45spBold700ColorBackground),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.only(left: width_24),
+                          child: InkWell(
+                            onTap: () {
+                              if(inputController.text.isEmpty) {
+                                GetIt.I<GeneralController>().setErrorText(errorText: "Không được để trống");
+                              } else {
+                                onFunctionAgree();
+                              }
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              child: Center(
+                                child: Padding(
+                                  padding: EdgeInsets.only(top: height_16, bottom: height_32),
+                                  child: Text("Đồng ý", style: text45spBold700ColorBackground),
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                )
-              ],
+                    ],
+                  )
+                ],
+              ),
             ),
-          ),
-        );
-      });
+          );
+        });
   }
 
   static Future<bool> showDialogFinger(BuildContext context, {@required String title}) async {
     bool resultFingerprint = false;
     try {
       resultFingerprint = await LocalAuthentication().authenticate(
-          localizedReason: title,
+        localizedReason: title,
         authMessages: <AuthMessages>[
           AndroidAuthMessages(cancelButton: "Hủy bỏ",
               signInTitle: 'Tax24',
@@ -213,134 +213,321 @@ class DialogAlert {
 
   //  alert dành cho nhập otp login
   // ignore: inference_failure_on_function_return_type
+
+
+  // static showMDialogOTP(
+  //     String messanger, BuildContext context, ValueOtp valueOtp,
+  //     {bool visibleInput = false}) {
+  //   bool isRemember = false;
+  //   final otpController = TextEditingController();
+  //   showDialog(
+  //       barrierDismissible: false,
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         return Dialog(
+  //           // backgroundColor: Colors.blue,
+  //             insetPadding: (visibleInput != true) ? EdgeInsets.symmetric(horizontal: 10) : null, // fix overload pinCode
+  //           shape: RoundedRectangleBorder(
+  //               borderRadius: BorderRadius.circular(20.w)), //this right here
+  //           child: Column(
+  //             mainAxisSize: MainAxisSize.min,
+  //             mainAxisAlignment: MainAxisAlignment.start,
+  //             children: <Widget>[
+  //               Padding(
+  //                 padding: const EdgeInsets.only(top: 15),
+  //                 child: Container(
+  //                     child: Center(
+  //                   child: Column(
+  //                     children: [
+  //                       Text("Thông báo",
+  //                           textAlign: TextAlign.center,
+  //                           style: TextStyle(
+  //                               fontSize: 50.sp, fontWeight: FontWeight.bold)),
+  //                       SizedBox(height: height_40,),
+  //                       Text(visibleInput == true ? 'otpDialog.title'.tr(): "Vui lòng nhập mã PIN",
+  //                           textAlign: TextAlign.center,
+  //                           style: TextStyle(
+  //                               fontSize: 50.sp,))
+  //                     ],
+  //                   ),
+  //                 )),
+  //               ),
+  //               visibleInput == true
+  //                   ? Container(
+  //                       child: Center(
+  //                     child: Text(
+  //                       messanger,
+  //                       textAlign: TextAlign.center,
+  //                     ),
+  //                   ))
+  //                   : Column(
+  //                 children: [
+  //                   Container(
+  //                       padding: EdgeInsets.symmetric(horizontal: 10.w),
+  //                       margin: EdgeInsets.only(bottom: 30.h),
+  //                       child: PinCodeTextField(
+  //                         onCompleted: (pin) {
+  //                           otpController.text = pin;
+  //                         },
+  //                         length: 8,
+  //                         appContext: context,)
+  //                   ),
+  //                   Center(
+  //                     child: Row(
+  //                       crossAxisAlignment: CrossAxisAlignment.center,
+  //                       mainAxisAlignment: MainAxisAlignment.center,
+  //                       children: [
+  //                       Checkbox(value: isRemember, onChanged: (value){
+  //                         isRemember = value;
+  //                       }),
+  //                       Text("Ghi Nhớ Mật Khẩu"),
+  //                     ],
+  //                     ),
+  //                   )
+  //                 ],
+  //               ),
+  //               Padding(
+  //                 padding: const EdgeInsets.only(top: 15),
+  //                 child: Container(
+  //                   decoration: BoxDecoration(
+  //                     border: Border(
+  //                       top: BorderSide(color: Colors.grey),
+  //                     ),
+  //                   ),
+  //                   child: Row(
+  //                     mainAxisAlignment: MainAxisAlignment.center,
+  //                     crossAxisAlignment: CrossAxisAlignment.end,
+  //                     children: <Widget>[
+  //                       // ignore: avoid_unnecessary_containers
+  //                       Container(
+  //                         child: Flexible(
+  //                           flex: 1,
+  //                           fit: FlexFit.tight,
+  //                           child: Container(
+  //                             decoration: BoxDecoration(
+  //                               border: Border(
+  //                                 right: BorderSide(color: Colors.grey),
+  //                               ),
+  //                             ),
+  //                             child: ElevatedButton(
+  //                                 // color: blueAccent,
+  //                                 onPressed: () {
+  //                                   Navigator.of(context).pop();
+  //                                 },
+  //                                 style: ButtonStyle(
+  //                                   backgroundColor: MaterialStateProperty.all(colorWhite),
+  //                                   elevation: MaterialStateProperty.all<double>(0),
+  //                                 ),
+  //                                 child: Text(
+  //                                   // AppTranslate.of(context)
+  //                                   //     .translate('common.cancel'),
+  //                                   'logOut.cancel'.tr(),
+  //                                   style: TextStyle(
+  //                                       fontSize: fontSize_40sp,
+  //                                       color: Theme.of(context).primaryColor),
+  //                                 )),
+  //                           ),
+  //                         ),
+  //                       ),
+  //                       Flexible(
+  //                         flex: 1,
+  //                         fit: FlexFit.tight,
+  //                         child: ElevatedButton(
+  //                             // color: blueAccent,
+  //                             onPressed: () {
+  //                               if (visibleInput == false) {
+  //                                 if (otpController.text != "") {
+  //                                   valueOtp(otpController.text);
+  //                                   Navigator.of(context)
+  //                                       .pop({otpController.text});
+  //                                 } else {
+  //                                   Toast.showLong(
+  //                                       'otpDialog.title'.tr() + " !");
+  //                                 }
+  //                               } else {
+  //                                 Navigator.of(context).pop();
+  //                               }
+  //                             },
+  //                             style: ButtonStyle(
+  //                               backgroundColor: MaterialStateProperty.all(colorWhite),
+  //                               elevation: MaterialStateProperty.all<double>(0),
+  //                             ),
+  //                             child: Text('logOut.yes'.tr(),
+  //                                 style: TextStyle(
+  //                                     fontSize: fontSize_40sp,
+  //                                     color: Theme.of(context).primaryColor))),
+  //                       ),
+  //                     ],
+  //                   ),
+  //                 ),
+  //               )
+  //             ],
+  //           ),
+  //         );
+  //       });
+  // }
+
+
   static showMDialogOTP(
-      String messanger, BuildContext context, ValueOtp valueOtp,
+      String messenger, BuildContext context, ValueOtp valueOtp,
       {bool visibleInput = false}) {
+    bool isRemember = false;
     final otpController = TextEditingController();
     showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (BuildContext context) {
-          return Dialog(
-            // backgroundColor: Colors.blue,
-              insetPadding: (visibleInput != true) ? EdgeInsets.symmetric(horizontal: 10) : null, // fix overload pinCode
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.w)), //this right here
-            child: StatefulBuilder(
-              builder: (context, state) {
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: Container(
-                          child: Center(
-                        child: Text(visibleInput == true ? 'otpDialog.title'.tr(): "Vui lòng nhập số PIN",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 50.sp, fontWeight: FontWeight.bold)),
-                      )),
-                    ),
-                    visibleInput == true
-                        ? Container(
-                            child: Center(
-                          child: Text(
-                            messanger,
-                            textAlign: TextAlign.center,
-                          ),
-                        ))
-                        : Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10.w),
-                            margin: EdgeInsets.only(bottom: 30.h),
-                            child: PinCodeTextField(
-                              onCompleted: (pin) {
-                                otpController.text = pin;
-                              },
-                              length: 8,
-                              appContext: context,)
-                            ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border(
-                            top: BorderSide(color: Colors.grey),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: <Widget>[
-                            // ignore: avoid_unnecessary_containers
-                            Container(
-                              child: Flexible(
-                                flex: 1,
-                                fit: FlexFit.tight,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border(
-                                      right: BorderSide(color: Colors.grey),
-                                    ),
-                                  ),
-                                  child: ElevatedButton(
-                                      // color: blueAccent,
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty.all(colorWhite),
-                                        elevation: MaterialStateProperty.all<double>(0),
-                                      ),
-                                      child: Text(
-                                        // AppTranslate.of(context)
-                                        //     .translate('common.cancel'),
-                                        'logOut.cancel'.tr(),
-                                        style: TextStyle(
-                                            fontSize: fontSize_40sp,
-                                            color: Theme.of(context).primaryColor),
-                                      )),
-                                ),
-                              ),
-                            ),
-                            Flexible(
-                              flex: 1,
-                              fit: FlexFit.tight,
-                              child: ElevatedButton(
-                                  // color: blueAccent,
-                                  onPressed: () {
-                                    if (visibleInput == false) {
-                                      if (otpController.text != "") {
-                                        valueOtp(otpController.text);
-                                        Navigator.of(context)
-                                            .pop({otpController.text});
-                                      } else {
-                                        Toast.showLong(
-                                            'otpDialog.title'.tr() + " !");
-                                      }
-                                    } else {
-                                      Navigator.of(context).pop();
-                                    }
-                                  },
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(colorWhite),
-                                    elevation: MaterialStateProperty.all<double>(0),
-                                  ),
-                                  child: Text('logOut.yes'.tr(),
-                                      style: TextStyle(
-                                          fontSize: fontSize_40sp,
-                                          color: Theme.of(context).primaryColor))),
-                            ),
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          insetPadding: (visibleInput != true) ? EdgeInsets.symmetric(horizontal: 10) : null,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: margin_16),
+                      child: Center(
+                        child: Column(
+                          children: [
+                            Text("Thông báo",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 50.sp, fontWeight: FontWeight.bold)),
+                            SizedBox(height: height_16),
+                            Text(visibleInput == true ? 'otpDialog.title'.tr() : 'PINDialog.title'.tr(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 50.sp)),
                           ],
                         ),
                       ),
-                    )
-                  ],
-                );
-              }
-            ),
-          );
-        });
+                    ),
+                  ),
+                  visibleInput == true
+                      ? Container(
+                    child: Center(
+                      child: Text(
+                        messenger,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  )
+                      : Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10.w),
+                        margin: EdgeInsets.only(bottom: 30.h),
+                        child: PinCodeTextField(
+                          keyboardType: TextInputType.number,
+                          onCompleted: (pin) {
+                            otpController.text = pin;
+                          },
+                          length: 8,
+                          appContext: context,
+                        ),
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Checkbox(
+                            value: isRemember,
+                            onChanged: (value) {
+                              setState(() {
+                                isRemember = value;
+                              });
+                            },
+                          ),
+                          Text("Ghi Nhớ Mật Khẩu"),
+                        ],
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          top: BorderSide(color: Colors.grey),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          Flexible(
+                            flex: 1,
+                            fit: FlexFit.tight,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  right: BorderSide(color: Colors.grey),
+                                ),
+                              ),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(colorWhite),
+                                  elevation: MaterialStateProperty.all<double>(0),
+                                ),
+                                child: Text(
+                                  'logOut.cancel'.tr(),
+                                  style: TextStyle(
+                                      fontSize: 40.sp,
+                                      color: Theme.of(context).primaryColor),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            flex: 1,
+                            fit: FlexFit.tight,
+                            child: ElevatedButton(
+                              onPressed: () async {
+                                if (visibleInput == false) {
+                                  if (otpController.text != "") {
+                                    valueOtp(otpController.text);
+                                    // TODO - luu ma PIN
+                                    await SharePreferUtils.savePIN(otpController.text);
+                                    await SharePreferUtils.saveStatusPIN(isRemember);
+
+                                    Navigator.of(context).pop({otpController.text});
+                                  } else {
+                                    Toast.showLong('PINDialog.title'.tr() + " !");
+                                  }
+                                } else {
+                                  Navigator.of(context).pop();
+                                }
+                              },
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(colorWhite),
+                                elevation: MaterialStateProperty.all<double>(0),
+                              ),
+                              child: Text('logOut.yes'.tr(),
+                                  style: TextStyle(
+                                      fontSize: 40.sp,
+                                      color: Theme.of(context).primaryColor)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              );
+            },
+          ),
+        );
+      },
+    );
   }
 
   static logOut(BuildContext context) {
@@ -402,7 +589,7 @@ class DialogAlert {
                               ),
                             ),
                             child: ElevatedButton(
-                                // color: blueAccent,
+                              // color: blueAccent,
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
