@@ -166,76 +166,9 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
 
           if(checkAmountHDonResponse.isHsm == "Y"){
             isHsm = "Y";
-            DialogAlert.showMDialogOTP("", context, (values) => {
-              controller.kyHoaDonAPI(KyHoaDonApiRequest(
-                id: idHD,
-                pincode: int.parse(values),
-                chitiethoadon: getChiTietHD(),
-                dchinmua: type == 0 || type == 1 || type == 2 ? thongTinUser
-                    .customerAddress : "",
-                dthoainmua: type == 0 || type == 1 || type == 2 ? thongTinUser
-                    .customerTelephone : "",
-                emailnmua: type == 0 || type == 1 || type == 2 ? thongTinUser
-                    .customerEmail : "",
-                hthuctoan: type == 0 || type == 1 || type == 2 ? thongTinUser
-                    .typePayment == "Tiền mặt" ? "TM" : "" : "",
-                kyhieu: dropKyHieu,
-                loaihdon: invoiceType,
-                lstInvOtherInfoBan: lstPreLapHoaDon.first.lstInvOtherInfoBan,
-                lstInvOtherInfoCthd: lstPreLapHoaDon.first.lstInvOtherInfoCthd,
-                lstInvOtherInfoMua: lstPreLapHoaDon.first.lstInvOtherInfoMua,
-                lstInvOtherInfoTToan: lstPreLapHoaDon.first.lstInvOtherInfoTToan,
-                matte: "VND",
-                mauhdon: dropMauSo,
-                mstNmua: type == 0 || type == 1 || type == 2 ? thongTinUser
-                    .customerTaxcode : "",
-                ngaykyvanban: "",
-                serviceType: "N",
-                tendvinmua: type == 0 || type == 1 || type == 2 ? thongTinUser
-                    .customerCompany : "",
-                tenhdon: dropDMuc,
-                tennmua: type == 0 || type == 1 || type == 2 ? thongTinUser
-                    .customerName : "",
-                tgia: "1",
-                tienbangchu: Utils.convertVietnameseNumberReader(thanhTien),
-                tinhchat: "01",
-                tongtiennte: tongTienDv.replaceAll(".0", ""),
-                tongtienthuente: tienGTGT.replaceAll(".0", ""),
-                tongtienttoannte: thanhTien.replaceAll(".0", ""),
-                nhangnmua: "",
-                tkhoannmua: "",
-
-                lDoDDong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong
-                    .noiDung,
-                ngayDDong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong
-                    .ngayDieuDong,
-                ngayhdong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong
-                    .ngayKy,
-                nguoiDDong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong
-                    .dvDieuDong,
-                soLenhDDong: type == 0 || type == 1 || type == 2
-                    ? ""
-                    : objectHopdong.lenh,
-                hDongVchuyen: type == 0 || type == 1 || type == 2
-                    ? ""
-                    : thongTinVanChuyen.hdSo,
-                nguoivchuyen: type == 0 || type == 1 || type == 2
-                    ? ""
-                    : thongTinVanChuyen.name,
-                ptienvchuyen: type == 0 || type == 1 || type == 2
-                    ? ""
-                    : thongTinVanChuyen.phuongTien,
-                sohdong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong
-                    .hdKinhTeSo,
-                tenknhap: type == 0 || type == 1 || type == 2
-                    ? ""
-                    : thongTinVanChuyen.khoNhap,
-                tenkxuat: type == 0 || type == 1 || type == 2
-                    ? ""
-                    : thongTinVanChuyen.khoXuat,
-
-              ))
-            });
+            bool isSavePinCode = await SharePreferUtils.getStatusPIN();
+            String pinCode = await SharePreferUtils.getPIN();
+            (!isSavePinCode) ? DialogAlert.showMDialogOTP("", context, (values) =>  kiHoaDon(values)) :  kiHoaDon(pinCode);
           }else {
             controller.kyHoaDonAPI(KyHoaDonApiRequest(
               id: idHD,
@@ -1297,6 +1230,75 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
     });
     return listChiTietHD;
   }
+  void kiHoaDon(String pinCode){
+    controller.kyHoaDonAPI(KyHoaDonApiRequest(
+      id: idHD,
+      pincode: int.parse(pinCode),
+      chitiethoadon: getChiTietHD(),
+      dchinmua: type == 0 || type == 1 || type == 2 ? thongTinUser
+          .customerAddress : "",
+      dthoainmua: type == 0 || type == 1 || type == 2 ? thongTinUser
+          .customerTelephone : "",
+      emailnmua: type == 0 || type == 1 || type == 2 ? thongTinUser
+          .customerEmail : "",
+      hthuctoan: type == 0 || type == 1 || type == 2 ? thongTinUser
+          .typePayment == "Tiền mặt" ? "TM" : "" : "",
+      kyhieu: dropKyHieu,
+      loaihdon: invoiceType,
+      lstInvOtherInfoBan: lstPreLapHoaDon.first.lstInvOtherInfoBan,
+      lstInvOtherInfoCthd: lstPreLapHoaDon.first.lstInvOtherInfoCthd,
+      lstInvOtherInfoMua: lstPreLapHoaDon.first.lstInvOtherInfoMua,
+      lstInvOtherInfoTToan: lstPreLapHoaDon.first.lstInvOtherInfoTToan,
+      matte: "VND",
+      mauhdon: dropMauSo,
+      mstNmua: type == 0 || type == 1 || type == 2 ? thongTinUser
+          .customerTaxcode : "",
+      ngaykyvanban: "",
+      serviceType: "N",
+      tendvinmua: type == 0 || type == 1 || type == 2 ? thongTinUser
+          .customerCompany : "",
+      tenhdon: dropDMuc,
+      tennmua: type == 0 || type == 1 || type == 2 ? thongTinUser
+          .customerName : "",
+      tgia: "1",
+      tienbangchu: Utils.convertVietnameseNumberReader(thanhTien),
+      tinhchat: "01",
+      tongtiennte: tongTienDv.replaceAll(".0", ""),
+      tongtienthuente: tienGTGT.replaceAll(".0", ""),
+      tongtienttoannte: thanhTien.replaceAll(".0", ""),
+      nhangnmua: "",
+      tkhoannmua: "",
 
+      lDoDDong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong
+          .noiDung,
+      ngayDDong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong
+          .ngayDieuDong,
+      ngayhdong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong
+          .ngayKy,
+      nguoiDDong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong
+          .dvDieuDong,
+      soLenhDDong: type == 0 || type == 1 || type == 2
+          ? ""
+          : objectHopdong.lenh,
+      hDongVchuyen: type == 0 || type == 1 || type == 2
+          ? ""
+          : thongTinVanChuyen.hdSo,
+      nguoivchuyen: type == 0 || type == 1 || type == 2
+          ? ""
+          : thongTinVanChuyen.name,
+      ptienvchuyen: type == 0 || type == 1 || type == 2
+          ? ""
+          : thongTinVanChuyen.phuongTien,
+      sohdong: type == 0 || type == 1 || type == 2 ? "" : objectHopdong
+          .hdKinhTeSo,
+      tenknhap: type == 0 || type == 1 || type == 2
+          ? ""
+          : thongTinVanChuyen.khoNhap,
+      tenkxuat: type == 0 || type == 1 || type == 2
+          ? ""
+          : thongTinVanChuyen.khoXuat,
+
+    ));
+  }
 }
 

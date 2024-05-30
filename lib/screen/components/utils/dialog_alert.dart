@@ -370,7 +370,7 @@ class DialogAlert{
 
   static showMDialogOTP(
       String messenger, BuildContext context, ValueOtp valueOtp,
-      {bool visibleInput = false}) {
+      {bool visibleInput = false})  {
     bool isRemember = false;
     final otpController = TextEditingController();
     showDialog(

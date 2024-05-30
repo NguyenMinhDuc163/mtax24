@@ -337,19 +337,14 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                           idHDon: (widget.idHD != "0") ? widget.idHD: "",
                           // taxCode: taxCode,
                           taxCode: mstController.text,
-                          customerAddress: addressController
-                              .text ?? "",
+                          customerAddress: addressController.text ?? "",
                           customerCode: maKHController.text,
-                          customerCompany: unitNameController
-                              .text,
-                          customerEmail: emailController
-                              .text,
+                          customerCompany: unitNameController.text,
+                          customerEmail: emailController.text,
                           customerFax: fax,
                           customerName: nameController.text ?? '',
-                          customerTaxcode: mstController
-                              .text,
-                          customerTelephone: phoneController
-                              .text,
+                          customerTaxcode: mstController.text,
+                          customerTelephone: phoneController.text,
                         ));
 
                   }
