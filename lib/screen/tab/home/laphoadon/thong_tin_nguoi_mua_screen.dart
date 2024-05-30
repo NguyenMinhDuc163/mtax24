@@ -23,9 +23,10 @@ class ThongTinNguoiMuaScreen extends StatefulWidget with GetItStatefulWidgetMixi
   final CreateCustomerApiResponse thongTinUser;
   final TraCuuHoaDonChiTietResponse chiTietResponse;
   final bool personalID;
+  final bool statusCreateUser;
 
 
-  ThongTinNguoiMuaScreen({this.maKH, this.mst, this.trangThai, this.flag, this.idHD, this.thongTinUser, this.chiTietResponse, this.personalID});
+  ThongTinNguoiMuaScreen({this.maKH, this.mst, this.trangThai, this.flag, this.idHD, this.thongTinUser, this.chiTietResponse, this.personalID, this.statusCreateUser});
 
   @override
   State<StatefulWidget> createState() => _ThongTinNguoiMuaState();
@@ -331,7 +332,8 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                     //   Toast.showLongTop("Vui lòng nhập mã số thuế!");
                     //   return;
 
-
+                    // Neu khong phai create => khong call api => conflict tren db
+                    widget.statusCreateUser ?
                     controller.createCustomerAPI(
                         CreateCustomerApiRequest(
                           idHDon: (widget.idHD != "0") ? widget.idHD: "",
@@ -345,7 +347,24 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                           customerName: nameController.text ?? '',
                           customerTaxcode: mstController.text,
                           customerTelephone: phoneController.text,
-                        ));
+                        ))
+                        :
+                      Navigator.pop(context, CreateCustomerApiResponse(
+                        maKH: maKHController.text,
+                        typePayment: htPayment,
+                        typeMoney: dropTypeMoney,
+                        soTk: accountNumberController.text,
+                        tenNH: accountNameController.text,
+                        tenNguoiMua: nameController.text,
+                        customerTaxcode: mstController.text,
+                        customerCompany: unitNameController.text,
+                        customerAddress: addressController.text,
+                        customerEmail: emailController.text,
+                        customerTelephone: phoneController.text,
+                        personalID: personalIDController.text,
+                        customerName: nameController.text,
+                    ));
+
 
                   }
                 }else {
