@@ -85,6 +85,12 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
       print("==========isTt68: ${chiTietThongBaoResponse.thongBaoHdr.isTt68}");
       print("==========loaitbao: ${chiTietThongBaoResponse.thongBaoHdr.loaitbao}");
       print("==========tinhChat: ${chiTietThongBaoResponse.thongBaoHdr.tinhChat}");
+
+      lyDoController.text = chiTietThongBaoResponse.thongBaoHdr.lyDoXoaBo;
+      print('##################### dtlTbao ${chiTietThongBaoResponse.thongBaoHdr.ltbao}');
+      String typeTB = chiTietThongBaoResponse.thongBaoHdr.ltbao ?? "";
+      dropLoaiTB = (typeTB == '1') ? lstLoaiTB[0] : lstLoaiTB[1];
+
       if(chiTietThongBaoResponse.thongBaoHdr.isTt68 == "TT78"){
         lstTinhChat.clear();
         lstTinhChat.add("Hủy");
@@ -461,7 +467,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                 ItemFilterTB("Số hóa đơn:", "${sohdoncqtgoc == null ? "-" : sohdoncqtgoc}"),
                 Padding(
                   padding: EdgeInsets.only(top: 10.h,),
-                  child: ItemFilterTB("Ngày lập thông báo sai sót:", "${DateTime.now().day}/${DateTime.now().month.toString().padLeft(2, '0')}/${DateTime.now().year}"),
+                  child: ItemFilterTB("Ngày lập thông báo sai sót:", "${DateTime.now().day.toString().padLeft(2, '0')}/${DateTime.now().month.toString().padLeft(2, '0')}/${DateTime.now().year}"),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 10.h,),

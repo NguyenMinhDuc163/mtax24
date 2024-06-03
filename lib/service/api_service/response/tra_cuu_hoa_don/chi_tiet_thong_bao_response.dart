@@ -2199,6 +2199,7 @@ class ThongBaoHdr {
     this.lydodchinh,
     this.thuKhoNhap,
     this.tctbao,
+  this.ltbao,
   });
 
   final int id;
@@ -2289,6 +2290,7 @@ class ThongBaoHdr {
   final dynamic lydodchinh;
   final dynamic thuKhoNhap;
   final dynamic tctbao;
+  final dynamic ltbao;
 
   factory ThongBaoHdr.fromJson(Map<String, dynamic> json) => ThongBaoHdr(
     id: json["id"] == null ? null : json["id"],
@@ -2373,6 +2375,7 @@ class ThongBaoHdr {
     flagGiayTuin: json["flagGiayTuin"] == null ? null : json["flagGiayTuin"],
     mauso: json["mauso"],
     hdongiay: json["hdongiay"] == null ? null : json["hdongiay"],
+    ltbao: json["ltbao"] == null ? null : json["ltbao"],
     barcode: json["barcode"],
     tinhchatgoc: json["tinhchatgoc"],
     messReceived: json["messReceived"],
@@ -2470,5 +2473,6 @@ class ThongBaoHdr {
     "lydodchinh": lydodchinh,
     "thuKhoNhap": thuKhoNhap,
     "tctbao": tctbao,
+    "ltbao": ltbao,
   };
 }

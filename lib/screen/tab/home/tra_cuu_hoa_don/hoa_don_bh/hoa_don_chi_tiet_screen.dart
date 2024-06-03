@@ -1325,6 +1325,19 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
     return listChiTietHD;
   }
   void kiHoaDon(String pinCode){
+    tongTienDv = 0.toString();
+    tienGTGT = 0.toString();
+    thanhTien = 0.toString();
+    listHangHoa.forEach((element) {
+      tongTienDv = (double.parse(tongTienDv) + (element.thanhtientruocthue != null && element.thanhtientruocthue != "" ? double.parse(element.thanhtientruocthue) : 0.0)).toString();
+      tienGTGT = (double.parse(tienGTGT) + (element.tienthue != null && element.tienthue != "" ? double.parse(element.tienthue) : 0.0)).toString();
+      thanhTien = (double.parse(thanhTien) + (element.tongtienthanhtoan != null && element.tongtienthanhtoan != "" ? double.parse(element.tongtienthanhtoan) : element.thanhtientruocthue != null && element.thanhtientruocthue != "" ? double.parse(element.thanhtientruocthue) : "0")).toString();
+      // thanhTien = (double.parse(thanhTien) + (element.tongtienthanhtoan != null && element.tongtienthanhtoan != "" ? double.parse(element.tongtienthanhtoan) : 0.0)).toString();
+      if(chiTietResponse.adjustType == "-"){
+        tongTToanGiam = thanhTien;
+      }else{
+        tongTToanTang = thanhTien;
+      }});
     lapHdController.kyHoaDonAPI(KyHoaDonApiRequest(
         id: chiTietResponse.id,
         pincode: int.parse(pinCode),

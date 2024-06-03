@@ -238,11 +238,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
         createCustomerApiResponse.customerTelephone = phoneController.text;
         createCustomerApiResponse.personalID = personalIDController.text;
         // TODO - check MST
-        if(!Utils.validateMst(mstController.text)){
 
-          Toast.showLongTop("Mã số thuế sai cấu trúc!");
-          return;
-        }
 
         if(!Utils.isValidEmail(emailController.text)){
           Toast.showLongTop("Email không hợp lệ");
@@ -333,6 +329,11 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                     //   return;
 
                     // Neu khong phai create => khong call api => conflict tren db
+                    if(!Utils.validateMst(mstController.text)){
+
+                      Toast.showLongTop("Mã số thuế sai cấu trúc!");
+                      return;
+                    }
                     widget.statusCreateUser ?
                     controller.createCustomerAPI(
                         CreateCustomerApiRequest(
