@@ -62,7 +62,6 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
 
       if(widget.typeHD == "HDTT"){
         lstHDThayThe = widget.object;
-        print('w---------- ${lstHDThayThe.first.sovban}');
         tinhChat = lstHDThayThe.first.tinhChat;
         trangThai = lstHDThayThe.first.trangthai;
         id = lstHDThayThe.first.id.toString();
@@ -72,7 +71,6 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
         tinhChatHd_DC_TT = "02";
       }else {
         lstHDDieuChinh = widget.object;
-        print('w---------- ${lstHDDieuChinh.first.sovban}');
         tinhChat = lstHDDieuChinh.first.tinhChat;
         trangThai = lstHDDieuChinh.first.status;
         id = lstHDDieuChinh.first.id.toString();
@@ -96,6 +94,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
         ))
       });
     }
+
   }
 
   @override
@@ -196,7 +195,6 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
                   DialogAlert.showDialogAlertCancel(
                       context, "Bạn chưa chọn thông tin vận chuyển");
                 } else {
-                  print("-------------Sovb ${sovban}");
                   controller.luuHoaDon(LuuHoaDonRequest(
                     chitiethoadon: getChiTietHD(),
                     dchinmua: chiTietResponse.dchinmua,
@@ -606,7 +604,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("Tổng tiền thanh toán", style: text14OBold400,),
+                            Text("Tổng tiền thanh toán ", style: text14OBold400,),
                             Text("${Utils.covertToMoney(double.parse(thanhTien))}", style: text24Red600,),
                             Text("${chiTietResponse.matte.isNotEmpty ? chiTietResponse.matte : "VND"}", style: text14OBold400,),
 

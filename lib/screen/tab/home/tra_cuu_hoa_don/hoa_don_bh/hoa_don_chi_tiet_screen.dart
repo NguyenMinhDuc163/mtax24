@@ -130,7 +130,6 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         }
 
         trangthaiHD = chiTietResponse.trangthai;
-
         WidgetsBinding.instance.addPostFrameCallback((_) => getData());
 
     }
@@ -206,12 +205,6 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
               loaihdon: chiTietResponse.loaihdon,
               lstInvOtherInfoBan: chiTietResponse.lstInvOtherInfoBan,
               lstInvOtherInfoCthd: chiTietResponse.lstInvOtherInfoCthd,
-              lstInvOtherInfoMua: chiTietResponse.lstInvOtherInfoMua,
-              lstInvOtherInfoTToan: chiTietResponse.lstInvOtherInfoTToan,
-              matte: chiTietResponse.matte != null
-                  ? chiTietResponse.matte
-                  : "VND",
-              mauhdon: chiTietResponse.mauhdon,
               mstNmua: type == 0 || type == 1 || type == 2 ? chiTietResponse
                   .mstnmua : "",
               ngaykyvanban: chiTietResponse.ngayvban != null ? chiTietResponse
@@ -639,7 +632,6 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                       setState(() {
                                         // TODO loix khi them hang hoa va them moi
                                         Dsdvu hangHoaByMaResponse = result;
-                                        // print("------------------- ${hangHoaByMaResponse.toJson()} - - ${hangHoaByMaResponse.t}");
                                         listHangHoa.add(hangHoaByMaResponse);
                                         tongTienDv = (double.parse(tongTienDv) + double.parse(hangHoaByMaResponse.thanhtientruocthue)).toString();
                                         tienGTGT = (double.parse(tienGTGT) + double.parse(hangHoaByMaResponse.tienthue)).toString();
@@ -1034,8 +1026,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
 
     // TODO
     lstSpeedDialChild.clear();
-    if(lstHDXoaBo.isNotEmpty && _showAdjustErrors){
-        lstSpeedDialChild.add(
+    if(trangthaiHD != 'NEWR' && lstHDXoaBo.isNotEmpty && _showAdjustErrors){
+      lstSpeedDialChild.add(
           SpeedDialChild(
             child: Icon(Icons.edit),
             backgroundColor: colorPrimary,
@@ -1054,7 +1046,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         );
     }
 
-    if(lstHDThayThe.isNotEmpty && _showReplaceInvoice){
+    if(trangthaiHD != 'NEWR' && lstHDThayThe.isNotEmpty && _showReplaceInvoice){
+      // neu o TT khoi thao khong cho hien && the show luong hien thi
         lstSpeedDialChild.add(
           SpeedDialChild(
             child: Icon(Icons.edit),
@@ -1077,7 +1070,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         );
     }
 
-    if(lstHDDieuChinh.isNotEmpty && _showAdjust){
+    if(trangthaiHD != 'NEWR' && lstHDDieuChinh.isNotEmpty && _showAdjust){
         lstSpeedDialChild.add(
           SpeedDialChild(
             child: Icon(Icons.edit),
@@ -1166,13 +1159,6 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                   }else{
                     tongTToanTang = thanhTien;
                   }});
-
-
-
-
-
-
-
 
                 String matte = currencyMap[(thongTinUser.typeMoney != null) ? thongTinUser.typeMoney : chiTietResponse.matte ?? "VND"];
 

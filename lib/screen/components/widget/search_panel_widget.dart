@@ -71,7 +71,7 @@ class _SearchPanelWidgetState extends State<SearchPanelWidget> {
               style: TextStyle(fontSize: fontSize, color:
               (titleRight == "01" ? colorYellow100 :
               titleRight == "02" || titleRight == "00" ? colorD12129 :
-              titleRight == "03" ? colorD12129 : colorD12129)
+              titleRight == "03" ? color219653 : colorD12129)
               ),
             ) : Text(titleRight, style: TextStyle(fontSize: fontSize, color: color),),
           ),
