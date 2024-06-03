@@ -914,13 +914,13 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
                                 color: colorF4FAFF,
 
                             ),
-                            child: Row(
-                              children: [
-                                Expanded(child: Text("Tổng tiền thanh toán VND")),
-                                Text("${Utils.covertToMoney(double.parse(thanhTien))}"),
-
-                              ],
-                            )
+                            // child: Row(
+                            //   children: [
+                                // Expanded(child: Text("Tổng tiền thanh toán VND")),
+                                // Text("${Utils.covertToMoney(double.parse(thanhTien))}"),
+                            //   ],
+                            // )
+                            child: containerButton(context, type),
 
                         ),
                         chiTietResponse.tinhchat == "04" ?
@@ -1093,6 +1093,82 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
         kyDienTu: "Y",
         sohdongoc: chiTietResponse.sohdon
     ));
+  }
+  Widget containerButton(BuildContext context, int type){
+    tongTienDv = 0.toString();
+    tienGTGT = 0.toString();
+    thanhTien = 0.toString();
+    listHangHoa.forEach((element) {
+      tongTienDv = (double.parse(tongTienDv) + double.parse(element.thanhtientruocthue)).toString();
+      tienGTGT = (double.parse(tienGTGT) + double.parse(element.tienthue)).toString();
+      thanhTien = (double.parse(thanhTien) + double.parse(element.tongtienthanhtoan)).toString();
+    });
+    return Column(
+      children: [
+        type == 3 || type == 4 || type == 5 ? Container() :
+        Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 40.h),
+              child: Divider(height: 1,),
+            ),
+            Container(
+                padding: EdgeInsets.only(left: 20.h, right: 20.h),
+                height: MediaQuery.of(context).size.height * 0.08,
+                width: MediaQuery.of(context).size.width ,
+                decoration: BoxDecoration(
+                  color: colorF4FAFF,
+                  // borderRadius:
+                  // BorderRadius.all(Radius.circular(5))
+                ),
+                child: Row(
+                  children: [
+                    Expanded(child: Text("Tổng tiền dịch vụ")),
+                    Text("${Utils.covertToMoney(double.parse(tongTienDv))} đ", style: text14Bold600,),
+
+                  ],
+                )
+
+            ),
+            type == 2 ? SizedBox() : Divider(height: 1,),
+            type == 2 ? Container() :
+            Container(
+                padding: EdgeInsets.only(left: 20.h, right: 20.h),
+                height: MediaQuery.of(context).size.height * 0.08,
+                width: MediaQuery.of(context).size.width ,
+                decoration: BoxDecoration(
+                  color: colorF4FAFF,
+                  // borderRadius:
+                  // BorderRadius.all(Radius.circular(5))
+                ),
+                child: Row(
+                  children: [
+                    Expanded(child: Text("Tiền thuế GTGT")),
+                    Text("${Utils.covertToMoney(double.parse(tienGTGT))} đ", style: text14Bold600,),
+                  ],
+                )
+            ),
+          ],
+        ),
+        Divider(height: 1,),
+        Container(
+            padding: EdgeInsets.only(left: 20.h, right: 20.h),
+            height: MediaQuery.of(context).size.height * 0.08,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: colorF4FAFF,
+              // borderRadius:
+              // BorderRadius.all(Radius.circular(5))
+            ),
+            child: Row(
+              children: [
+                Expanded(child: Text("Thành tiền")),
+                Text("${Utils.covertToMoney(double.parse(thanhTien))} đ", style: text14Bold600,),
+              ],
+            )
+        ),
+      ],
+    );
   }
 }
 
