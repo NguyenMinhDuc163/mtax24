@@ -305,7 +305,18 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
             bool isSavePinCode = await SharePreferUtils.getStatusPIN();
             String pinCode = await SharePreferUtils.getPIN();
 
-            (!isSavePinCode) ? DialogAlert.showMDialogOTP("", context, (values) => {
+            (isSavePinCode == true) ?
+            controller.kyTBaoApi(NextTBaoXoaBoRequest(
+                soVBan: soVanBanController.text,
+                lyDoXoaBo: lyDoController.text,
+                ngayKyVanBan: ngayHDController.text,
+                inReq: response.invHdr,
+                portalTbaoReq: response.portalHdrTbao,
+                tctbao: tinhChatXoaBo,
+                lTBao: loaiTBXoaBo,
+                pincode: pinCode))
+
+                : DialogAlert.showMDialogOTP("", context, (values) => {
               controller.kyTBaoApi(NextTBaoXoaBoRequest(
                   soVBan: soVanBanController.text,
                   lyDoXoaBo: lyDoController.text,
@@ -315,15 +326,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                   tctbao: tinhChatXoaBo,
                   lTBao: loaiTBXoaBo,
                   pincode: values))
-            }) : controller.kyTBaoApi(NextTBaoXoaBoRequest(
-                soVBan: soVanBanController.text,
-                lyDoXoaBo: lyDoController.text,
-                ngayKyVanBan: ngayHDController.text,
-                inReq: response.invHdr,
-                portalTbaoReq: response.portalHdrTbao,
-                tctbao: tinhChatXoaBo,
-                lTBao: loaiTBXoaBo,
-                pincode: pinCode));
+            });
           }else {
             controller.kyTBaoApi(NextTBaoXoaBoRequest(
                 soVBan: soVanBanController.text,

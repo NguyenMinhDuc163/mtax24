@@ -168,7 +168,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
             isHsm = "Y";
             bool isSavePinCode = await SharePreferUtils.getStatusPIN();
             String pinCode = await SharePreferUtils.getPIN();
-            (!isSavePinCode) ? DialogAlert.showMDialogOTP("", context, (values) =>  kiHoaDon(values)) :  kiHoaDon(pinCode);
+            (isSavePinCode == true) ? kiHoaDon(pinCode) : DialogAlert.showMDialogOTP("", context, (values) =>  kiHoaDon(values)) ;
           }else {
             controller.kyHoaDonAPI(KyHoaDonApiRequest(
               id: idHD,
@@ -533,7 +533,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
 
                                 final resuls = await Navigator.push(
                                     context, new MaterialPageRoute(builder: (context) => ThongTinNguoiMuaScreen(maKH: thongTinUserController.text, flag: "GIP", idHD: "0", thongTinUser: thongTinUser,
-
+                                              statusCreateUser: true,
                                   personalID: (type == 6 || type == 7)  ? true : false,)));
                                 if(resuls != null){
                                   setState(() {

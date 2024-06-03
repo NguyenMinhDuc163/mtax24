@@ -187,8 +187,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         String pinCode = await SharePreferUtils.getPIN();
 
         if(checkAmountHDonResponse.isHsm == "Y"){
-          (!isSavePinCode) ? DialogAlert.showMDialogOTP("", context, (values) => kiHoaDon(values))
-              : kiHoaDon(pinCode);
+          (isSavePinCode == true) ?  kiHoaDon(pinCode)
+              :DialogAlert.showMDialogOTP("", context, (values) => kiHoaDon(values));
         }else {
           lapHdController.kyHoaDonAPI(KyHoaDonApiRequest(
               id: chiTietResponse.id,
