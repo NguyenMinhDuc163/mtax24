@@ -352,8 +352,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
           isHsm = "Y";
           bool isSavePinCode = await SharePreferUtils.getStatusPIN();
           String pinCode = await SharePreferUtils.getPIN();
-
-          (isSavePinCode == true) ? kiHoaDon(pinCode) : DialogAlert.showMDialogOTP("", context, (values) => kiHoaDon(values));
+          DialogAlert.showMDialogOTP("", context, (values) =>  kiHoaDon(values), pinCode: pinCode,
+              flag: (isSavePinCode == true) ? 'Y': "N");
         }else {
           isKyHD = true;
           DialogAlert.showLoadding(context);

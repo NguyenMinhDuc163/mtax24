@@ -168,7 +168,9 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
             isHsm = "Y";
             bool isSavePinCode = await SharePreferUtils.getStatusPIN();
             String pinCode = await SharePreferUtils.getPIN();
-            (isSavePinCode == true) ? kiHoaDon(pinCode) : DialogAlert.showMDialogOTP("", context, (values) =>  kiHoaDon(values)) ;
+            print('------------------ isSavePinCode: $isSavePinCode ------------------ pinCode: $pinCode');
+              DialogAlert.showMDialogOTP("", context, (values) =>  kiHoaDon(values), pinCode: pinCode,
+                  flag: (isSavePinCode == true) ? 'Y': "N");
           }else {
             controller.kyHoaDonAPI(KyHoaDonApiRequest(
               id: idHD,

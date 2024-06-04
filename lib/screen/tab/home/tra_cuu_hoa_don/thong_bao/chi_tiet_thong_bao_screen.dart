@@ -280,6 +280,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                 tenNMua: ["${tenNguoiMuaController.text}"],
                 tinhchatgoc: ["$type"],
               ));
+
             }
           }
       ),
@@ -294,6 +295,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
     registerHandler((ThongBaoModel x) => x.nextTBaoXoaBo, (context, ThongBaoXoaBoResponse response, cancel) async {
       if(response != null){
         thongBaoXoaBoResponse = response;
+        print("_____________________________da vao day roi");
         if(typeNext == "LUU") {
           print("_____________________________4");
           controller.preLuuTBaoXoaBo(NextTBaoXoaBoRequest(
@@ -310,19 +312,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
           if(response.isHsm == "Y"){
             bool isSavePinCode = await SharePreferUtils.getStatusPIN();
             String pinCode = await SharePreferUtils.getPIN();
-
-            (isSavePinCode == true) ?
-            controller.kyTBaoApi(NextTBaoXoaBoRequest(
-                soVBan: soVanBanController.text,
-                lyDoXoaBo: lyDoController.text,
-                ngayKyVanBan: ngayHDController.text,
-                inReq: response.invHdr,
-                portalTbaoReq: response.portalHdrTbao,
-                tctbao: tinhChatXoaBo,
-                lTBao: loaiTBXoaBo,
-                pincode: pinCode))
-
-                : DialogAlert.showMDialogOTP("", context, (values) => {
+  DialogAlert.showMDialogOTP("", context, (values) => {
               controller.kyTBaoApi(NextTBaoXoaBoRequest(
                   soVBan: soVanBanController.text,
                   lyDoXoaBo: lyDoController.text,
@@ -331,8 +321,9 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                   portalTbaoReq: response.portalHdrTbao,
                   tctbao: tinhChatXoaBo,
                   lTBao: loaiTBXoaBo,
-                  pincode: values))
-            });
+                  pincode: values), )
+            }, pinCode: pinCode,
+          flag: (isSavePinCode == true) ? 'Y': "N");
           }else {
             controller.kyTBaoApi(NextTBaoXoaBoRequest(
                 soVBan: soVanBanController.text,

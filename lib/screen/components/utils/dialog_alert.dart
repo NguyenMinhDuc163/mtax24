@@ -370,9 +370,10 @@ class DialogAlert{
 
   static showMDialogOTP(
       String messenger, BuildContext context, ValueOtp valueOtp,
-      {bool visibleInput = false})  {
-    bool isRemember = false;
+      {bool visibleInput = false, String pinCode = '12345678', String flag = 'N'})  {
+    bool isRemember = (flag == 'Y') ? true : false;
     final otpController = TextEditingController();
+    otpController.text = (flag == 'Y') ? pinCode : '';
     showDialog(
       barrierDismissible: false,
       context: context,
@@ -425,6 +426,7 @@ class DialogAlert{
                         margin: EdgeInsets.only(bottom: 30.h),
                         child: PinCodeTextField(
                           keyboardType: TextInputType.number,
+                          controller: otpController,
                           onCompleted: (pin) {
                             otpController.text = pin;
                           },
