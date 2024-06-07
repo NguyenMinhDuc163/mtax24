@@ -190,6 +190,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
               flag: (isSavePinCode == true) ? 'Y': "N");
         }else {
           lapHdController.kyHoaDonAPI(KyHoaDonApiRequest(
+              check_savepass: "Y",
               id: chiTietResponse.id,
               pincode: 111111,
               chitiethoadon: getChiTietHD(),
@@ -1339,6 +1340,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         tongTToanTang = thanhTien;
       }});
     lapHdController.kyHoaDonAPI(KyHoaDonApiRequest(
+        check_savepass: "Y",
         id: chiTietResponse.id,
         pincode: int.parse(pinCode),
         chitiethoadon: getChiTietHD(),

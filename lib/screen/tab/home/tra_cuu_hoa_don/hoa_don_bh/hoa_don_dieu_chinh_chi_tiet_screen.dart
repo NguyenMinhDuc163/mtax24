@@ -358,6 +358,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
           isKyHD = true;
           DialogAlert.showLoadding(context);
           controller.kyHoaDonAPI(KyHoaDonApiRequest(
+              check_savepass: "Y",
             id: idHD,
             ngaykyvanban: ngaykyvanban,
             sovban: sovban,
@@ -1016,6 +1017,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
   
   void kiHoaDon(String pinCode){
     controller.kyHoaDonAPI(KyHoaDonApiRequest(
+        check_savepass: "Y",
         id: idHD,
         ngaykyvanban: ngaykyvanban,
         sovban: sovban,

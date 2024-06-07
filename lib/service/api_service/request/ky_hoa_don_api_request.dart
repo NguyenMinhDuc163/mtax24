@@ -75,6 +75,7 @@ class KyHoaDonApiRequest {
     this.lydoDC,
     this.kyDienTu,
     this.sohdongoc,
+    this.check_savepass,
   });
 
   final String id;
@@ -141,6 +142,7 @@ class KyHoaDonApiRequest {
   final String lydoDC;
   final String kyDienTu;
   final String sohdongoc;
+  final String check_savepass;
 
   factory KyHoaDonApiRequest.fromJson(Map<String, dynamic> json) => KyHoaDonApiRequest(
     id: json["id"] == null ? null : json["id"],
@@ -207,6 +209,7 @@ class KyHoaDonApiRequest {
     lydoDC: json["lydoDC"] == null ? null : json["lydoDC"],
     kyDienTu: json["kyDienTu"] == null ? null : json["kyDienTu"],
     sohdongoc: json["sohdongoc"] == null ? null : json["sohdongoc"],
+    check_savepass: json["check_savepass"] == null ? null : json["check_savepass"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -274,6 +277,7 @@ class KyHoaDonApiRequest {
     "lydoDC": lydoDC == null ? null : lydoDC,
     "kyDienTu": kyDienTu == null ? null : kyDienTu,
     "sohdongoc": sohdongoc == null ? null : sohdongoc,
+    "check_savepass": check_savepass == null ? null : check_savepass,
   };
 }
 

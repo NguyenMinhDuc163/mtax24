@@ -238,7 +238,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
               tenkxuat: type == 0 || type == 1 || type == 2
                   ? ""
                   : thongTinVanChuyen.khoXuat,
-
+                check_savepass: "Y"
             ));
           }
         }else {
@@ -310,7 +310,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
             tenkxuat: type == 0 || type == 1 || type == 2
                 ? ""
                 : thongTinVanChuyen.khoXuat,
-
+              check_savepass: "Y"
           ));
         }
       }
@@ -1234,6 +1234,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
   }
   void kiHoaDon(String pinCode){
     controller.kyHoaDonAPI(KyHoaDonApiRequest(
+      check_savepass: "Y",
       id: idHD,
       pincode: int.parse(pinCode),
       chitiethoadon: getChiTietHD(),
