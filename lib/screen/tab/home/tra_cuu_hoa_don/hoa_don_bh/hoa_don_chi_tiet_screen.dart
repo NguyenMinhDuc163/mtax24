@@ -182,15 +182,17 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         final objectConverted = jsonDecode(response?.object);
         CheckAmountHDonResponse checkAmountHDonResponse = CheckAmountHDonResponse.fromJson(objectConverted);
 
-        bool isSavePinCode = await SharePreferUtils.getStatusPIN();
-        String pinCode = await SharePreferUtils.getPIN();
+        // bool isSavePinCode = await SharePreferUtils.getStatusPIN();
+        // String pinCode = await SharePreferUtils.getPIN();
 
+        String isSavePinCode = checkAmountHDonResponse.check_savepass;
+        String pinCode = checkAmountHDonResponse.pinHSM;
         if(checkAmountHDonResponse.isHsm == "Y"){
           DialogAlert.showMDialogOTP("", context, (values) =>  kiHoaDon(values), pinCode: pinCode,
-              flag: (isSavePinCode == true) ? 'Y': "N");
+              flag: isSavePinCode);
         }else {
           lapHdController.kyHoaDonAPI(KyHoaDonApiRequest(
-              check_savepass: "Y",
+              check_savepass: isSavePinCode,
               id: chiTietResponse.id,
               pincode: 111111,
               chitiethoadon: getChiTietHD(),
