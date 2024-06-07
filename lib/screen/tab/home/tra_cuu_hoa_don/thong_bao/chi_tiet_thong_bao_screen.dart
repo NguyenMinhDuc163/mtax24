@@ -74,7 +74,9 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
   @override
   void initState() {
     super.initState();
-    print("========type: ${widget.type}");
+    print("========type: ${widget.type} ");
+    dropLoaiTB = 'Thông báo hủy/giải trình của NNT';
+    dropTinhChat = 'Hủy';
     if(widget.object != null && widget.type == "TB"){
       chiTietThongBaoResponse = widget.object;
       title = Utils.convertTinhChatThongBao(chiTietThongBaoResponse.thongBaoHdr.tinhChat);
@@ -510,14 +512,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                             hintText: "Số văn bản thỏa thuận",
                           ),
                         ) : SizedBox(),
-                        Padding(
-                          padding: EdgeInsets.only(top: 30.h,),
-                          child: TextInput(
-                            haveBorder: true,
-                            textEditingController: lyDoController,
-                            hintText: type == "10" ? "Lý do điều chỉnh(*)" : "Lý do(*)",
-                          ),
-                        ),
+
                         widget.type != "TCHDXoBo" && isTt68 == "TT68" ?
                         CalendarInput(
                           textDateController: ngayKyController,
@@ -735,6 +730,14 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                             ),
                           ],
                         ): Container(),
+                        Padding(
+                          padding: EdgeInsets.only(top: 30.h,),
+                          child: TextInput(
+                            haveBorder: true,
+                            textEditingController: lyDoController,
+                            hintText: type == "10" ? "Lý do điều chỉnh(*)" : "Lý do(*)",
+                          ),
+                        ),
                       ],
                     ),
                   ],

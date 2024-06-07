@@ -93,9 +93,12 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
     registerHandler((ThongBaoModel x) => x.dMucHoaDon, (context, List<DanhMucHoaDonResponse> list, cancel) { 
       if(list.isNotEmpty){
         lstHoaDon = list;
-        list.forEach((element) {
-          lstLoaiHD.add(element.invoiceName);
-        });
+        // list.forEach((element) {
+        //   lstLoaiHD.add(element.invoiceName);
+        // });
+        for(int  i = 0; i < list.length; i++){
+          lstLoaiHD.add(list[i].invoiceCode + ": " + list[i].invoiceName);
+        }
         if(widget.object != null){
           objectTB = widget.object;
           soHoaDonController.text = objectTB.soHoaDon.isNotEmpty ? objectTB.soHoaDon : "";

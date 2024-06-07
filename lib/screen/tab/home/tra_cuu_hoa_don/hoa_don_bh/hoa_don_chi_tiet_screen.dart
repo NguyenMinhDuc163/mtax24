@@ -222,15 +222,15 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
               tongtiennte: Utils.covertToMoney(
                   double.parse(tongTienDv.replaceAll(",", "")))
                   .toString()
-                  .replaceAll(",", ""),
+                  .replaceAll(",", "") ?? '',
               tongtienthuente: Utils.covertToMoney(
                   double.parse(tienGTGT.replaceAll(",", "")))
                   .toString()
-                  .replaceAll(",", ""),
+                  .replaceAll(",", "") ?? '',
               tongtienttoannte: Utils.covertToMoney(
                   double.parse(thanhTien.replaceAll(",", "")))
                   .toString()
-                  .replaceAll(",", ""),
+                  .replaceAll(",", "") ?? '',
               nhangnmua: "",
               tkhoannmua: "",
 
@@ -783,14 +783,26 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                                             onTap: (){
                                                               DialogAlert.showDialogInfo(context, "Bạn có muốn xóa hàng hóa không?", onSuccess: (){
                                                                 setState(() {
-                                                                  // String money = "${listHangHoa[index].thanhTien != null ? Utils.covertToMoney(listHangHoa[index].thanhTien) : 0.0}";
+                                                                  // String money = "${listHangHoa[index] != null ? Utils.covertToMoney(listHangHoa[index].thanhTien) : 0.0}";
                                                                   // String moneyDV = "${listHangHoa[index].tongTienDV != null ? Utils.covertToMoney(listHangHoa[index].tongTienDV) : 0.0}";
                                                                   // String moneyGTGT = "${listHangHoa[index].tienGTGT != null ? Utils.covertToMoney(listHangHoa[index].tienGTGT) : 0.0}";
-                                                                  //
+
                                                                   // thanhTien = (double.parse(thanhTien.replaceAll(",", "")) - double.parse(money.replaceAll(",", ""))).toString();
                                                                   // tongTienDv = (double.parse(tongTienDv.replaceAll(",", "")) - double.parse(moneyDV.replaceAll(",", ""))).toString();
                                                                   // tienGTGT = (double.parse(tienGTGT.replaceAll(",", "")) - double.parse(moneyGTGT.replaceAll(",", ""))).toString();
-
+                                                                  String money = "${listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].thanhtientruocthue == "0.0" && listHangHoa[index].tienthue.isNotEmpty && listHangHoa[index].tienthue == "0.0" ?
+                                                                  Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue) + double.parse(listHangHoa[index].tienthue)) :
+                                                                  listHangHoa[index].thanhtientruocthue.isNotEmpty && listHangHoa[index].tienthue.isEmpty ?
+                                                                  Utils.covertToMoney(double.parse(listHangHoa[index].thanhtientruocthue)) :
+                                                                  listHangHoa[index].thanhtientruocthue.isEmpty && listHangHoa[index].tienthue.isEmpty && listHangHoa[index].tongtienthanhtoan.isNotEmpty ?
+                                                                  Utils.covertToMoney(double.parse(listHangHoa[index].tongtienthanhtoan)) :
+                                                                  listHangHoa[index].tongtienthanhtoan.isNotEmpty ? listHangHoa[index].tongtienthanhtoan : "0""0"}";
+                                                                  thanhTien = (double.parse(thanhTien.replaceAll(",", "")) - double.parse(money.replaceAll(",", ""))).toString();
+                                                                  if(chiTietResponse.adjustType == "-"){
+                                                                    tongTToanGiam = thanhTien;
+                                                                  }else{
+                                                                    tongTToanTang = thanhTien;
+                                                                  }
                                                                   listHangHoa.removeAt(index);
                                                                   Navigator.of(context).pop();
                                                                 });
@@ -1032,7 +1044,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
           SpeedDialChild(
             child: Icon(Icons.edit),
             backgroundColor: colorPrimary,
-            label: 'Thông báo hóa đơn có sai sót (04/SS)',
+            label: 'Thông báo hóa đơn có sai sót (S04/SS)',
             onTap: () {
              _showReplaceInvoice = false;
              addListSpeedDialChild(
@@ -1153,7 +1165,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                 listHangHoa.forEach((element) {
                   tongTienDv = (double.parse(tongTienDv) + (element.thanhtientruocthue != null && element.thanhtientruocthue != "" ? double.parse(element.thanhtientruocthue) : 0.0)).toString();
                   tienGTGT = (double.parse(tienGTGT) + (element.tienthue != null && element.tienthue != "" ? double.parse(element.tienthue) : 0.0)).toString();
-                  thanhTien = (double.parse(thanhTien) + (element.tongtienthanhtoan != null && element.tongtienthanhtoan != "" ? double.parse(element.tongtienthanhtoan) : element.thanhtientruocthue != null && element.thanhtientruocthue != "" ? double.parse(element.thanhtientruocthue) : "0")).toString();
+                  thanhTien = (double.parse(thanhTien) + (element.tongtienthanhtoan != null && element.tongtienthanhtoan != "" ? double.parse(element.tongtienthanhtoan) : element.thanhtientruocthue != null && element.thanhtientruocthue != ""
+                      ? double.parse(element.thanhtientruocthue) : "0")).toString();
                   // thanhTien = (double.parse(thanhTien) + (element.tongtienthanhtoan != null && element.tongtienthanhtoan != "" ? double.parse(element.tongtienthanhtoan) : 0.0)).toString();
                   if(chiTietResponse.adjustType == "-"){
                     tongTToanGiam = thanhTien;
@@ -1317,7 +1330,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         tendvu: element.tendvu,
         thanhtientruocthue: element.thanhtientruocthue.toString().replaceAll(".0", ""),
         thuesuat: element.thuesuat.replaceAll(" %", ""),
-        tienchietkhau: element.tienchietkhau.toString(),
+        tienchietkhau: element.tienchietkhau.toString() ?? '',
         tienthue: element.tienthue.toString().replaceAll(".0", ""),
         tongtienthanhtoan: element.tongtienthanhtoan.toString().replaceAll(".0", ""),
 

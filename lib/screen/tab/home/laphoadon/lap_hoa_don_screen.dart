@@ -91,10 +91,6 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
         if(list.isNotEmpty){
           lstDMucHoaDon = list;
           lstDMuc.clear();
-          // list.forEach((element) {
-          //   lstDMuc.add(lstDMucHoaDon.first.invoiceCode + ": " + element.invoiceName);
-          //   print(element.invoiceName);
-          // });
 
           for(int  i = 0; i < list.length; i++){
             lstDMuc.add(list[i].invoiceCode + ": " + list[i].invoiceName);
