@@ -160,13 +160,17 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
           // isKyHD = true;
           // DialogAlert.showLoadding(context);
 
+          bool isSavePinCodeLocal = await SharePreferUtils.getStatusPIN();
+          String pinCodeLocal = await SharePreferUtils.getPIN();
+
+          String isSavePinCode = checkAmountHDonResponse.check_savepass;
+          String pinCode = checkAmountHDonResponse.pinHSM;
+          print('isSavePinCode: $isSavePinCode - pinCode: $pinCode isSavePinCodeLocal $isSavePinCodeLocal');
           if(checkAmountHDonResponse.isHsm == "Y"){
             isHsm = "Y";
-            bool isSavePinCode = await SharePreferUtils.getStatusPIN();
-            String pinCode = await SharePreferUtils.getPIN();
-            print('------------------ isSavePinCode: $isSavePinCode ------------------ pinCode: $pinCode');
-              DialogAlert.showMDialogOTP("", context, (values) =>  kiHoaDon(values), pinCode: pinCode,
-                  flag: (isSavePinCode == true) ? 'Y': "N");
+
+            DialogAlert.showMDialogOTP("", context, (values) =>  kiHoaDon(values, isSavePinCodeLocal ?'Y' :'N'), pinCode: pinCode,
+                flag: isSavePinCode);
           }else {
             controller.kyHoaDonAPI(KyHoaDonApiRequest(
               id: idHD,
@@ -1228,9 +1232,9 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
     });
     return listChiTietHD;
   }
-  void kiHoaDon(String pinCode){
+  void kiHoaDon(String pinCode, String isSavePinCode){
     controller.kyHoaDonAPI(KyHoaDonApiRequest(
-      check_savepass: "Y",
+      check_savepass: isSavePinCode,
       id: idHD,
       pincode: int.parse(pinCode),
       chitiethoadon: getChiTietHD(),

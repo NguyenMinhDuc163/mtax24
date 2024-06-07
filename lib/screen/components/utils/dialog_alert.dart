@@ -496,8 +496,12 @@ class DialogAlert{
                               onPressed: () async {
                                 if (visibleInput == false) {
                                   if (otpController.text != "") {
+                                    if(pinCode != null && pinCode != '' && pinCode != otpController.text){
+                                      Toast.showLong('Mã PIN không đúng');
+                                      return;
+                                    }
                                     valueOtp(otpController.text);
-                                    // TODO - luu ma PIN
+                                    // // TODO - luu ma PIN
                                     await SharePreferUtils.savePIN(otpController.text);
                                     await SharePreferUtils.saveStatusPIN(isRemember);
 

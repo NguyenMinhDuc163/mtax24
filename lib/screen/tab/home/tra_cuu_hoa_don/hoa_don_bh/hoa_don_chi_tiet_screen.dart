@@ -182,13 +182,14 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         final objectConverted = jsonDecode(response?.object);
         CheckAmountHDonResponse checkAmountHDonResponse = CheckAmountHDonResponse.fromJson(objectConverted);
 
-        // bool isSavePinCode = await SharePreferUtils.getStatusPIN();
-        // String pinCode = await SharePreferUtils.getPIN();
+        bool isSavePinCodeLocal = await SharePreferUtils.getStatusPIN();
+        String pinCodeLocal = await SharePreferUtils.getPIN();
 
         String isSavePinCode = checkAmountHDonResponse.check_savepass;
         String pinCode = checkAmountHDonResponse.pinHSM;
+
         if(checkAmountHDonResponse.isHsm == "Y"){
-          DialogAlert.showMDialogOTP("", context, (values) =>  kiHoaDon(values), pinCode: pinCode,
+          DialogAlert.showMDialogOTP("", context, (values) =>  kiHoaDon(values, isSavePinCodeLocal ?'Y' :'N'), pinCode: pinCode,
               flag: isSavePinCode);
         }else {
           lapHdController.kyHoaDonAPI(KyHoaDonApiRequest(
@@ -1340,7 +1341,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
     });
     return listChiTietHD;
   }
-  void kiHoaDon(String pinCode){
+  void kiHoaDon(String pinCode, String isSavePinCode){
     tongTienDv = 0.toString();
     tienGTGT = 0.toString();
     thanhTien = 0.toString();
@@ -1355,7 +1356,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         tongTToanTang = thanhTien;
       }});
     lapHdController.kyHoaDonAPI(KyHoaDonApiRequest(
-        check_savepass: "Y",
+        check_savepass: isSavePinCode,
         id: chiTietResponse.id,
         pincode: int.parse(pinCode),
         chitiethoadon: getChiTietHD(),
