@@ -38,6 +38,7 @@ class TraCuuHoaDonResponse {
     this.hthucHDonGoc,
     this.ngayHDon,
     this.trangthaiCQT,
+    this.tenNmua,
   });
 
   final String tinhChat;
@@ -68,6 +69,7 @@ class TraCuuHoaDonResponse {
   final dynamic hthucHDonGoc;
   final dynamic ngayHDon;
   final dynamic trangthaiCQT;
+  final dynamic tenNmua;
 
   factory TraCuuHoaDonResponse.fromJson(Map<String, dynamic> json) => TraCuuHoaDonResponse(
     tinhChat: json["tinhChat"] == null ? null : json["tinhChat"],
@@ -97,6 +99,7 @@ class TraCuuHoaDonResponse {
     adjustType: json["adjustType"] == null ? null : json["adjustType"],
     ngayHDon: json["ngayHDon"] == null ? null : json["ngayHDon"],
     trangthaiCQT: json["trangthaiCQT"] == null ? null : json["trangthaiCQT"],
+    tenNmua: json["tenNmua"] == null ? null : json["tenNmua"],
     hthucHDonGoc: json["hthucHDonGoc"],
   );
 
@@ -128,6 +131,7 @@ class TraCuuHoaDonResponse {
     "adjustType": adjustType == null ? null : adjustType,
     "ngayHDon": ngayHDon == null ? null : ngayHDon,
     "trangthaiCQT": trangthaiCQT == null ? null : trangthaiCQT,
+    "tenNmua": tenNmua == null ? null : tenNmua,
     "hthucHDonGoc": hthucHDonGoc,
   };
 }

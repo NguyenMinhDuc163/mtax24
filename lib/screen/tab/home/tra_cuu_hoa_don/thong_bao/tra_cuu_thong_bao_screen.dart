@@ -152,7 +152,8 @@ class _TraCuuThongBaoScreenState extends State<TraCuuThongBaoScreen> with GetItS
                                             page = 1;
                                             lstThongBao.clear();
                                             noData = "";
-                                            traCuu(loaiHd: filterObjectTB.loaiHdID, trangThai: filterObjectTB.trangThaiTbId, tinhChat: filterObjectTB.tinhChatId, loaiTb: filterObjectTB.loaiHdID, soTb: filterObjectTB.soTb);
+                                            traCuu(loaiHd: filterObjectTB.loaiHdID, trangThai: filterObjectTB.trangThaiTbId, tinhChat: filterObjectTB.tinhChatId,
+                                                loaiTb: filterObjectTB.loaiHdID, soTb: filterObjectTB.soTb);
                                           });
                                         }
                                       },
@@ -232,7 +233,7 @@ class _TraCuuThongBaoScreenState extends State<TraCuuThongBaoScreen> with GetItS
                                                   Text("Hóa đơn", style: text12OpacityBold400,),
                                                   Padding(
                                                     padding: EdgeInsets.only(top: 10.h),
-                                                    child: Text("${lstThongBao[index].sohdongoc == null ? "0" : lstThongBao[index].sohdongoc}", style: text16Bold600,),
+                                                    child: Text("${(lstThongBao[index].sohdongoc == null || lstThongBao[index].sohdongoc == 'null') ? '0' : lstThongBao[index].sohdongoc}", style: text16Bold600,),
                                                   ),
                                                 ],
                                               ),

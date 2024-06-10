@@ -658,7 +658,7 @@ class DialogAlert{
                   ),
                   Text('fingerprint.notif'.tr(),
                       style: TextStyle(
-                          fontSize: 50.sp, fontWeight: FontWeight.bold)),
+                          fontSize: 50.sp, fontWeight: FontWeight.bold,)),
                   SizedBox(
                     height: 20.h,
                   ),

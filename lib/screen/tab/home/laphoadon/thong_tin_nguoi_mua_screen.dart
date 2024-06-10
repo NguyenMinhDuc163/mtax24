@@ -454,6 +454,8 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                                         }
                                         controller.getInfoCustomerByCode(GetInfoCustomerByCodeRequest(
                                           taxCode: mstController.text,
+                                            flag: "",
+                                            idHD: "",
                                         ));
                                       })),
                             ],

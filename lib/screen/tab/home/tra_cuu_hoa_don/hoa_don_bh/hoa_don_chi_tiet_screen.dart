@@ -486,7 +486,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                 Row(
                                   children: [
                                     Expanded(child: Text("Thông tin khách hàng".toUpperCase(), style: text14OBold600,)),
-                                    Icon(Icons.post_add_outlined)
+                                    (chiTietResponse.trangthai != "SUCC") ? Icon(Icons.post_add_outlined) : Container(),
                                   ],
                                 ),
                                 tenNM == null || tenNM == "" ? SizedBox() :

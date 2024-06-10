@@ -17,6 +17,8 @@ class SearchPanelWidget extends StatefulWidget {
      this.invoiceStatus,
      this.invoiceCQT,
       this.moneyType,
+      this.nameCustomer,
+
   }) : super(key: key);
   final String taxCode;
   final String companyName;
@@ -28,6 +30,7 @@ class SearchPanelWidget extends StatefulWidget {
   final String invoiceStatus;
   final String invoiceCQT;
   final String moneyType;
+  final String nameCustomer;
   @override
   State<SearchPanelWidget> createState() => _SearchPanelWidgetState();
 }
@@ -105,7 +108,9 @@ class _SearchPanelWidgetState extends State<SearchPanelWidget> {
                         Text("Mã số thuế: ${widget.taxCode}", style: TextStyle(fontSize: fontSize_14, fontWeight: FontWeight.bold), softWrap: true,   maxLines: 3, // Giới hạn số dòng là 3
                           overflow: TextOverflow.ellipsis,),
                         SizedBox(height: height_8,),
-                        Text("Tên công ty: ${widget.companyName}", style: TextStyle(fontSize: fontSize_14 ),),
+                        ((widget.taxCode != null && widget.taxCode != '')) ?
+                        Text("Tên công ty: ${widget.companyName}", style: TextStyle(fontSize: fontSize_14 ),)
+                            : Text("Tên khách hàng: ${widget.nameCustomer}", style: TextStyle(fontSize: fontSize_14 ),),
                       ],
                     ),
                   ),

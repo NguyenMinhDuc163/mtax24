@@ -104,26 +104,26 @@ class _TraCuuHoaDonBHScreenState extends State<TraCuuHoaDonBHScreen> with GetItS
     String statusCQT,
   }){
     controller.traCuuHoadonBh(TraCuuHoaDonRequest(
-      mstNban: mstNban,
-      emailnmua: emailnmua,
-      fromDate: tuNgay,
+      mstNban: mstNban ?? '',
+      emailnmua: emailnmua ?? '',
+      fromDate: tuNgay ?? '',
       fromDateNgayHDon: "",
       fromDateShow: "",
-      idNguoilap: idNguoiLap,
-      kyHieuHDon: kyHieuHDon,
-      loaihdon: loaihdon,
-      mauhdon: mauhdon,
+      idNguoilap: idNguoiLap ?? '',
+      kyHieuHDon: kyHieuHDon ?? '',
+      loaihdon: loaihdon ?? '',
+      mauhdon: mauhdon ?? '',
       maXacMinh: "",
-      mstNmua: mstNmua,
-      page: page,
-      sohdon: sohdon,
+      mstNmua: mstNmua ?? '',
+      page: page ?? '',
+      sohdon: sohdon ?? '',
       soHoaDonCqt: "",
-      tinhChat: tinhChat,
-      toDate: denNgay,
+      tinhChat: tinhChat ?? '',
+      toDate: denNgay ?? '',
       toDateNgayHDon: "",
       toDateShow: "",
-      trangThai: trangThai,
-      statusCQT: statusCQT,
+      trangThai: trangThai ?? '',
+      statusCQT: statusCQT ?? '',
     ));
   }
 
@@ -156,10 +156,35 @@ class _TraCuuHoaDonBHScreenState extends State<TraCuuHoaDonBHScreen> with GetItS
         noData = "Không tìm thấy dữ liệu!";
       }
     });
-    registerHandler((HoaDonBanHangModel x) => x.hoaDonChiTiet, (context, TraCuuHoaDonChiTietResponse response, cancel) {
+    registerHandler((HoaDonBanHangModel x) => x.hoaDonChiTiet, (context, TraCuuHoaDonChiTietResponse response, cancel) async{
       chiTietResponse = response;
-      Navigator.push(
+      await Navigator.push(
           context, new MaterialPageRoute(builder: (context) => HoaDonChiTietScreen(object: chiTietResponse,)));
+
+      // sau khi nguoi dung sua data thi load lai data
+      lstHoaDon.clear();
+      controller.traCuuHoadonBh(TraCuuHoaDonRequest(
+        mstNban: mstNban,
+        emailnmua: filterObjectTc != null ? filterObjectTc.emailNguoiMua : "",
+        fromDate: tuNgay,
+        fromDateNgayHDon: "",
+        fromDateShow: "",
+        idNguoilap: idNguoiLap,
+        kyHieuHDon: filterObjectTc != null ? filterObjectTc.kyHieuHoaDon : "",
+        loaihdon: filterObjectTc != null ? filterObjectTc.loaiHdID : "",
+        mauhdon: filterObjectTc != null ? filterObjectTc.mauHoaDon : "",
+        maXacMinh: "",
+        mstNmua: filterObjectTc != null ? filterObjectTc.mstNguoiMua : "",
+        page: 1,
+        sohdon: filterObjectTc != null ? filterObjectTc.soHoaDon : "",
+        soHoaDonCqt: "",
+        tinhChat: filterObjectTc != null ? filterObjectTc.tinhChatId : "",
+        toDate: denNgay,
+        toDateNgayHDon: "",
+        toDateShow: "",
+        trangThai: filterObjectTc != null ? filterObjectTc.trangThaiTbId : "",
+        statusCQT: filterObjectTc != null ? filterObjectTc.statusCQT : "",
+      ));
     });
 
     final loading = watchX((HoaDonBanHangModel x) => x.loading);
@@ -378,9 +403,9 @@ Widget ItemHoaDon(BuildContext context, List<TraCuuHoaDonResponse> list, HoaDonB
             child: SearchPanelWidget(taxCode: list[index].mstNgMua ?? "", companyName: list[index].tendvinmua ?? "", money: list[index].tongTienThanhToan ?? "",
             moneyType: list[index].matte ?? "", invoiceSymbol: list[index].khieuhdon ?? "", invoiceStatus: list[index].trangThai ?? "",
               signDay: list[index].ngayHDon ?? "", invoiceNumber: list[index].soHoaDonDoanhNghiep ?? "",invoiceCQT: list[index].trangthaiCQT ?? "",
-              invoiceDate: list[index].ngayLapHoaDon ?? "",
+              invoiceDate: list[index].ngayLapHoaDon ?? "", nameCustomer: list[index].tenNmua ?? ""
             )
-            
+
             
         );
       });
