@@ -131,6 +131,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
           lstKyHieu.clear();
           list.forEach((element) {
             lstKyHieu.add(element.invoiceSerial);
+            print("'${element.invoiceSerial}'");
           });
           dropKyHieu = lstKyHieu.first;
         }
