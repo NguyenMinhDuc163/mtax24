@@ -99,6 +99,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
         lstTinhChat.add("Điều chỉnh");
         lstTinhChat.add("Thay thế");
         lstTinhChat.add("Giải trình");
+        lstTinhChat.add('Sai sót do tổng hợp');
         int index = int.parse(chiTietThongBaoResponse.thongBaoHdr.tctbao ?? '1') - 1;
         dropTinhChat = lstTinhChat[index].toString();
 
@@ -243,7 +244,6 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
           label: 'Lưu',
           onTap: () {
             if(widget.type == "TCHDXoBo"){
-              print("_____________________________1");
               typeNext = "LUU";
               if(thaoTacLapTBaoXoaBoResponse != null  &&
                   thaoTacLapTBaoXoaBoResponse.inReq.isTt68 == "TT78" &&
@@ -260,7 +260,6 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                 return;
               }
               else {
-                print("_____________________________2 ${widget.type}");
                 controller.nextTBaoXoaBo(NextTBaoXoaBoRequest(
                   soVBan: soVanBanController.text,
                   lyDoXoaBo: lyDoController.text,
@@ -270,7 +269,6 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                   tctbao: tinhChatXoaBo,));
               }
             }else {
-              print("_____________________________3 ${widget.type}");
               controller.luuTBaoDCDinhDanh(TiepTucTBaoDcDinhDanhRequest(
                 dchiNMua: ["${diaChiNguoiMuaController.text}"],
                 loaiHDon: "$loaiHD",
@@ -300,9 +298,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
     registerHandler((ThongBaoModel x) => x.nextTBaoXoaBo, (context, ThongBaoXoaBoResponse response, cancel) async {
       if(response != null){
         thongBaoXoaBoResponse = response;
-        print("_____________________________da vao day roi");
         if(typeNext == "LUU") {
-          print("_____________________________4");
           controller.preLuuTBaoXoaBo(NextTBaoXoaBoRequest(
             soVBan: soVanBanController.text,
             lyDoXoaBo: lyDoController.text,
@@ -411,6 +407,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
           lstTinhChat.add("Điều chỉnh");
           lstTinhChat.add("Thay thế");
           lstTinhChat.add("Giải trình");
+          lstTinhChat.add('Sai sót do tổng hợp');
         }
       }
     });

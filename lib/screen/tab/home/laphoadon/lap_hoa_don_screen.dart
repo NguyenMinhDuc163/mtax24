@@ -1012,7 +1012,10 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                   }else {
                                     thanhTien = Utils.covertToMoney(double.parse(thanhTien)).toString().replaceAll(",", "");
 
-                                    // String matte = thongTinUser.typeMoney ?? "VND";
+                                    if(double.parse(thanhTien) > 20000000){
+                                      DialogAlert.showDialogAlertCancel(context, "Không được phép chọn “Tiền mặt” đối với hóa đơn có giá trị thanh toán lớn hơn 20 triệu VNĐ");
+                                      return;
+                                    }
                                     String matte = currencyMap[thongTinUser.typeMoney ?? "VND"];
 
                                     await _saveHoaDonAsync(LuuHoaDonRequest(
@@ -1125,6 +1128,10 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     return;
                                   }
 
+                                  if(double.parse(thanhTien) > 20000000){
+                                    DialogAlert.showDialogAlertCancel(context, "Không được phép chọn “Tiền mặt” đối với hóa đơn có giá trị thanh toán lớn hơn 20 triệu VNĐ");
+                                    return;
+                                  }
                                   controller.guiReview(GuiReviewHoaDonRequest(
                                     id: idHD,
                                     chitiethoadon: getChiTietHD(),
@@ -1175,6 +1182,10 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                               child: ButtonBottomNotStackWidget(
                                 title: "Ký",
                                 onPressed: () {
+                                  if(double.parse(thanhTien) > 20000000){
+                                    DialogAlert.showDialogAlertCancel(context, "Không được phép chọn “Tiền mặt” đối với hóa đơn có giá trị thanh toán lớn hơn 20 triệu VNĐ");
+                                    return;
+                                  }
                                   if(listHangHoa == null || listHangHoa.length == 0){
                                     DialogAlert.showDialogAlertCancel(context, 'Vui lòng nhập thông tin hàng hóa');
                                   }else {
