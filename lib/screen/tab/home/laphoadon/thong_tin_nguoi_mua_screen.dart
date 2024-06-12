@@ -461,7 +461,17 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                             ],
                           ),
                         ),
-
+                        Padding(
+                          padding: EdgeInsets.only(top: 40.h),
+                          child: TextInput(
+                            haveBorder: true,
+                            readOnly: isTrangThai,
+                            // showCursor: isTrangThai,
+                            textEditingController: unitNameController,
+                            hintText: "Tên đơn vị",
+                            maxLength: 300,
+                          ),
+                        ),
                         Padding(
                         padding: EdgeInsets.only(top: 40.h),
                         child: TextInput(
@@ -487,17 +497,6 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                               textInputType: TextInputType.number,
                               maxLength: 30,
                             ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 40.h),
-                          child: TextInput(
-                            haveBorder: true,
-                            readOnly: isTrangThai,
-                            // showCursor: isTrangThai,
-                            textEditingController: unitNameController,
-                            hintText: "Tên đơn vị",
-                            maxLength: 300,
                           ),
                         ),
                         Padding(
