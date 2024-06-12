@@ -270,7 +270,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                               ),
                             ),
                             SizedBox(width: 20.h,),
-                            IconButton(onPressed: () async {
+                            IconButton(onPressed: (widget.trangThai == 'SUCC') ? () {} : () async {
                               final result = await Navigator.push(context, new MaterialPageRoute(builder: (context) => ListGoodsScreen(invoiceType: widget.invoiceType,)));
                               print("result: $result");
                               if(result != null){

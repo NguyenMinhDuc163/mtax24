@@ -91,9 +91,11 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
         if(list.isNotEmpty){
           lstDMucHoaDon = list;
           lstDMuc.clear();
-
+          // do api tra ve sai chinh ta => va test mong muon thay bang CQT
+          final pattern = RegExp(r'cơ quan thuê|cơ quan thuế', caseSensitive: false);
           for(int  i = 0; i < list.length; i++){
-            lstDMuc.add(list[i].invoiceCode + ": " + list[i].invoiceName);
+            String name = list[i].invoiceName.replaceAll(pattern, "CQT");
+            lstDMuc.add(list[i].invoiceCode + ": " + name);
           }
           dropDMuc = lstDMuc.first;
           invoiceType = lstDMucHoaDon.first.invoiceCode;
@@ -131,7 +133,6 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
           lstKyHieu.clear();
           list.forEach((element) {
             lstKyHieu.add(element.invoiceSerial);
-            print("'${element.invoiceSerial}'");
           });
           dropKyHieu = lstKyHieu.first;
         }
@@ -1013,7 +1014,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                   }else {
                                     thanhTien = Utils.covertToMoney(double.parse(thanhTien)).toString().replaceAll(",", "");
 
-                                    if(double.parse(thanhTien) > 20000000){
+                                    if(double.parse(thanhTien) > 20000000 && htPayment == 'TM'){
                                       DialogAlert.showDialogAlertCancel(context, "Không được phép chọn “Tiền mặt” đối với hóa đơn có giá trị thanh toán lớn hơn 20 triệu VNĐ");
                                       return;
                                     }
@@ -1129,7 +1130,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     return;
                                   }
 
-                                  if(double.parse(thanhTien) > 20000000){
+                                  if(double.parse(thanhTien) > 20000000 && htPayment == 'TM'){
                                     DialogAlert.showDialogAlertCancel(context, "Không được phép chọn “Tiền mặt” đối với hóa đơn có giá trị thanh toán lớn hơn 20 triệu VNĐ");
                                     return;
                                   }
@@ -1183,7 +1184,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                               child: ButtonBottomNotStackWidget(
                                 title: "Ký",
                                 onPressed: () {
-                                  if(double.parse(thanhTien) > 20000000){
+                                  if(double.parse(thanhTien) > 20000000 && htPayment == 'TM'){
                                     DialogAlert.showDialogAlertCancel(context, "Không được phép chọn “Tiền mặt” đối với hóa đơn có giá trị thanh toán lớn hơn 20 triệu VNĐ");
                                     return;
                                   }
