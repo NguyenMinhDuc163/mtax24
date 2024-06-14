@@ -1047,7 +1047,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
           SpeedDialChild(
             child: Icon(Icons.edit),
             backgroundColor: colorPrimary,
-            label: 'Thông báo hóa đơn có sai sót (S04/SS)',
+            label: 'Thông báo hóa đơn có sai sót (04/SS)',
             onTap: () {
              _showReplaceInvoice = false;
              addListSpeedDialChild(

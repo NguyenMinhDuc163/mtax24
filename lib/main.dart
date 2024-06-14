@@ -79,7 +79,6 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       home: SplashScreen(),
-      // home: MyHomePage(),
     );
   }
 }
