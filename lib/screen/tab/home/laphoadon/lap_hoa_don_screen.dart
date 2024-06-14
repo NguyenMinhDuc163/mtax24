@@ -650,6 +650,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                           ) : SizedBox(),
                                         ],
                                       ): Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           objectHopdong.lenh != "" && objectHopdong.lenh != null ?
                                           Padding(
@@ -659,12 +660,12 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                           objectHopdong.dvDieuDong != "" && objectHopdong.dvDieuDong != null  ?
                                           Padding(
                                             padding: EdgeInsets.only(top: 10.h),
-                                            child: Text("Mst: ${objectHopdong.dvDieuDong}", style: text14Bold400, textAlign: TextAlign.start,),
+                                            child: Text("Đơn vị: ${objectHopdong.dvDieuDong}", style: text14Bold400, textAlign: TextAlign.start,),
                                           ) : SizedBox(),
                                           objectHopdong.ngayDieuDong != "" && objectHopdong.ngayDieuDong != null  ?
                                           Padding(
                                             padding: EdgeInsets.only(top: 10.h),
-                                            child: Text("Ngày ký: ${objectHopdong.ngayDieuDong}", style: text14Bold400, textAlign: TextAlign.start),
+                                            child: Text("Ngày điều động: ${objectHopdong.ngayDieuDong}", style: text14Bold400, textAlign: TextAlign.start),
                                           ) : SizedBox(),
                                         ],
                                       )
@@ -1014,7 +1015,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                   }else {
                                     thanhTien = Utils.covertToMoney(double.parse(thanhTien)).toString().replaceAll(",", "");
 
-                                    if(double.parse(thanhTien) > 20000000 && htPayment == 'TM'){
+                                    if((double.parse(thanhTien) > 20000000 && (htPayment == 'TM' || htPayment == ""))){
                                       DialogAlert.showDialogAlertCancel(context, "Không được phép chọn “Tiền mặt” đối với hóa đơn có giá trị thanh toán lớn hơn 20 triệu VNĐ");
                                       return;
                                     }
@@ -1130,7 +1131,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     return;
                                   }
 
-                                  if(double.parse(thanhTien) > 20000000 && htPayment == 'TM'){
+                                  if((double.parse(thanhTien) > 20000000 && (htPayment == 'TM' || htPayment == ""))){
                                     DialogAlert.showDialogAlertCancel(context, "Không được phép chọn “Tiền mặt” đối với hóa đơn có giá trị thanh toán lớn hơn 20 triệu VNĐ");
                                     return;
                                   }
@@ -1184,7 +1185,8 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                               child: ButtonBottomNotStackWidget(
                                 title: "Ký",
                                 onPressed: () {
-                                  if(double.parse(thanhTien) > 20000000 && htPayment == 'TM'){
+
+                                  if((double.parse(thanhTien) > 20000000 && (htPayment == 'TM' || htPayment == ""))){
                                     DialogAlert.showDialogAlertCancel(context, "Không được phép chọn “Tiền mặt” đối với hóa đơn có giá trị thanh toán lớn hơn 20 triệu VNĐ");
                                     return;
                                   }
@@ -1316,5 +1318,6 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
 
     ));
   }
+
 }
 

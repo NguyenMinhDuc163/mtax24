@@ -17,9 +17,9 @@ class ThongTinTTDCScreen extends StatefulWidget with GetItStatefulWidgetMixin{
   final String sovban;
   final String ngayvb;
   final String lydo;
+  final String adjustType;
 
-
-  ThongTinTTDCScreen({this.object, this.typeHD, this.sovban, this.ngayvb, this.lydo, });
+  ThongTinTTDCScreen({this.object, this.typeHD, this.sovban, this.ngayvb, this.lydo, this.adjustType});
 
 
   @override
@@ -45,13 +45,18 @@ class _ThongTinVanChuyenScreenState extends State<ThongTinTTDCScreen> with GetIt
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    print('################### ${widget.ngayvb}');
     soVanBanController.text = (widget.sovban != null) ? widget.sovban : "";
-    ngayKyVBController.text = (widget.ngayvb != null) ? widget.ngayvb : "";
+    ngayKyVBController.text = (widget.ngayvb != null && widget.ngayvb != '') ? widget.ngayvb : '11/06/2024';
     lyDoController.text = (widget.lydo != null) ? widget.lydo : "";
+
+    setState(() {
+      ngayKyVBController.text = '11/06/2024';
+    });
 
     if(widget.object != null){
       if(widget.typeHD == "HDTT"){
+        // thay the
         hdttResponse = widget.object;
 
         setData(hdttResponse.sohdon,
@@ -60,13 +65,15 @@ class _ThongTinVanChuyenScreenState extends State<ThongTinTTDCScreen> with GetIt
             hdttResponse.khieuhdon,
             hdttResponse.ngayvban);
       }else{
+        // dieu chinh
         hddcResponse = widget.object;
         print("======hdttResponse: ${hddcResponse.toJson()}");
+        hdDieuChinh = widget.adjustType ?? 'Giảm';
         setData(hddcResponse.sohdon,
             hddcResponse.ngayhdon != null ? Utils.convertTimestamp(hddcResponse.ngayhdon) : "",
             hddcResponse.mauhdon,
             hddcResponse.khieuhdon,
-            hddcResponse.ngayvbanStr);
+            (hddcResponse.ngayvbanStr != '') ? hddcResponse.ngayvbanStr :  widget.ngayvb);
       }
 
     }
@@ -86,11 +93,11 @@ class _ThongTinVanChuyenScreenState extends State<ThongTinTTDCScreen> with GetIt
     // TODO: implement build
     return Scaffold(
         appBar: buildAppBarMenuCustom(context, widget.typeHD == "HDTT" ? 'Thông tin thay thế' : "Thông tin điều chỉnh", isSave: true, onSave: (){
-          print("======vao day");
           if(widget.typeHD == "HDTT"){
             Navigator.pop(context, [soVanBanController.text.toString(), ngayKyVBController.text.toString()]);
           }else{
-            Navigator.pop(context, [soVanBanController.text.toString(),ngayKyVBController.text.toString(), lyDoController.text.toString(), hdDieuChinh]);
+            Navigator.pop(context, [soVanBanController.text.toString(),ngayKyVBController.text.toString(),
+              lyDoController.text.toString(), hdDieuChinh]);
           }
         }),
         body: Stack(
@@ -193,14 +200,14 @@ class _ThongTinVanChuyenScreenState extends State<ThongTinTTDCScreen> with GetIt
                             onClickChooseDate: (selectedDate){
                               setState(() {
                                 if(DateFormat("dd/MM/yyyy").parse(selectedDate).isAfter(DateTime.now())) {
-                                  errorDenNgay = "Ngày không hợp lệ";
+                                  DialogAlert.showDialogAlertCancel(context, 'Ngày không hợp lệ');
+                                  return;
                                 } else {
-                                  errorDenNgay = null;
                                   ngayKyVBController.text = selectedDate;
                                 }
                               });
                             },
-                            errorText: errorDenNgay,
+                            // errorText: errorDenNgay,
                           ),
                         ),
 

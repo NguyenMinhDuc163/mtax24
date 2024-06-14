@@ -10,7 +10,6 @@ class HopDongDaiLyScreen extends StatefulWidget with GetItStatefulWidgetMixin{
   final int type;
   final dynamic object;
   final String trangThai;
-
   HopDongDaiLyScreen({this.type, this.object, this.trangThai});
 
   @override
@@ -34,11 +33,11 @@ class _HopDongDaiLyScreenState extends State<HopDongDaiLyScreen> with GetItState
     super.initState();
     if(widget.object != null){
       objectHopdong = widget.object;
-       mstController.text = objectHopdong.mst;
-       hdKinhTeController.text = objectHopdong.hdKinhTeSo;
-       doanhNghiepKyController.text = objectHopdong.doanhNghiepKy;
+       mstController.text = objectHopdong.mst ?? objectHopdong.lenh;
+       hdKinhTeController.text = objectHopdong.hdKinhTeSo ?? objectHopdong.dvDieuDong;
+       doanhNghiepKyController.text = objectHopdong.doanhNghiepKy ?? objectHopdong.noiDung;
        caNhanDaiLyController.text = objectHopdong.tcCaNhan;
-       ngayKyController.text = objectHopdong.ngayKy;
+       ngayKyController.text = objectHopdong.ngayKy ?? objectHopdong.ngayDieuDong;
     }
     if(widget.trangThai != null){
       if(widget.trangThai == "NEWR"){
@@ -184,5 +183,9 @@ class ObjectHopdong{
 
   });
 
+  @override
+  String toString() {
+    return 'ObjectHopdong{mst: $mst, hdKinhTeSo: $hdKinhTeSo, ngayKy: $ngayKy, doanhNghiepKy: $doanhNghiepKy, tcCaNhan: $tcCaNhan, lenh: $lenh, dvDieuDong: $dvDieuDong, ngayDieuDong: $ngayDieuDong, noiDung: $noiDung}';
+  }
 }
 

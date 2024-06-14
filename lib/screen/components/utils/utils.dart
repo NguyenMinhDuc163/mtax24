@@ -175,7 +175,8 @@ class Utils {
   static String convertTinhChatThongBao(String str){
       switch(str){
         case "07":
-          return "Thông báo xóa bỏ hóa đơn";
+          // return "Thông báo xóa bỏ hóa đơn";
+          return "Thông báo hóa đơn có sai sót (04/SS)";
         case "10":
           return "Thông báo điều chỉnh";
         case "11":

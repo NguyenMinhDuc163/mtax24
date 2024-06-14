@@ -9,7 +9,6 @@ import 'package:mtax24/screen/components/widget/input_widget/calendar_input.dart
 import 'package:mtax24/screen/components/widget/input_widget/dropdown_input.dart';
 import 'package:mtax24/screen/components/widget/input_widget/text_input.dart';
 import 'package:mtax24/service/init.dart';
-import '../../../../components/core/constants/currency_constants.dart';
 import '../../../../init_view.dart';
 
 class FilterTraCuuHoaDonScreen extends StatefulWidget with GetItStatefulWidgetMixin{
@@ -28,7 +27,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
 
   TextEditingController soHoaDonController = TextEditingController();
   TextEditingController mauHoaDonController = TextEditingController();
-  // TextEditingController kyHieuHoaDonController = TextEditingController();
+  TextEditingController kyHieuHoaDonController = TextEditingController();
   TextEditingController mstNguoiMuaController = TextEditingController();
   TextEditingController emailNguoiMuaController = TextEditingController();
   TextEditingController tuNgayController = TextEditingController();
@@ -36,7 +35,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
   TextEditingController ngKyTuNgayController = TextEditingController();
   TextEditingController ngKyDenNgayController = TextEditingController();
   String errorTuNgay, errorDenNgay;
-  var dropLoaiHD, dropTinhChatTb, dropTrangThaiTb, dropTrangThaiGuiCQT, dropKiHieu;
+  var dropLoaiHD, dropTinhChatTb, dropTrangThaiTb, dropTrangThaiGuiCQT;
 
   var controller = GetIt.I<ThongBaoController>();
   List<DanhMucHoaDonResponse> lstHoaDon = [];
@@ -83,7 +82,6 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
     denNgayController.text = widget.denNgay;
     ngKyDenNgayController.text = widget.denNgay;
     ngKyTuNgayController.text = widget.tuNgay;
-    dropKiHieu = 'Tất cả';
     objectTB = widget.object;
   }
 
@@ -92,7 +90,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    registerHandler((ThongBaoModel x) => x.dMucHoaDon, (context, List<DanhMucHoaDonResponse> list, cancel) { 
+    registerHandler((ThongBaoModel x) => x.dMucHoaDon, (context, List<DanhMucHoaDonResponse> list, cancel) {
       if(list.isNotEmpty){
         lstHoaDon = list;
         // list.forEach((element) {
@@ -105,8 +103,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
           objectTB = widget.object;
           soHoaDonController.text = objectTB.soHoaDon.isNotEmpty ? objectTB.soHoaDon : "";
           mauHoaDonController.text = objectTB.mauHoaDon.isNotEmpty ? objectTB.mauHoaDon : "";
-          // kyHieuHoaDonController.text = objectTB.kyHieuHoaDon.isNotEmpty ? objectTB.kyHieuHoaDon : "";
-          dropKiHieu = objectTB.kyHieuHoaDon.isNotEmpty ? (objectTB.kyHieuHoaDon == "" ? "Tất cả" : objectTB.kyHieuHoaDon) : "Tất cả";
+          kyHieuHoaDonController.text = objectTB.kyHieuHoaDon.isNotEmpty ? objectTB.kyHieuHoaDon : "";
           mstNguoiMuaController.text = objectTB.mstNguoiMua.isNotEmpty ? objectTB.mstNguoiMua : "";
           emailNguoiMuaController.text = objectTB.emailNguoiMua.isNotEmpty ? objectTB.emailNguoiMua : "";
           dropLoaiHD = objectTB.loaiHdName.isNotEmpty ? objectTB.loaiHdName : "";
@@ -127,7 +124,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
     final loading = watchX((ThongBaoModel x) => x.loading);
 
     return Scaffold(
-        // appBar: buildAppBarMenuCustom(context, 'Tra cứu thông báo', showHome: false ),
+      // appBar: buildAppBarMenuCustom(context, 'Tra cứu thông báo', showHome: false ),
         body: Stack(
           children: [
             CustomerAppbarScreen(title: 'Tra cứu hóa đơn bán hàng', isShowBack: true, isShowHome: true,
@@ -372,13 +369,13 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                         Padding(
                           padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
                           child: TextInput(
-                            haveBorder: true,
-                            // readOnly: true,
-                            // showCursor: false,
-                            textEditingController: soHoaDonController,
-                            hintText: "Số hóa đơn",
-                            maxLength: 15,
-                            textInputType: TextInputType.number
+                              haveBorder: true,
+                              // readOnly: true,
+                              // showCursor: false,
+                              textEditingController: soHoaDonController,
+                              hintText: "Số hóa đơn",
+                              maxLength: 15,
+                              textInputType: TextInputType.number
                           ),
                         ),
 
@@ -393,31 +390,18 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                             maxLength: 11,
                           ),
                         ),
-                        // Padding(
-                        //   padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
-                        //   child: TextInput(
-                        //     haveBorder: true,
-                        //     // readOnly: true,
-                        //     // showCursor: false,
-                        //     textEditingController: kyHieuHoaDonController,
-                        //     hintText: "Ký hiệu hóa đơn",
-                        //     maxLength: 8,
-                        //     formats: [UpperCaseTextInputFormatter()],
-                        //   ),
-                        // ),
-
-
-                        DropdownInput(
-                          value: dropKiHieu,
-                          onChangedCustom: (String value){
-                            setState(() {
-                              dropKiHieu = value;
-                            });
-                          },
-                          hint: "Kí hiệu hóa đơn",
-                          itemsDropdown: lstKyHieu,
+                        Padding(
+                          padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
+                          child: TextInput(
+                            haveBorder: true,
+                            // readOnly: true,
+                            // showCursor: false,
+                            textEditingController: kyHieuHoaDonController,
+                            hintText: "Ký hiệu hóa đơn",
+                            maxLength: 8,
+                            formats: [UpperCaseTextInputFormatter()],
+                          ),
                         ),
-
                         Padding(
                           padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
                           child: TextInput(
@@ -467,8 +451,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                                 trangThaiTbId: trangThaiId,
                                 soHoaDon: soHoaDonController.text,
                                 mauHoaDon: mauHoaDonController.text,
-                                // kyHieuHoaDon: kyHieuHoaDonController.text,
-                                kyHieuHoaDon: (dropKiHieu == 'Tất cả') ? "" : dropKiHieu,
+                                kyHieuHoaDon: kyHieuHoaDonController.text,
                                 mstNguoiMua: mstNguoiMuaController.text,
                                 emailNguoiMua: emailNguoiMuaController.text,
                                 statusCQT: trangThaiGuiCQT,
@@ -514,20 +497,20 @@ class FilterTCHoaDon{
   String statusCQT;
   String dropStatusCQT;
   FilterTCHoaDon({
-      this.loaiHdID,
-      this.loaiHdName,
-      this.tinhChatId,
-      this.tinhChatName,
-      this.trangThaiTbId,
-      this.trangThaiTbName,
-      this.tuNgay,
-      this.denNgay,
-      this.soHoaDon,
-      this.mauHoaDon,
-      this.kyHieuHoaDon,
-      this.mstNguoiMua,
-      this.emailNguoiMua,
-      this.statusCQT,
-      this.dropStatusCQT,
+    this.loaiHdID,
+    this.loaiHdName,
+    this.tinhChatId,
+    this.tinhChatName,
+    this.trangThaiTbId,
+    this.trangThaiTbName,
+    this.tuNgay,
+    this.denNgay,
+    this.soHoaDon,
+    this.mauHoaDon,
+    this.kyHieuHoaDon,
+    this.mstNguoiMua,
+    this.emailNguoiMua,
+    this.statusCQT,
+    this.dropStatusCQT,
   });
 }
