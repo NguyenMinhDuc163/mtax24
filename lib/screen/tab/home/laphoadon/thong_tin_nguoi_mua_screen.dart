@@ -435,11 +435,13 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                                     if(!Utils.validateMst(mstController.text) ){
                                       Toast.showLongTop("Mã số thuế sai cấu trúc!");
                                     }else {
-                                      controller.getInfoCustomerByCode(GetInfoCustomerByCodeRequest(
-                                        taxCode: values,
-                                        flag: widget.flag,
-                                        idHD: widget.idHD,
-                                      ));
+                                      // da them nut tra cuu roi nen khong can call API o day
+
+                                      // controller.getInfoCustomerByCode(GetInfoCustomerByCodeRequest(
+                                      //   taxCode: values,
+                                      //   flag: widget.flag,
+                                      //   idHD: widget.idHD,
+                                      // ));
                                     }
                                   },
                                 ),

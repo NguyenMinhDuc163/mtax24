@@ -286,6 +286,18 @@ class _DanhSachThemMoiScreenState extends State<DanhSachThemMoiScreen> with GetI
   }
 
   Widget containerButton(BuildContext context, int type){
+    setState(() {
+      tongTienDv = 0.toString();
+      tienGTGT = 0.toString();
+      thanhTien = 0.toString();
+      //TODO do ham covertToMoney dang de dinh dang la , nhung double.parse dang lay dau . => co sai so => tam thoi fix => lam tron
+      lstHangHoa.forEach((element) {
+        tongTienDv = (double.parse(tongTienDv) + element.tongTienDV.round()).toString();
+        tienGTGT = (double.parse(tienGTGT) + element.tienGTGT.round()).toString();
+        thanhTien = (double.parse(thanhTien) + element.thanhTien.round()).toString();
+      });
+
+    });
     return Column(
       children: [
         type == 3 || type == 4 || type == 5 ? Container() :

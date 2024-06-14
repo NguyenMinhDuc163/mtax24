@@ -664,13 +664,16 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
                         ) :
                         InkWell(
                           onTap: ()async{
+                            print('-----------sovban $sovban ngayvb $ngaykyvanban lydo $lyDo adjustType $adjustType ');
                             final resuls = await Navigator.push(
-                                context, new MaterialPageRoute(builder: (context) => ThongTinTTDCScreen(object: lstHDDieuChinh.first, typeHD: widget.typeHD, sovban: sovban, ngayvb: ngaykyvanban, lydo: lyDo,)));
+                                context, new MaterialPageRoute(builder: (context) => ThongTinTTDCScreen(object: lstHDDieuChinh.first, typeHD: widget.typeHD, sovban: sovban, ngayvb: ngaykyvanban, lydo: lyDo, adjustType: adjustType,)));
+                            print('----------------- $resuls');
                             if(resuls != null){
                               setState(() {
                                 sovban = resuls[0].toString();
+                                ngaykyvanban = resuls[1].toString();
                                 lyDo = resuls[2].toString();
-                                adjustType = resuls[3].toString() == "Giảm" ? "-" : resuls[3].toString() == "Tăng" ? "+" : widget.typeHD == "HDTT" ? "adff" : "dctt";
+                                adjustType = resuls[3].toString();
                               });
                             }
 

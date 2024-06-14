@@ -1117,6 +1117,11 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
           backgroundColor: colorPrimary,
           label: 'Ký hóa đơn',
           onTap: () {
+            String typePayment = (thongTinUser.typePayment != null) ? thongTinUser.typePayment : chiTietResponse.hthuctoan;
+            if((double.parse(thanhTien) > 20000000 && (typePayment == '' || typePayment == 'TM'))){
+              DialogAlert.showDialogAlertCancel(context, "Không được phép chọn “Tiền mặt” đối với hóa đơn có giá trị thanh toán lớn hơn 20 triệu VNĐ");
+              return;
+            }
             lapHdController.checkAmountHDon(
                 CheckAmountHDonRequest(
                     hthuchdongoc: chiTietResponse.hthucHDonGoc,
@@ -1157,10 +1162,16 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                 DialogAlert.showDialogAlertCancel(
                     context, "Bạn chưa chọn thông tin vận chuyển");
               } else {
+
+                String typePayment = (thongTinUser.typePayment != null) ? thongTinUser.typePayment : chiTietResponse.hthuctoan;
+                if((double.parse(thanhTien) > 20000000 && (typePayment == '' || typePayment == 'TM'))){
+                  DialogAlert.showDialogAlertCancel(context, "Không được phép chọn “Tiền mặt” đối với hóa đơn có giá trị thanh toán lớn hơn 20 triệu VNĐ");
+                  return;
+                }
+
+
                 isCheck = true;
                 DialogAlert.showLoadding(context);
-
-
 
                 tongTienDv = 0.toString();
                 tienGTGT = 0.toString();
@@ -1255,6 +1266,11 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         backgroundColor: colorPrimary,
         label: 'Gửi khách hàng',
         onTap: () {
+          String typePayment = (thongTinUser.typePayment != null) ? thongTinUser.typePayment : chiTietResponse.hthuctoan;
+          if((double.parse(thanhTien) > 20000000 && (typePayment == '' || typePayment == 'TM'))){
+            DialogAlert.showDialogAlertCancel(context, "Không được phép chọn “Tiền mặt” đối với hóa đơn có giá trị thanh toán lớn hơn 20 triệu VNĐ");
+            return;
+          }
           controller.guiReview(GuiReviewHoaDonRequest(
             id: chiTietResponse.id,
             chitiethoadon: getChiTietHD(),
@@ -1341,6 +1357,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
     });
     return listChiTietHD;
   }
+
   void kiHoaDon(String pinCode, String isSavePinCode){
     tongTienDv = 0.toString();
     tienGTGT = 0.toString();

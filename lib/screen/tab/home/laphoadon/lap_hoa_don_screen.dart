@@ -650,6 +650,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                           ) : SizedBox(),
                                         ],
                                       ): Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           objectHopdong.lenh != "" && objectHopdong.lenh != null ?
                                           Padding(
@@ -659,12 +660,12 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                           objectHopdong.dvDieuDong != "" && objectHopdong.dvDieuDong != null  ?
                                           Padding(
                                             padding: EdgeInsets.only(top: 10.h),
-                                            child: Text("Mst: ${objectHopdong.dvDieuDong}", style: text14Bold400, textAlign: TextAlign.start,),
+                                            child: Text("Đơn vị: ${objectHopdong.dvDieuDong}", style: text14Bold400, textAlign: TextAlign.start,),
                                           ) : SizedBox(),
                                           objectHopdong.ngayDieuDong != "" && objectHopdong.ngayDieuDong != null  ?
                                           Padding(
                                             padding: EdgeInsets.only(top: 10.h),
-                                            child: Text("Ngày ký: ${objectHopdong.ngayDieuDong}", style: text14Bold400, textAlign: TextAlign.start),
+                                            child: Text("Ngày điều động: ${objectHopdong.ngayDieuDong}", style: text14Bold400, textAlign: TextAlign.start),
                                           ) : SizedBox(),
                                         ],
                                       )
@@ -1317,5 +1318,6 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
 
     ));
   }
+
 }
 
