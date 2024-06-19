@@ -73,6 +73,8 @@ class _SearchReportScreenState extends State<SearchReportScreen>
                       textEditingController: tinBuyerReport,
                       hintText: "Mã số thuế người mua",
                       haveBorder: true,
+                      textInputType: TextInputType.numberWithOptions(signed: true, decimal: false),
+                      maxLength: 14,
                     ),
                     DropDownDialog(
                       value: invoiceKind,
@@ -109,6 +111,11 @@ class _SearchReportScreenState extends State<SearchReportScreen>
                     ButtonBottomNotStackWidget(
                       title: "Lập báo cáo",
                       onPressed: () {
+                        if(!Utils.validateMst(tinBuyerReport.text) || tinBuyerReport.text == ''){
+                          Toast.showLongTop("Mã số thuế sai cấu trúc!");
+                          return;
+                        }
+
                         invoiceReportController.getInvoiceReportList(
                             context,
                             fromDate: DateFormat('dd/MM/yyyy').parse(fromDate.text),

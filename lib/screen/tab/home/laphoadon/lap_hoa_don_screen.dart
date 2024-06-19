@@ -674,7 +674,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     ],
                                   ) : Row(
                                     children: [
-                                      Expanded(child: Text(type == 3 ? "Hợp đồng đại lý".toUpperCase() : "Căn cứ điều động".toUpperCase(), style: text14OBold600,)),
+                                      Expanded(child: Text(type == 3 ? "Hợp đồng đại lý".toUpperCase() : "Căn cứ điều động ".toUpperCase(), style: text14OBold600,)),
                                       Icon(Icons.post_add_outlined)
                                     ],
                                   ),

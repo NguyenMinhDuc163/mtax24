@@ -94,6 +94,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
       dropLoaiTB = (typeTB == '1') ? lstLoaiTB[0] : lstLoaiTB[1];
 
       if(chiTietThongBaoResponse.thongBaoHdr.isTt68 == "TT78"){
+        print('da di vao day -------------------- 1');
         lstTinhChat.clear();
         lstTinhChat.add("Hủy");
         lstTinhChat.add("Điều chỉnh");
@@ -105,6 +106,8 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
 
       }
       if(chiTietThongBaoResponse.thongBaoHdr.tinhChat == "07"){
+        print('da di vao day -------------------- 2');
+
         final objects = chiTietThongBaoResponse.thongBaoHdr;
         mauSoController.text = objects.mauso;
         mauSo = objects.mauso;
@@ -132,6 +135,8 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
       //   sohdoncqtgoc = lstInvoiceDtlTbao.first.sohdoncqtgoc;
       // }
       else {
+        print('da di vao day -------------------- 3');
+
         final objects = chiTietThongBaoResponse.thongBaoHdr;
         print("========lydodchinh: ${objects.lydodchinh}");
         mauSoController.text = objects.mauso;
@@ -148,6 +153,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
         ngayKyController.text = objects.ngayhdongoc != null ? Utils.convertTimestamp(objects.ngayhdongoc).toString() : '';
         soVanBanController.text = objects.sovban != null ? objects.sovban.toString() : '';
         sohdoncqtgoc = objects.sohdongoc;
+        print('-------------------- sohdoncqtgoc $objects.  ${chiTietThongBaoResponse.invHdr.sohdongoc}');
       }
     }
     if(widget.object != null && widget.type == "TCHDDCDD"){
@@ -288,6 +294,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
           }
       ),
     );
+    print('----------------------------- sohdoncqtgoc : $sohdoncqtgoc');
   }
 
   @override
@@ -353,6 +360,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
       if(response != null){
         tiepTucTBaoDcDinhDanhResponse = response;
         controller.kyTBaoDCDDApi(TiepTucTBaoDcDinhDanhRequest(
+          pincode: '12345678',
           dchiNMua: ["${diaChiNguoiMuaController.text}"],
           loaiHDon: "$loaiHD",
           lydodieuchinh: ["${lyDoController.text}"],
@@ -376,6 +384,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
     registerHandler((ThongBaoModel x) => x.kyTBaoDCDDApi, (context, BaseResponse response, cancel) {
       if(response != null){
         controller.guiTBaoDCDinhDanh(TiepTucTBaoDcDinhDanhRequest(
+          pincode: '12345678',
           dchiNMua: ["${diaChiNguoiMuaController.text}"],
           loaiHDon: "$loaiHD",
           lydodieuchinh: ["${lyDoController.text}"],

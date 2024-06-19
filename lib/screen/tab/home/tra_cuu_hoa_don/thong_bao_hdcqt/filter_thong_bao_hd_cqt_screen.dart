@@ -144,6 +144,15 @@ class _FilterThongBaoScreenState extends State<FilterThongBaoHDCQTScreen> with G
                         ButtonBottomNotStackWidget(
                             title: "Tra cứu",
                             onPressed: () {
+                              if(!Utils.compareDates(tuNgayController.text, denNgayController.text)){
+                                Toast.showLongTop("Ngày bắt đầu không được lớn hơn ngày kết thúc");
+                                return;
+                              }
+
+                              if(errorTuNgay != null || errorDenNgay != null) {
+                                  Toast.showLongTop("Ngày không được lớn hơn ngày hiện tại");
+                                  return;
+                              }
                               objectTB = new FilterObjectTBHDCQT(
                                 tuNgay: tuNgayController.text,
                                 denNgay: denNgayController.text,

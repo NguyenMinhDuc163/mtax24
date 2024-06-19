@@ -56,7 +56,7 @@ class _HopDongDaiLyScreenState extends State<HopDongDaiLyScreen> with GetItState
     return Scaffold(
         body: Stack(
           children: [
-            CustomerAppbarScreen(title: 'Thông tin người mua', isShowBack: true, isShowHome: false, isCreate: false, isSave: true,
+            CustomerAppbarScreen(title: widget.type == 4 ? 'Căn cứ điều động' : 'Thông tin người mua', isShowBack: true, isShowHome: false, isCreate: false, isSave: true,
               onSave: (){
                 if(widget.type == 3){
                   objectHopdong = ObjectHopdong(

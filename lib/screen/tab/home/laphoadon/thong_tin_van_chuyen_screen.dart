@@ -57,7 +57,7 @@ class _ThongTinVanChuyenScreenState extends State<ThongTinVanChuyenScreen> with 
     return Scaffold(
         body: Stack(
           children: [
-            CustomerAppbarScreen(title: 'Thông tin người mua', isShowBack: true, isShowHome: false, isCreate: false, isSave: true,
+            CustomerAppbarScreen(title: 'Thông tin vận chuyển', isShowBack: true, isShowHome: false, isCreate: false, isSave: true,
               onSave: (){
                 vanChuyenModel = ThongTinVanChuyenModel(
                   name: nameController.text,
