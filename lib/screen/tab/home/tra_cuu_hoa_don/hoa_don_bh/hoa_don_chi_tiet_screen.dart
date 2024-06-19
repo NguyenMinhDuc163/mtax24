@@ -472,7 +472,6 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                 diachiNM = thongTinUser.customerAddress;
                                 mstController.text = thongTinUser.maKH != null && thongTinUser.maKH != "" ? thongTinUser.maKH : thongTinUser.customerTaxcode;
                                 tenNM = thongTinUser.customerName;
-                                personalID = thongTinUser.personalID;
                               });
                             }
 
@@ -1269,6 +1268,10 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
           String typePayment = (thongTinUser.typePayment != null) ? thongTinUser.typePayment : chiTietResponse.hthuctoan;
           if((double.parse(thanhTien) > 20000000 && (typePayment == '' || typePayment == 'TM'))){
             DialogAlert.showDialogAlertCancel(context, "Không được phép chọn “Tiền mặt” đối với hóa đơn có giá trị thanh toán lớn hơn 20 triệu VNĐ");
+            return;
+          }
+          if(thongTinUser.customerEmail == null || thongTinUser.customerEmail == ""){
+            Toast.showLongTop('Vui lòng nhập email');
             return;
           }
           controller.guiReview(GuiReviewHoaDonRequest(

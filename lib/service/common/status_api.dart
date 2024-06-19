@@ -1,6 +1,6 @@
 /*sv local*/
-// const String BASE_API_URL = "http://dc.seatechit.com.vn:8088/Api-Test/"; // test
-const String BASE_API_URL = 'http://192.168.1.229:9080/HoaDon-Mobile-Server/'; // that
+const String BASE_API_URL = "http://dc.seatechit.com.vn:8088/Api-Test/"; // test
+// const String BASE_API_URL = 'http://192.168.1.229:9080/HoaDon-Mobile-Server/'; // that
 
 const int TIME_OUT = 20000;
 
