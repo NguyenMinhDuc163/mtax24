@@ -34,7 +34,7 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
   TextEditingController denNgayController = TextEditingController();
   TextEditingController ngKyTuNgayController = TextEditingController();
   TextEditingController ngKyDenNgayController = TextEditingController();
-  String errorTuNgay, errorDenNgay;
+  String errorTuNgayLap, errorDenNgayLap, errorTuNgayKy, errorDenNgayKy;
   var dropLoaiHD, dropTinhChatTb, dropTrangThaiTb, dropTrangThaiGuiCQT;
 
   var controller = GetIt.I<ThongBaoController>();
@@ -270,20 +270,20 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                                 onClickChooseDate: (selectedDate){
                                   setState(() {
                                     if(DateFormat("dd/MM/yyyy").parse(selectedDate).isAfter(DateTime.now())) {
-                                      errorTuNgay = "Ngày không hợp lệ";
-                                      if(errorTuNgay != null){
+                                      errorTuNgayLap = "Ngày không hợp lệ";
+                                      if(errorTuNgayLap != null){
                                         Toast.showLongTop("Ngày không được lớn hơn ngày hiện tại");
                                       }
                                     }
 
                                     else {
-                                      errorTuNgay = null;
+                                      errorTuNgayLap = null;
                                       tuNgayController.text = selectedDate;
                                     }
                                   });
 
                                 },
-                                errorText: errorTuNgay,
+                                errorText: errorTuNgayLap,
                               ),
                             ),
                             SizedBox(width: 8,),
@@ -295,17 +295,17 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                                 onClickChooseDate: (selectedDate){
                                   setState(() {
                                     if(DateFormat("dd/MM/yyyy").parse(selectedDate).isAfter(DateTime.now())) {
-                                      errorDenNgay = "Ngày không hợp lệ";
-                                      if(errorDenNgay != null){
+                                      errorDenNgayLap = "Ngày không hợp lệ";
+                                      if(errorDenNgayLap != null){
                                         Toast.showLongTop("Ngày không được lớn hơn ngày hiện tại");
                                       }
                                     } else {
-                                      errorDenNgay = null;
+                                      errorDenNgayLap = null;
                                       denNgayController.text = selectedDate;
                                     }
                                   });
                                 },
-                                errorText: errorDenNgay,
+                                errorText: errorDenNgayLap,
                               ),
                             ),
                           ],
@@ -325,20 +325,20 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                                 onClickChooseDate: (selectedDate){
                                   setState(() {
                                     if(DateFormat("dd/MM/yyyy").parse(selectedDate).isAfter(DateTime.now())) {
-                                      errorTuNgay = "Ngày không hợp lệ";
-                                      if(errorTuNgay != null){
+                                      errorTuNgayKy = "Ngày không hợp lệ";
+                                      if(errorTuNgayKy != null){
                                         Toast.showLongTop("Ngày không được lớn hơn ngày hiện tại");
                                       }
                                     }
 
                                     else {
-                                      errorTuNgay = null;
+                                      errorTuNgayKy = null;
                                       ngKyTuNgayController.text = selectedDate;
                                     }
                                   });
 
                                 },
-                                errorText: errorTuNgay,
+                                errorText: errorTuNgayKy,
                               ),
                             ),
                             SizedBox(width: 8,),
@@ -350,17 +350,17 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                                 onClickChooseDate: (selectedDate){
                                   setState(() {
                                     if(DateFormat("dd/MM/yyyy").parse(selectedDate).isAfter(DateTime.now())) {
-                                      errorDenNgay = "Ngày không hợp lệ";
-                                      if(errorDenNgay != null){
+                                      errorDenNgayKy = "Ngày không hợp lệ";
+                                      if(errorTuNgayKy != null){
                                         Toast.showLongTop("Ngày không được lớn hơn ngày hiện tại");
                                       }
                                     } else {
-                                      errorDenNgay = null;
+                                      errorDenNgayKy = null;
                                       ngKyDenNgayController.text = selectedDate;
                                     }
                                   });
                                 },
-                                errorText: errorDenNgay,
+                                errorText: errorDenNgayKy,
                               ),
                             ),
                           ],
@@ -436,10 +436,15 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                                 Toast.showLongTop("Ngày bắt đầu không được lớn hơn ngày kết thúc");
                                 return;
                               }
+                              if(errorTuNgayLap != null || errorDenNgayLap != null || errorTuNgayKy != null || errorDenNgayKy != null){
+                                Toast.showLongTop("Ngày không được lớn hơn ngày hiện tại");
+                                return;
+                              }
                               if(!Utils.validateMst(mstNguoiMuaController.text) ){
                                 Toast.showLongTop("Mã số thuế sai cấu trúc!");
                                 return;
                               }
+
                               objectTB = new FilterTCHoaDon(
                                 tuNgay: tuNgayController.text,
                                 denNgay: denNgayController.text,

@@ -87,24 +87,26 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
       print("==========isTt68: ${chiTietThongBaoResponse.thongBaoHdr.isTt68}");
       print("==========loaitbao: ${chiTietThongBaoResponse.thongBaoHdr.loaitbao}");
       print("==========tinhChat: ${chiTietThongBaoResponse.thongBaoHdr.tinhChat}");
-
+      print("==========sohdongoc: ${chiTietThongBaoResponse.invHdr.sohdongoc}");
       lyDoController.text = chiTietThongBaoResponse.thongBaoHdr.lyDoXoaBo;
       print('##################### dtlTbao ${chiTietThongBaoResponse.thongBaoHdr.ltbao}');
       String typeTB = chiTietThongBaoResponse.thongBaoHdr.ltbao ?? "";
       dropLoaiTB = (typeTB == '1') ? lstLoaiTB[0] : lstLoaiTB[1];
 
       if(chiTietThongBaoResponse.thongBaoHdr.isTt68 == "TT78"){
+
         lstTinhChat.clear();
         lstTinhChat.add("Hủy");
         lstTinhChat.add("Điều chỉnh");
         lstTinhChat.add("Thay thế");
         lstTinhChat.add("Giải trình");
-        lstTinhChat.add('Sai sót do tổng hợp');
         int index = int.parse(chiTietThongBaoResponse.thongBaoHdr.tctbao ?? '1') - 1;
         dropTinhChat = lstTinhChat[index].toString();
 
       }
       if(chiTietThongBaoResponse.thongBaoHdr.tinhChat == "07"){
+        print('da di vao day -------------------- 2');
+
         final objects = chiTietThongBaoResponse.thongBaoHdr;
         mauSoController.text = objects.mauso;
         mauSo = objects.mauso;
@@ -132,6 +134,8 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
       //   sohdoncqtgoc = lstInvoiceDtlTbao.first.sohdoncqtgoc;
       // }
       else {
+        print('da di vao day -------------------- 3');
+
         final objects = chiTietThongBaoResponse.thongBaoHdr;
         print("========lydodchinh: ${objects.lydodchinh}");
         mauSoController.text = objects.mauso;
@@ -148,6 +152,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
         ngayKyController.text = objects.ngayhdongoc != null ? Utils.convertTimestamp(objects.ngayhdongoc).toString() : '';
         soVanBanController.text = objects.sovban != null ? objects.sovban.toString() : '';
         sohdoncqtgoc = objects.sohdongoc;
+        print('-------------------- sohdoncqtgoc $objects.  ${chiTietThongBaoResponse.invHdr.sohdongoc}');
       }
     }
     if(widget.object != null && widget.type == "TCHDDCDD"){
@@ -353,6 +358,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
       if(response != null){
         tiepTucTBaoDcDinhDanhResponse = response;
         controller.kyTBaoDCDDApi(TiepTucTBaoDcDinhDanhRequest(
+          pincode: '12345678',
           dchiNMua: ["${diaChiNguoiMuaController.text}"],
           loaiHDon: "$loaiHD",
           lydodieuchinh: ["${lyDoController.text}"],
@@ -376,6 +382,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
     registerHandler((ThongBaoModel x) => x.kyTBaoDCDDApi, (context, BaseResponse response, cancel) {
       if(response != null){
         controller.guiTBaoDCDinhDanh(TiepTucTBaoDcDinhDanhRequest(
+          pincode: '12345678',
           dchiNMua: ["${diaChiNguoiMuaController.text}"],
           loaiHDon: "$loaiHD",
           lydodieuchinh: ["${lyDoController.text}"],
@@ -407,7 +414,6 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
           lstTinhChat.add("Điều chỉnh");
           lstTinhChat.add("Thay thế");
           lstTinhChat.add("Giải trình");
-          lstTinhChat.add('Sai sót do tổng hợp');
         }
       }
     });
@@ -457,7 +463,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
               heightTop: EdgeInsets.only(top: 650.h),
               heightBackgroundTop: 570.h,
               childrenAppBar: [
-                ItemFilterTB("Số hóa đơn:", "${(sohdoncqtgoc == null || sohdoncqtgoc == "null") ? "-" : sohdoncqtgoc}"),
+                ItemFilterTB("Số hóa đơn:", "${(sohdoncqtgoc == null || sohdoncqtgoc == "null") ? "${chiTietThongBaoResponse.invHdr.sohdongoc}" : sohdoncqtgoc}"),
                 Padding(
                   padding: EdgeInsets.only(top: 10.h,),
                   child: ItemFilterTB("Ngày lập thông báo sai sót:", "${DateTime.now().day.toString().padLeft(2, '0')}/${DateTime.now().month.toString().padLeft(2, '0')}/${DateTime.now().year}"),
