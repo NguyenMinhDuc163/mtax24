@@ -189,7 +189,9 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         String pinCode = checkAmountHDonResponse.pinHSM;
 
         if(checkAmountHDonResponse.isHsm == "Y"){
-          DialogAlert.showMDialogOTP("", context, (values) =>  kiHoaDon(values, isSavePinCodeLocal ?'Y' :'N'), pinCode: pinCode,
+          DialogAlert.showMDialogOTP("", context, (values) =>
+              kiHoaDon(values, isSavePinCodeLocal != null && isSavePinCodeLocal ?'Y' :'N'),
+              pinCode: pinCode,
               flag: isSavePinCode);
         }else {
           lapHdController.kyHoaDonAPI(KyHoaDonApiRequest(
