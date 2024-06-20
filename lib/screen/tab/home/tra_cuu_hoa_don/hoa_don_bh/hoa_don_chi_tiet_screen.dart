@@ -1087,7 +1087,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         );
     }
 
-    if(trangthaiHD != 'NEWR' && lstHDDieuChinh.isNotEmpty && _showAdjust){
+    // theo nghiep vu thi khi thay the cho HD thay the thi khong co chuc nang dieu chinh
+    if(trangthaiHD != 'NEWR' && lstHDDieuChinh.isNotEmpty && _showAdjust && !(trangthaiHD == 'SUCC' && tenhdon == 'Hóa đơn thay thế')){
         lstSpeedDialChild.add(
           SpeedDialChild(
             child: Icon(Icons.edit),

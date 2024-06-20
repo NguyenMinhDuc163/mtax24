@@ -1130,7 +1130,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                             Expanded(
                               flex: 1,
                               child: ButtonBottomNotStackWidget(
-                                title: "Lưu ",
+                                title: "Lưu",
                                 onPressed: () async {
                                   // String tienThanhChu = VietnameseNumberReader.readNumber(int.parse(Utils.covertToMoney(double.parse(thanhTien)).toString()));
                                   if(listHangHoa == null || listHangHoa.length == 0){
@@ -1149,7 +1149,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       return;
                                     }
                                     String matte = currencyMap[thongTinUser.typeMoney ?? "VND"];
-
+                                    print("------------------------ $objectHopdong");
                                     await _saveHoaDonAsync(LuuHoaDonRequest(
                                       chitiethoadon: getChiTietHD(),
                                       relatedCustomer: maKH,
