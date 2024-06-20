@@ -351,7 +351,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                           // showCursor: false,
                           textInputType: TextInputType.number,
                           textEditingController: totalController,
-                          hintText: widget.type == 5 ? "Số lượng thực xuất" : "Số lượng",
+                          hintText: widget.type == 5 ? "Số lượng thực xuất"  : "Số lượng thực nhập",
                           maxLength: 16,
                           onChangedCustom: (value){
                             totalController.text = _formatNumber(value);
