@@ -48,6 +48,8 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
   var type = 0;
   List<DanhMucHoaDonResponse> lstDMucHoaDon = [];
   List<CorpSerialsResponse> lstPreLapHoaDon = [];
+  List<String> lstDropTypeMoney = [];
+
   Key _refreshKey = UniqueKey();
   List<GetListHangHoaByMaResponse> listHangHoa = [];
   String timeToday = '', mst = "", id = "", invoiceType = "", idHD = "0";
@@ -66,8 +68,10 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
   bool isShowIcon = false;
   bool isKyHD = false;
   String isHsm = "";
+  String dropTypeMoney;
   var controller = GetIt.I<LapHoaDonController>();
-
+  // de lay tien te
+  var controllerTT = GetIt.I<ThongTinNguoiMuaController>();
   @override
   void initState() {
     // TODO: implement initState
@@ -84,11 +88,23 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
     // if(widget.type != null){
     //   isShowIcon = widget.type;
     // }
+    controllerTT.getDMucNHangTTe(DMucNHangTTeRequest(
+      isTraCuu: "isTraCuu",
+      // mstNban: widget.mst,
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    registerHandler((ThongTinNguoiMuaModel x) => x.lstDMucNH, (context, DMucNHangTTeResponse response, cancel) {
+      if(response != null){
+        if(response.dmucTTe.isNotEmpty){
+          lstDropTypeMoney = response.dmucTTe;
+        }
+        dropTypeMoney = lstDropTypeMoney.first;
+        print(lstDropTypeMoney);
+    }});
 
     registerHandler((LapHoaDonModel x) => x.dMucHoaDon, (context, List<DanhMucHoaDonResponse> list, cancel) {
       setState(() {
@@ -436,7 +452,6 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
     final loading = watchX((LapHoaDonModel x) => x.loading);
 
     return Scaffold(
-        resizeToAvoidBottomInset: false,
         // appBar: widget.type ? null : buildAppBarMenuCustom(context, 'Lập hóa đơn', showHome: true ),
       key: _refreshKey,
         body: Stack(
@@ -804,14 +819,14 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       // color: Colors.red,
                                       height: 60.0, // Đặt chiều cao cố định cho cả hai widget
                                       child: DropdownInput(
-                                        value: dropKyHieu,
+                                        value: dropTypeMoney,
                                         onChangedCustom: (String value) {
                                           setState(() {
-                                            dropKyHieu = value;
+                                            dropTypeMoney = value;
                                           });
                                         },
                                         hint: "Loại tiền",
-                                        itemsDropdown: lstKyHieu,
+                                        itemsDropdown: lstDropTypeMoney,
                                       ),
                                     ),
                                   ),
@@ -1200,9 +1215,14 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
 
 
                                     )).then((value) {
+                                      // reset cac truong khi luu
                                       thongTinUser = CreateCustomerApiResponse();
+                                      thongTinVanChuyen = ThongTinVanChuyenModel();
+                                      thongTinNguoiNhan = ThongTinNguoiNhanModel();
+                                      objectHopdong = ObjectHopdong();
+                                      exchangeRateController.text = '';
                                       tenDV = ""; mstnmua = ''; diachiNM = ''; tenNMua = ''; mst = '';
-                                      maKH = ''; personalID = ''; htPayment = '';
+                                      maKH = ''; personalID = ''; htPayment = ''; dropTypeMoney = lstDropTypeMoney.first;
                                       tongTienDv = "0";
                                       tienGTGT = "0";
                                       thanhTien = "0";
