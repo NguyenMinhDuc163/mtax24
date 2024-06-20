@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it_mixin/get_it_mixin.dart';
 import 'package:mtax24/screen/components/widget/input_widget/text_input.dart';
+import '../../../../service/api_service/response/tra_cuu_hoa_don/tra_cuu_hoa_don_chi_tiet_response.dart';
 import '../../../init_view.dart';
 
 class ThongTinVanChuyenScreen extends StatefulWidget with GetItStatefulWidgetMixin{
@@ -9,8 +10,7 @@ class ThongTinVanChuyenScreen extends StatefulWidget with GetItStatefulWidgetMix
   final dynamic object;
   final String trangThai;
 
-
-  ThongTinVanChuyenScreen({this.object, this.trangThai});
+  ThongTinVanChuyenScreen({this.object, this.trangThai,});
 
 
   @override
