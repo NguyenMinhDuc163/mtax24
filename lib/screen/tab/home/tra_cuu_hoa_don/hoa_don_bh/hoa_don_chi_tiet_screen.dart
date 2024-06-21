@@ -77,6 +77,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         chiTietResponse = widget.object;
         print("************************* chiTietResponse: ${chiTietResponse.toJson()}");
         print("===========tinhchat: ${chiTietResponse.sohdongoc}");
+        objectHopdong = new ObjectHopdong(lenh: chiTietResponse.soLenhDDong, dvDieuDong: chiTietResponse.nguoiDDong, ngayDieuDong: chiTietResponse.ngayDDong, noiDung: chiTietResponse.lDoDDong);
+        thongTinVanChuyen = new  ThongTinVanChuyenModel(name: chiTietResponse.nguoivchuyen, hdSo: chiTietResponse.hDongVchuyen, phuongTien: chiTietResponse.ptienvchuyen, khoNhap: chiTietResponse.tenknhap, khoXuat: chiTietResponse.tenkxuat);
         tenhdon = Utils.convertTinhChatHoaDon(chiTietResponse.tinhchat);
         ngaylap = chiTietResponse.ngaylap;
         listHangHoa = chiTietResponse.dsdvu;
@@ -541,7 +543,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                   children: [
                                     Row(
                                       children: [
-                                        Expanded(child: Text(type == 4 ? "Hợp đồng đại lý".toUpperCase() : "Căn cứ điều động".toUpperCase(), style: text14OBold600,)),
+                                        Expanded(child: Text(type == 4 ? "Hợp đồng đại lý".toUpperCase() : "Căn cứ điều động ".toUpperCase(), style: text14OBold600,)),
                                         Icon(Icons.post_add_outlined)
                                       ],
                                     ),
@@ -550,27 +552,27 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                       padding: EdgeInsets.only(top: 12.h),
                                       child: Text("${tenDV}" , style: text16Bold600, textAlign: TextAlign.start),
                                     ),
-                                    type == 3 ?
+                                    type != 3 ?
                                     nguoiDD == null || nguoiDD == "" ? SizedBox() :
                                     Padding(
                                       padding: EdgeInsets.only(top: 10.h),
-                                      child: Text(type == 3 ? "Mst: ${mstnmua}" : "Lệnh $lenh", style: text14Bold400, textAlign: TextAlign.start,),
+                                      child: Text(type != 3 ? "Mst: ${mstnmua}" : "Lệnh $lenh", style: text14Bold400, textAlign: TextAlign.start,),
                                     ):
                                     lenh == null || lenh == "" ? SizedBox() :
                                     Padding(
                                       padding: EdgeInsets.only(top: 10.h),
-                                      child: Text(type == 3 ? "Mst: ${mstnmua}" : "Lệnh $lenh", style: text14Bold400, textAlign: TextAlign.start,),
+                                      child: Text(type != 3 ? "Mst: ${mstnmua}" : "Lệnh $lenh", style: text14Bold400, textAlign: TextAlign.start,),
                                     ),
-                                    type == 3 ?
+                                    type != 3 ?
                                     ngayKy == null || ngayKy == "" ? SizedBox() :
                                     Padding(
                                       padding: EdgeInsets.only(top: 10.h),
-                                      child: Text(type == 3 ? "Ngày ký: ${ngayKy}" : "Ngày ĐĐ $nguoiDD", style: text14Bold400, textAlign: TextAlign.start),
+                                      child: Text(type != 3 ? "Ngày ký: ${ngayKy}" : "Ngày điều động  $nguoiDD", style: text14Bold400, textAlign: TextAlign.start),
                                     ) :
                                     ngayDD == null || ngayDD == "" ? SizedBox() :
                                     Padding(
                                       padding: EdgeInsets.only(top: 10.h),
-                                      child: Text(type == 3 ? "Ngày ký: ${ngayKy}" : "Ngày ĐĐ $ngayDD", style: text14Bold400, textAlign: TextAlign.start),
+                                      child: Text(type != 3 ? "Ngày ký: ${ngayKy}" : "Ngày điều động $ngayDD", style: text14Bold400, textAlign: TextAlign.start),
                                     ) ,
                                   ],
                                 ),
@@ -1087,7 +1089,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         );
     }
 
-    if(trangthaiHD != 'NEWR' && lstHDDieuChinh.isNotEmpty && _showAdjust){
+    // theo nghiep vu thi khi thay the cho HD thay the thi khong co chuc nang dieu chinh
+    if(trangthaiHD != 'NEWR' && lstHDDieuChinh.isNotEmpty && _showAdjust && !(trangthaiHD == 'SUCC' && tenhdon == 'Hóa đơn thay thế')){
         lstSpeedDialChild.add(
           SpeedDialChild(
             child: Icon(Icons.edit),

@@ -11,6 +11,7 @@ import 'package:mtax24/screen/components/styles/style.dart';
 import 'package:mtax24/screen/components/widget/input_widget/calendar_input.dart';
 import 'package:mtax24/screen/components/widget/input_widget/dropdown_input.dart';
 import 'package:mtax24/screen/tab/home/laphoadon/hop_dong_dai_ly_screen.dart';
+import 'package:mtax24/screen/tab/home/laphoadon/thong_tin_nguoi_nhan_screen.dart';
 import 'package:mtax24/screen/tab/home/laphoadon/thong_tin_van_chuyen_screen.dart';
 import 'package:mtax24/screen/tab/home/laphoadon/thong_tin_nguoi_mua_screen.dart';
 import 'package:mtax24/service/api_service/request/check_amount_hdon_request.dart';
@@ -19,6 +20,7 @@ import 'package:mtax24/service/api_service/request/ky_hoa_don_api_request.dart';
 import 'package:mtax24/service/api_service/response/lap_hoa_don/ky_hoa_don_api_response.dart';
 import 'package:mtax24/service/init.dart';
 import '../../../components/core/constants/currency_constants.dart';
+import '../../../components/widget/input_widget/text_input.dart';
 import '../../../init_view.dart';
 import 'thong_tin_hang_hoa/danh_sach_hang_hoa_screen.dart';
 import 'thong_tin_hang_hoa/them_moi_screen.dart';
@@ -37,6 +39,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
 
   TextEditingController thongTinUserController = TextEditingController();
   TextEditingController denNgayController = TextEditingController();
+  TextEditingController exchangeRateController = TextEditingController();
   String  errorDenNgay;
   var dropDMuc, dropMauSo, dropKyHieu;
   List<String> lstDMuc = [];
@@ -45,6 +48,8 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
   var type = 0;
   List<DanhMucHoaDonResponse> lstDMucHoaDon = [];
   List<CorpSerialsResponse> lstPreLapHoaDon = [];
+  List<String> lstDropTypeMoney = [];
+
   Key _refreshKey = UniqueKey();
   List<GetListHangHoaByMaResponse> listHangHoa = [];
   String timeToday = '', mst = "", id = "", invoiceType = "", idHD = "0";
@@ -52,6 +57,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
   String tenDV = "", mstnmua = '', diachiNM = '', tenNMua = '', personalID = "";
   ObjectHopdong objectHopdong = ObjectHopdong();
   ThongTinVanChuyenModel thongTinVanChuyen = ThongTinVanChuyenModel();
+  ThongTinNguoiNhanModel thongTinNguoiNhan = ThongTinNguoiNhanModel();
   CreateCustomerApiResponse thongTinUser = CreateCustomerApiResponse();
 
   String tongTienDv = "0";
@@ -62,8 +68,10 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
   bool isShowIcon = false;
   bool isKyHD = false;
   String isHsm = "";
+  String dropTypeMoney;
   var controller = GetIt.I<LapHoaDonController>();
-
+  // de lay tien te
+  var controllerTT = GetIt.I<ThongTinNguoiMuaController>();
   @override
   void initState() {
     // TODO: implement initState
@@ -80,11 +88,23 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
     // if(widget.type != null){
     //   isShowIcon = widget.type;
     // }
+    controllerTT.getDMucNHangTTe(DMucNHangTTeRequest(
+      isTraCuu: "isTraCuu",
+      // mstNban: widget.mst,
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    registerHandler((ThongTinNguoiMuaModel x) => x.lstDMucNH, (context, DMucNHangTTeResponse response, cancel) {
+      if(response != null){
+        if(response.dmucTTe.isNotEmpty){
+          lstDropTypeMoney = response.dmucTTe;
+        }
+        dropTypeMoney = lstDropTypeMoney.first;
+        print(lstDropTypeMoney);
+    }});
 
     registerHandler((LapHoaDonModel x) => x.dMucHoaDon, (context, List<DanhMucHoaDonResponse> list, cancel) {
       setState(() {
@@ -732,6 +752,115 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                             ),
                           ],
                         ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 20.h),
+                          child: Divider(height: 1,),
+                        ),
+
+
+                        Visibility(
+                          visible: type == 4,
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () async {
+                                  final results = await Navigator.push(
+                                      context, new MaterialPageRoute(builder: (context) => ThongTinNguoiNhanScreen(object: thongTinNguoiNhan,)));
+                                  if(results != null){
+                                    setState(() {
+                                      thongTinNguoiNhan = results;
+                                    });
+                                  }
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(top: 20.h),
+                                  padding: EdgeInsets.only(left: 20.h, right: 20.h, top:  40.h, bottom: 40.h),
+                                  width: MediaQuery.of(context).size.width ,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Expanded(child: Text("Thông tin người nhận".toUpperCase(), style: text14OBold600,)),
+                                          Icon(Icons.post_add_outlined)
+                                        ],
+                                      ),
+                                      thongTinNguoiNhan.name != "" && thongTinNguoiNhan.name != null ?
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 30.h),
+                                        child: Text("${thongTinNguoiNhan.name}", style: text16Bold600, textAlign: TextAlign.start),
+                                      ) : SizedBox(),
+                                      thongTinNguoiNhan.unit != "" && thongTinNguoiNhan.unit  != null  ?
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 10.h),
+                                        child: Text("Tên đơn vị nhận hàng: ${thongTinNguoiNhan.unit}", style: text14Bold400, textAlign: TextAlign.start,),
+                                      ) : SizedBox(),
+                                      thongTinNguoiNhan.warehouseAddress != "" && thongTinNguoiNhan.warehouseAddress != null  ?
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 10.h),
+                                        child: Text("Địa chỉ kho nhận hàng ${thongTinNguoiNhan.warehouseAddress}", style: text14Bold400, textAlign: TextAlign.start),
+                                      ) : SizedBox(),
+
+                                    ],
+                                  ),
+
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 20.h),
+                                child: Divider(height: 1,),
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      // color: Colors.red,
+                                      height: 60.0, // Đặt chiều cao cố định cho cả hai widget
+                                      child: DropdownInput(
+                                        value: dropTypeMoney,
+                                        onChangedCustom: (String value) {
+                                          setState(() {
+                                            dropTypeMoney = value;
+                                          });
+                                        },
+                                        hint: "Loại tiền",
+                                        itemsDropdown: lstDropTypeMoney,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 16), // Khoảng cách giữa DropdownInput và TextInput
+                                  Expanded(
+                                    child: Container(
+                                      // color: Colors.blue,
+                                      height:47.0, // Đặt chiều cao cố định cho cả hai widget
+                                      // child: TextInput(
+                                      //   haveBorder: true,
+                                      //   hintText: "Tỷ giá",
+                                      //   textInputType: TextInputType.phone,
+                                      //   maxLength: 16,
+                                      // ),
+                                      child: TextField(
+                                        controller: exchangeRateController,
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          hintText: "Tỷ giá",
+                                          border: OutlineInputBorder(),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              Padding(
+                                padding: EdgeInsets.only(top: 20.h),
+                                child: Divider(height: 1,),
+                              ),
+                            ],
+                          ),
+                        ),
 
                         Padding(
                           padding: EdgeInsets.only(top: 20.h),
@@ -1001,7 +1130,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                             Expanded(
                               flex: 1,
                               child: ButtonBottomNotStackWidget(
-                                title: "Lưu ",
+                                title: "Lưu",
                                 onPressed: () async {
                                   // String tienThanhChu = VietnameseNumberReader.readNumber(int.parse(Utils.covertToMoney(double.parse(thanhTien)).toString()));
                                   if(listHangHoa == null || listHangHoa.length == 0){
@@ -1020,7 +1149,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       return;
                                     }
                                     String matte = currencyMap[thongTinUser.typeMoney ?? "VND"];
-
+                                    print("------------------------ $objectHopdong");
                                     await _saveHoaDonAsync(LuuHoaDonRequest(
                                       chitiethoadon: getChiTietHD(),
                                       relatedCustomer: maKH,
@@ -1086,9 +1215,14 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
 
 
                                     )).then((value) {
+                                      // reset cac truong khi luu
                                       thongTinUser = CreateCustomerApiResponse();
+                                      thongTinVanChuyen = ThongTinVanChuyenModel();
+                                      thongTinNguoiNhan = ThongTinNguoiNhanModel();
+                                      objectHopdong = ObjectHopdong();
+                                      exchangeRateController.text = '';
                                       tenDV = ""; mstnmua = ''; diachiNM = ''; tenNMua = ''; mst = '';
-                                      maKH = ''; personalID = ''; htPayment = '';
+                                      maKH = ''; personalID = ''; htPayment = ''; dropTypeMoney = lstDropTypeMoney.first;
                                       tongTienDv = "0";
                                       tienGTGT = "0";
                                       thanhTien = "0";

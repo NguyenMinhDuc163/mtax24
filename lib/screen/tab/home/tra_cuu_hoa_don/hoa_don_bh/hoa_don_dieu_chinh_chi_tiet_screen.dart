@@ -17,7 +17,9 @@ import 'package:mtax24/service/api_service/request/ky_hoa_don_api_request.dart';
 import 'package:mtax24/service/api_service/response/lap_hoa_don/ky_hoa_don_api_response.dart';
 import 'package:mtax24/service/init.dart';
 
+import '../../../../components/widget/input_widget/dropdown_input.dart';
 import '../../../../init_view.dart';
+import '../../laphoadon/thong_tin_nguoi_nhan_screen.dart';
 import 'thong_tin_tt_dc_screen.dart';
 
 
@@ -33,12 +35,15 @@ class HoaDonDieuChinhChiTietScreen extends StatefulWidget with GetItStatefulWidg
 
 class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with GetItStateMixin{
   TextEditingController mstController = TextEditingController();
+  TextEditingController exchangeRateController = TextEditingController();
   var type = 0;
   List<Dsdvu> listHangHoa = [];
+  List<String> lstDropTypeMoney = [];
   String tenhdon = "", ngaylap = "", tenDV = "";
   ObjectHopdong objectHopdong = ObjectHopdong();
   ThongTinVanChuyenModel thongTinVanChuyen = ThongTinVanChuyenModel();
   CreateCustomerApiResponse thongTinUser = CreateCustomerApiResponse();
+  ThongTinNguoiNhanModel thongTinNguoiNhan = ThongTinNguoiNhanModel();
   String tongTienDv = "0";
   String tienGTGT = "0";
   String thanhTien = "0";
@@ -51,6 +56,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
   LstCorpSerial corpSerial = LstCorpSerial();
   String tinhChat = '', trangThai = '', id = '', loaiHd = '', idHD = '0', tinhChatHd_DC_TT = '';
   String adjustType = '', lyDo = '', ngaykyvanban = '', sovban = '', serial = '', templateCode = '';
+  String dropTypeMoney;
   bool isKyHD = false;
   String isHsm = "";
 
@@ -697,6 +703,213 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
                                 ],
                               )
 
+                          ),
+                        ),
+
+
+                        Visibility(
+                          visible: type == 3,
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () async {
+                                  final result = await Navigator.push(
+                                      context, new MaterialPageRoute(builder: (context) => HopDongDaiLyScreen(type: 4, object: objectHopdong,)));
+                                  if(result != null){
+                                    setState(() {
+                                      // if(type == 3){
+                                      //   isClickHD = true;
+                                      // }else{
+                                      //   isClickCanCu = true;
+                                      // }
+                                      objectHopdong = result;
+                                    });
+                                  }
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(top: 20.h),
+                                  padding: EdgeInsets.only(left: 20.h, right: 20.h, top: 40.h, bottom: 40.h),
+                                  width: MediaQuery.of(context).size.width ,
+                                  child:
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Expanded(child: Text( "Căn cứ điều động".toUpperCase(), style: text14OBold600,)),
+                                          Icon(Icons.post_add_outlined)
+                                        ],
+                                      ),
+
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          objectHopdong.lenh != "" && objectHopdong.lenh != null ?
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 30.h),
+                                            child: Text("${objectHopdong.lenh}", style: text16Bold600, textAlign: TextAlign.start),
+                                          ) : SizedBox(),
+                                          objectHopdong.dvDieuDong != "" && objectHopdong.dvDieuDong != null  ?
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 10.h),
+                                            child: Text("Đơn vị: ${objectHopdong.dvDieuDong}", style: text14Bold400, textAlign: TextAlign.start,),
+                                          ) : SizedBox(),
+                                          objectHopdong.ngayDieuDong != "" && objectHopdong.ngayDieuDong != null  ?
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 10.h),
+                                            child: Text("Ngày điều động: ${objectHopdong.ngayDieuDong}", style: text14Bold400, textAlign: TextAlign.start),
+                                          ) : SizedBox(),
+                                        ],
+                                      )
+
+                                    ],
+                                  )
+
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  final results = await Navigator.push(
+                                      context, new MaterialPageRoute(builder: (context) => ThongTinVanChuyenScreen(object: thongTinVanChuyen,)));
+                                  if(results != null){
+                                    setState(() {
+                                      thongTinVanChuyen = results;
+                                    });
+                                  }
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(top: 20.h),
+                                  padding: EdgeInsets.only(left: 20.h, right: 20.h, top:  40.h, bottom: 40.h),
+                                  width: MediaQuery.of(context).size.width ,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Expanded(child: Text("Thông tin vận chuyển".toUpperCase(), style: text14OBold600,)),
+                                          Icon(Icons.post_add_outlined)
+                                        ],
+                                      ),
+                                      thongTinVanChuyen.name != "" && thongTinVanChuyen.name != null ?
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 30.h),
+                                        child: Text("${thongTinVanChuyen.name}", style: text16Bold600, textAlign: TextAlign.start),
+                                      ) : SizedBox(),
+                                      thongTinVanChuyen.hdSo != "" && thongTinVanChuyen.hdSo != null  ?
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 10.h),
+                                        child: Text("Hợp đồng số: ${thongTinVanChuyen.hdSo}", style: text14Bold400, textAlign: TextAlign.start,),
+                                      ) : SizedBox(),
+                                      thongTinVanChuyen.phuongTien != "" && thongTinVanChuyen.phuongTien != null  ?
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 10.h),
+                                        child: Text("Phương tiện vận chuyển: ${thongTinVanChuyen.phuongTien}", style: text14Bold400, textAlign: TextAlign.start),
+                                      ) : SizedBox(),
+
+                                    ],
+                                  ),
+
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  final results = await Navigator.push(
+                                      context, new MaterialPageRoute(builder: (context) => ThongTinNguoiNhanScreen(object: thongTinNguoiNhan,)));
+                                  if(results != null){
+                                    setState(() {
+                                      thongTinNguoiNhan = results;
+                                    });
+                                  }
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(top: 20.h),
+                                  padding: EdgeInsets.only(left: 20.h, right: 20.h, top:  40.h, bottom: 40.h),
+                                  width: MediaQuery.of(context).size.width ,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Expanded(child: Text("Thông tin người nhận".toUpperCase(), style: text14OBold600,)),
+                                          Icon(Icons.post_add_outlined)
+                                        ],
+                                      ),
+                                      thongTinNguoiNhan.name != "" && thongTinNguoiNhan.name != null ?
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 30.h),
+                                        child: Text("${thongTinNguoiNhan.name}", style: text16Bold600, textAlign: TextAlign.start),
+                                      ) : SizedBox(),
+                                      thongTinNguoiNhan.unit != "" && thongTinNguoiNhan.unit  != null  ?
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 10.h),
+                                        child: Text("Tên đơn vị nhận hàng: ${thongTinNguoiNhan.unit}", style: text14Bold400, textAlign: TextAlign.start,),
+                                      ) : SizedBox(),
+                                      thongTinNguoiNhan.warehouseAddress != "" && thongTinNguoiNhan.warehouseAddress != null  ?
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 10.h),
+                                        child: Text("Địa chỉ kho nhận hàng ${thongTinNguoiNhan.warehouseAddress}", style: text14Bold400, textAlign: TextAlign.start),
+                                      ) : SizedBox(),
+
+                                    ],
+                                  ),
+
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 20.h),
+                                child: Divider(height: 1,),
+                              ),
+                              // Row(
+                              //   crossAxisAlignment: CrossAxisAlignment.end,
+                              //   children: [
+                              //     Expanded(
+                              //       child: Container(
+                              //         // color: Colors.red,
+                              //         height: 60.0, // Đặt chiều cao cố định cho cả hai widget
+                              //         child: DropdownInput(
+                              //           value: dropTypeMoney,
+                              //           onChangedCustom: (String value) {
+                              //             setState(() {
+                              //               dropTypeMoney = value;
+                              //             });
+                              //           },
+                              //           hint: "Loại tiền",
+                              //           itemsDropdown: lstDropTypeMoney,
+                              //         ),
+                              //       ),
+                              //     ),
+                              //     SizedBox(width: 16), // Khoảng cách giữa DropdownInput và TextInput
+                              //     Expanded(
+                              //       child: Container(
+                              //         // color: Colors.blue,
+                              //         height:47.0, // Đặt chiều cao cố định cho cả hai widget
+                              //         // child: TextInput(
+                              //         //   haveBorder: true,
+                              //         //   hintText: "Tỷ giá",
+                              //         //   textInputType: TextInputType.phone,
+                              //         //   maxLength: 16,
+                              //         // ),
+                              //         child: TextField(
+                              //           controller: exchangeRateController,
+                              //           keyboardType: TextInputType.number,
+                              //           decoration: InputDecoration(
+                              //             hintText: "Tỷ giá",
+                              //             border: OutlineInputBorder(),
+                              //           ),
+                              //         ),
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
+
+                              Padding(
+                                padding: EdgeInsets.only(top: 20.h),
+                                child: Divider(height: 1,),
+                              ),
+                            ],
                           ),
                         ),
 
