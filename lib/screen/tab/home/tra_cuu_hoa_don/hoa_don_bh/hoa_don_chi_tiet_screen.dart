@@ -581,7 +581,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                             InkWell(
                               onTap: () async {
                                 final results = await Navigator.push(
-                                    context, new MaterialPageRoute(builder: (context) => ThongTinVanChuyenScreen(object: thongTinVanChuyen, trangThai: chiTietResponse.trangthai)));
+                                    context, new
+                                MaterialPageRoute(builder: (context) => ThongTinVanChuyenScreen(object: thongTinVanChuyen, trangThai: chiTietResponse.trangthai)));
                                 if(results != null){
                                   setState(() {
                                      hopDong = thongTinVanChuyen.hdSo;

@@ -11,6 +11,7 @@ import 'package:mtax24/screen/tab/home/laphoadon/thong_tin_hang_hoa/danh_sach_ha
 import 'package:mtax24/screen/tab/home/laphoadon/thong_tin_hang_hoa/them_moi_screen.dart';
 import 'package:mtax24/screen/tab/home/laphoadon/thong_tin_van_chuyen_screen.dart';
 import 'package:mtax24/screen/tab/home/tra_cuu_hoa_don/component/item_filter.dart';
+import 'package:mtax24/screen/tab/home/tra_cuu_hoa_don/hoa_don_bh/tra_cuu_hoa_don_bh_screen.dart';
 import 'package:mtax24/service/api_service/request/check_amount_hdon_request.dart';
 import 'package:mtax24/service/api_service/request/gui_hoa_don_api_request.dart';
 import 'package:mtax24/service/api_service/request/ky_hoa_don_api_request.dart';
@@ -527,7 +528,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
       }
     });
 
-    registerHandler((HoaDonDieuChinhThayTheModel x) => x.luuHoaDon, (context, KyHoaDonApiResponse response, cancel) {
+    registerHandler((HoaDonDieuChinhThayTheModel x) => x.luuHoaDon, (context, KyHoaDonApiResponse response, cancel) async {
       if(response != null){
         idHD = response.iccinvhdr.id.toString();
         DialogAlert.showDialogInfo(context, "Lưu thành công số hóa đơn ${response.iccinvhdr.sohdon}", onSuccess: (){
@@ -539,7 +540,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
             Navigator.of(context).pop();
           }
         });
-      }
+        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TraCuuHoaDonBHScreen()));
+  }
     });
 
     registerHandler((HoaDonDieuChinhThayTheModel x) => x.guiReview, (context, KyHoaDonApiResponse response, cancel) {
