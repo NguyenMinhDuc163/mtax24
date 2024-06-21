@@ -81,6 +81,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
     var formatter = new DateFormat('dd/MM/yyyy');
     timeToday = formatter.format(now);
     denNgayController.text = timeToday;
+    exchangeRateController.text = '1';
     SharePreferUtils.getUserInfo().then((value) {
       mst = value.tin;
       id = value.userId;
@@ -845,8 +846,9 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                         controller: exchangeRateController,
                                         keyboardType: TextInputType.number,
                                         decoration: InputDecoration(
-                                          hintText: "Tỷ giá",
                                           border: OutlineInputBorder(),
+                                          label: Text("Tỷ giá"),
+                                          labelStyle: TextStyle(color: Colors.grey.shade800),
                                         ),
                                       ),
                                     ),
