@@ -221,7 +221,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
               serviceType: "N",
               tendvinmua: type == 0 || type == 1 || type == 2 ? thongTinUser
                   .customerCompany : "",
-              tenhdon: dropDMuc,
+              tenhdon: dropDMuc.toString().split(' ').sublist(1).join(' ').trim(),
               tennmua: type == 0 || type == 1 || type == 2 ? thongTinUser
                   .customerName : "",
               tgia: "1",
@@ -293,7 +293,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
             serviceType: "N",
             tendvinmua: type == 0 || type == 1 || type == 2 ? thongTinUser
                 .customerCompany : "",
-            tenhdon: dropDMuc,
+            tenhdon: dropDMuc.toString().split(' ').sublist(1).join(' ').trim(),
             tennmua: type == 0 || type == 1 || type == 2 ? thongTinUser
                 .customerName : "",
             tgia: "1",
@@ -369,7 +369,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
           ngaykyvanban: "",
           serviceType: "N",
           tendvinmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerCompany : "",
-          tenhdon: dropDMuc,
+          tenhdon: dropDMuc.toString().split(' ').sublist(1).join(' ').trim(),
           tennmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerName : "",
           tgia: "1",
           tienbangchu: Utils.convertVietnameseNumberReader(thanhTien),
@@ -1174,7 +1174,8 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       ngaykyvanban: "",
                                       serviceType: "N",
                                       tendvinmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerCompany : "",
-                                      tenhdon: dropDMuc,
+                                      // Do o tren yeu cau co ma => khi gui di phai xoa ma
+                                      tenhdon: dropDMuc.toString().split(' ').sublist(1).join(' ').trim(),
                                       tennmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerName : "",
                                       tgia: "1",
                                       tienbangchu: Utils.convertVietnameseNumberReader(thanhTien) + " $matte",
@@ -1291,7 +1292,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     ngaykyvanban: "",
                                     serviceType: "N",
                                     tendvinmua: thongTinUser.customerCompany,
-                                    tenhdon: dropDMuc,
+                                    tenhdon: dropDMuc.toString().split(' ').sublist(1).join(' ').trim(),
                                     tennmua: thongTinUser.customerName,
                                     tgia: "1",
                                     tienbangchu: Utils.convertVietnameseNumberReader(thanhTien),
@@ -1411,7 +1412,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
       serviceType: "N",
       tendvinmua: type == 0 || type == 1 || type == 2 ? thongTinUser
           .customerCompany : "",
-      tenhdon: dropDMuc,
+      tenhdon: dropDMuc.toString().split(' ').sublist(1).join(' ').trim(),
       tennmua: type == 0 || type == 1 || type == 2 ? thongTinUser
           .customerName : "",
       tgia: "1",
