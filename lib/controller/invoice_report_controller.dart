@@ -88,7 +88,7 @@ class InvoiceReportController extends BaseController {
               json.decode(baseResponse.object)["dmucTTe"].toList().forEach((e){
                 moneyKindList.add(e);
               });
-          model.setMoneyKindList(moneyKindList: moneyKindList);
+              model.setMoneyKindList(moneyKindList: moneyKindList);
             } else {
               model.setError(error: baseResponse.message, source: "getMoneyKindList");
             }
@@ -107,6 +107,10 @@ class InvoiceReportController extends BaseController {
 
   void setMoneyKind({@required String moneyKind}) {
     model.setMoneyKind(moneyKind: moneyKind);
+  }
+
+  void setInvoiceType({@required String invoiceType}) {
+    model.setInvoiceType(invoiceType: invoiceType);
   }
 
   void setFromDateReport({@required String fromDate}) {

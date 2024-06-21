@@ -30,6 +30,7 @@ class _SearchReportScreenState extends State<SearchReportScreen>
   var invoiceReportController = GetIt.I<InvoiceReportController>();
   List<String> namesInvoiceKind = [];
   List<String> namesInvoiceProperty = [];
+  List<String> namesInvoice= [];
 
   @override
   void initState() {
@@ -53,6 +54,9 @@ class _SearchReportScreenState extends State<SearchReportScreen>
     final fromDate = watchX((InvoiceReportModel x) => x.fromDateReport);
     final toDate = watchX((InvoiceReportModel x) => x.toDateReport);
     final tinBuyerReport = watchX((InvoiceReportModel x) => x.tinBuyerReport);
+    final invoiceTemplate = watchX((InvoiceReportModel x) => x.invoiceTemplate);
+    final invoiceType = watchX((InvoiceReportModel x) => x.invoiceType);
+    final invoiceSymbol = watchX((InvoiceReportModel x) => x.invoiceSymbol);
 
     return GestureDetector(
       onTap: () {
@@ -74,6 +78,22 @@ class _SearchReportScreenState extends State<SearchReportScreen>
                       hintText: "Mã số thuế người mua",
                       haveBorder: true,
                       textInputType: TextInputType.numberWithOptions(signed: true, decimal: false),
+                      maxLength: 14,
+                    ),
+                    SizedBox(height: height_24,),
+                    TextInput(
+                      textEditingController: invoiceTemplate,
+                      hintText: "Mẫu hoá đơn",
+                      haveBorder: true,
+                      textInputType: TextInputType.numberWithOptions(signed: true, decimal: false),
+                      maxLength: 14,
+                    ),
+                    SizedBox(height: height_24,),
+                    TextInput(
+                      textEditingController: invoiceSymbol,
+                      hintText: "Ký hiệu hóa đơn",
+                      haveBorder: true,
+                      textInputType: TextInputType.text,
                       maxLength: 14,
                     ),
                     DropDownDialog(
@@ -102,6 +122,16 @@ class _SearchReportScreenState extends State<SearchReportScreen>
                       },
                     ),
 
+                    DropDownDialog(
+                      value: invoiceType,
+                      itemsDropdown: Constants.invoiceTypeList,
+                      title: "Hình thức hóa đơn",
+                      onChangedCustom: (_) {
+                        invoiceReportController.setInvoiceType(invoiceType: _);
+                      },
+                    ),
+
+
                     SelectDateWidget(
                         fromDateController: fromDate,
                         toDateController: toDate,
@@ -111,8 +141,17 @@ class _SearchReportScreenState extends State<SearchReportScreen>
                     ButtonBottomNotStackWidget(
                       title: "Lập báo cáo",
                       onPressed: () {
-                        if(!Utils.validateMst(tinBuyerReport.text) || tinBuyerReport.text == ''){
+                        if(!Utils.validateMst(tinBuyerReport.text) && tinBuyerReport.text != ''){
                           Toast.showLongTop("Mã số thuế sai cấu trúc!");
+                          return;
+                        }
+                        String dateNow = DateFormat('dd/MM/yyyy').format(DateTime.now());
+                        if(!Utils.compareDates(fromDate.text, dateNow) || !Utils.compareDates(toDate.text, dateNow)){
+                          Toast.showLongTop("Ngày không được lớn hơn ngày hiện tại");
+                          return;
+                        }
+                        if(!Utils.compareDates(fromDate.text, toDate.text)){
+                          Toast.showLongTop("Ngày bắt đầu không được lớn hơn ngày kết thúc");
                           return;
                         }
 
