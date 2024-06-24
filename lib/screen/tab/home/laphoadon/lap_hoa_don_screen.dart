@@ -1151,8 +1151,13 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       return;
                                     }
                                     String matte = currencyMap[thongTinUser.typeMoney ?? "VND"];
-                                    print("------------------------ $objectHopdong");
+
+                                    String ngayhdon = denNgayController.text + " 14:32:59";
+                                    print("------------------------ ${ngayhdon}");
+                                    String formattedDate = DateFormat('HH:mm:ss').format(DateTime.now());
+                                    print('---------------------------- $formattedDate');
                                     await _saveHoaDonAsync(LuuHoaDonRequest(
+                                      ngayhdon: ngayhdon,
                                       chitiethoadon: getChiTietHD(),
                                       relatedCustomer: maKH,
                                       cccDan: personalID,
@@ -1219,17 +1224,17 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
 
                                     )).then((value) {
                                       // reset cac truong khi luu
-                                      thongTinUser = CreateCustomerApiResponse();
-                                      thongTinVanChuyen = ThongTinVanChuyenModel();
-                                      thongTinNguoiNhan = ThongTinNguoiNhanModel();
-                                      objectHopdong = ObjectHopdong();
-                                      exchangeRateController.text = '';
-                                      tenDV = ""; mstnmua = ''; diachiNM = ''; tenNMua = ''; mst = '';
-                                      maKH = ''; personalID = ''; htPayment = ''; dropTypeMoney = lstDropTypeMoney.first;
-                                      tongTienDv = "0";
-                                      tienGTGT = "0";
-                                      thanhTien = "0";
-                                      listHangHoa = [];
+                                      // thongTinUser = CreateCustomerApiResponse();
+                                      // thongTinVanChuyen = ThongTinVanChuyenModel();
+                                      // thongTinNguoiNhan = ThongTinNguoiNhanModel();
+                                      // objectHopdong = ObjectHopdong();
+                                      // exchangeRateController.text = '';
+                                      // tenDV = ""; mstnmua = ''; diachiNM = ''; tenNMua = ''; mst = '';
+                                      // maKH = ''; personalID = ''; htPayment = ''; dropTypeMoney = lstDropTypeMoney.first;
+                                      // tongTienDv = "0";
+                                      // tienGTGT = "0";
+                                      // thanhTien = "0";
+                                      // listHangHoa = [];
                                     });
 
                                   }

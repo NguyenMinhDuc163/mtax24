@@ -539,8 +539,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
           }else{
             Navigator.of(context).pop();
           }
-        });
-        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TraCuuHoaDonBHScreen()));
+        }).then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TraCuuHoaDonBHScreen())));
+
   }
     });
 
