@@ -76,7 +76,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
     super.initState();
     print("========type: ${widget.type} ");
     dropLoaiTB = 'Thông báo hủy/giải trình của NNT';
-    dropTinhChat = 'Hủy';
+    // dropTinhChat = '';r
     if(widget.object != null && widget.type == "TB"){
       chiTietThongBaoResponse = widget.object;
       title = Utils.convertTinhChatThongBao(chiTietThongBaoResponse.thongBaoHdr.tinhChat);
@@ -523,7 +523,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                         CalendarInput(
                           textDateController: ngayKyController,
                           haveBorder: true,
-                          title: "Ngày ký văn bản",
+                          title: "Ngày ký văn bản ",
                           onClickChooseDate: (selectedDate){
                             setState(() {
                               if(DateFormat("dd/MM/yyyy").parse(selectedDate).isAfter(DateTime.now())) {
@@ -554,6 +554,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                           errorText: errorNgayKy,
                         ) : SizedBox(),
                         widget.type == "TCHDXoBo" && thaoTacLapTBaoXoaBoResponse != null  && thaoTacLapTBaoXoaBoResponse.inReq.isTt68 == "TT78" ?
+                        // true ?
                         Column(
                           children: [
                             DropdownInput(

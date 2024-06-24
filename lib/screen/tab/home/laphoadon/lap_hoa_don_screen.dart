@@ -1152,7 +1152,8 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     }
                                     String matte = currencyMap[thongTinUser.typeMoney ?? "VND"];
 
-                                    String ngayhdon = denNgayController.text + " 14:32:59";
+                                    // String ngayhdon = DateFormat('dd/MM/yyyy HH:mm:ss').format(DateTime.now());
+                                    String ngayhdon = DateFormat('dd/MM/yyyy').format(DateTime.now()) + " 00:00:00";
                                     print("------------------------ ${ngayhdon}");
                                     String formattedDate = DateFormat('HH:mm:ss').format(DateTime.now());
                                     print('---------------------------- $formattedDate');

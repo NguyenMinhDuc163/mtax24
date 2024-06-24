@@ -203,6 +203,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonDieuChinhChiTietScreen> with
                       context, "Bạn chưa chọn thông tin vận chuyển");
                 } else {
                   controller.luuHoaDon(LuuHoaDonRequest(
+
+                    ngayhdon: chiTietResponse.ngayhdon,
                     chitiethoadon: getChiTietHD(),
                     dchinmua: chiTietResponse.dchinmua,
                     dthoainmua: chiTietResponse.dthoainmua,
