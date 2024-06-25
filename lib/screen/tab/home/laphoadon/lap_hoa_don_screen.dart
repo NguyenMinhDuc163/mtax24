@@ -195,7 +195,9 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
             DialogAlert.showMDialogOTP("", context, (values) =>  kiHoaDon(values, isSavePinCodeLocal ?'Y' :'N'), pinCode: pinCode,
                 flag: isSavePinCode);
           }else {
+            print('-------------------------------- da di qua day');
             controller.kyHoaDonAPI(KyHoaDonApiRequest(
+              ngayhdon: denNgayController.text,
               id: idHD,
               pincode: 111111,
               chitiethoadon: getChiTietHD(),
@@ -268,6 +270,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
           isKyHD = true;
           DialogAlert.showLoadding(context);
           controller.kyHoaDonAPI(KyHoaDonApiRequest(
+            ngayhdon: denNgayController.text,
             id: idHD,
             pincode: 111111,
             chitiethoadon: getChiTietHD(),
@@ -1161,7 +1164,8 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     DateTime ngayhdon = DateFormat('dd/MM/yyyy HH:mm:ss').parse(denNgayController.text + " ${DateFormat('HH:mm:ss').format(DateTime.now())}");
                                     print('---------------------------- ${(ngayhdon.microsecondsSinceEpoch / 1000).round().toString()}');
                                     await _saveHoaDonAsync(LuuHoaDonRequest(
-                                      ngayhdon: (ngayhdon.millisecondsSinceEpoch / 1000).round().toString(),
+                                      // ngayhdon: (ngayhdon.millisecondsSinceEpoch / 1000).round().toString(),
+                                      ngayhdon: denNgayController.text,
                                       chitiethoadon: getChiTietHD(),
                                       relatedCustomer: maKH,
                                       cccDan: personalID,
@@ -1228,17 +1232,17 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
 
                                     )).then((value) {
                                       // reset cac truong khi luu
-                                      // thongTinUser = CreateCustomerApiResponse();
-                                      // thongTinVanChuyen = ThongTinVanChuyenModel();
-                                      // thongTinNguoiNhan = ThongTinNguoiNhanModel();
-                                      // objectHopdong = ObjectHopdong();
-                                      // exchangeRateController.text = '';
-                                      // tenDV = ""; mstnmua = ''; diachiNM = ''; tenNMua = ''; mst = '';
-                                      // maKH = ''; personalID = ''; htPayment = ''; dropTypeMoney = lstDropTypeMoney.first;
-                                      // tongTienDv = "0";
-                                      // tienGTGT = "0";
-                                      // thanhTien = "0";
-                                      // listHangHoa = [];
+                                      thongTinUser = CreateCustomerApiResponse();
+                                      thongTinVanChuyen = ThongTinVanChuyenModel();
+                                      thongTinNguoiNhan = ThongTinNguoiNhanModel();
+                                      objectHopdong = ObjectHopdong();
+                                      exchangeRateController.text = '';
+                                      tenDV = ""; mstnmua = ''; diachiNM = ''; tenNMua = ''; mst = '';
+                                      maKH = ''; personalID = ''; htPayment = ''; dropTypeMoney = lstDropTypeMoney.first;
+                                      tongTienDv = "0";
+                                      tienGTGT = "0";
+                                      thanhTien = "0";
+                                      listHangHoa = [];
                                     });
 
                                   }
@@ -1395,6 +1399,8 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
   }
   void kiHoaDon(String pinCode, String isSavePinCode){
     controller.kyHoaDonAPI(KyHoaDonApiRequest(
+      ngayhdon: denNgayController.text,
+
       check_savepass: isSavePinCode,
       id: idHD,
       pincode: int.parse(pinCode),

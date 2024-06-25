@@ -81,7 +81,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
     if(widget.object != null && widget.type == "TB"){
       chiTietThongBaoResponse = widget.object;
       chiTietThongBaoResponse = widget.object;
-      chiTietThongBaoResponse.thongBaoHdr.isTt68 = 'TT78';
+      // chiTietThongBaoResponse.thongBaoHdr.isTt68 = 'TT78';
       print('--------------- dropTinhChat: $dropTinhChat');
       title = Utils.convertTinhChatThongBao(chiTietThongBaoResponse.thongBaoHdr.tinhChat);
       type = chiTietThongBaoResponse.thongBaoHdr.tinhChat;
@@ -218,7 +218,6 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
     }
 
 
-
     lstSpeedDialChild.add(
       SpeedDialChild(
         child: Icon(Icons.edit),
@@ -294,21 +293,33 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                   portalTbaoReq: thaoTacLapTBaoXoaBoResponse.portal,
                   tctbao: tinhChatXoaBo,));
               }
-            }else {
-              controller.luuTBaoDCDinhDanh(TiepTucTBaoDcDinhDanhRequest(
-                dchiNMua: ["${diaChiNguoiMuaController.text}"],
-                loaiHDon: "$loaiHD",
-                lydodieuchinh: ["${lyDoController.text}"],
-                mstNmua: ["$mstNmua"],
-                ngayVBan: ["${ngayKyController.text}"],
-                portalInvoiceHdrTbao: widget.type == "TB" ? chiTietThongBaoResponse.thongBaoHdr : ThongBaoHdr(),
-                portalListInvoiceHdrTbao: widget.type == "TB" ? chiTietThongBaoResponse.lstInvoiceDtlTbao : lapTBaoDcDinhDanhResponse.portalListInvoiceHdrTbao,
-                soHDonCqt: ["$sohdoncqtgoc"],
-                soVBan: ["${soVanBanController.text}"],
-                tendvimua: ["${tenNguoiMuaController.text}"],
-                tenNMua: ["${tenNguoiMuaController.text}"],
-                tinhchatgoc: ["$type"],
-              ));
+            }
+            else {
+              // controller.luuTBaoDCDinhDanh(TiepTucTBaoDcDinhDanhRequest(
+              //   dchiNMua: ["${diaChiNguoiMuaController.text}"],
+              //   loaiHDon: "$loaiHD",
+              //   lydodieuchinh: ["${lyDoController.text}"],
+              //   mstNmua: ["$mstNmua"],
+              //   ngayVBan: ["${ngayKyController.text}"],
+              //   portalInvoiceHdrTbao: widget.type == "TB" ? chiTietThongBaoResponse.thongBaoHdr : ThongBaoHdr(),
+              //   portalListInvoiceHdrTbao: widget.type == "TB" ? chiTietThongBaoResponse.lstInvoiceDtlTbao : lapTBaoDcDinhDanhResponse.portalListInvoiceHdrTbao,
+              //   soHDonCqt: ["$sohdoncqtgoc"],
+              //   soVBan: ["${soVanBanController.text}"],
+              //   tendvimua: ["${tenNguoiMuaController.text}"],
+              //   tenNMua: ["${tenNguoiMuaController.text}"],
+              //   tinhchatgoc: ["$type"],
+              // ));
+              typeNext = "LUU";
+              thaoTacLapTBaoXoaBoResponse = ThaoTacLapTBaoXoaBoResponse();
+              thaoTacLapTBaoXoaBoResponse.inReq = InReq();
+              thaoTacLapTBaoXoaBoResponse.portal = ThongBaoHdr();
+              controller.nextTBaoXoaBo(NextTBaoXoaBoRequest(
+                soVBan: soVanBanController.text,
+                lyDoXoaBo: lyDoController.text,
+                ngayKyVanBan: ngayHDController.text,
+                inReq: thaoTacLapTBaoXoaBoResponse.inReq,
+                portalTbaoReq: thaoTacLapTBaoXoaBoResponse.portal,
+                tctbao: tinhChatXoaBo,));
             }
           }
       ),
@@ -428,7 +439,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
     registerHandler((ThongBaoModel x) => x.thaoTacLapTBaoXoaBo, (context, ThaoTacLapTBaoXoaBoResponse response, cancel) {
       if(response != null){
         thaoTacLapTBaoXoaBoResponse = response;
-        thaoTacLapTBaoXoaBoResponse.inReq.isTt68 = 'TT78';
+        // thaoTacLapTBaoXoaBoResponse.inReq.isTt68 = 'TT78';
         if(thaoTacLapTBaoXoaBoResponse.inReq.isTt68 == "TT78"){
           lstTinhChat.clear();
           lstTinhChat.add("Hủy");
