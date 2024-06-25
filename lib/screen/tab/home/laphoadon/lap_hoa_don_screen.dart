@@ -171,6 +171,20 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
           }else{
             Navigator.of(context).pop();
           }
+        }).then((value) {
+          setState(() {
+            thongTinUser = CreateCustomerApiResponse();
+            thongTinVanChuyen = ThongTinVanChuyenModel();
+            thongTinNguoiNhan = ThongTinNguoiNhanModel();
+            objectHopdong = ObjectHopdong();
+            exchangeRateController.text = '';
+            tenDV = ""; mstnmua = ''; diachiNM = ''; tenNMua = ''; mst = '';
+            maKH = ''; personalID = ''; htPayment = ''; dropTypeMoney = lstDropTypeMoney.first;
+            tongTienDv = "0";
+            tienGTGT = "0";
+            thanhTien = "0";
+            listHangHoa = [];
+          });
         });
       }
     });
@@ -448,11 +462,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
       }
       DialogAlert.showDialogAlertCancel(context, error == null || error == "" ?  "Có lỗi xảy ra !" : error);
     });
-
-    Future<void> _saveHoaDonAsync(LuuHoaDonRequest request) async {
-      controller.luuHoaDon(request);
-    }
-
+    
     final loading = watchX((LapHoaDonModel x) => x.loading);
 
     return Scaffold(
@@ -1155,15 +1165,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     }
                                     String matte = currencyMap[thongTinUser.typeMoney ?? "VND"];
 
-                                    // String ngayhdon = denNgayController.text + " 00:00:00";
-                                    // String ngayhdon = DateFormat('dd/MM/yyyy').format(DateTime.now()) + " 00:00:00";
-                                    // print("------------------------ ${ngayhdon}");
-                                    // String formattedDate = DateFormat('HH:mm:ss').format(DateTime.now());
-                                    // print('---------------------------- $formattedDate');
-
-                                    DateTime ngayhdon = DateFormat('dd/MM/yyyy HH:mm:ss').parse(denNgayController.text + " ${DateFormat('HH:mm:ss').format(DateTime.now())}");
-                                    print('---------------------------- ${(ngayhdon.microsecondsSinceEpoch / 1000).round().toString()}');
-                                    await _saveHoaDonAsync(LuuHoaDonRequest(
+                                    controller.luuHoaDon(LuuHoaDonRequest(
                                       // ngayhdon: (ngayhdon.millisecondsSinceEpoch / 1000).round().toString(),
                                       ngayhdon: denNgayController.text,
                                       chitiethoadon: getChiTietHD(),
@@ -1230,20 +1232,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       tenkxuat: type == 0 || type == 1 || type == 2 || type == 6 || type == 7 ? "" : thongTinVanChuyen.khoXuat,
 
 
-                                    )).then((value) {
-                                      // reset cac truong khi luu
-                                      thongTinUser = CreateCustomerApiResponse();
-                                      thongTinVanChuyen = ThongTinVanChuyenModel();
-                                      thongTinNguoiNhan = ThongTinNguoiNhanModel();
-                                      objectHopdong = ObjectHopdong();
-                                      exchangeRateController.text = '';
-                                      tenDV = ""; mstnmua = ''; diachiNM = ''; tenNMua = ''; mst = '';
-                                      maKH = ''; personalID = ''; htPayment = ''; dropTypeMoney = lstDropTypeMoney.first;
-                                      tongTienDv = "0";
-                                      tienGTGT = "0";
-                                      thanhTien = "0";
-                                      listHangHoa = [];
-                                    });
+                                    ));
 
                                   }
 

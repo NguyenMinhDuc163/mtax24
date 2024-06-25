@@ -76,7 +76,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
     super.initState();
     print("========type: ${widget.type} ");
     dropLoaiTB = 'Thông báo hủy/giải trình của NNT';
-    // dropTinhChat = '';
+    dropTinhChat = '';
 
     if(widget.object != null && widget.type == "TB"){
       chiTietThongBaoResponse = widget.object;
@@ -572,7 +572,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                         CalendarInput(
                           textDateController: ngayKyController,
                           haveBorder: true,
-                          title: "Ngày ký văn bản",
+                          title: "Ngày ký văn bản ",
                           onClickChooseDate: (selectedDate){
                             setState(() {
                               if(DateFormat("dd/MM/yyyy").parse(selectedDate).isAfter(DateTime.now())) {
