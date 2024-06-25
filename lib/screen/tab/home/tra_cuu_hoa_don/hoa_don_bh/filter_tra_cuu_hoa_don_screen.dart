@@ -444,11 +444,11 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                                 Toast.showLongTop("Mã số thuế sai cấu trúc!");
                                 return;
                               }
-
                               objectTB = new FilterTCHoaDon(
                                 tuNgay: tuNgayController.text,
                                 denNgay: denNgayController.text,
-                                loaiHdName: dropLoaiHD,
+                                // loaiHdName: (dropLoaiHD == 'Tất cả') ? 'Tất cả' : dropLoaiHD.toString().split(' ').sublist(1).join(' ').trim(),
+                                loaiHdName: dropLoaiHD ,
                                 loaiHdID: loaiHDId,
                                 tinhChatName: dropTinhChatTb,
                                 tinhChatId: tinhChatId,

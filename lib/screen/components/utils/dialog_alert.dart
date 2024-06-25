@@ -784,9 +784,9 @@ class DialogAlert{
         });
   }
 
-  static showDialogInfo(BuildContext context, String content, {Function onSuccess}) {
+  static Future<void> showDialogInfo(BuildContext context, String content, {Function onSuccess}) async {
     // ignore: inference_failure_on_function_return_type
-    showDialog(
+    await showDialog(
         barrierDismissible: false,
         context: context,
         builder: (context) {

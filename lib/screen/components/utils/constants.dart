@@ -119,11 +119,15 @@ class Constants {
 
   static const List<Map<String, String>> invoiceKindList = [
     {"name": Constants.ALL, "key": ""},
-    {"name": "Hóa đơn giá trị gia tăng", "key": "01GTKT"},
-    {"name": "Hóa đơn bán hàng", "key": "02GTTT"},
-    {"name": "Hoá đơn bán hàng (dành cho tổ chức, cá nhân trong khu phi thuế quan)", "key": "07KPTQ"},
-    {"name": "Phiếu xuất kho hàng gửi bán đại lý", "key": "04HGDL"},
-    {"name": "Phiếu xuất kho kiêm vận chuyển nội bộ", "key": "03XKNB"},
+    {"name": "01GTKT: Hóa đơn giá trị gia tăng", "key": "01GTKT"},
+    {"name": "02GTTT: Hóa đơn bán hàng", "key": "02GTTT"},
+    {"name": "07KPTQ: Hoá đơn bán hàng (dành cho tổ chức, cá nhân trong khu phi thuế quan)", "key": "07KPTQ"},
+    {"name": "04HGDL: Phiếu xuất kho hàng gửi bán đại lý", "key": "04HGDL"},
+    {"name": "03XKNB: Phiếu xuất kho kiêm vận chuyển nội bộ", "key": "03XKNB"},
+    {"name": "05KHAC: Tem điện tử", "key": "05KHAC"},
+    {"name": "01GTKT: Hoá đơn GTGT có mã của CQT được khởi tạo từ máy tính tiền", "key": "01GTKT"},
+    {"name": "02GTTT: Hoá đơn bán hàng có mã của CQT được khởi tạo từ máy tính tiền", "key": "02GTTT"},
+    {"name": "05KHAC: Tem điện tử được khởi tạo từ máy tính tiền", "key": "05KHAC"},
   ];
 
   static const List<String> months = [
@@ -133,4 +137,11 @@ class Constants {
   static const List<String> periods = [
     "1", "2", "3", "4"
   ];
+
+  static const List<String> invoiceTypeList = [
+    Constants.ALL,
+    "Hóa đơn điện tử",
+    "Hóa đơn tự in",
+  ];
+
 }

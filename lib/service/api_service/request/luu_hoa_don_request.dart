@@ -71,6 +71,7 @@ class LuuHoaDonRequest {
     this.nguoiDDong,
     this.soLenhDDong,
     this.sohdongoc,
+    this.ngayhdon,
   });
 
   final String id;
@@ -132,6 +133,7 @@ class LuuHoaDonRequest {
   final String nguoiDDong;
   final String soLenhDDong;
   final String sohdongoc;
+  final String ngayhdon;
 
   factory LuuHoaDonRequest.fromJson(Map<String, dynamic> json) => LuuHoaDonRequest(
     id: json["id"] == null ? null : json["id"],
@@ -193,6 +195,7 @@ class LuuHoaDonRequest {
     relatedCustomer: json["relatedCustomer"] == null ? null : json["relatedCustomer"],
     cccDan: json["cccDan"] == null ? null : json["cccDan"],
     issue_type: json["issue_type"] == null ? null : json["issue_type"],
+    ngayhdon: json["ngayhdon"] == null ? null : json["ngayhdon"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -255,6 +258,7 @@ class LuuHoaDonRequest {
     "relatedCustomer": relatedCustomer == null ? null : relatedCustomer,
     "cccDan": cccDan == null ? null : cccDan,
     "issue_type": issue_type == null ? null : issue_type,
+    "ngayhdon": ngayhdon == null ? null : ngayhdon,
   };
 }
 

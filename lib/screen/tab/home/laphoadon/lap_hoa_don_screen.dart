@@ -81,6 +81,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
     var formatter = new DateFormat('dd/MM/yyyy');
     timeToday = formatter.format(now);
     denNgayController.text = timeToday;
+    exchangeRateController.text = '1';
     SharePreferUtils.getUserInfo().then((value) {
       mst = value.tin;
       id = value.userId;
@@ -170,6 +171,20 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
           }else{
             Navigator.of(context).pop();
           }
+        }).then((value) {
+          setState(() {
+            thongTinUser = CreateCustomerApiResponse();
+            thongTinVanChuyen = ThongTinVanChuyenModel();
+            thongTinNguoiNhan = ThongTinNguoiNhanModel();
+            objectHopdong = ObjectHopdong();
+            exchangeRateController.text = '';
+            tenDV = ""; mstnmua = ''; diachiNM = ''; tenNMua = ''; mst = '';
+            maKH = ''; personalID = ''; htPayment = ''; dropTypeMoney = lstDropTypeMoney.first;
+            tongTienDv = "0";
+            tienGTGT = "0";
+            thanhTien = "0";
+            listHangHoa = [];
+          });
         });
       }
     });
@@ -194,7 +209,9 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
             DialogAlert.showMDialogOTP("", context, (values) =>  kiHoaDon(values, isSavePinCodeLocal ?'Y' :'N'), pinCode: pinCode,
                 flag: isSavePinCode);
           }else {
+            print('-------------------------------- da di qua day');
             controller.kyHoaDonAPI(KyHoaDonApiRequest(
+              ngayhdon: denNgayController.text,
               id: idHD,
               pincode: 111111,
               chitiethoadon: getChiTietHD(),
@@ -220,7 +237,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
               serviceType: "N",
               tendvinmua: type == 0 || type == 1 || type == 2 ? thongTinUser
                   .customerCompany : "",
-              tenhdon: dropDMuc,
+              tenhdon: dropDMuc.toString().split(' ').sublist(1).join(' ').trim(),
               tennmua: type == 0 || type == 1 || type == 2 ? thongTinUser
                   .customerName : "",
               tgia: "1",
@@ -267,6 +284,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
           isKyHD = true;
           DialogAlert.showLoadding(context);
           controller.kyHoaDonAPI(KyHoaDonApiRequest(
+            ngayhdon: denNgayController.text,
             id: idHD,
             pincode: 111111,
             chitiethoadon: getChiTietHD(),
@@ -292,7 +310,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
             serviceType: "N",
             tendvinmua: type == 0 || type == 1 || type == 2 ? thongTinUser
                 .customerCompany : "",
-            tenhdon: dropDMuc,
+            tenhdon: dropDMuc.toString().split(' ').sublist(1).join(' ').trim(),
             tennmua: type == 0 || type == 1 || type == 2 ? thongTinUser
                 .customerName : "",
             tgia: "1",
@@ -368,7 +386,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
           ngaykyvanban: "",
           serviceType: "N",
           tendvinmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerCompany : "",
-          tenhdon: dropDMuc,
+          tenhdon: dropDMuc.toString().split(' ').sublist(1).join(' ').trim(),
           tennmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerName : "",
           tgia: "1",
           tienbangchu: Utils.convertVietnameseNumberReader(thanhTien),
@@ -444,11 +462,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
       }
       DialogAlert.showDialogAlertCancel(context, error == null || error == "" ?  "Có lỗi xảy ra !" : error);
     });
-
-    Future<void> _saveHoaDonAsync(LuuHoaDonRequest request) async {
-      controller.luuHoaDon(request);
-    }
-
+    
     final loading = watchX((LapHoaDonModel x) => x.loading);
 
     return Scaffold(
@@ -845,8 +859,9 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                         controller: exchangeRateController,
                                         keyboardType: TextInputType.number,
                                         decoration: InputDecoration(
-                                          hintText: "Tỷ giá",
                                           border: OutlineInputBorder(),
+                                          label: Text("Tỷ giá"),
+                                          labelStyle: TextStyle(color: Colors.grey.shade800),
                                         ),
                                       ),
                                     ),
@@ -1149,8 +1164,10 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       return;
                                     }
                                     String matte = currencyMap[thongTinUser.typeMoney ?? "VND"];
-                                    print("------------------------ $objectHopdong");
-                                    await _saveHoaDonAsync(LuuHoaDonRequest(
+
+                                    controller.luuHoaDon(LuuHoaDonRequest(
+                                      // ngayhdon: (ngayhdon.millisecondsSinceEpoch / 1000).round().toString(),
+                                      ngayhdon: denNgayController.text,
                                       chitiethoadon: getChiTietHD(),
                                       relatedCustomer: maKH,
                                       cccDan: personalID,
@@ -1172,7 +1189,8 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       ngaykyvanban: "",
                                       serviceType: "N",
                                       tendvinmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerCompany : "",
-                                      tenhdon: dropDMuc,
+                                      // Do o tren yeu cau co ma => khi gui di phai xoa ma
+                                      tenhdon: dropDMuc.toString().split(' ').sublist(1).join(' ').trim(),
                                       tennmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerName : "",
                                       tgia: "1",
                                       tienbangchu: Utils.convertVietnameseNumberReader(thanhTien) + " $matte",
@@ -1214,20 +1232,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       tenkxuat: type == 0 || type == 1 || type == 2 || type == 6 || type == 7 ? "" : thongTinVanChuyen.khoXuat,
 
 
-                                    )).then((value) {
-                                      // reset cac truong khi luu
-                                      thongTinUser = CreateCustomerApiResponse();
-                                      thongTinVanChuyen = ThongTinVanChuyenModel();
-                                      thongTinNguoiNhan = ThongTinNguoiNhanModel();
-                                      objectHopdong = ObjectHopdong();
-                                      exchangeRateController.text = '';
-                                      tenDV = ""; mstnmua = ''; diachiNM = ''; tenNMua = ''; mst = '';
-                                      maKH = ''; personalID = ''; htPayment = ''; dropTypeMoney = lstDropTypeMoney.first;
-                                      tongTienDv = "0";
-                                      tienGTGT = "0";
-                                      thanhTien = "0";
-                                      listHangHoa = [];
-                                    });
+                                    ));
 
                                   }
 
@@ -1289,7 +1294,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     ngaykyvanban: "",
                                     serviceType: "N",
                                     tendvinmua: thongTinUser.customerCompany,
-                                    tenhdon: dropDMuc,
+                                    tenhdon: dropDMuc.toString().split(' ').sublist(1).join(' ').trim(),
                                     tennmua: thongTinUser.customerName,
                                     tgia: "1",
                                     tienbangchu: Utils.convertVietnameseNumberReader(thanhTien),
@@ -1383,6 +1388,8 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
   }
   void kiHoaDon(String pinCode, String isSavePinCode){
     controller.kyHoaDonAPI(KyHoaDonApiRequest(
+      ngayhdon: denNgayController.text,
+
       check_savepass: isSavePinCode,
       id: idHD,
       pincode: int.parse(pinCode),
@@ -1409,7 +1416,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
       serviceType: "N",
       tendvinmua: type == 0 || type == 1 || type == 2 ? thongTinUser
           .customerCompany : "",
-      tenhdon: dropDMuc,
+      tenhdon: dropDMuc.toString().split(' ').sublist(1).join(' ').trim(),
       tennmua: type == 0 || type == 1 || type == 2 ? thongTinUser
           .customerName : "",
       tgia: "1",

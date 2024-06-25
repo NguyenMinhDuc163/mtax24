@@ -139,19 +139,23 @@ class _FilterThongBaoScreenState extends State<FilterThongBaoScreen> with GetItS
                                   tinhChatId = "";
                                   break;
                                 case "Thông báo điều chỉnh định danh":
-                                  tinhChatId = "10";
+                                  // tinhChatId = "10";
+                                  tinhChatId = "13";
                                   break;
                                 case "Thông báo xóa bỏ":
                                   tinhChatId = "07";
                                   break;
                                 case "Thông báo điều chỉnh":
-                                  tinhChatId = "11";
+                                  // tinhChatId = "11";
+                                  tinhChatId = "10";
                                   break;
                                 case "Thông báo thay thế":
-                                  tinhChatId = "12";
+                                  // tinhChatId = "12";
+                                  tinhChatId = "11";
                                   break;
                                 case "Thông báo giải trình":
-                                  tinhChatId = "13";
+                                  // tinhChatId = "13";
+                                  tinhChatId = "12";
                                   break;
                               }
                             });

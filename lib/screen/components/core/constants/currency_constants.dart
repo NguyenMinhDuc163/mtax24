@@ -1,4 +1,7 @@
 // currency_constants.dart
+
+import 'package:easy_localization/easy_localization.dart';
+
 const Map<String, String> currencyMap = {
   'VND': 'Đồng',
   'USD': 'đô la mỹ',

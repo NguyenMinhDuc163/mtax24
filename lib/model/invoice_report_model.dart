@@ -16,6 +16,8 @@ class InvoiceReportModel extends BaseModel {
   final ValueNotifier<TextEditingController> fromDateReport = ValueNotifier<TextEditingController>(TextEditingController());
   final ValueNotifier<TextEditingController> toDateReport = ValueNotifier<TextEditingController>(TextEditingController());
   final ValueNotifier<TextEditingController> tinBuyerReport = ValueNotifier<TextEditingController>(TextEditingController());
+  final ValueNotifier<TextEditingController> invoiceTemplate = ValueNotifier<TextEditingController>(TextEditingController());
+  final ValueNotifier<TextEditingController> invoiceSymbol = ValueNotifier<TextEditingController>(TextEditingController());
 
   //create report
   final ValueNotifier<List<Map<String, dynamic>>> soldReportList = ValueNotifier<List<Map<String, dynamic>>>([]);
@@ -39,6 +41,7 @@ class InvoiceReportModel extends BaseModel {
   final ValueNotifier<String> time = ValueNotifier<String>("1");
   final ValueNotifier<String> typeTH = ValueNotifier<String>("Lần đầu");
   final ValueNotifier<String> loaiHoaDon = ValueNotifier<String>(null);
+  final ValueNotifier<String> invoiceType = ValueNotifier<String>(null);
   final ValueNotifier<UsageReportResponse> usageReportResponse = ValueNotifier<UsageReportResponse>(UsageReportResponse());
 
   void setInvoiceReportList({@required List<Map<String, dynamic>> invoiceReportList}) {
@@ -71,11 +74,12 @@ class InvoiceReportModel extends BaseModel {
     clearError();
   }
 
+
+
   void setToDateReport({@required String toDate}) {
     this.toDateReport.value.text = toDate;
     clearError();
   }
-
   void resetDateReport() {
     DateTime now = DateTime.now();
     this.fromDateReport.value.text = DateFormat("dd/MM/yyyy").format(DateTime(now.year, now.month - 1, now.day)).toString();
@@ -88,6 +92,8 @@ class InvoiceReportModel extends BaseModel {
     this.invoicePropertyReport.value = Constants.ALL;
     this.moneyKind.value = Constants.ALL;
     this.tinBuyerReport.value.text = "";
+    this.invoiceSymbol.value.text = "";
+    this.invoiceTemplate.value.text = "";
     clearError();
   }
 
@@ -117,6 +123,8 @@ class InvoiceReportModel extends BaseModel {
     this.invoicePropertyCreateReport.value = Constants.ALL;
     this.merchandiseName.value = Constants.ALL;
     this.tinBuyerCreateReport.value.text = "";
+    this.invoiceType.value = Constants.ALL;
+
     clearError();
   }
 
@@ -261,4 +269,19 @@ class InvoiceReportModel extends BaseModel {
     this.time.value = "1";
     clearError();
   }
+
+  void setInvoiceType({String invoiceType}) {
+    this.invoiceType.value = invoiceType;
+    clearError();
+  }
+
+  void setInvoiceTemplate({@required String invoiceTemplate}) {
+    this.invoiceTemplate.value.text = invoiceTemplate;
+    clearError();
+  }
+  void setInvoiceSymbol({@required String invoiceSymbol}) {
+    this.invoiceSymbol.value.text = invoiceSymbol;
+    clearError();
+  }
+
 }

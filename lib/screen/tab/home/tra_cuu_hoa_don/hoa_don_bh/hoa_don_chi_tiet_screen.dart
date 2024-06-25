@@ -197,6 +197,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
               flag: isSavePinCode);
         }else {
           lapHdController.kyHoaDonAPI(KyHoaDonApiRequest(
+              ngayhdon: DateFormat('dd/MM/yyyy').format(DateTime.now()),
               check_savepass: isSavePinCode,
               id: chiTietResponse.id,
               pincode: 111111,
@@ -581,7 +582,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                             InkWell(
                               onTap: () async {
                                 final results = await Navigator.push(
-                                    context, new MaterialPageRoute(builder: (context) => ThongTinVanChuyenScreen(object: thongTinVanChuyen, trangThai: chiTietResponse.trangthai)));
+                                    context, new
+                                MaterialPageRoute(builder: (context) => ThongTinVanChuyenScreen(object: thongTinVanChuyen, trangThai: chiTietResponse.trangthai)));
                                 if(results != null){
                                   setState(() {
                                      hopDong = thongTinVanChuyen.hdSo;
@@ -1195,6 +1197,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                 String matte = currencyMap[(thongTinUser.typeMoney != null) ? thongTinUser.typeMoney : chiTietResponse.matte ?? "VND"];
 
                 lapHdController.luuHoaDon(LuuHoaDonRequest(
+                  ngayhdon: DateFormat('dd/MM/yyyy').format(DateTime.now()),
                   chitiethoadon: getChiTietHD(),
                   dchinmua: (thongTinUser.customerAddress != null) ? thongTinUser.customerAddress : chiTietResponse.dchinmua,
                   dthoainmua: (thongTinUser.customerTelephone != null) ? thongTinUser.customerTelephone : chiTietResponse.dthoainmua,
@@ -1381,6 +1384,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         tongTToanTang = thanhTien;
       }});
     lapHdController.kyHoaDonAPI(KyHoaDonApiRequest(
+        ngayhdon: DateFormat('dd/MM/yyyy').format(DateTime.now()),
         check_savepass: isSavePinCode,
         id: chiTietResponse.id,
         pincode: int.parse(pinCode),
