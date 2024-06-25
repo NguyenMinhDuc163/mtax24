@@ -2280,7 +2280,7 @@ class ThongBaoHdr {
   final dynamic cdMauso;
   final dynamic cdKihieu;
   final dynamic hthuchdongoc;
-  final String isTt68;
+   String isTt68;
   final String flagGiayTuin;
   final dynamic mauso;
   final String hdongiay;

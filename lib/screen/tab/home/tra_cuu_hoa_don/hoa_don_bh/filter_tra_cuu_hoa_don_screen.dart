@@ -447,7 +447,8 @@ class _FilterTraCuuHoaDonScreenState extends State<FilterTraCuuHoaDonScreen> wit
                               objectTB = new FilterTCHoaDon(
                                 tuNgay: tuNgayController.text,
                                 denNgay: denNgayController.text,
-                                loaiHdName: (dropLoaiHD == 'Tất cả') ? 'Tất cả' : dropLoaiHD.toString().split(' ').sublist(1).join(' ').trim(),
+                                // loaiHdName: (dropLoaiHD == 'Tất cả') ? 'Tất cả' : dropLoaiHD.toString().split(' ').sublist(1).join(' ').trim(),
+                                loaiHdName: dropLoaiHD ,
                                 loaiHdID: loaiHDId,
                                 tinhChatName: dropTinhChatTb,
                                 tinhChatId: tinhChatId,

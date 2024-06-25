@@ -1152,13 +1152,16 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     }
                                     String matte = currencyMap[thongTinUser.typeMoney ?? "VND"];
 
-                                    // String ngayhdon = DateFormat('dd/MM/yyyy HH:mm:ss').format(DateTime.now());
-                                    String ngayhdon = DateFormat('dd/MM/yyyy').format(DateTime.now()) + " 00:00:00";
-                                    print("------------------------ ${ngayhdon}");
-                                    String formattedDate = DateFormat('HH:mm:ss').format(DateTime.now());
-                                    print('---------------------------- $formattedDate');
+                                    // String ngayhdon = denNgayController.text + " 00:00:00";
+                                    // String ngayhdon = DateFormat('dd/MM/yyyy').format(DateTime.now()) + " 00:00:00";
+                                    // print("------------------------ ${ngayhdon}");
+                                    // String formattedDate = DateFormat('HH:mm:ss').format(DateTime.now());
+                                    // print('---------------------------- $formattedDate');
+
+                                    DateTime ngayhdon = DateFormat('dd/MM/yyyy HH:mm:ss').parse(denNgayController.text + " ${DateFormat('HH:mm:ss').format(DateTime.now())}");
+                                    print('---------------------------- ${(ngayhdon.microsecondsSinceEpoch / 1000).round().toString()}');
                                     await _saveHoaDonAsync(LuuHoaDonRequest(
-                                      ngayhdon: ngayhdon,
+                                      ngayhdon: (ngayhdon.millisecondsSinceEpoch / 1000).round().toString(),
                                       chitiethoadon: getChiTietHD(),
                                       relatedCustomer: maKH,
                                       cccDan: personalID,
