@@ -73,6 +73,7 @@ class _HopDongDaiLyScreenState extends State<HopDongDaiLyScreen> with GetItState
                     noiDung: doanhNghiepKyController.text,
                     ngayDieuDong: ngayKyController.text,
                     dvDieuDong: doanhNghiepKyController.text,
+                    hdKinhTeSo: hdKinhTeController.text,
                   );
                 }
                 Navigator.pop(context, objectHopdong);

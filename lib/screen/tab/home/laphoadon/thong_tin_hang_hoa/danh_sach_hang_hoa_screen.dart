@@ -301,49 +301,52 @@ class _DanhSachThemMoiScreenState extends State<DanhSachThemMoiScreen> with GetI
     return Column(
       children: [
         type == 3 || type == 4 || type == 5 ? Container() :
-        Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 40.h),
-              child: Divider(height: 1,),
-            ),
-            Container(
+        Visibility(
+          visible: type != 1,
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 40.h),
+                child: Divider(height: 1,),
+              ),
+              Container(
+                  padding: EdgeInsets.only(left: 20.h, right: 20.h),
+                  height: MediaQuery.of(context).size.height * 0.08,
+                  width: MediaQuery.of(context).size.width ,
+                  decoration: BoxDecoration(
+                      color: colorF4FAFF,
+                      // borderRadius:
+                      // BorderRadius.all(Radius.circular(5))
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(child: Text("Tổng tiền dịch vụ")),
+                      Text("${Utils.covertToMoney(double.parse(tongTienDv))} đ", style: text14Bold600,),
+
+                    ],
+                  )
+
+              ),
+              type == 2 ? SizedBox() : Divider(height: 1,),
+              type == 2 ? Container() :
+              Container(
                 padding: EdgeInsets.only(left: 20.h, right: 20.h),
                 height: MediaQuery.of(context).size.height * 0.08,
                 width: MediaQuery.of(context).size.width ,
                 decoration: BoxDecoration(
-                    color: colorF4FAFF,
-                    // borderRadius:
-                    // BorderRadius.all(Radius.circular(5))
+                  color: colorF4FAFF,
+                  // borderRadius:
+                  // BorderRadius.all(Radius.circular(5))
                 ),
                 child: Row(
                   children: [
-                    Expanded(child: Text("Tổng tiền dịch vụ")),
-                    Text("${Utils.covertToMoney(double.parse(tongTienDv))} đ", style: text14Bold600,),
-
+                    Expanded(child: Text("Tiền thuế GTGT")),
+                    Text("${Utils.covertToMoney(double.parse(tienGTGT))} đ", style: text14Bold600,),
                   ],
                 )
-
-            ),
-            type == 2 ? SizedBox() : Divider(height: 1,),
-            type == 2 ? Container() :
-            Container(
-              padding: EdgeInsets.only(left: 20.h, right: 20.h),
-              height: MediaQuery.of(context).size.height * 0.08,
-              width: MediaQuery.of(context).size.width ,
-              decoration: BoxDecoration(
-                color: colorF4FAFF,
-                // borderRadius:
-                // BorderRadius.all(Radius.circular(5))
               ),
-              child: Row(
-                children: [
-                  Expanded(child: Text("Tiền thuế GTGT")),
-                  Text("${Utils.covertToMoney(double.parse(tienGTGT))} đ", style: text14Bold600,),
-                ],
-              )
-            ),
-          ],
+            ],
+          ),
         ),
         Divider(height: 1,),
         Container(
@@ -357,7 +360,7 @@ class _DanhSachThemMoiScreenState extends State<DanhSachThemMoiScreen> with GetI
             ),
             child: Row(
               children: [
-                Expanded(child: Text("Thành tiền")),
+                Expanded(child: Text(type == 1 ? "Tổng tiền thanh toán VND" : "Thành tiền")),
                 Text("${Utils.covertToMoney(double.parse(thanhTien))} đ", style: text14Bold600,),
               ],
             )

@@ -1092,7 +1092,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                 //     BorderRadius.all(Radius.circular(5))),
                                 child: Row(
                                   children: [
-                                    Expanded(child: Text("Tổng tiền dịch vụ")),
+                                    Expanded(child: Text("Tổng tiền dịch vụ ")),
                                     Text("${Utils.covertToMoney(double.parse(tongTienDv))} đ", style: text14Bold600,),
 
                                   ],

@@ -390,7 +390,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                           },
                         ),
                       ),
-                      widget.type == 0 || widget.type == 1 || widget.type == 2 ?
+                      widget.type == 0 || widget.type == 1 || widget.type == 2  || widget.type == 6 || widget.type == 7?
                       Column(
                         children: [
                           DropdownInput(
@@ -444,7 +444,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                           ) : Container(),
                         ],
                       ): Container(),
-                      widget.type == 0  ?
+                      widget.type == 0 || widget.type == 6 ?
                       Column(
                         children: [
                           Padding(
@@ -720,7 +720,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                   )
 
                 ),
-                type == 2 || type == 1 ? Container() :
+                type == 2 || type == 1 || type == 7 ? Container() :
                   Container(
                     padding: EdgeInsets.only(left: 20.h, right: 20.h),
                     margin: EdgeInsets.only(top: 20.h),

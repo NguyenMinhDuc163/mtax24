@@ -464,10 +464,11 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                         type == 0 || type == 1 || type == 2 || type == 5 || type == 6 || type == 7 ?
                         InkWell(
                           onTap: ()async{
+                            bool isMTT = chiTietResponse.tenhdon.toLowerCase().trim().contains('máy tính tiền');
                             final resuls = await Navigator.push(
                                 context, new MaterialPageRoute(builder: (context) => ThongTinNguoiMuaScreen(mst: chiTietResponse.mstnmua,
                               thongTinUser: thongTinUser, trangThai: chiTietResponse.trangthai, flag: "INVOICE", idHD: chiTietResponse.id,
-                              chiTietResponse: chiTietResponse, statusCreateUser: false,)));
+                              chiTietResponse: chiTietResponse, statusCreateUser: false, personalID: isMTT)));
                             if(resuls != null){
                               setState(() {
                                 thongTinUser = resuls;
@@ -477,6 +478,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                 diachiNM = thongTinUser.customerAddress;
                                 mstController.text = thongTinUser.maKH != null && thongTinUser.maKH != "" ? thongTinUser.maKH : thongTinUser.customerTaxcode;
                                 tenNM = thongTinUser.customerName;
+                                personalID = thongTinUser.personalID;
                               });
                             }
 
