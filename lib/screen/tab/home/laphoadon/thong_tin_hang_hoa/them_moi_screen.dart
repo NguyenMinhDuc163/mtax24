@@ -242,6 +242,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
                     thanhTien : double.parse(moneyBar),
                     chietKhau : discountController.text.isNotEmpty ? int.parse(discountController.text.replaceAll(',', '')) : 0,
                   );
+                  print("----------------- ${hangHoaByMaResponse.thanhTien}");
                   Navigator.pop(context, hangHoaByMaResponse);
                 }
               }
@@ -763,7 +764,7 @@ class _ThemMoiScreenState extends State<ThemMoiScreen> with GetItStateMixin {
     double quantily = _quantily == null || _quantily == "" ? 0 : double.parse(_quantily.replaceAll(',', ''));
     double price = _price == null || _price == "" ? 0 : double.parse(_price.replaceAll(',', ''));
     double discount = _discount == null || _discount == "" ? 0 : double.parse(_discount.replaceAll(',', ''));
-    if(type == 0 || type == 1) {
+    if(type == 0 || type == 1 || type == 6 || type == 7){
       total = ((quantily * price) - discount).toString();
       print("percent:$percent");
       if (percent > 0) {

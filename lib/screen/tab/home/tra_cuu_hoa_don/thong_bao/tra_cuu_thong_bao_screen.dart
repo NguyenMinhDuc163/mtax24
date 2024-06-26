@@ -197,7 +197,9 @@ class _TraCuuThongBaoScreenState extends State<TraCuuThongBaoScreen> with GetItS
                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
-                                                  lstThongBao[index].tinhChat.isNotEmpty ?
+                                                  // TODO tinh chat co bi null
+                                                  // lstThongBao[index].tinhChat.isNotEmpty ?
+                                                  lstThongBao[index].tinhChat != null && lstThongBao[index].tinhChat.isNotEmpty ?
                                                   Text("${Utils.convertTinhChatThongBao(lstThongBao[index].tinhChat)}", textAlign: TextAlign.start, style: text_action_Bold600) : SizedBox(height: 4,),
                                                   Padding(
                                                     padding: EdgeInsets.only(top: 10.h),

@@ -124,7 +124,6 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
       }
 
       if(chiTietThongBaoResponse.thongBaoHdr.tinhChat == "07"){
-
         final objects = chiTietThongBaoResponse.thongBaoHdr;
         mauSoController.text = objects.mauso;
         mauSo = objects.mauso;
@@ -136,7 +135,9 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
         sohdoncqtgoc = objects.sohdoncqtgoc;
         ngayHDController.text = objects.ngayhdon != null ? Utils.convertTimestamp(objects.ngayhdon).toString() :
             objects.ngayhdongoc != null ? Utils.convertTimestamp(objects.ngayhdongoc).toString() : "";
-        ngayKyController.text = objects.ngayhdongoc != null ? Utils.convertTimestamp(objects.ngayvban).toString() : "";
+        //TODO time dang la timestamp : tam thoi de nhd => khong loi
+        ngayKyController.text = objects.ngayhdongoc != null ? Utils.convertTimestamp(objects.ngayhdongoc).toString() : "";
+        // ngayKyController.text = objects.ngayhdongoc != null ? Utils.convertTimestamp(objects.ngayvban).toString() : "";
         soVanBanController.text = objects.sovban != null ? objects.sovban.toString() : '';
       }
       // else if(chiTietThongBaoResponse.thongBaoHdr.tinhChat == "10"){
@@ -487,7 +488,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
               heightTop: EdgeInsets.only(top: 650.h),
               heightBackgroundTop: 570.h,
               childrenAppBar: [
-                ItemFilterTB("Số hóa đơn:", "${(sohdoncqtgoc == null || sohdoncqtgoc == "null") ? "${chiTietThongBaoResponse.invHdr.sohdongoc}" : sohdoncqtgoc}"),
+                ItemFilterTB("Số hóa đơn: ", "${(sohdoncqtgoc == null || sohdoncqtgoc == "null") ? "${chiTietThongBaoResponse.invHdr.sohdongoc}" : sohdoncqtgoc}"),
                 Padding(
                   padding: EdgeInsets.only(top: 10.h,),
                   child: ItemFilterTB("Ngày lập thông báo sai sót:", "${DateTime.now().day.toString().padLeft(2, '0')}/${DateTime.now().month.toString().padLeft(2, '0')}/${DateTime.now().year}"),

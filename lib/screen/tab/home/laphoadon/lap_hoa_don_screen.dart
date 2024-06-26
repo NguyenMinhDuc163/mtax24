@@ -919,6 +919,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                             if(result != null){
                                               setState(() {
                                                 listHangHoa[index] = result;
+                                                print("------------------------ thanhtien ${listHangHoa[index].thanhTien}");
                                                 tongTienDv = 0.toString();
                                                 tienGTGT = 0.toString();
                                                 thanhTien = 0.toString();
