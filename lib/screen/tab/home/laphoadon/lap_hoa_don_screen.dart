@@ -919,6 +919,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                             if(result != null){
                                               setState(() {
                                                 listHangHoa[index] = result;
+                                                print("------------------------ thanhtien ${listHangHoa[index].thanhTien}");
                                                 tongTienDv = 0.toString();
                                                 tienGTGT = 0.toString();
                                                 thanhTien = 0.toString();
@@ -1092,7 +1093,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                 //     BorderRadius.all(Radius.circular(5))),
                                 child: Row(
                                   children: [
-                                    Expanded(child: Text("Tổng tiền dịch vụ")),
+                                    Expanded(child: Text("Tổng tiền dịch vụ ")),
                                     Text("${Utils.covertToMoney(double.parse(tongTienDv))} đ", style: text14Bold600,),
 
                                   ],

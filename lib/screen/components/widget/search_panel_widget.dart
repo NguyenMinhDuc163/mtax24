@@ -13,7 +13,7 @@ class SearchPanelWidget extends StatefulWidget {
      this.invoiceSymbol,
      this.invoiceNumber,
      this.invoiceDate,
-     this.signDay,
+     this.invoiceAttributes,
      this.invoiceStatus,
      this.invoiceCQT,
       this.moneyType,
@@ -26,7 +26,7 @@ class SearchPanelWidget extends StatefulWidget {
   final String invoiceSymbol;
   final String invoiceNumber;
   final String invoiceDate;
-  final String signDay;
+  final String invoiceAttributes;
   final String invoiceStatus;
   final String invoiceCQT;
   final String moneyType;
@@ -129,9 +129,9 @@ class _SearchPanelWidgetState extends State<SearchPanelWidget> {
                   _buildRow(titleLeft: widget.invoiceSymbol, titleMid: widget.invoiceNumber, titleRight: widget.invoiceDate,
                       fontSize: 14, color: colorPrimaryLogin),
                   SizedBox(height: height_16,),
-                  _buildRow(titleLeft: "Ngày kí", titleMid: "Trạng thái HĐ", titleRight: "Trạng thái gửi CQT", fontSize: 12, color: color828282, flag: false),
+                  _buildRow(titleLeft: "Tính chất HĐ", titleMid: "Trạng thái HĐ", titleRight: "Trạng thái gửi CQT", fontSize: 12, color: color828282, flag: false),
 
-                  _buildRow(titleLeft: widget.signDay, titleMid: widget.invoiceStatus, titleRight: widget.invoiceCQT, fontSize: 14, color: color2981DA, flag: true, status: 1),
+                  _buildRow(titleLeft: widget.invoiceAttributes, titleMid: widget.invoiceStatus, titleRight: widget.invoiceCQT, fontSize: 14, color: color2981DA, flag: true, status: 1),
                 ],
               )
             ],

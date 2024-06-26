@@ -76,7 +76,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
     super.initState();
     print("========type: ${widget.type} ");
     dropLoaiTB = 'Thông báo hủy/giải trình của NNT';
-    dropTinhChat = '';
+    // dropTinhChat = '';
 
     if(widget.object != null && widget.type == "TB"){
       chiTietThongBaoResponse = widget.object;
@@ -119,11 +119,11 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
         lstTinhChat.add("Thay thế");
         lstTinhChat.add("Giải trình");
         int index = int.parse(chiTietThongBaoResponse.thongBaoHdr.tctbao ?? '1') - 1;
-        // dropTinhChat = lstTinhChat[index].toString();
+        dropTinhChat = lstTinhChat[index].toString();
 
       }
-      if(chiTietThongBaoResponse.thongBaoHdr.tinhChat == "07"){
 
+      if(chiTietThongBaoResponse.thongBaoHdr.tinhChat == "07"){
         final objects = chiTietThongBaoResponse.thongBaoHdr;
         mauSoController.text = objects.mauso;
         mauSo = objects.mauso;
@@ -135,7 +135,9 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
         sohdoncqtgoc = objects.sohdoncqtgoc;
         ngayHDController.text = objects.ngayhdon != null ? Utils.convertTimestamp(objects.ngayhdon).toString() :
             objects.ngayhdongoc != null ? Utils.convertTimestamp(objects.ngayhdongoc).toString() : "";
-        ngayKyController.text = objects.ngayhdongoc != null ? Utils.convertTimestamp(objects.ngayvban).toString() : "";
+        //TODO time dang la timestamp : tam thoi de nhd => khong loi
+        ngayKyController.text = objects.ngayhdongoc != null ? Utils.convertTimestamp(objects.ngayhdongoc).toString() : "";
+        // ngayKyController.text = objects.ngayhdongoc != null ? Utils.convertTimestamp(objects.ngayvban).toString() : "";
         soVanBanController.text = objects.sovban != null ? objects.sovban.toString() : '';
       }
       // else if(chiTietThongBaoResponse.thongBaoHdr.tinhChat == "10"){
@@ -295,31 +297,22 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
               }
             }
             else {
-              // controller.luuTBaoDCDinhDanh(TiepTucTBaoDcDinhDanhRequest(
-              //   dchiNMua: ["${diaChiNguoiMuaController.text}"],
-              //   loaiHDon: "$loaiHD",
-              //   lydodieuchinh: ["${lyDoController.text}"],
-              //   mstNmua: ["$mstNmua"],
-              //   ngayVBan: ["${ngayKyController.text}"],
-              //   portalInvoiceHdrTbao: widget.type == "TB" ? chiTietThongBaoResponse.thongBaoHdr : ThongBaoHdr(),
-              //   portalListInvoiceHdrTbao: widget.type == "TB" ? chiTietThongBaoResponse.lstInvoiceDtlTbao : lapTBaoDcDinhDanhResponse.portalListInvoiceHdrTbao,
-              //   soHDonCqt: ["$sohdoncqtgoc"],
-              //   soVBan: ["${soVanBanController.text}"],
-              //   tendvimua: ["${tenNguoiMuaController.text}"],
-              //   tenNMua: ["${tenNguoiMuaController.text}"],
-              //   tinhchatgoc: ["$type"],
-              // ));
-              typeNext = "LUU";
-              thaoTacLapTBaoXoaBoResponse = ThaoTacLapTBaoXoaBoResponse();
-              thaoTacLapTBaoXoaBoResponse.inReq = InReq();
-              thaoTacLapTBaoXoaBoResponse.portal = ThongBaoHdr();
-              controller.nextTBaoXoaBo(NextTBaoXoaBoRequest(
-                soVBan: soVanBanController.text,
-                lyDoXoaBo: lyDoController.text,
-                ngayKyVanBan: ngayHDController.text,
-                inReq: thaoTacLapTBaoXoaBoResponse.inReq,
-                portalTbaoReq: thaoTacLapTBaoXoaBoResponse.portal,
-                tctbao: tinhChatXoaBo,));
+              controller.luuTBaoDCDinhDanh(TiepTucTBaoDcDinhDanhRequest(
+                dchiNMua: ["${diaChiNguoiMuaController.text}"],
+                loaiHDon: "$loaiHD",
+                lydodieuchinh: ["${lyDoController.text}"],
+                mstNmua: ["$mstNmua"],
+                ngayVBan: ["${ngayKyController.text}"],
+                portalInvoiceHdrTbao: widget.type == "TB" ? chiTietThongBaoResponse.thongBaoHdr : ThongBaoHdr(),
+                // portalListInvoiceHdrTbao: widget.type == "TB" ? chiTietThongBaoResponse.lstInvoiceDtlTbao : lapTBaoDcDinhDanhResponse.portalListInvoiceHdrTbao,
+                portalListInvoiceHdrTbao: chiTietThongBaoResponse.lstInvoiceDtlTbao,
+                soHDonCqt: ["$sohdoncqtgoc"],
+                soVBan: ["${soVanBanController.text}"],
+                tendvimua: ["${tenNguoiMuaController.text}"],
+                tenNMua: ["${tenNguoiMuaController.text}"],
+                tinhchatgoc: ["$type"],
+                tctbao: chiTietThongBaoResponse.thongBaoHdr.tctbao,
+              ));
             }
           }
       ),
