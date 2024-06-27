@@ -102,7 +102,7 @@ class CreateCustomerApiResponse {
     this.typeMoney,
     this.tenNH,
     this.soTk,
-    this.personalID,
+    this.cccDan,
   });
 
   final int id;
@@ -126,7 +126,7 @@ class CreateCustomerApiResponse {
   String customerEmail;
   String customerAddress;
   String customerTelephone;
-  String personalID;
+  String cccDan;
   factory CreateCustomerApiResponse.fromJson(Map<String, dynamic> json) => CreateCustomerApiResponse(
     id: json["id"] == null ? null : json["id"],
     taxCode: json["tax_code"] == null ? null : json["tax_code"],
@@ -138,7 +138,7 @@ class CreateCustomerApiResponse {
     customerAddress: json["customer_address"] == null ? null : json["customer_address"],
     customerFax: json["customer_fax"] == null ? null : json["customer_fax"],
     customerTelephone: json["customer_telephone"] == null ? null : json["customer_telephone"],
-    personalID: json["personalID"] == null ? null : json["personalID"],
+    cccDan: json["cccDan"] == null ? null : json["cccDan"],
     bankAccount: json["bank_account"],
     bankName: json["bank_name"],
     errorMess: json["errorMess"],
@@ -155,9 +155,14 @@ class CreateCustomerApiResponse {
     "customer_address": customerAddress == null ? null : customerAddress,
     "customer_fax": customerFax == null ? null : customerFax,
     "customer_telephone": customerTelephone == null ? null : customerTelephone,
-    "personalID": personalID == null ? null : personalID,
+    "cccDan": cccDan == null ? null : cccDan,
     "bank_account": bankAccount,
     "bank_name": bankName,
     "errorMess": errorMess,
   };
+
+  @override
+  String toString() {
+    return 'CreateCustomerApiResponse{id: $id, taxCode: $taxCode, customerCode: $customerCode, customerName: $customerName, customerCompany: $customerCompany, customerFax: $customerFax, bankAccount: $bankAccount, bankName: $bankName, errorMess: $errorMess, maKH: $maKH, tenNguoiMua: $tenNguoiMua, typePayment: $typePayment, typeMoney: $typeMoney, tenNH: $tenNH, soTk: $soTk, customerTaxcode: $customerTaxcode, customerEmail: $customerEmail, customerAddress: $customerAddress, customerTelephone: $customerTelephone, cccDan: $cccDan}';
+  }
 }

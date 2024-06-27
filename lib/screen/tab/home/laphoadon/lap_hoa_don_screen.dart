@@ -209,7 +209,6 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
             DialogAlert.showMDialogOTP("", context, (values) =>  kiHoaDon(values, isSavePinCodeLocal ?'Y' :'N'), pinCode: pinCode,
                 flag: isSavePinCode);
           }else {
-            print('-------------------------------- da di qua day');
             controller.kyHoaDonAPI(KyHoaDonApiRequest(
               ngayhdon: denNgayController.text,
               id: idHD,
@@ -583,7 +582,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                     mstnmua = thongTinUser.maKH != null && thongTinUser.maKH != "" ? thongTinUser.maKH : thongTinUser.customerTaxcode;
                                     diachiNM = thongTinUser.customerAddress;
                                     thongTinUserController.text = thongTinUser.maKH != null && thongTinUser.maKH != "" ? thongTinUser.maKH : thongTinUser.customerTaxcode;
-                                    personalID = thongTinUser.personalID;
+                                    personalID = thongTinUser.cccDan;
                                   });
                                 }
                               },
@@ -919,7 +918,6 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                             if(result != null){
                                               setState(() {
                                                 listHangHoa[index] = result;
-                                                print("------------------------ thanhtien ${listHangHoa[index].thanhTien}");
                                                 tongTienDv = 0.toString();
                                                 tienGTGT = 0.toString();
                                                 thanhTien = 0.toString();
@@ -1164,8 +1162,7 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       DialogAlert.showDialogAlertCancel(context, "Không được phép chọn “Tiền mặt” đối với hóa đơn có giá trị thanh toán lớn hơn 20 triệu VNĐ");
                                       return;
                                     }
-                                    String matte = currencyMap[thongTinUser.typeMoney ?? "VND"];
-
+                                    String matte = currencyMap[thongTinUser.typeMoney ?? "VND"];;
                                     controller.luuHoaDon(LuuHoaDonRequest(
                                       // ngayhdon: (ngayhdon.millisecondsSinceEpoch / 1000).round().toString(),
                                       ngayhdon: denNgayController.text,
@@ -1174,10 +1171,10 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       cccDan: personalID,
                                       issue_type: (type == 6 || type == 7 || type == 8) ? "MTT" : "",
                                       dchinmua: thongTinUser.customerAddress,
-                                      dthoainmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerTelephone : "",
-                                      emailnmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerEmail : "",
-                                      faxnmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerFax : "",
-                                      hthuctoan: type == 0 || type == 1 || type == 2 ? htPayment : "",
+                                      dthoainmua: type == 0 || type == 1 || type == 2 || type == 6 || type == 7 ? thongTinUser.customerTelephone : "",
+                                      emailnmua: type == 0 || type == 1 || type == 2 || type == 6 || type == 7? thongTinUser.customerEmail : "",
+                                      faxnmua: type == 0 || type == 1 || type == 2 || type == 6 || type == 7? thongTinUser.customerFax : "",
+                                      hthuctoan: type == 0 || type == 1 || type == 2 || type == 6 || type == 7? htPayment : "",
                                       kyhieu: dropKyHieu,
                                       loaihdon: invoiceType,
                                       lstInvOtherInfoBan: lstPreLapHoaDon.first.lstInvOtherInfoBan,
@@ -1186,13 +1183,13 @@ class _LapHoaDonScreenScreenState extends State<LapHoaDonScreen> with GetItState
                                       lstInvOtherInfoTToan: lstPreLapHoaDon.first.lstInvOtherInfoTToan,
                                       matte: (thongTinUser.typeMoney != null) ? thongTinUser.typeMoney : "VND",
                                       mauhdon: dropMauSo,
-                                      mstNmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerTaxcode : "",
+                                      mstNmua: type == 0 || type == 1 || type == 2 || type == 6 || type == 7 ? thongTinUser.customerTaxcode : "",
                                       ngaykyvanban: "",
                                       serviceType: "N",
-                                      tendvinmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerCompany : "",
+                                      tendvinmua: type == 0 || type == 1 || type == 2 || type == 6 || type == 7 ? thongTinUser.customerCompany : "",
                                       // Do o tren yeu cau co ma => khi gui di phai xoa ma
                                       tenhdon: dropDMuc.toString().split(' ').sublist(1).join(' ').trim(),
-                                      tennmua: type == 0 || type == 1 || type == 2 ? thongTinUser.customerName : "",
+                                      tennmua: type == 0 || type == 1 || type == 2 || type == 6 || type == 7? thongTinUser.customerName : "",
                                       tgia: "1",
                                       tienbangchu: Utils.convertVietnameseNumberReader(thanhTien) + " $matte",
                                       tinhchat: "01",

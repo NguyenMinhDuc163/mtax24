@@ -92,7 +92,7 @@ class _TraCuuThongBaoScreenState extends State<TraCuuThongBaoScreen> with GetItS
 
     });
 
-    registerHandler((ThongBaoModel x) => x.chiTietThongBao, (context, BaseResponse baseResponse, cancel) {
+    registerHandler((ThongBaoModel x) => x.chiTietThongBao, (context, BaseResponse baseResponse, cancel) async {
       final objectConverted = jsonDecode(baseResponse?.object);
       if(objectConverted == null || objectConverted == ""){
         if(baseResponse.htmlContent != null){
@@ -101,8 +101,27 @@ class _TraCuuThongBaoScreenState extends State<TraCuuThongBaoScreen> with GetItS
       }else if(objectConverted != null) {
         ChiTietThongBaoResponse chiTietThongBaoResponse = ChiTietThongBaoResponse.fromJson(jsonDecode(baseResponse?.object));
         if(chiTietThongBaoResponse.thongBaoHdr.status == "NEWR"){
-          Navigator.push(
+          await Navigator.push(
               context, new MaterialPageRoute(builder: (context) => ChiTietThongBaoScreen(object: chiTietThongBaoResponse, type: "TB",)));
+          setState(() {
+            // todo: update status
+            lstThongBao.clear();
+
+            controller.traCuuThongBao(TraCuuThongBaoRequest(
+              loaiHoaDon: (filterObjectTB != null) ? filterObjectTB.loaiHdID : "",
+              tinhChat: (filterObjectTB != null) ? filterObjectTB.tinhChatId : "",
+              toDateShow: DateTime.now(),
+              toDate: (filterObjectTB != null) ? filterObjectTB.denNgay : denNgay,
+              page: page,
+              idNguoilap: idNguoiLap,
+              fromDateShow: DateTime.now().subtract(Duration(days: 30)),
+              fromDate: ((filterObjectTB != null)) ? filterObjectTB.tuNgay : tuNgay,
+              mstNban: mstNban,
+              loaiTBao: (filterObjectTB != null) ? filterObjectTB.loaiHdID  : "",
+              soThongBao: (filterObjectTB != null) ? filterObjectTB.soTb : "",
+              trangthai:(filterObjectTB != null) ? filterObjectTB.trangThaiTbId : "",
+            ));
+          });
         }else if(baseResponse.htmlContent != null){
           ReadOpenFile(baseResponse.htmlContent, nameFile);
         }
@@ -172,12 +191,14 @@ class _TraCuuThongBaoScreenState extends State<TraCuuThongBaoScreen> with GetItS
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                     onTap: () {
+                                      print("da di qua day ------------------- ${lstThongBao[index].status}");
                                       nameFile = lstThongBao[index].sotbao;
                                       controller.chiTietThongBao(ChiTietThongBaoRequest(
                                           tinhChat: lstThongBao[index].tinhChat,
                                           loaiHoaDon: lstThongBao[index].loaitbao,
                                           id: lstThongBao[index].id,
-                                          trangThai: lstThongBao[index].status
+                                          trangThai: lstThongBao[index].status,
+                                          isView: (lstThongBao[index].status == "SUCC") ? "Y" : "N",
                                       ));
 
                                     },

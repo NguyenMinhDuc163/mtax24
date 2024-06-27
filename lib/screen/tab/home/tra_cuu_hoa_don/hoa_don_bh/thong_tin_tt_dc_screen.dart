@@ -96,6 +96,14 @@ class _ThongTinVanChuyenScreenState extends State<ThongTinTTDCScreen> with GetIt
           if(widget.typeHD == "HDTT"){
             Navigator.pop(context, [soVanBanController.text.toString(), ngayKyVBController.text.toString()]);
           }else{
+            if(lyDoController.text == ''){
+              DialogAlert.showDialogAlertCancel(context, 'Vui lòng nhập lý do điều chỉnh');
+              return;
+            }
+            if(ngayKyVBController.text == null || ngayKyVBController.text == ''){
+              DialogAlert.showDialogAlertCancel(context, 'Vui lòng chọn ngày ký văn bản');
+              return;
+            }
             Navigator.pop(context, [soVanBanController.text.toString(),ngayKyVBController.text.toString(),
               lyDoController.text.toString(), hdDieuChinh]);
           }

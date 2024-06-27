@@ -68,14 +68,14 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
   String type ;
   String tenHD = "" ;
   String loaiHD ="", mstNmua = "", mauSo = '', kyHieu = '', tinhChatXoaBo = '1', loaiTBXoaBo = '', isTt68 = '';
-  String typeNext = '';
+  String typeNext = '', tctbao = '';
   List<SpeedDialChild> lstSpeedDialChild = [];
 
   @override
   void initState() {
     super.initState();
     print("========type: ${widget.type} ");
-    dropLoaiTB = 'Thông báo hủy/giải trình của NNT';
+    dropLoaiTB = lstLoaiTB[0];
     // dropTinhChat = '';
 
     if(widget.object != null && widget.type == "TB"){
@@ -95,19 +95,22 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
       lyDoController.text = chiTietThongBaoResponse.thongBaoHdr.lyDoXoaBo;
       print('##################### dtlTbao ${chiTietThongBaoResponse.thongBaoHdr.ltbao}');
       String typeTB = chiTietThongBaoResponse.thongBaoHdr.ltbao ?? "";
-      dropLoaiTB = (typeTB == '1') ? lstLoaiTB[0] : lstLoaiTB[1];
+      if(typeTB != null && typeTB != ""){
+        dropLoaiTB = (typeTB == '1') ? lstLoaiTB[0] : lstLoaiTB[1];
+      }
+
 
       // dropTinhChat = Utils.convertTinhChatThongBao(chiTietThongBaoResponse.thongBaoHdr.tinhChat).replaceAll('Thông báo ', '');
-      if(chiTietThongBaoResponse.thongBaoHdr.tinhChat == "10"){
+      if(chiTietThongBaoResponse.thongBaoHdr.tinhChat == "2"){ //10
         dropTinhChat = "Điều chỉnh";
       }
-      else if(chiTietThongBaoResponse.thongBaoHdr.tinhChat == "11"){
+      else if(chiTietThongBaoResponse.thongBaoHdr.tinhChat == "3"){
         dropTinhChat = "Thay thế";
       }
-      else if(chiTietThongBaoResponse.thongBaoHdr.tinhChat == "12"){
+      else if(chiTietThongBaoResponse.thongBaoHdr.tinhChat == "4"){
         dropTinhChat = "Giải trình";
       }
-      else{
+      else if(chiTietThongBaoResponse.thongBaoHdr.tinhChat == "5"){
         dropTinhChat = "Hủy";
       }
 
@@ -139,6 +142,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
         ngayKyController.text = objects.ngayhdongoc != null ? Utils.convertTimestamp(objects.ngayhdongoc).toString() : "";
         // ngayKyController.text = objects.ngayhdongoc != null ? Utils.convertTimestamp(objects.ngayvban).toString() : "";
         soVanBanController.text = objects.sovban != null ? objects.sovban.toString() : '';
+
       }
       // else if(chiTietThongBaoResponse.thongBaoHdr.tinhChat == "10"){
       //   print("======chiTietThongBaoResponse:${chiTietThongBaoResponse.lstInvoiceDtlTbao.first.toJson()}");
@@ -277,12 +281,18 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                 DialogAlert.showDialogAlertCancel(context, "Vui lòng nhập lý do");
                 return;
               }
-              else if(dropTinhChat == null){
+              else if(dropTinhChat == null || dropTinhChat == ''){
                 DialogAlert.showDialogAlertCancel(context, "Vui lòng nhập tính chất thông báo");
                 return;
               }
               else if(dropLoaiTB == null){
                 DialogAlert.showDialogAlertCancel(context, "Vui lòng nhập loại thông báo ");
+                return;
+              }
+
+              if(mauSo == null ||  kyHieu == null){
+                print('--------------------- mauSo ${mauSo} sohdoncqtgoc ${sohdoncqtgoc} mauSo${mauSo}');
+                DialogAlert.showDialogAlertCancel(context, "Một số thông tin không hợp lệ !");
                 return;
               }
               else {
@@ -297,6 +307,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
               }
             }
             else {
+
               controller.luuTBaoDCDinhDanh(TiepTucTBaoDcDinhDanhRequest(
                 dchiNMua: ["${diaChiNguoiMuaController.text}"],
                 loaiHDon: "$loaiHD",
@@ -311,7 +322,9 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                 tendvimua: ["${tenNguoiMuaController.text}"],
                 tenNMua: ["${tenNguoiMuaController.text}"],
                 tinhchatgoc: ["$type"],
-                tctbao: chiTietThongBaoResponse.thongBaoHdr.tctbao,
+                // tctbao: chiTietThongBaoResponse.thongBaoHdr.tctbao,
+                tctbao: tctbao,
+                sohdon: chiTietThongBaoResponse.invHdr.sohdon,
               ));
             }
           }
@@ -327,6 +340,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
     registerHandler((ThongBaoModel x) => x.nextTBaoXoaBo, (context, ThongBaoXoaBoResponse response, cancel) async {
       if(response != null){
         thongBaoXoaBoResponse = response;
+        print("--------------- da ddai qua");
         if(typeNext == "LUU") {
           controller.preLuuTBaoXoaBo(NextTBaoXoaBoRequest(
             soVBan: soVanBanController.text,
@@ -398,7 +412,8 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
           tendvimua: ["${tenNguoiMuaController.text}"],
           tenNMua: ["${tenNguoiMuaController.text}"],
           tinhchatgoc: ["$type"],
-
+          sohdon: chiTietThongBaoResponse.invHdr.sohdon,
+          tctbao: chiTietThongBaoResponse.thongBaoHdr.tctbao,
         ));
       }
     });
@@ -419,6 +434,8 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
           tendvimua: ["${tenNguoiMuaController.text}"],
           tenNMua: ["${tenNguoiMuaController.text}"],
           tinhchatgoc: ["$type"],
+          sohdon: chiTietThongBaoResponse.invHdr.sohdon,
+          tctbao: chiTietThongBaoResponse.thongBaoHdr.tctbao,
         ));
       }
     });
@@ -485,6 +502,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
         body: Stack(
           children: [
             AppbarScreen(title: '$title', isShowHome: true, isShowBack: true,
+
               heightTop: EdgeInsets.only(top: 650.h),
               heightBackgroundTop: 570.h,
               childrenAppBar: [
@@ -659,6 +677,7 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                                 hint: "Loại thông báo(*)",
                                 itemsDropdown: lstLoaiTB,
                               ),
+                              //TODO tinh chat
                               DropdownInput(
                                 value: dropTinhChat,
                                 onChangedCustom: (String value){
@@ -666,27 +685,27 @@ class _ChiTietThongBaoScreenState extends State<ChiTietThongBaoScreen> with GetI
                                     dropTinhChat = value;
                                     print("dropTinhChat: $dropTinhChat");
                                     switch(dropTinhChat){
-                                      case "Giải trình" :
-                                        tinhChatXoaBo = thaoTacLapTBaoXoaBoResponse.inReq.isTt68 == "TT78" ? "4" : "1";
-                                        break;
+                                      // case "Giải trình" :
+                                      //   tinhChatXoaBo = thaoTacLapTBaoXoaBoResponse.inReq.isTt68 == "TT78" ? "4" : "1";
+                                      //   break;
                                       case "Hủy có lập hóa đơn thay thế" :
-                                        tinhChatXoaBo = "2";
+                                        tctbao = "2";
                                         break;
                                       case "Hủy không lập hóa đơn thay thế" :
-                                        tinhChatXoaBo = "3";
+                                        tctbao = "3";
                                         break;
                                       case "Hủy" :
-                                        tinhChatXoaBo = "1";
+                                        tctbao = "1";
                                         break;
                                       case "Điều chỉnh" :
-                                        tinhChatXoaBo = "2";
+                                        tctbao = "2";
                                         break;
                                       case "Thay thế" :
-                                        tinhChatXoaBo = "3";
+                                        tctbao = "3";
                                         break;
-                                    // case "Giải trình" :
-                                    //   tinhChatXoaBo = "4";
-                                    //   break;
+                                    case "Giải trình" :
+                                      tctbao = "4";
+                                      break;
                                     }
                                     print("tinhChatXoaBo: $tinhChatXoaBo");
                                   });

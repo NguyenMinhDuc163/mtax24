@@ -101,7 +101,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
         addressController.text = createCustomerApiResponse.customerAddress != null ? createCustomerApiResponse.customerAddress : "";
         emailController.text = createCustomerApiResponse.customerEmail != null ? createCustomerApiResponse.customerEmail : "";
         phoneController.text = createCustomerApiResponse.customerTelephone != null ? createCustomerApiResponse.customerTelephone : "";
-        personalIDController.text = createCustomerApiResponse.personalID != null ? createCustomerApiResponse.personalID : "";
+        personalIDController.text = createCustomerApiResponse.cccDan != null ? createCustomerApiResponse.cccDan : "";
       }else {
         maKHController.text = widget.maKH;
         controller.getCustomerInfoByUserId(CustomerInfoByUserIdRequest(
@@ -133,6 +133,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
 
    if(widget.chiTietResponse != null && widget.thongTinUser != null){
    //   // TODO khoi tao gia tri ban dau neu co thong tin
+
      createCustomerApiResponse = widget.thongTinUser;
      maKHController.text = createCustomerApiResponse.maKH != null ? createCustomerApiResponse.maKH : chiTietResponse.relatedCustomer;
      mstController.text =  (createCustomerApiResponse.customerTaxcode != null) ? createCustomerApiResponse.customerTaxcode : chiTietResponse.mstnmua;
@@ -140,8 +141,8 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
      unitNameController.text = createCustomerApiResponse.customerCompany != null ? chiTietResponse.tendvinmua : "";
      addressController.text = (createCustomerApiResponse.customerAddress != null) ? createCustomerApiResponse.customerAddress : chiTietResponse.dchinmua;
      emailController.text = (createCustomerApiResponse.customerEmail != null ) ? createCustomerApiResponse.customerEmail : chiTietResponse.emailnmua;
-     phoneController.text = createCustomerApiResponse.customerTelephone != null ? createCustomerApiResponse.customerTelephone : "";
-      personalIDController.text = createCustomerApiResponse.personalID != null ? createCustomerApiResponse.personalID : "";
+     phoneController.text = createCustomerApiResponse.customerTelephone != null ? createCustomerApiResponse.customerTelephone : chiTietResponse.dthoainmua;
+      personalIDController.text = createCustomerApiResponse.cccDan != null ? createCustomerApiResponse.cccDan : widget.chiTietResponse.cccDan;
 
    }
    else if(widget.thongTinUser != null){
@@ -153,7 +154,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
       addressController.text = createCustomerApiResponse.customerAddress != null ? createCustomerApiResponse.customerAddress : "";
       emailController.text = createCustomerApiResponse.customerEmail != null ? createCustomerApiResponse.customerEmail : "";
       phoneController.text = createCustomerApiResponse.customerTelephone != null ? createCustomerApiResponse.customerTelephone : "";
-      personalIDController.text = createCustomerApiResponse.personalID != null ? createCustomerApiResponse.personalID : "";
+      personalIDController.text = createCustomerApiResponse.cccDan != null ? createCustomerApiResponse.cccDan : "";
    }
  }
   String getInitials(String text) {
@@ -238,7 +239,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
         createCustomerApiResponse.customerEmail = emailController.text;
         createCustomerApiResponse.customerAddress = addressController.text;
         createCustomerApiResponse.customerTelephone = phoneController.text;
-        createCustomerApiResponse.personalID = personalIDController.text;
+        createCustomerApiResponse.cccDan = personalIDController.text;
         // TODO - check MST
 
 
@@ -275,7 +276,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
               customerAddress: addressController.text,
               customerEmail: emailController.text,
               customerTelephone: phoneController.text,
-              personalID: personalIDController.text,
+            cccDan: personalIDController.text,
           );
         }
         Navigator.pop(context, createCustomerApiResponse);
@@ -369,7 +370,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                         customerAddress: addressController.text,
                         customerEmail: emailController.text,
                         customerTelephone: phoneController.text,
-                        personalID: personalIDController.text,
+                        cccDan: personalIDController.text,
                         customerName: nameController.text,
                     ));
 
@@ -389,7 +390,7 @@ class _ThongTinNguoiMuaState extends State<ThongTinNguoiMuaScreen> with GetItSta
                         customerAddress: addressController.text,
                         customerEmail: emailController.text,
                         customerTelephone: phoneController.text,
-                        personalID: personalIDController.text,
+                      cccDan: personalIDController.text,
                     );
                   }
                   Navigator.pop(context, createCustomerApiResponse);

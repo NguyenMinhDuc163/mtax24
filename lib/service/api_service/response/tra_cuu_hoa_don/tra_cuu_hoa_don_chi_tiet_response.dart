@@ -1025,4 +1025,9 @@ class Dsdvu {
     "thanhtiensauthue10": thanhtiensauthue10 == null ? null : thanhtiensauthue10,
     "thanhtiensauthue_KCT": thanhtiensauthueKct == null ? null : thanhtiensauthueKct,
   };
+
+  @override
+  String toString() {
+    return 'Dsdvu{madvu: $madvu, tendvu: $tendvu, dvtinh: $dvtinh, soluong: $soluong, dongia: $dongia, khuyenmai: $khuyenmai, tienchietkhau: $tienchietkhau, thuesuat: $thuesuat, thanhtientruocthue: $thanhtientruocthue, tienthue: $tienthue, tongtienthanhtoan: $tongtienthanhtoan, soluongthucxuat: $soluongthucxuat, soluongthucnhap: $soluongthucnhap, thanhtientruocthue0: $thanhtientruocthue0, thanhtientruocthue5: $thanhtientruocthue5, thanhtientruocthue10: $thanhtientruocthue10, thanhtientruocthueKct: $thanhtientruocthueKct, tienthue0: $tienthue0, tienthue5: $tienthue5, tienthue10: $tienthue10, tienthueKct: $tienthueKct, thanhtiensauthue0: $thanhtiensauthue0, thanhtiensauthue5: $thanhtiensauthue5, thanhtiensauthue10: $thanhtiensauthue10, thanhtiensauthueKct: $thanhtiensauthueKct}';
+  }
 }

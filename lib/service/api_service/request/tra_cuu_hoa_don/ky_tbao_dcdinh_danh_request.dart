@@ -26,6 +26,7 @@ class TiepTucTBaoDcDinhDanhRequest {
     this.portalInvoiceHdrTbao,
     this.pincode,
     this.tctbao,
+    this.sohdon,
   });
 
   final List<String> lydodieuchinh;
@@ -42,6 +43,7 @@ class TiepTucTBaoDcDinhDanhRequest {
   final ThongBaoHdr portalInvoiceHdrTbao;
   final String pincode;
   final String tctbao;
+  final String sohdon;
 
   factory TiepTucTBaoDcDinhDanhRequest.fromJson(Map<String, dynamic> json) => TiepTucTBaoDcDinhDanhRequest(
     lydodieuchinh: json["lydodieuchinh"] == null ? null : List<String>.from(json["lydodieuchinh"].map((x) => x)),
@@ -56,6 +58,7 @@ class TiepTucTBaoDcDinhDanhRequest {
     loaiHDon: json["loaiHDon"] == null ? null : json["loaiHDon"],
     pincode: json["pincode"] == null ? null : json["pincode"],
     tctbao: json["tctbao"] == null ? null : json["tctbao"],
+    sohdon: json["sohdon"] == null ? null : json["sohdon"],
     portalListInvoiceHdrTbao: json["portalListInvoiceHdrTbao"] == null ? null : List<LstInvoiceDtlTbao>.from(json["portalListInvoiceHdrTbao"].map((x) => LstInvoiceDtlTbao.fromJson(x))),
     portalInvoiceHdrTbao: json["portalInvoiceHdrTbao"] == null ? null : ThongBaoHdr.fromJson(json["portalInvoiceHdrTbao"]),
   );
@@ -73,6 +76,7 @@ class TiepTucTBaoDcDinhDanhRequest {
     "loaiHDon": loaiHDon == null ? null : loaiHDon,
     "pincode": pincode == null ? null : pincode,
     "tctbao": tctbao == null ? null : tctbao,
+    "sohdon": sohdon == null ? null : sohdon,
     "portalListInvoiceHdrTbao": portalListInvoiceHdrTbao == null ? null : List<dynamic>.from(portalListInvoiceHdrTbao.map((x) => x.toJson())),
     "portalInvoiceHdrTbao": portalInvoiceHdrTbao == null ? null : portalInvoiceHdrTbao.toJson(),
   };

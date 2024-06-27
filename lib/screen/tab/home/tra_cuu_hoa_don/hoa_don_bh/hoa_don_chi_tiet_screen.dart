@@ -41,7 +41,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
   TextEditingController mstController = TextEditingController();
   var type = 0;
   List<Dsdvu> listHangHoa = [];
-  String tenhdon = "", ngaylap = "", tenDV = "", tenNM = "" , personalID = "",
+  String tenhdon = "", ngaylap = "", tenDV = "", tenNM = "" , cccDan = "",
       mstnmua = '', nguoivchuyen = '', diachiNM = '', ngayKy = '',
       ngayDD= '', hopDong= '', phuongTien = '', lenh = '', nguoiDD = '';
 
@@ -135,6 +135,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         WidgetsBinding.instance.addPostFrameCallback((_) => getData());
 
     }
+
   }
 
   List<HoaDonXoaBoResponse> lstHDXoaBo = [];
@@ -197,7 +198,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
               flag: isSavePinCode);
         }else {
           lapHdController.kyHoaDonAPI(KyHoaDonApiRequest(
-              ngayhdon: DateFormat('dd/MM/yyyy').format(DateTime.now()),
+              ngayhdon:chiTietResponse.ngayhdon ??  DateFormat('dd/MM/yyyy').format(DateTime.now()),
               check_savepass: isSavePinCode,
               id: chiTietResponse.id,
               pincode: 111111,
@@ -478,7 +479,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                                 diachiNM = thongTinUser.customerAddress;
                                 mstController.text = thongTinUser.maKH != null && thongTinUser.maKH != "" ? thongTinUser.maKH : thongTinUser.customerTaxcode;
                                 tenNM = thongTinUser.customerName;
-                                personalID = thongTinUser.personalID;
+                                cccDan = thongTinUser.cccDan;
                               });
                             }
 
@@ -1206,7 +1207,7 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
                   emailnmua:(thongTinUser.customerEmail != null) ? thongTinUser.customerEmail : chiTietResponse.emailnmua,
                   faxnmua: chiTietResponse.faxnmua,
                   relatedCustomer: thongTinUser.maKH != null ? thongTinUser.maKH : chiTietResponse.relatedCustomer,
-                  cccDan: thongTinUser.personalID != null ? thongTinUser.personalID : chiTietResponse.cccDan,
+                  cccDan: thongTinUser.cccDan != null ? thongTinUser.cccDan : chiTietResponse.cccDan,
                   hthuctoan: (thongTinUser.typePayment != null) ? thongTinUser.typePayment : chiTietResponse.hthuctoan,
                   kyhieu: chiTietResponse.khieuhdon,
                   loaihdon: chiTietResponse.loaihdon,
@@ -1386,7 +1387,8 @@ class _HoaDonChiTietScreenState extends State<HoaDonChiTietScreen> with GetItSta
         tongTToanTang = thanhTien;
       }});
     lapHdController.kyHoaDonAPI(KyHoaDonApiRequest(
-        ngayhdon: DateFormat('dd/MM/yyyy').format(DateTime.now()),
+        ngayhdon: chiTietResponse.ngayhdon ??  DateFormat('dd/MM/yyyy').format(DateTime.now()),
+        // ngayhdon: chiTietResponse.ngayhdon,
         check_savepass: isSavePinCode,
         id: chiTietResponse.id,
         pincode: int.parse(pinCode),
